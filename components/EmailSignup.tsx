@@ -3,8 +3,6 @@
 import { useRef, useState } from "react";
 
 type Status = "idle" | "loading" | "ok" | "error";
-
-// Solide E-Mail-Prüfung
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function EmailSignup() {
@@ -23,6 +21,7 @@ export default function EmailSignup() {
       return;
     }
 
+    // parallele Submits abbrechen
     abortRef.current?.abort();
     const ctrl = new AbortController();
     abortRef.current = ctrl;
@@ -38,18 +37,31 @@ export default function EmailSignup() {
         signal: ctrl.signal,
       });
 
-      const data = await res.json().catch(() => ({}));
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+
       if (!res.ok) {
-        throw new Error(data?.error || "Anmeldung fehlgeschlagen.");
+        throw new Error(data?.error ?? "Anmeldung fehlgeschlagen.");
       }
 
       setStatus("ok");
       setMessage("Danke! Wir melden uns zum Launch. Bitte prüfe dein Postfach.");
       setEmail("");
-    } catch (err: any) {
-      if (err?.name === "AbortError") return;
+    } catch (err: unknown) {
+      // Abbruch durch erneuten Klick?
+      if (
+        err &&
+        typeof err === "object" &&
+        "name" in err &&
+        (err as { name?: string }).name === "AbortError"
+      ) {
+        return;
+      }
+      const msg =
+        err instanceof Error
+          ? err.message
+          : "Unerwarteter Fehler. Bitte später erneut versuchen.";
       setStatus("error");
-      setMessage(err?.message || "Unerwarteter Fehler. Bitte später erneut versuchen.");
+      setMessage(msg);
     } finally {
       abortRef.current = null;
     }
@@ -59,11 +71,7 @@ export default function EmailSignup() {
   const isInvalid = email !== "" && !EMAIL_RE.test(email.trim());
 
   return (
-    <form
-      onSubmit={onSubmit}
-      noValidate
-      className="flex flex-col sm:flex-row gap-3 sm:items-center"
-    >
+    <form onSubmit={onSubmit} noValidate className="flex flex-col sm:flex-row gap-3 sm:items-center">
       <label htmlFor="email" className="sr-only">
         E-Mail-Adresse
       </label>
@@ -95,13 +103,11 @@ export default function EmailSignup() {
         Gib deine E-Mail-Adresse ein, um benachrichtigt zu werden.
       </p>
 
-      <div aria-live="polite" className="text-sm mt-1">
-        {message && (
-          <p className={status === "ok" ? "text-green-700" : "text-red-700"}>
-            {message}
-          </p>
-        )}
-      </div>
+      {message && (
+        <p className={`text-sm mt-1 ${status === "ok" ? "text-green-700" : "text-red-700"}`}>
+          {message}
+        </p>
+      )}
     </form>
   );
 }
