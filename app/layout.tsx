@@ -1,3 +1,7 @@
+// app/layout.tsx
+import "./globals.css";
+import Footer from "@/components/Footer";
+
 export const metadata = {
   title: "SkinCompass – Dein Wegweiser zum fairsten Preis",
   description:
@@ -9,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de">
       <body className="min-h-screen bg-white text-gray-900 antialiased">
         {children}
+        <Footer />
       </body>
     </html>
   );
