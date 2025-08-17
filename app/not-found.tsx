@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NotFound() {
   return (
     <main className="max-w-2xl mx-auto px-6 py-24 text-center">
@@ -5,7 +7,9 @@ export default function NotFound() {
       <p className="mt-4 text-gray-600">
         Die angeforderte Seite existiert nicht oder wurde verschoben.
       </p>
-      <a href="/" className="inline-block mt-6 underline">Zurück zur Startseite</a>
+      <Link href="/" className="inline-block mt-6 underline">
+        Zurück zur Startseite
+      </Link>
     </main>
   );
 }
