@@ -20,18 +20,9 @@ export const metadata: Metadata = {
     description:
       "Echte Endpreise (inkl. Gebühren/FX), Live-Vergleich & 7-Tage-Trend.",
   },
-  icons: {
-    icon: "/favicon.png",       // Standard-Favicon
-    shortcut: "/favicon.png",   // ältere Browser
-    apple: "/favicon.png",      // iOS Geräte
-  },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de">
       <body className="min-h-screen bg-white text-gray-900 antialiased">
