@@ -7,18 +7,19 @@ export default function Home() {
   return (
     <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-      <header className="flex items-center justify-between">
-        <div className="relative h-16 w-[220px] sm:h-20 sm:w-[260px] md:h-24 md:w-[300px]">
-          <Image
+      {/* Header */}
+<header className="flex items-center justify-between">
+  {/* Logo */}
+  <div className="flex items-center">
+    <Image
       src="/skincompass-logo.png"
       alt="SkinCompass Logo"
-      fill                // 👈 ersetzt width/height
+      width={220} // Breite anpassen
+      height={60} // Höhe anpassen
+      className="object-contain"
       priority
-      className="object-contain" // Logo skaliert proportional
     />
   </div>
-
-  {/* (Optional) rechts Navigation – bei dir ja entfernt */}
 </header>
 
       {/* Hero */}
