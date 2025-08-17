@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: "%s | SkinCompass",
   },
   description:
-    "Vergleiche CS2-Skinpreise in Sekunden: Endpreise inkl. Gebühren & Währung, Live-Vergleich und 7‑Tage‑Preistrend.",
+    "Vergleiche CS2-Skinpreise in Sekunden: Endpreise inkl. Gebühren & Währung, Live-Vergleich und 7-Tage-Preistrend.",
   alternates: {
     canonical: "https://skincompass.de",
   },
@@ -18,7 +18,12 @@ export const metadata: Metadata = {
     siteName: "SkinCompass",
     title: "SkinCompass – CS2-Skins fair vergleichen",
     description:
-      "Echte Endpreise (inkl. Gebühren/FX), Live‑Vergleich & 7‑Tage‑Trend.",
+      "Echte Endpreise (inkl. Gebühren/FX), Live-Vergleich & 7-Tage-Trend.",
+  },
+  icons: {
+    icon: "/favicon.png",       // Standard-Favicon
+    shortcut: "/favicon.png",   // ältere Browser
+    apple: "/favicon.png",      // iOS Geräte
   },
 };
 
