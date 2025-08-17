@@ -6,30 +6,19 @@ export const dynamic = "force-static";
 export default function Home() {
   return (
     <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    {/* Header */}
-<header className="flex items-center justify-between">
-  {/* Logo + Schriftzug */}
-  <div className="flex items-center gap-4 sm:gap-5 md:gap-6">
-    <Image
+
+      <header className="flex items-center justify-between">
+        <div className="relative h-16 w-[220px] sm:h-20 sm:w-[260px] md:h-24 md:w-[300px]">
+          <Image
       src="/skincompass-logo.png"
       alt="SkinCompass Logo"
-      className="h-10 w-auto sm:h-12 md:h-14 lg:h-16 transition-transform duration-300 hover:animate-wiggle"
+      fill                // 👈 ersetzt width/height
       priority
+      className="object-contain" // Logo skaliert proportional
     />
-    <span className="font-semibold text-lg sm:text-xl md:text-2xl tracking-tight">
-      SkinCompass
-    </span>
   </div>
 
-  {/* Navigation */}
-  <nav className="text-sm flex items-center gap-6">
-    <Link href="/impressum" className="text-gray-600 hover:text-gray-900">
-      Impressum
-    </Link>
-    <Link href="/datenschutz" className="text-gray-600 hover:text-gray-900">
-      Datenschutz
-    </Link>
-  </nav>
+  {/* (Optional) rechts Navigation – bei dir ja entfernt */}
 </header>
 
       {/* Hero */}
