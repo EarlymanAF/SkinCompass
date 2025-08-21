@@ -1,6 +1,9 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
+// Optional & DSGVO-freundlich: anonyme Metriken
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: {
@@ -12,8 +15,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://skincompass.de",
   },
+  // nutzt dein app/icon.png automatisch
   icons: {
-    icon: "/icon.png", // nutzt automatisch dein app/icon.png
+    icon: "/icon.png",
     shortcut: "/icon.png",
     apple: "/icon.png",
   },
@@ -25,25 +29,19 @@ export const metadata: Metadata = {
     description:
       "Echte Endpreise (inkl. Gebühren/FX), Live-Vergleich & 7-Tage-Trend.",
     images: [
-      {
-        url: "/icon.png", // wird auch für Link-Preview genutzt
-        width: 512,
-        height: 512,
-        alt: "SkinCompass Logo",
-      },
+      { url: "/icon.png", width: 512, height: 512, alt: "SkinCompass Logo" },
     ],
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de">
       <body className="min-h-screen bg-white text-gray-900 antialiased">
         {children}
+        {/* Optional: anonyme Metriken */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
