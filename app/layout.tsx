@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://skincompass.de",
   },
+  icons: {
+    icon: "/icon.png", // nutzt automatisch dein app/icon.png
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   openGraph: {
     type: "website",
     url: "https://skincompass.de",
@@ -19,10 +24,22 @@ export const metadata: Metadata = {
     title: "SkinCompass – CS2-Skins fair vergleichen",
     description:
       "Echte Endpreise (inkl. Gebühren/FX), Live-Vergleich & 7-Tage-Trend.",
+    images: [
+      {
+        url: "/icon.png", // wird auch für Link-Preview genutzt
+        width: 512,
+        height: 512,
+        alt: "SkinCompass Logo",
+      },
+    ],
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="de">
       <body className="min-h-screen bg-white text-gray-900 antialiased">

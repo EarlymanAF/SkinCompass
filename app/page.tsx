@@ -1,6 +1,7 @@
 import Link from "next/link";
 import EmailSignup from "@/components/EmailSignup";
 import Image from "next/image";
+import MarketplaceTable from "@/components/MarketplaceTable";
 export const dynamic = "force-static";
 
 export default function Home() {
@@ -8,38 +9,37 @@ export default function Home() {
     <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
       {/* Header */}
-<header className="flex items-center justify-between">
-  {/* Logo */}
-  <div className="flex items-center">
+<header className="flex items-center justify-start py-6">
+  <div className="relative">
     <Image
       src="/skincompass-logo.png"
       alt="SkinCompass Logo"
-      width={220} // Breite anpassen
-      height={60} // Höhe anpassen
-      className="object-contain"
+      width={320}   // ggf. 300–360 testen
+      height={102}
       priority
+      className="block"
     />
   </div>
 </header>
 
-      {/* Hero */}
-      <section className="mt-20">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1]">
-          CS2-Skins vergleichen – schnell, transparent & fair
-        </h1>
+{/* Hero */}
+<section className="mt-12">
+  <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1]">
+    CS2‑Skins vergleichen – schnell, transparent &amp; fair
+  </h1>
 
-        <p className="mt-6 text-lg md:text-xl text-gray-700/90 max-w-2xl">
-          Finde den besten Preis für deine Counter-Strike 2 Skins: inklusive Marktplatz-Gebühren,
-          Währungsumrechnungen und einem klaren 7-Tage-Preistrend. Vergleiche smarter – kaufe günstiger.
-        </p>
+  <p className="mt-6 text-lg md:text-xl text-gray-700/90 max-w-2xl">
+    Finde den besten Preis: inklusive Marktplatz‑Gebühren, Währungsumrechnung
+    und klarem 7‑Tage‑Preistrend. Vergleiche smarter – kaufe günstiger.
+  </p>
 
-        <div className="mt-8">
-          <EmailSignup />
-          <p className="mt-3 text-sm text-gray-500">
-            Trage dich für Early-Access ein. Kein Spam, nur Updates zum Launch.
-          </p>
-        </div>
-      </section>
+  <div className="mt-8">
+    <EmailSignup />
+    <p className="mt-3 text-sm text-gray-500">
+      Trage dich für Early‑Access ein. Kein Spam, nur Updates zum Launch.
+    </p>
+  </div>
+</section>
 
       {/* Feature Cards */}
       <section className="mt-16 grid md:grid-cols-3 gap-6">
