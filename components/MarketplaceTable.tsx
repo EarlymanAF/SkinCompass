@@ -1,10 +1,5 @@
 // components/MarketplaceTable.tsx
-type Row = {
-  market: string;
-  finalPrice: string; // „Endpreis“ inkl. Fees/FX
-  trend7d: string;    // z. B. "+3.2%" oder "-1.1%"
-  link: string;
-};
+type Row = { market: string; finalPrice: string; trend7d: string; link: string };
 
 const data: Row[] = [
   { market: "Steam Community Market", finalPrice: "€ 12,49", trend7d: "+2,1%", link: "#" },
@@ -16,9 +11,7 @@ export default function MarketplaceTable() {
   return (
     <div className="mt-16 border border-gray-200 rounded-2xl overflow-hidden bg-white">
       <div className="px-6 py-4 border-b border-gray-200">
-        <h2 className="text-lg md:text-xl font-semibold tracking-tight">
-          Live‑Vergleich (Demo)
-        </h2>
+        <h2 className="text-lg md:text-xl font-semibold tracking-tight">Live‑Vergleich (Demo)</h2>
         <p className="text-sm text-gray-600 mt-1">
           Endpreise inkl. Gebühren & Währungsumrechnung. Trend über die letzten 7 Tage.
         </p>

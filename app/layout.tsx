@@ -1,11 +1,12 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
-// Optional & DSGVO-freundlich: anonyme Metriken
+// (optional) anonyme Metriken – kannst du drin lassen
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://skincompass.de"), // ✅ wichtig: absolute Basis-URL
   title: {
     default: "SkinCompass – CS2-Skins fair vergleichen",
     template: "%s | SkinCompass",
@@ -15,7 +16,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://skincompass.de",
   },
-  // nutzt dein app/icon.png automatisch
   icons: {
     icon: "/icon.png",
     shortcut: "/icon.png",
@@ -39,7 +39,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de">
       <body className="min-h-screen bg-white text-gray-900 antialiased">
         {children}
-        {/* Optional: anonyme Metriken */}
         <Analytics />
         <SpeedInsights />
       </body>
