@@ -1,12 +1,9 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
-// (optional) anonyme Metriken – kannst du drin lassen
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://skincompass.de"), // ✅ wichtig: absolute Basis-URL
   title: {
     default: "SkinCompass – CS2-Skins fair vergleichen",
     template: "%s | SkinCompass",
@@ -17,7 +14,7 @@ export const metadata: Metadata = {
     canonical: "https://skincompass.de",
   },
   icons: {
-    icon: "/icon.png",
+    icon: "/icon.png", // nutzt automatisch dein app/icon.png
     shortcut: "/icon.png",
     apple: "/icon.png",
   },
@@ -29,18 +26,27 @@ export const metadata: Metadata = {
     description:
       "Echte Endpreise (inkl. Gebühren/FX), Live-Vergleich & 7-Tage-Trend.",
     images: [
-      { url: "/icon.png", width: 512, height: 512, alt: "SkinCompass Logo" },
+      {
+        url: "/icon.png",
+        width: 512,
+        height: 512,
+        alt: "SkinCompass Logo",
+      },
     ],
   },
+  metadataBase: new URL("https://skincompass.de"), // ⚡️ verhindert Warnung im Dev-Log
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="de">
       <body className="min-h-screen bg-white text-gray-900 antialiased">
-        {children}
-        <Analytics />
-        <SpeedInsights />
+        <Header />
+        <main className="pt-4">{children}</main>
       </body>
     </html>
   );
