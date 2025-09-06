@@ -67,10 +67,8 @@ export async function GET(req: Request) {
 
     // Variante B: 302 Redirect direkt aufs Bild (praktisch, um <img src="/api/..."> zu nutzen)
     return NextResponse.redirect(finalImage, { status: 302 });
-  } catch (e: any) {
-    return NextResponse.json(
-      { error: e?.message || "Unexpected error" },
-      { status: 500 }
-    );
-  }
+  } catch (err) {
+  const message = err instanceof Error ? err.message : "Unbekannter Fehler";
+  return NextResponse.json({ error: message }, { status: 500 });
+}
 }

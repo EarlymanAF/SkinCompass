@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { WEARS, WEAR_LABEL_DE, type WearEN } from "@/data/wears";
 
-// Liste der Waffen kannst du vorerst statisch halten oder aus deiner alten Quelle übernehmen
 const WEAPONS = [
   "AK-47", "M4A4", "M4A1-S", "AWP", "Desert Eagle", "Glock-18",
   "USP-S", "P250", "Five-SeveN", "Tec-9", "MP9", "MP7", "P90",
@@ -40,17 +39,20 @@ export default function ComparePage() {
     setWear("");
     setRows(null);
     setError(null);
+
     if (!weapon) {
       setSkinOptions([]);
       return;
     }
+
     (async () => {
       try {
         setLoadingSkins(true);
-        const res = await fetch(`/api/steam/skins?weapon=${encodeURIComponent(weapon)}`, {
-          cache: "no-store",
-        });
-        const data = await res.json();
+        const res = await fetch(
+          `/api/steam/skins?weapon=${encodeURIComponent(weapon)}`,
+          { cache: "no-store" }
+        );
+        const data = (await res.json()) as { skins?: string[] };
         if (res.ok) {
           setSkinOptions(data.skins ?? []);
         } else {
@@ -68,6 +70,7 @@ export default function ComparePage() {
 
   async function fetchPrices() {
     if (!weapon || !skin || !wear) return;
+
     try {
       setLoading(true);
       setError(null);
@@ -76,10 +79,11 @@ export default function ComparePage() {
       const q = new URLSearchParams({ weapon, skin, wear }).toString();
       const res = await fetch(`/api/prices?${q}`, { cache: "no-store" });
       if (!res.ok) throw new Error("Preise konnten nicht geladen werden.");
-      const data = await res.json();
-      setRows(data.rows as PriceRow[]);
-    } catch (e: any) {
-      setError(e?.message || "Unerwarteter Fehler.");
+      const data = (await res.json()) as { rows: PriceRow[] };
+      setRows(data.rows);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Unerwarteter Fehler.";
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -111,7 +115,7 @@ export default function ComparePage() {
           <select
             className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2"
             value={weapon}
-            onChange={(e) => setWeapon(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setWeapon(e.target.value)}
           >
             <option value="">Bitte wählen…</option>
             {WEAPONS.map((w) => (
@@ -128,7 +132,7 @@ export default function ComparePage() {
           <select
             className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 disabled:bg-gray-50 disabled:text-gray-400"
             value={skin}
-            onChange={(e) => setSkin(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSkin(e.target.value)}
             disabled={!weapon || loadingSkins}
           >
             <option value="">
@@ -148,7 +152,9 @@ export default function ComparePage() {
           <select
             className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 disabled:bg-gray-50 disabled:text-gray-400"
             value={wear}
-            onChange={(e) => setWear(e.target.value as WearEN)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              setWear(e.target.value as WearEN)
+            }
             disabled={!skin}
           >
             <option value="">{skin ? "Bitte wählen…" : "Zuerst Skin wählen"}</option>
@@ -172,7 +178,17 @@ export default function ComparePage() {
         </button>
       </div>
 
-      {/* Ergebnisse (wie gehabt) ... */}
+      {/* Fehlerhinweis */}
+      {error && (
+        <div className="mt-4 rounded-lg border border-rose-300 bg-rose-50 px-4 py-3 text-rose-800">
+          {error}
+        </div>
+      )}
+
+      {/* Ergebnisse (wenn vorhanden) */}
+      {rows && (
+        <div className="mt-6 text-xs text-gray-500">{rows.length} Ergebnisse</div>
+      )}
     </main>
   );
 }
