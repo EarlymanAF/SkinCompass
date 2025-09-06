@@ -1,6 +1,6 @@
 // app/api/prices/route.ts
 import { NextResponse } from "next/server";
-import { WEARS } from "@/data/skins";
+import { WEARS, type WearEN } from "@/data/wears";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);

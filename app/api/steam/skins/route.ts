@@ -78,10 +78,8 @@ export async function GET(req: Request) {
     );
 
     return NextResponse.json({ weapon, skins });
-  } catch (err: any) {
-    return NextResponse.json(
-      { error: err?.message ?? "Unbekannter Fehler" },
-      { status: 500 }
-    );
+  }  catch (err) {
+  const message = err instanceof Error ? err.message : "Unbekannter Fehler";
+  return NextResponse.json({ error: message }, { status: 500 });
   }
 }
