@@ -73,12 +73,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="mt-20 pt-8 border-t border-gray-200 text-sm text-gray-600">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-          <p>© {new Date().getFullYear()} SkinCompass</p>
-        </div>
-      </footer>
     </main>
   );
 }
