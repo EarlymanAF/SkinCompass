@@ -1,0 +1,46 @@
+import { NextResponse } from "next/server";
+import type { LocalIndexItem } from "@/types";
+
+async function loadLocalIndex(): Promise<LocalIndexItem[] | null> {
+  try {
+    const raw = await import("@/data/skins.json");
+    return raw.default ?? raw;
+  } catch {
+    return null;
+  }
+}
+
+async function loadLocalIndexTs(): Promise<LocalIndexItem[] | null> {
+  try {
+    // Dynamischer Import: funktioniert auch, wenn die Datei nicht existiert
+    const mod: any = await import("@/data/skins");
+    const raw = mod?.default ?? mod?.skins ?? mod;
+    if (!raw) return null;
+
+    if (Array.isArray(raw)) {
+      const norm: LocalIndexItem[] = [];
+      for (const x of raw) {
+        if (typeof x === "string") {
+          norm.push({ market_hash_name: x, name: x });
+        } else if (x && typeof x === "object") {
+          const m = x.market_hash_name ?? x.hash_name ?? x.name ?? "";
+          if (m) norm.push({ market_hash_name: m, name: x.name ?? m, icon_url: x.icon_url });
+        }
+      }
+      return norm.length ? norm : null;
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+export async function GET() {
+  let localIndex = await loadLocalIndex();
+  if (!localIndex) {
+    localIndex = await loadLocalIndexTs();
+  }
+  // ... rest of the GET handler code
+  return NextResponse.json({ localIndex });
+}

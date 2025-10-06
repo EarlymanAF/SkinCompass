@@ -1,17 +1,20 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { WEARS, WEAR_LABEL_DE, type WearEN } from "@/data/wears";
 
+/* --- Waffenliste (statisch für die Auswahl) --- */
 const WEAPONS = [
   "AK-47", "M4A4", "M4A1-S", "AWP", "Desert Eagle", "Glock-18",
   "USP-S", "P250", "Five-SeveN", "Tec-9", "MP9", "MP7", "P90",
   "UMP-45", "MAC-10", "Galil AR", "FAMAS", "SG 553", "AUG",
   "SCAR-20", "G3SG1", "Nova", "XM1014", "MAG-7", "Sawed-Off",
-  "CZ75-Auto", "R8 Revolver", "SSG 08", "Dual Berettas", "Negev", "M249"
-];
+  "CZ75-Auto", "R8 Revolver", "SSG 08", "Dual Berettas", "Negev", "M249",
+] as const;
 
+/* --- Datentyp für Preiszeilen --- */
 type PriceRow = {
   marketplace: string;
   fee: string;
@@ -21,6 +24,12 @@ type PriceRow = {
   url: string;
 };
 
+/* --- Hilfsfunktion: Market Hash Name für Steam-Icon --- */
+function toMarketHashName(weapon: string, skin: string, wear: WearEN) {
+  // Steam-Standard: "<Weapon> | <Skin> (<WearEN>)"
+  return `${weapon} | ${skin} (${wear})`;
+}
+
 export default function ComparePage() {
   const [weapon, setWeapon] = useState<string>("");
   const [skin, setSkin] = useState<string>("");
@@ -29,11 +38,14 @@ export default function ComparePage() {
   const [skinOptions, setSkinOptions] = useState<string[]>([]);
   const [loadingSkins, setLoadingSkins] = useState(false);
 
+  const [wearOptions, setWearOptions] = useState<WearEN[]>([]);
+  const [loadingWears, setLoadingWears] = useState(false);
+
   const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState<PriceRow[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Wenn Waffe gewählt → Skins live laden
+  /* --- Wenn eine Waffe gewählt ist → Skins via API laden --- */
   useEffect(() => {
     setSkin("");
     setWear("");
@@ -53,11 +65,7 @@ export default function ComparePage() {
           { cache: "no-store" }
         );
         const data = (await res.json()) as { skins?: string[] };
-        if (res.ok) {
-          setSkinOptions(data.skins ?? []);
-        } else {
-          setSkinOptions([]);
-        }
+        setSkinOptions(res.ok ? data.skins ?? [] : []);
       } catch {
         setSkinOptions([]);
       } finally {
@@ -66,8 +74,35 @@ export default function ComparePage() {
     })();
   }, [weapon]);
 
-  const wearsForSelection = useMemo(() => (skin ? WEARS : []), [skin]);
+  /* --- Wenn Skin gewählt wurde → gültige Wears via API prüfen (mit Fallback) --- */
+  useEffect(() => {
+    setWear("");
+    setRows(null);
+    setError(null);
 
+    if (!weapon || !skin) {
+      setWearOptions([]);
+      return;
+    }
+
+    (async () => {
+      try {
+        setLoadingWears(true);
+        const params = new URLSearchParams({ weapon, skin }).toString();
+        const res = await fetch(`/api/steam/wears?${params}`, { cache: "no-store" });
+        const data = (await res.json()) as { wears?: WearEN[] };
+        setWearOptions(data.wears && data.wears.length > 0 ? data.wears : WEARS);
+      } catch {
+        setWearOptions(WEARS);
+      } finally {
+        setLoadingWears(false);
+      }
+    })();
+  }, [weapon, skin]);
+
+  const wearsForSelection = useMemo(() => (skin ? wearOptions : []), [skin, wearOptions]);
+
+  /* --- Preise holen --- */
   async function fetchPrices() {
     if (!weapon || !skin || !wear) return;
 
@@ -103,8 +138,7 @@ export default function ComparePage() {
         Preisvergleich für CS2-Skins
       </h1>
       <p className="mt-2 text-gray-700 max-w-2xl">
-        Wähle <strong>Waffe</strong>, <strong>Skin</strong> und <strong>Zustand</strong>.
-        Wir zeigen Endpreise inkl. Gebühren &amp; Währungsumrechnung.
+        Wähle <strong>Waffe</strong>, <strong>Skin</strong> und <strong>Zustand</strong>. Wir zeigen Endpreise inkl. Gebühren &amp; Währungsumrechnung.
       </p>
 
       {/* Auswahl */}
@@ -152,12 +186,12 @@ export default function ComparePage() {
           <select
             className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 disabled:bg-gray-50 disabled:text-gray-400"
             value={wear}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              setWear(e.target.value as WearEN)
-            }
-            disabled={!skin}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setWear(e.target.value as WearEN)}
+            disabled={!skin || loadingWears}
           >
-            <option value="">{skin ? "Bitte wählen…" : "Zuerst Skin wählen"}</option>
+            <option value="">
+              {!skin ? "Zuerst Skin wählen" : loadingWears ? "Lade Zustände…" : "Bitte wählen…"}
+            </option>
             {wearsForSelection.map((w) => (
               <option key={w} value={w}>
                 {WEAR_LABEL_DE[w]}
@@ -185,10 +219,80 @@ export default function ComparePage() {
         </div>
       )}
 
-      {/* Ergebnisse (wenn vorhanden) */}
-      {rows && (
-        <div className="mt-6 text-xs text-gray-500">{rows.length} Ergebnisse</div>
-      )}
+      {/* Ergebnisse */}
+      <section className="mt-8">
+        {rows && rows.length > 0 && (
+          <div className="space-y-6">
+            {/* Vorschau mit Bild */}
+            <div className="rounded-2xl border border-gray-200 bg-white p-4 flex items-center gap-4">
+              <div className="w-36 h-24 bg-gray-50 rounded-lg overflow-hidden grid place-items-center">
+                <Image
+                  src={`/api/steam/icon?name=${encodeURIComponent(
+                    toMarketHashName(weapon, skin, wear as WearEN)
+                  )}&size=256x256`}
+                  alt={`${weapon} | ${skin} (${wear})`}
+                  width={256}
+                  height={256}
+                  className="object-contain w-full h-full"
+                  unoptimized
+                />
+              </div>
+              <div>
+                <div className="font-semibold">{weapon}</div>
+                <div className="text-sm text-gray-600">
+                  {skin} • {wear ? WEAR_LABEL_DE[wear as WearEN] : ""}
+                </div>
+              </div>
+            </div>
+
+            {/* Tabelle */}
+            <div className="overflow-x-auto border border-gray-200 rounded-2xl bg-white">
+              <table className="min-w-full text-sm">
+                <thead className="bg-gray-50 text-gray-600">
+                  <tr>
+                    <th className="px-6 py-3 text-left">Marktplatz</th>
+                    <th className="px-6 py-3 text-left">Gebühr</th>
+                    <th className="px-6 py-3 text-left">Preis</th>
+                    <th className="px-6 py-3 text-left">Trend (7d)</th>
+                    <th className="px-6 py-3 text-left">Aktion</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {rows.map((r) => {
+                    const up = r.trend7d.startsWith("+");
+                    return (
+                      <tr key={r.marketplace} className="hover:bg-gray-50">
+                        <td className="px-6 py-3">{r.marketplace}</td>
+                        <td className="px-6 py-3">{r.fee}</td>
+                        <td className="px-6 py-3 font-medium">
+                          {r.finalPrice.toFixed(2)} {r.currency}
+                        </td>
+                        <td className={`px-6 py-3 font-medium ${up ? "text-emerald-600" : "text-rose-600"}`}>
+                          {r.trend7d}
+                        </td>
+                        <td className="px-6 py-3">
+                          <a
+                            href={r.url}
+                            target="_blank"
+                            className="rounded-md border border-gray-300 px-3 py-1.5 text-gray-700 hover:bg-gray-100"
+                          >
+                            Öffnen
+                          </a>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* Leerer Zustand nach Suche */}
+        {rows && rows.length === 0 && !error && (
+          <div className="mt-4 text-sm text-gray-600">Keine Ergebnisse gefunden.</div>
+        )}
+      </section>
     </main>
   );
 }
