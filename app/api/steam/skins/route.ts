@@ -41,6 +41,7 @@ async function loadLocalIndex(): Promise<LocalIndexItem[] | null> {
 // TS-Fallback: erlaubt die Nutzung von data/skins.ts, wenn keine skins.json vorhanden ist
 async function loadLocalIndexTs(): Promise<LocalIndexItem[] | null> {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mod: any = await import("@/data/skins");
     const raw = mod?.default ?? mod?.skins ?? mod;
     if (!raw) return null;
