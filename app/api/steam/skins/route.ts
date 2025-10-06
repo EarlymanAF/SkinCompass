@@ -1,4 +1,4 @@
-// app/api/steam/skins/route.ts
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 import { fetchWithRetry } from "@/lib/rate-limit";
 import { baseSkinNameFromHash, parseHashName } from "@/lib/steam-normalize";
