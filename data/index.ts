@@ -2,14 +2,7 @@
 import type { Skin, WearEN, Weapon } from "@/lib/types";
 import SKINS_DATA from "./skins";
 
-// Globale Wear-Stufen (EN als Systemwerte)
-export const WEARS: WearEN[] = [
-  "Factory New",
-  "Minimal Wear",
-  "Field-Tested",
-  "Well-Worn",
-  "Battle-Scarred",
-];
+import { WEARS } from "./wears";
 
 // Deutsche Labels für die Anzeige
 export const WEAR_LABEL_DE: Record<WearEN, string> = {
@@ -31,7 +24,7 @@ export const WEAPONS: Weapon[] = Array.from(
 // Falls ein Skin eigene Wears definiert → nutze diese, sonst global
 export function getWearsFor(weapon: Weapon, skinName: string): WearEN[] {
   const s = SKINS.find((x) => x.weapon === weapon && x.name === skinName);
-  return s?.wears?.length ? s.wears : WEARS;
+  return s?.wears?.length ? (s.wears as any as WearEN[]) : WEARS;
 }
 
 // Steam/Market-Name (EN-Wear für API-Konsistenz)
