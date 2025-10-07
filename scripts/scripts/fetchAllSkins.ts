@@ -22,14 +22,12 @@ async function fetchAllPages(weapon: string, maxPages = 20) {
   while (page < maxPages) {
     console.log(`  → Fetching page ${page + 1} for ${weapon}...`);
 
-    // fetchSteamSkins probably takes only the weapon name
-    const skins = await fetchSteamSkins(weapon);
-    if (!skins?.length) break;
+    const result = await fetchSteamSkins(weapon);
+    if (!result || !result.skins?.length) break;
 
-    allSkins.push(...skins);
+    allSkins.push(...result.skins);
 
-    // If fewer than 100 results, probably no more pages
-    if (skins.length < 100) break;
+    if (!result.hasMore || result.skins.length < 100) break;
     page++;
   }
 

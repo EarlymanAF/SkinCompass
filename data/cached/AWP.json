@@ -1,14 +1,20 @@
 [
   {
-    "name": "AWP | POP AWP (Minimal Wear)",
+    "name": "AWP | POP AWP (Factory New)",
     "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf9Ttk-_etYKpiN_GBMXWHw9F6ueZhW2fikxgjtmjTzd-ucXOXbgEiCZN1QOcKtka_l9PgY7jrswbe2t5NyC_6kGoXuXrlRr9k",
-    "price": "$15.89",
+    "price": "$65.84",
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf9Ttk-_etYKpiN_GBMXWHw9F6ueZhW2fikxgjtmjTzd-ucXOXbgEiCZN1QOcKtka_l9PgY7jrswbe2t5NyC_6kGoXuXrlRr9k"
   },
   {
-    "name": "AWP | POP AWP (Factory New)",
+    "name": "AWP | POP AWP (Well-Worn)",
+    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf9Ttk-_etYKpiN_GBMXWHw9F7teVgWiT9wh9z4z_Uz9f8dX6fOw8hXsMiEeRf40Htw4WzM77n5lfYi4wTnHn7iDQJsHhhuthFNQ",
+    "price": "$9.29",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf9Ttk-_etYKpiN_GBMXWHw9F7teVgWiT9wh9z4z_Uz9f8dX6fOw8hXsMiEeRf40Htw4WzM77n5lfYi4wTnHn7iDQJsHhhuthFNQ"
+  },
+  {
+    "name": "AWP | POP AWP (Minimal Wear)",
     "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf9Ttk-_etYKpiN_GBMXWHw9F6ueZhW2fikxgjtmjTzd-ucXOXbgEiCZN1QOcKtka_l9PgY7jrswbe2t5NyC_6kGoXuXrlRr9k",
-    "price": "$64.40",
+    "price": "$15.89",
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf9Ttk-_etYKpiN_GBMXWHw9F6ueZhW2fikxgjtmjTzd-ucXOXbgEiCZN1QOcKtka_l9PgY7jrswbe2t5NyC_6kGoXuXrlRr9k"
   },
   {
@@ -18,15 +24,9 @@
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf9Ttk-_etYKpiN_GBMXWHw9F7teVgWiT9wh9z4z_Uz9f8dX6fOw8hXsMiEeRf40Htw4WzM77n5lfYi4wTnHn7iDQJsHhhuthFNQ"
   },
   {
-    "name": "AWP | POP AWP (Well-Worn)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf9Ttk-_etYKpiN_GBMXWHw9F7teVgWiT9wh9z4z_Uz9f8dX6fOw8hXsMiEeRf40Htw4WzM77n5lfYi4wTnHn7iDQJsHhhuthFNQ",
-    "price": "$9.29",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf9Ttk-_etYKpiN_GBMXWHw9F7teVgWiT9wh9z4z_Uz9f8dX6fOw8hXsMiEeRf40Htw4WzM77n5lfYi4wTnHn7iDQJsHhhuthFNQ"
-  },
-  {
     "name": "Charm | Pocket AWP",
     "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGI6zwki4Uf_a0IW2MHqH6lhKpcj_6WbwURPOn4HwwjJX7uG6YacjJqWXDGLHlu1z4ec-TnHjwh5162WDno39eH2UPQUpW8BzQ-IOsBDsmsqnab2P0Alt-Q",
-    "price": "$0.38",
+    "price": "$0.39",
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGI6zwki4Uf_a0IW2MHqH6lhKpcj_6WbwURPOn4HwwjJX7uG6YacjJqWXDGLHlu1z4ec-TnHjwh5162WDno39eH2UPQUpW8BzQ-IOsBDsmsqnab2P0Alt-Q"
   },
   {
@@ -42,21 +42,21 @@
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMmuOHaC619h7dempVjwUSLykYPu6TBCoaf-OfBvcfSWXjOSkbh0tbZrGCqyl0xx6mXdnov4cX2WbA5yApt1R7MU8k7vsGdDtrA"
   },
   {
-    "name": "Sticker | BukAWP",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMmpPHic4FhK94bk-UzrRFLzi53h6jJk__OtY_Q8bqnBWTDElb4g5rZqS3ywlEQksTnSn4z8c3nEOAR0CcclEbIK5xjrxoL5d7S1U-NCb38",
-    "price": "$0.93",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMmpPHic4FhK94bk-UzrRFLzi53h6jJk__OtY_Q8bqnBWTDElb4g5rZqS3ywlEQksTnSn4z8c3nEOAR0CcclEbIK5xjrxoL5d7S1U-NCb38"
-  },
-  {
     "name": "Sticker | Hello AWP",
     "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjNikNnSe6Rl045fL-FzkThT90Mez_yMPv6GrbvZrePTKDDXGkLxysrk8Syq3xhsltmXSzNqsc3OUbAY-SswnspByV94",
     "price": "$0.94",
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjNikNnSe6Rl045fL-FzkThT90Mez_yMPv6GrbvZrePTKDDXGkLxysrk8Syq3xhsltmXSzNqsc3OUbAY-SswnspByV94"
   },
   {
-    "name": "AWP | Mortis (Field-Tested)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf-jFk7uW-V6BoIeSbMWqVxedjva9rTSrjkRx14zmEyNehIyqQPFIjD8EhTbUKthLtxNPjNb7j71CMjY5G02yg2Rn_XBtf",
-    "price": "$3.00",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf-jFk7uW-V6BoIeSbMWqVxedjva9rTSrjkRx14zmEyNehIyqQPFIjD8EhTbUKthLtxNPjNb7j71CMjY5G02yg2Rn_XBtf"
+    "name": "Sticker | BukAWP",
+    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMmpPHic4FhK94bk-UzrRFLzi53h6jJk__OtY_Q8bqnBWTDElb4g5rZqS3ywlEQksTnSn4z8c3nEOAR0CcclEbIK5xjrxoL5d7S1U-NCb38",
+    "price": "$0.93",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMmpPHic4FhK94bk-UzrRFLzi53h6jJk__OtY_Q8bqnBWTDElb4g5rZqS3ywlEQksTnSn4z8c3nEOAR0CcclEbIK5xjrxoL5d7S1U-NCb38"
+  },
+  {
+    "name": "AWP | Exoskeleton (Battle-Scarred)",
+    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf-jFk7uW-V6F1L-OYC2uV1eF4j-lsTj-q20ly42mDm9b_dHjDalJyApp3F-VYt0a8k4WzZeK24wSM2IxHmST23H9XrnE8h3sGsJ0",
+    "price": "$4.41",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf-jFk7uW-V6F1L-OYC2uV1eF4j-lsTj-q20ly42mDm9b_dHjDalJyApp3F-VYt0a8k4WzZeK24wSM2IxHmST23H9XrnE8h3sGsJ0"
   }
 ]

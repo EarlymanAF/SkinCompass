@@ -2,14 +2,38 @@
   {
     "name": "Sticker | Hello MAC-10",
     "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjNikNnSe6Rl49YSlumb1RB7-l5qu-SAIuKb7OPRrcKPDWTXCkLYk4uc4S3jrwhx_52TUnIyrcHPGbw8kDIwwG7BoH-O3bw",
-    "price": "$0.60",
+    "price": "$0.57",
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjNikNnSe6Rl49YSlumb1RB7-l5qu-SAIuKb7OPRrcKPDWTXCkLYk4uc4S3jrwhx_52TUnIyrcHPGbw8kDIwwG7BoH-O3bw"
   },
   {
-    "name": "MAC-10 | Sakkaku (Well-Worn)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-AD2ybwOVjj-xsSyCmmFMk5mnRzdeqdSnCPVN2DpV3QeELtELrlIbiPrzqsVOMjdlBnySvjH5O8G81tOTP5a5f",
-    "price": "$0.25",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-AD2ybwOVjj-xsSyCmmFMk5mnRzdeqdSnCPVN2DpV3QeELtELrlIbiPrzqsVOMjdlBnySvjH5O8G81tOTP5a5f"
+    "name": "MAC-10 | Bronzer (Minimal Wear)",
+    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1I4M2seqtjOvWsHmiHxetkj-1gSCGn2xgjsWrRyIysJXiXOwIhW5pwQrUI4Bftl4W2P-2351HZj49GmHj_iCJXrnE8D5vakEw",
+    "price": "$0.07",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1I4M2seqtjOvWsHmiHxetkj-1gSCGn2xgjsWrRyIysJXiXOwIhW5pwQrUI4Bftl4W2P-2351HZj49GmHj_iCJXrnE8D5vakEw"
+  },
+  {
+    "name": "MAC-10 | Monkeyflage (Field-Tested)",
+    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-eAWmbxPdwvOBuSha-kBkupjDLmNb_cSmROgEhDpZ4R7MCsUHtlIHnNeiztQXYiowWmX352yxA7HxisPFCD_S5RBWIQQ",
+    "price": "$0.07",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-eAWmbxPdwvOBuSha-kBkupjDLmNb_cSmROgEhDpZ4R7MCsUHtlIHnNeiztQXYiowWmX352yxA7HxisPFCD_S5RBWIQQ"
+  },
+  {
+    "name": "MAC-10 | Allure (Well-Worn)",
+    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-aHWifz-B3j-xsSyCmmFMh6m7Wz9z8JC2fawYmC5NwQ7IJu0W-m9HuY-jm4lCIjN4TmyX-iiNL8G81tAm1_UkI",
+    "price": "$0.26",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-aHWifz-B3j-xsSyCmmFMh6m7Wz9z8JC2fawYmC5NwQ7IJu0W-m9HuY-jm4lCIjN4TmyX-iiNL8G81tAm1_UkI"
+  },
+  {
+    "name": "MAC-10 | Palm (Field-Tested)",
+    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1I_82-aahgH_2WCm6FzKAmtrY-TS-2kRsi4TzVyYn7cX7Ca1JzD8ByE-Jfu0LsmtzvZLiwtgTZlcsbmiq9ZJlF",
+    "price": "$0.10",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1I_82-aahgH_2WCm6FzKAmtrY-TS-2kRsi4TzVyYn7cX7Ca1JzD8ByE-Jfu0LsmtzvZLiwtgTZlcsbmiq9ZJlF"
+  },
+  {
+    "name": "MAC-10 | Indigo (Battle-Scarred)",
+    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1I4M2nZqBkJ_-sD2mU_ulktfhWRyyygwRp5mnXy9ytJCqVaFUmWcFzQOALtxWxlIDuNumztAeMiYMUmCT93C4b7DErvbh1kp7aTg",
+    "price": "$3.12",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1I4M2nZqBkJ_-sD2mU_ulktfhWRyyygwRp5mnXy9ytJCqVaFUmWcFzQOALtxWxlIDuNumztAeMiYMUmCT93C4b7DErvbh1kp7aTg"
   },
   {
     "name": "MAC-10 | Ensnared (Field-Tested)",
@@ -18,16 +42,10 @@
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-DB3-ZxNF7teVgWiT9l09y6m6HyNqtJHyUbQMiCZsmQLQJtUS_wIDvNb625APXj45Byn74jTQJsHjzn23giA"
   },
   {
-    "name": "MAC-10 | Sakkaku (Battle-Scarred)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-AD2ybwOVjj-lsTj-q20Ul5TnVyN2sdSmVbQEmC8EiQuUI4xO_x4WzM-vl7gTaio5EyCuviXhXrnE87pSE254",
-    "price": "$0.24",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-AD2ybwOVjj-lsTj-q20Ul5TnVyN2sdSmVbQEmC8EiQuUI4xO_x4WzM-vl7gTaio5EyCuviXhXrnE87pSE254"
-  },
-  {
-    "name": "MAC-10 | Monkeyflage (Battle-Scarred)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-eAWmbxPdwvOBuSha7kBwxqnPdnor8ICnBZlQhCMBwEbNbskLukILgZb_htlHW2I1Em3mvjyJA6iZq_a9cBpQOMUy8",
-    "price": "$0.06",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-eAWmbxPdwvOBuSha7kBwxqnPdnor8ICnBZlQhCMBwEbNbskLukILgZb_htlHW2I1Em3mvjyJA6iZq_a9cBpQOMUy8"
+    "name": "MAC-10 | Allure (Field-Tested)",
+    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-aHWifz-B3j-xsSyCmmFMh6m7Wz9z8JC2fawYmC5NwQ7IJu0W-m9HuY-jm4lCIjN4TmyX-iiNL8G81tAm1_UkI",
+    "price": "$0.34",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-aHWifz-B3j-xsSyCmmFMh6m7Wz9z8JC2fawYmC5NwQ7IJu0W-m9HuY-jm4lCIjN4TmyX-iiNL8G81tAm1_UkI"
   },
   {
     "name": "MAC-10 | Ensnared (Well-Worn)",
@@ -36,27 +54,9 @@
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-DB3-ZxNF7teVgWiT9l09y6m6HyNqtJHyUbQMiCZsmQLQJtUS_wIDvNb625APXj45Byn74jTQJsHjzn23giA"
   },
   {
-    "name": "MAC-10 | Whitefish (Field-Tested)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1c_M2jaac8cM-VB3SY_ux3ufVWQiy3nAgq_WrSn9n_JHuTPFIlAppyQuICtRO5xNGyN7vltgONj4JCnCmoj3xAuyt1o7FVh2ja8Rs",
-    "price": "$0.35",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1c_M2jaac8cM-VB3SY_ux3ufVWQiy3nAgq_WrSn9n_JHuTPFIlAppyQuICtRO5xNGyN7vltgONj4JCnCmoj3xAuyt1o7FVh2ja8Rs"
-  },
-  {
-    "name": "MAC-10 | Palm (Battle-Scarred)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1I_82-aahgH_iWD3GJj78j6Lg5H3C3wBgj42nWw4yqeCiWbAdzDcckQbQMskK-kdDuZbmw41TAy9USSsc8o3w",
-    "price": "$0.07",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1I_82-aahgH_iWD3GJj78j6Lg5H3C3wBgj42nWw4yqeCiWbAdzDcckQbQMskK-kdDuZbmw41TAy9USSsc8o3w"
-  },
-  {
-    "name": "MAC-10 | Bronzer (Field-Tested)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1I4M2seqtjOvWsHmiHxetkj-xsSyCmmFN1tWTczNj4eS2Tbgd1DJQjF7UKsUTqlIC0M7ji5lSL2okTmHr5iCNJ8G81tDnzT3Pz",
-    "price": "$0.05",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1I4M2seqtjOvWsHmiHxetkj-xsSyCmmFN1tWTczNj4eS2Tbgd1DJQjF7UKsUTqlIC0M7ji5lSL2okTmHr5iCNJ8G81tDnzT3Pz"
-  },
-  {
-    "name": "MAC-10 | Monkeyflage (Field-Tested)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-eAWmbxPdwvOBuSha-kBkupjDLmNb_cSmROgEhDpZ4R7MCsUHtlIHnNeiztQXYiowWmX352yxA7HxisPFCD_S5RBWIQQ",
-    "price": "$0.07",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-eAWmbxPdwvOBuSha-kBkupjDLmNb_cSmROgEhDpZ4R7MCsUHtlIHnNeiztQXYiowWmX352yxA7HxisPFCD_S5RBWIQQ"
+    "name": "MAC-10 | Ensnared (Minimal Wear)",
+    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-DB3-ZxNF6ueZhW2fikB935ziGztj7JHyQbgIkWZsmFrJY4xTpwdOzP-Oz7laNj4lFyy2tkGoXudbL5uIf",
+    "price": "$0.15",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8n5WxrR1Y-s2jaac8cM-DB3-ZxNF6ueZhW2fikB935ziGztj7JHyQbgIkWZsmFrJY4xTpwdOzP-Oz7laNj4lFyy2tkGoXudbL5uIf"
   }
 ]

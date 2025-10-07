@@ -13,6 +13,25 @@ export type Skin = {
   name: string;
   stattrak?: boolean;
   souvenir?: boolean;
-  // Optional: falls ein Skin abweichende Wear-Stufen hat
-  wears?: WearEN[];
+  // Jede Wear-Stufe, die tatsächlich existiert
+  wears?: WearVariant[];
 };
+
+// Detailliertere Wear-Struktur
+export interface WearVariant {
+  wear: WearEN;
+  image?: string; // lokales Bild oder Steam-URL
+  price?: number; // optionaler Preis, falls bereits gecached
+}
+
+// Steam-spezifischer Typ
+export interface SteamSkin {
+  name: string;
+  weapon: string;
+  image: string;
+  wears?: WearVariant[];
+  stattrak?: boolean;
+  souvenir?: boolean;
+  rarity?: string;
+  price?: number;
+}

@@ -32,9 +32,8 @@ export default function SkinSearch({ onSelect, placeholder = "Skin suchen (z. B.
       abortRef.current = ac;
       setLoading(true);
       try {
-        const res = await fetch(`/api/steam/search?q=${encodeURIComponent(q)}&count=12`, {
+        const res = await fetch(`/api/steam/skins?q=${encodeURIComponent(q)}&count=12&localOnly=true`, {
           signal: ac.signal,
-          cache: "no-store",
         });
         if (!res.ok) throw new Error("Suche fehlgeschlagen");
         const data = await res.json();
@@ -61,7 +60,7 @@ export default function SkinSearch({ onSelect, placeholder = "Skin suchen (z. B.
 
   return (
     <div className="relative">
-      <label className="block text-sm font-medium text-gray-700">Skin (via Steam-Suche)</label>
+      <label className="block text-sm font-medium text-gray-700">Skin (lokal geladen)</label>
       <input
         value={q}
         onChange={(e) => setQ(e.target.value)}
