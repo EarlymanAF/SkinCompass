@@ -133,6 +133,23 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "weapon required" }, { status: 400 });
   }
 
+  // Check if a cached file exists for this weapon
+  const cachedFilePath = path.join(process.cwd(), 'data', 'cached', `${weapon}.json`);
+  try {
+    const cachedRaw = await fs.readFile(cachedFilePath, 'utf8');
+    const cachedJson = JSON.parse(cachedRaw);
+    if (cachedJson && Array.isArray(cachedJson.skins)) {
+      const out = Array.from(new Set(cachedJson.skins as string[])).sort((a: string, b: string) => a.localeCompare(b, 'de'));
+      const mKey = `skins:${weapon}:${pagesParam}:${count}:localOnly=${localOnly}:preferLocal=${preferLocal}`;
+      memoSet(mKey, { skins: out }, 10 * 60 * 1000);
+      const res = NextResponse.json({ weapon, source: 'local-cache', count: out.length, skins: out });
+      res.headers.set('Cache-Control', 's-maxage=900, stale-while-revalidate=3600');
+      return res;
+    }
+  } catch {
+    // If no cached file found, continue with normal flow
+  }
+
   const mKey = `skins:${weapon}:${pagesParam}:${count}:localOnly=${localOnly}:preferLocal=${preferLocal}`;
   const memo = memoGet<{ skins: string[] }>(mKey);
   if (memo) {
