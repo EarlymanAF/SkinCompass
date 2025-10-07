@@ -1,9 +1,13 @@
 // components/SkinSearch.tsx
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import SKINS from "@/data/skins.json";
 
-type Result = { name: string; icon: string | null };
+type SkinItem = { weapon: string; name: string; icon?: string | null };
+const SKINS_TYPED = SKINS as SkinItem[];
+
+type Result = { weapon: string; name: string; icon?: string | null };
 
 type Props = {
   onSelect: (hashName: string) => void;
@@ -12,45 +16,11 @@ type Props = {
 
 export default function SkinSearch({ onSelect, placeholder = "Skin suchen (z. B. 'AK-47 Redline')" }: Props) {
   const [q, setQ] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState<Result[]>([]);
   const [open, setOpen] = useState(false);
-  const abortRef = useRef<AbortController | null>(null);
-  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    if (!q || q.length < 2) {
-      setResults([]);
-      setOpen(false);
-      return;
-    }
-
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(async () => {
-      if (abortRef.current) abortRef.current.abort();
-      const ac = new AbortController();
-      abortRef.current = ac;
-      setLoading(true);
-      try {
-        const res = await fetch(`/api/steam/skins?q=${encodeURIComponent(q)}&count=12&localOnly=true`, {
-          signal: ac.signal,
-        });
-        if (!res.ok) throw new Error("Suche fehlgeschlagen");
-        const data = await res.json();
-        setResults(data.results || []);
-        setOpen(true);
-      } catch {
-        // ignore UI errors
-      } finally {
-        setLoading(false);
-        abortRef.current = null;
-      }
-    }, 250); // Debounce 250ms
-
-    return () => {
-      if (debounceRef.current) clearTimeout(debounceRef.current);
-    };
-  }, [q]);
+  const results = q.length >= 2
+    ? SKINS_TYPED.filter((skin) => skin.name.toLowerCase().includes(q.toLowerCase())).slice(0, 12)
+    : [];
 
   function handlePick(name: string) {
     setQ(name);
@@ -69,9 +39,6 @@ export default function SkinSearch({ onSelect, placeholder = "Skin suchen (z. B.
         placeholder={placeholder}
         autoComplete="off"
       />
-      {loading && (
-        <div className="absolute right-3 top-[38px] h-4 w-4 animate-spin border-2 border-gray-300 border-t-gray-700 rounded-full" />
-      )}
 
       {open && results.length > 0 && (
         <div className="absolute z-10 mt-2 w-full rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
@@ -86,9 +53,9 @@ export default function SkinSearch({ onSelect, placeholder = "Skin suchen (z. B.
                 }}
               >
                 <div className="h-8 w-8 bg-gray-100 rounded overflow-hidden grid place-items-center">
-                  {r.icon ? (
+                  {r.icon ?? null ? (
                     // Direkt Icon vom Steam-CDN
-                    <img src={r.icon} alt="" className="h-full w-full object-contain" />
+                    <img src={r.icon ?? ""} alt="" className="h-full w-full object-contain" />
                   ) : (
                     <div className="h-6 w-6 bg-gray-200 rounded" />
                   )}

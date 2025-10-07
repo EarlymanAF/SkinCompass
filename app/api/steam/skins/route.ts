@@ -1,61 +1,69 @@
-import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import { fetchSteamSkins } from "@/lib/steam";
 
 export async function GET(req: Request) {
-  const { searchParams } = new URL(req.url);
-  const weapon = searchParams.get("weapon");
-  const localOnly = searchParams.get("localOnly") === "true";
-  const preferLocal = searchParams.get("preferLocal") === "true";
-
-  if (!weapon) {
-    return NextResponse.json({ error: "Missing weapon parameter" }, { status: 400 });
-  }
-
   try {
-    const cachedPath = path.join(process.cwd(), "data", "cached", `${weapon}.json`);
-    const skinsJsonPath = path.join(process.cwd(), "data", "skins.json");
+    const { searchParams } = new URL(req.url);
+    const weapon = searchParams.get("weapon");
 
-    // 1️⃣ Prüfe, ob Cache vorhanden
-    if (fs.existsSync(cachedPath)) {
-      const file = fs.readFileSync(cachedPath, "utf8");
-      const data = JSON.parse(file);
-      return NextResponse.json({ source: "local", weapon, skins: data.skins || [] });
-    }
-
-    // 2️⃣ Prüfe, ob data/skins.json vorhanden ist und versuche, passenden Eintrag zu finden
-    if (fs.existsSync(skinsJsonPath)) {
-      const skinsFile = fs.readFileSync(skinsJsonPath, "utf8");
-      const allSkinsData = JSON.parse(skinsFile);
-      const weaponData = allSkinsData.find((entry: any) => entry.weapon === weapon);
-      if (weaponData) {
-        return NextResponse.json({ source: "local", weapon, skins: weaponData.skins || [] });
+    // Load skins.json dynamically from data
+    const filePath = path.join(process.cwd(), "data", "skins.json");
+    if (!fs.existsSync(filePath)) {
+      console.error("⚠️  skins.json not found at:", filePath);
+      // Fallback: try fetching from deployed URL if local file not found
+      const remoteUrl = `${process.env.NEXT_PUBLIC_BASE_URL || "https://www.skincompass.de"}/data/skins.json`;
+      console.log("🌐 Falling back to remote skins.json:", remoteUrl);
+      try {
+        const res = await fetch(remoteUrl);
+        if (!res.ok) throw new Error(`Failed to fetch remote skins.json (${res.status})`);
+        const remoteSkins = await res.json();
+        return Response.json(remoteSkins, {
+          headers: {
+            "Cache-Control": "public, max-age=86400, immutable",
+          },
+        });
+      } catch (e) {
+        console.error("❌ Could not fetch remote skins.json:", e);
+        // Always return valid JSON (empty array fallback)
+        return Response.json([], {
+          headers: {
+            "Cache-Control": "public, max-age=86400, immutable",
+          },
+        });
       }
     }
-
-    // 3️⃣ Wenn localOnly oder preferLocal gesetzt sind und kein lokaler Cache gefunden wurde, return none
-    if (localOnly || preferLocal) {
-      return NextResponse.json({ source: "none", weapon, skins: [] });
+    let skins;
+    try {
+      const raw = fs.readFileSync(filePath, "utf-8");
+      skins = JSON.parse(raw);
+    } catch (e) {
+      console.error("❌ Error reading local skins.json:", e);
+      // Fallback to empty array
+      return Response.json([], {
+        headers: {
+          "Cache-Control": "public, max-age=86400, immutable",
+        },
+      });
     }
 
-    // 4️⃣ Falls kein Cache → Steam-API abfragen
-    console.log(`[SkinCompass] Fetching skins for ${weapon} from Steam...`);
-    const skins = await fetchSteamSkins(weapon);
+    console.log(`✅ Loaded skins.json (${Array.isArray(skins) ? skins.length : Object.keys(skins).length} entries)`);
 
-    // 5️⃣ Cache speichern
-    fs.mkdirSync(path.dirname(cachedPath), { recursive: true });
-    fs.writeFileSync(
-      cachedPath,
-      JSON.stringify({ weapon, skins }, null, 2),
-      "utf8"
-    );
+    let filtered = skins;
+    if (weapon) {
+      filtered = Array.isArray(skins)
+        ? skins.filter((s: any) => s.weapon === weapon)
+        : (skins.byWeapon?.[weapon] ?? []);
+    }
 
-    return NextResponse.json({ source: "steam", weapon, skins });
+    return Response.json(filtered, {
+      headers: {
+        "Cache-Control": "public, max-age=86400, immutable",
+      },
+    });
   } catch (err: any) {
-    console.error("Error fetching skins:", err);
-    return NextResponse.json(
-      { error: "Failed to fetch skins", details: err.message },
+    console.error("❌ Error loading skins.json:", err);
+    return Response.json(
+      { error: "Failed to load skins.json", details: err.message },
       { status: 500 }
     );
   }
