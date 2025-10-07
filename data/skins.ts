@@ -1,4 +1,5 @@
 import type { Skin } from "@/lib/types";
+import { WearEN } from "@/lib/types";
 
 const SKINS: Skin[] = [
   // ✅ Redline hat KEIN Factory New
@@ -7,7 +8,7 @@ const SKINS: Skin[] = [
     weapon: "AK-47",
     name: "Redline",
     stattrak: true,
-    wears: ["Minimal Wear", "Field-Tested", "Well-Worn", "Battle-Scarred"],
+    wears: ["Minimal Wear", "Field-Tested", "Well-Worn", "Battle-Scarred"] as WearEN[],
   },
   // Beispiel: Asiimov hat alle (lassen wir ohne wears -> nutzt global)
   {
@@ -22,7 +23,7 @@ const SKINS: Skin[] = [
     weapon: "Desert Eagle",
     name: "Blaze",
     stattrak: true,
-    wears: ["Factory New", "Minimal Wear"],
+    wears: ["Factory New", "Minimal Wear"] as WearEN[],
   },
   // AWP Dragon Lore (Souvenir hat meist alle Wears, das passt)
   {

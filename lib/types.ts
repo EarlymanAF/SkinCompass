@@ -14,7 +14,7 @@ export type Skin = {
   stattrak?: boolean;
   souvenir?: boolean;
   // Jede Wear-Stufe, die tatsächlich existiert
-  wears?: WearVariant[];
+  wears?: WearEN[];
 };
 
 // Detailliertere Wear-Struktur
