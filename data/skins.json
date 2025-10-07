@@ -1,53 +1,442 @@
-{
-  "generatedAt": "2025-10-07T19:32:52.692Z",
-  "byWeapon": {
-    "AK-47": [
-      "Asiimov",
-      "Bloody Tiger",
-      "Case Hardened",
-      "Frontside Misty",
-      "Fuel Injector",
-      "Legion of Anubis",
-      "Neon Revolution",
-      "Nightwish",
-      "Point Disarray",
-      "Redline",
-      "Slate",
-      "Vulcan"
-    ],
-    "Desert Eagle": [
-      "Calligraffiti",
-      "Conspiracy",
-      "Corinthian",
-      "Directive",
-      "Meteorite",
-      "Mudder",
-      "Mulberry",
-      "Naga",
-      "Tilted"
-    ]
+[
+  {
+    "weapon": "AK-47",
+    "name": "Sticker | Hello AK-47"
   },
-  "all": [
-    "Asiimov",
-    "Bloody Tiger",
-    "Calligraffiti",
-    "Case Hardened",
-    "Conspiracy",
-    "Corinthian",
-    "Directive",
-    "Frontside Misty",
-    "Fuel Injector",
-    "Legion of Anubis",
-    "Meteorite",
-    "Mudder",
-    "Mulberry",
-    "Naga",
-    "Neon Revolution",
-    "Nightwish",
-    "Point Disarray",
-    "Redline",
-    "Slate",
-    "Tilted",
-    "Vulcan"
-  ]
-}
+  {
+    "weapon": "AK-47",
+    "name": "AK-47 | Slate (Battle-Scarred)"
+  },
+  {
+    "weapon": "AK-47",
+    "name": "AK-47 | Nightwish (Battle-Scarred)"
+  },
+  {
+    "weapon": "AK-47",
+    "name": "AK-47 | Wintergreen (Minimal Wear)"
+  },
+  {
+    "weapon": "AK-47",
+    "name": "AK-47 | Predator (Field-Tested)"
+  },
+  {
+    "weapon": "AK-47",
+    "name": "AK-47 | Uncharted (Minimal Wear)"
+  },
+  {
+    "weapon": "AK-47",
+    "name": "AK-47 | Uncharted (Field-Tested)"
+  },
+  {
+    "weapon": "AK-47",
+    "name": "AK-47 | Wintergreen (Field-Tested)"
+  },
+  {
+    "weapon": "AK-47",
+    "name": "AK-47 | Uncharted (Battle-Scarred)"
+  },
+  {
+    "weapon": "AK-47",
+    "name": "AK-47 | Slate (Factory New)"
+  },
+  {
+    "weapon": "AWP",
+    "name": "AWP | POP AWP (Factory New)"
+  },
+  {
+    "weapon": "AWP",
+    "name": "AWP | POP AWP (Well-Worn)"
+  },
+  {
+    "weapon": "AWP",
+    "name": "AWP | POP AWP (Minimal Wear)"
+  },
+  {
+    "weapon": "AWP",
+    "name": "AWP | POP AWP (Field-Tested)"
+  },
+  {
+    "weapon": "AWP",
+    "name": "Charm | Pocket AWP"
+  },
+  {
+    "weapon": "AWP",
+    "name": "Charm | Titeenium AWP"
+  },
+  {
+    "weapon": "AWP",
+    "name": "Sticker | Awp Country"
+  },
+  {
+    "weapon": "AWP",
+    "name": "Sticker | Hello AWP"
+  },
+  {
+    "weapon": "AWP",
+    "name": "Sticker | BukAWP"
+  },
+  {
+    "weapon": "AWP",
+    "name": "AWP | Exoskeleton (Battle-Scarred)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Tilted (Well-Worn)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Mudder (Battle-Scarred)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Directive (Minimal Wear)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Meteorite (Minimal Wear)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Directive (Field-Tested)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Tilted (Field-Tested)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Calligraffiti (Field-Tested)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Directive (Battle-Scarred)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Calligraffiti (Well-Worn)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Calligraffiti (Battle-Scarred)"
+  },
+  {
+    "weapon": "FAMAS",
+    "name": "Sticker | Hello FAMAS"
+  },
+  {
+    "weapon": "FAMAS",
+    "name": "FAMAS | Colony (Field-Tested)"
+  },
+  {
+    "weapon": "FAMAS",
+    "name": "FAMAS | Palm (Field-Tested)"
+  },
+  {
+    "weapon": "FAMAS",
+    "name": "FAMAS | Colony (Battle-Scarred)"
+  },
+  {
+    "weapon": "FAMAS",
+    "name": "FAMAS | Palm (Minimal Wear)"
+  },
+  {
+    "weapon": "FAMAS",
+    "name": "FAMAS | Palm (Battle-Scarred)"
+  },
+  {
+    "weapon": "FAMAS",
+    "name": "FAMAS | Colony (Well-Worn)"
+  },
+  {
+    "weapon": "FAMAS",
+    "name": "FAMAS | Valence (Field-Tested)"
+  },
+  {
+    "weapon": "FAMAS",
+    "name": "FAMAS | Colony (Minimal Wear)"
+  },
+  {
+    "weapon": "FAMAS",
+    "name": "FAMAS | Pulse (Factory New)"
+  },
+  {
+    "weapon": "Galil AR",
+    "name": "Sticker | Hello Galil AR"
+  },
+  {
+    "weapon": "Galil AR",
+    "name": "Galil AR | Destroyer (Field-Tested)"
+  },
+  {
+    "weapon": "Galil AR",
+    "name": "Galil AR | Sandstorm (Field-Tested)"
+  },
+  {
+    "weapon": "Galil AR",
+    "name": "Galil AR | Tuxedo (Well-Worn)"
+  },
+  {
+    "weapon": "Galil AR",
+    "name": "Galil AR | Akoben (Factory New)"
+  },
+  {
+    "weapon": "Galil AR",
+    "name": "Galil AR | Connexion (Field-Tested)"
+  },
+  {
+    "weapon": "Galil AR",
+    "name": "Galil AR | Control (Field-Tested)"
+  },
+  {
+    "weapon": "Galil AR",
+    "name": "Galil AR | Tuxedo (Field-Tested)"
+  },
+  {
+    "weapon": "Galil AR",
+    "name": "Galil AR | Signal (Minimal Wear)"
+  },
+  {
+    "weapon": "Galil AR",
+    "name": "Galil AR | Firefight (Battle-Scarred)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Block-18 (Minimal Wear)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Block-18 (Battle-Scarred)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Block-18 (Field-Tested)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Block-18 (Factory New)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Block-18 (Well-Worn)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Winterized (Field-Tested)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Moonrise (Battle-Scarred)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Ironwork (Field-Tested)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Wraiths (Field-Tested)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Winterized (Battle-Scarred)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "Sticker | Hello M4A1-S"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Briefing (Minimal Wear)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Flashback (Well-Worn)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Nitro (Battle-Scarred)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Decimator (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Basilisk (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Nitro (Well-Worn)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Nightmare (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Nitro (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Flashback (Battle-Scarred)"
+  },
+  {
+    "weapon": "MAC-10",
+    "name": "Sticker | Hello MAC-10"
+  },
+  {
+    "weapon": "MAC-10",
+    "name": "MAC-10 | Bronzer (Minimal Wear)"
+  },
+  {
+    "weapon": "MAC-10",
+    "name": "MAC-10 | Monkeyflage (Field-Tested)"
+  },
+  {
+    "weapon": "MAC-10",
+    "name": "MAC-10 | Allure (Well-Worn)"
+  },
+  {
+    "weapon": "MAC-10",
+    "name": "MAC-10 | Palm (Field-Tested)"
+  },
+  {
+    "weapon": "MAC-10",
+    "name": "MAC-10 | Indigo (Battle-Scarred)"
+  },
+  {
+    "weapon": "MAC-10",
+    "name": "MAC-10 | Ensnared (Field-Tested)"
+  },
+  {
+    "weapon": "MAC-10",
+    "name": "MAC-10 | Allure (Field-Tested)"
+  },
+  {
+    "weapon": "MAC-10",
+    "name": "MAC-10 | Ensnared (Well-Worn)"
+  },
+  {
+    "weapon": "MAC-10",
+    "name": "MAC-10 | Ensnared (Minimal Wear)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "Sticker | Hello MP9"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP9 | Slide (Battle-Scarred)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP9 | Slide (Minimal Wear)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP9 | Pine (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP9 | Slide (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP9 | Nexus (Battle-Scarred)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP9 | Featherweight (Minimal Wear)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP9 | Slide (Well-Worn)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP9 | Featherweight (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP9 | Featherweight (Well-Worn)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P250 | Cassette (Minimal Wear)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P250 | Visions (Minimal Wear)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P250 | Sedimentary (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P250 | Valence (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P250 | Valence (Factory New)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P250 | Wingshot (Minimal Wear)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P250 | Ripple (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P250 | Cassette (Battle-Scarred)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P250 | Exchanger (Battle-Scarred)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P250 | Franklin (Factory New)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "USP-S | Jawbreaker (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "USP-S | Cortex (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "USP-S | Cortex (Battle-Scarred)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "USP-S | Cyrex (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "USP-S | Torque (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "USP-S | Flashback (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "USP-S | Flashback (Well-Worn)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "USP-S | Cyrex (Minimal Wear)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "USP-S | Cortex (Well-Worn)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "USP-S | Jawbreaker (Well-Worn)"
+  }
+]
