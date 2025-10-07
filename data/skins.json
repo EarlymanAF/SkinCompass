@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2025-10-07T19:32:52.692Z",
+  "byWeapon": {
+    "AK-47": [
+      "Asiimov",
+      "Bloody Tiger",
+      "Case Hardened",
+      "Frontside Misty",
+      "Fuel Injector",
+      "Legion of Anubis",
+      "Neon Revolution",
+      "Nightwish",
+      "Point Disarray",
+      "Redline",
+      "Slate",
+      "Vulcan"
+    ],
+    "Desert Eagle": [
+      "Calligraffiti",
+      "Conspiracy",
+      "Corinthian",
+      "Directive",
+      "Meteorite",
+      "Mudder",
+      "Mulberry",
+      "Naga",
+      "Tilted"
+    ]
+  },
+  "all": [
+    "Asiimov",
+    "Bloody Tiger",
+    "Calligraffiti",
+    "Case Hardened",
+    "Conspiracy",
+    "Corinthian",
+    "Directive",
+    "Frontside Misty",
+    "Fuel Injector",
+    "Legion of Anubis",
+    "Meteorite",
+    "Mudder",
+    "Mulberry",
+    "Naga",
+    "Neon Revolution",
+    "Nightwish",
+    "Point Disarray",
+    "Redline",
+    "Slate",
+    "Tilted",
+    "Vulcan"
+  ]
+}
