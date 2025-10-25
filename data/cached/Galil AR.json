@@ -1,62 +1,72 @@
 [
   {
-    "name": "Sticker | Hello Galil AR",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjNikNnSe6Rly9Yv95mb1RB7-l5qu_HAN7vD5MPY-cqDFDDfFw7wgtOA-GH21lx90tTvcm9-qeXuSPQYiXIwwG7C77t389g",
-    "price": "$2.50",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjNikNnSe6Rly9Yv95mb1RB7-l5qu_HAN7vD5MPY-cqDFDDfFw7wgtOA-GH21lx90tTvcm9-qeXuSPQYiXIwwG7C77t389g"
+    "name": "Galil AR | Sandstorm (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PG7V7dsLvSAGmiCzNF7teVgWiT9kUhxtT7Um4qsdSqTbw8iW8AkQu8LuxO7koXgM-nk41fc3o5NyST6hjQJsHh7nSwnRQ",
+    "price": "$1.01",
+    "weapon": "Galil AR",
+    "url": "https://steamcommunity.com/market/listings/730/Galil%20AR%20%7C%20Sandstorm%20(Field-Tested)"
   },
   {
     "name": "Galil AR | Destroyer (Field-Tested)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PG7V6NsLPmfMWOV0vpkv_hsXRa-kBkupjDLm46odXyXaQJ2ApBzEOJYt0K8x9bvNr7n51ba3o5Byn2tji9BvHk56_FCD_TDFmDYsA",
-    "price": "$0.07",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PG7V6NsLPmfMWOV0vpkv_hsXRa-kBkupjDLm46odXyXaQJ2ApBzEOJYt0K8x9bvNr7n51ba3o5Byn2tji9BvHk56_FCD_TDFmDYsA"
-  },
-  {
-    "name": "Galil AR | Sandstorm (Field-Tested)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PG7V7dsLvSAGmiCzNF7teVgWiT9kUhxtT7Um4qsdSqTbw8iW8AkQu8LuxO7koXgM-nk41fc3o5NyST6hjQJsHh7nSwnRQ",
-    "price": "$1.03",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PG7V7dsLvSAGmiCzNF7teVgWiT9kUhxtT7Um4qsdSqTbw8iW8AkQu8LuxO7koXgM-nk41fc3o5NyST6hjQJsHh7nSwnRQ"
-  },
-  {
-    "name": "Galil AR | Tuxedo (Well-Worn)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0OGhV6t_I_GsA2KUyPt7_uJsSSrgk08l5mvSnompd3ifO1N2CppxELRc4xGww4LhNu-x7gHWgoJbjXKpHBX3PgM",
-    "price": "$0.74",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0OGhV6t_I_GsA2KUyPt7_uJsSSrgk08l5mvSnompd3ifO1N2CppxELRc4xGww4LhNu-x7gHWgoJbjXKpHBX3PgM"
-  },
-  {
-    "name": "Galil AR | Akoben (Factory New)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0OG-V6NsLPmfMWabzuxzvt5lRi67gVMlt2_dzd6qcH2TOgN0CpIlE7Ve5hbukdW0MrixslPW2IgQzyv8jypI8G81tJzCUipD",
-    "price": "$1.42",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0OG-V6NsLPmfMWabzuxzvt5lRi67gVMlt2_dzd6qcH2TOgN0CpIlE7Ve5hbukdW0MrixslPW2IgQzyv8jypI8G81tJzCUipD"
-  },
-  {
-    "name": "Galil AR | Connexion (Field-Tested)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PW9V6NsLPmfMXeYzut4uflWQiy3nAgq_WyEmd3_cSqVbgV1D5J3QrEPskW9mtLiPu7k7wWL2owQnyT6hn8YvX11o7FVmll_Ct8",
-    "price": "$0.34",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PW9V6NsLPmfMXeYzut4uflWQiy3nAgq_WyEmd3_cSqVbgV1D5J3QrEPskW9mtLiPu7k7wWL2owQnyT6hn8YvX11o7FVmll_Ct8"
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PG7V6NsLPmfMWOV0vpkv_hsXRa-kBkupjDLm46odXyXaQJ2ApBzEOJYt0K8x9bvNr7n51ba3o5Byn2tji9BvHk56_FCD_TDFmDYsA",
+    "price": "$0.16",
+    "weapon": "Galil AR",
+    "url": "https://steamcommunity.com/market/listings/730/Galil%20AR%20%7C%20Destroyer%20(Field-Tested)"
   },
   {
     "name": "Galil AR | Control (Field-Tested)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PWvZK1hH_OcAHOCzuJJo_V7RiK2qhAitzSQl8GqdCmSalcgDsYhQLYOskG5wIfnP-zltFPZ3t5AnHn-j3kduHs65elRT-N7rfTwl0Ej",
-    "price": "$0.42",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PWvZK1hH_OcAHOCzuJJo_V7RiK2qhAitzSQl8GqdCmSalcgDsYhQLYOskG5wIfnP-zltFPZ3t5AnHn-j3kduHs65elRT-N7rfTwl0Ej"
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PWvZK1hH_OcAHOCzuJJo_V7RiK2qhAitzSQl8GqdCmSalcgDsYhQLYOskG5wIfnP-zltFPZ3t5AnHn-j3kduHs65elRT-N7rfTwl0Ej",
+    "price": "$0.74",
+    "weapon": "Galil AR",
+    "url": "https://steamcommunity.com/market/listings/730/Galil%20AR%20%7C%20Control%20(Field-Tested)"
   },
   {
-    "name": "Galil AR | Tuxedo (Field-Tested)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0OGhV6t_I_GsA2KUyPt7_uJsSSrgk08l5mvSnompd3ifO1N2CppxELRc4xGww4LhNu-x7gHWgoJbjXKpHBX3PgM",
-    "price": "$0.71",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0OGhV6t_I_GsA2KUyPt7_uJsSSrgk08l5mvSnompd3ifO1N2CppxELRc4xGww4LhNu-x7gHWgoJbjXKpHBX3PgM"
+    "name": "Galil AR | Vandal (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PW9V6NsLPmfMXGRz-p3vN5kSi26gBBpsD_WmYmuJXqRaFd2C5ckEOFZ4Re7xtfnZrnktACN3ohGyS_533lOvTErvbhutOuqbA",
+    "price": "$0.94",
+    "weapon": "Galil AR",
+    "url": "https://steamcommunity.com/market/listings/730/Galil%20AR%20%7C%20Vandal%20(Field-Tested)"
   },
   {
-    "name": "Galil AR | Signal (Minimal Wear)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0Pq3V6NsLPmfMXSZxuB3vN57Si2MmRQguynLnIqvIy-TO1UlXJMjEeAN4UGwk9DkZLnltgPYjYkTnCn6iy8buips5PFCD_QZl2QaUg",
-    "price": "$1.41",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0Pq3V6NsLPmfMXSZxuB3vN57Si2MmRQguynLnIqvIy-TO1UlXJMjEeAN4UGwk9DkZLnltgPYjYkTnCn6iy8buips5PFCD_QZl2QaUg"
+    "name": "Galil AR | Akoben (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0OG-V6NsLPmfMWabzuxzvt5kSi26gBBp6jvWmNmtcy6SaQMpA5EiEORc5BG_kNDvYu2xsVePjIpHzCr2i3gbvTErvbiA5H-J4A",
+    "price": "$0.46",
+    "weapon": "Galil AR",
+    "url": "https://steamcommunity.com/market/listings/730/Galil%20AR%20%7C%20Akoben%20(Field-Tested)"
   },
   {
-    "name": "Galil AR | Firefight (Battle-Scarred)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PW9V6NsLPmfD3WvyOB1te9sXSinmg8YuziEjJa3JH3GOFAiWZdzQO9bu0W7kIfmMrjr41OPjIkWz3n73C8Y6yg-sOlRWb1lpPNeuYAotQ",
-    "price": "$0.34",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PW9V6NsLPmfD3WvyOB1te9sXSinmg8YuziEjJa3JH3GOFAiWZdzQO9bu0W7kIfmMrjr41OPjIkWz3n73C8Y6yg-sOlRWb1lpPNeuYAotQ"
+    "name": "Galil AR | Connexion (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PW9V6NsLPmfMXeYzut4uflWQiy3nAgq_WyEmd3_cSqVbgV1D5J3QrEPskW9mtLiPu7k7wWL2owQnyT6hn8YvX11o7FVmll_Ct8",
+    "price": "$0.72",
+    "weapon": "Galil AR",
+    "url": "https://steamcommunity.com/market/listings/730/Galil%20AR%20%7C%20Connexion%20(Field-Tested)"
+  },
+  {
+    "name": "Galil AR | Kami (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0Pq3V6NsLPmfMWyRzOdJveRtRjy-209zsmrdmN-ueXOeaFUkW8YhTeJY4xPsw4XgM-O24ACN2IwUxSz82nhXrnE8dzfudL4",
+    "price": "$1.52",
+    "weapon": "Galil AR",
+    "url": "https://steamcommunity.com/market/listings/730/Galil%20AR%20%7C%20Kami%20(Field-Tested)"
+  },
+  {
+    "name": "Galil AR | Firefight (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PW9V6NsLPmfD3WvyOB1te9sXSinmg8YvjiBk5r0byjBbAJ2WcYkELVY4RO_ktTlNerj5FffjdoRmyn7iipAuyZqsL0GUqI7uvqAF7QG89E",
+    "price": "$0.82",
+    "weapon": "Galil AR",
+    "url": "https://steamcommunity.com/market/listings/730/Galil%20AR%20%7C%20Firefight%20(Field-Tested)"
+  },
+  {
+    "name": "Galil AR | Shattered (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0Pq3V6d_Nf2DAmKvw_x3pu5WQiy3nAgq_W7UyNj7Ii7DOgQoX5ckQO9f50LrktzvNbm3sgfa2YhByy2rhyMfunx1o7FVC6SMvnI",
+    "price": "$6.45",
+    "weapon": "Galil AR",
+    "url": "https://steamcommunity.com/market/listings/730/Galil%20AR%20%7C%20Shattered%20(Field-Tested)"
+  },
+  {
+    "name": "Galil AR | NV (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PG7V7RiLOmsCXWVxOBJt-BlRiWMmBgjuiiI1Nn_dS7GPQAnX5olQLMCuxe7kNLjZe2w4gbfjowQxCT-2nlBuCw94-scEf1yQAvP4ik",
+    "price": "$0.30",
+    "weapon": "Galil AR",
+    "url": "https://steamcommunity.com/market/listings/730/Galil%20AR%20%7C%20NV%20(Field-Tested)"
   }
 ]

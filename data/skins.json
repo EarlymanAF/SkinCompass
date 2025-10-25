@@ -1,19 +1,27 @@
 [
   {
     "weapon": "AK-47",
-    "name": "Sticker | Hello AK-47"
+    "name": "AK-47 | Uncharted (Field-Tested)"
   },
   {
     "weapon": "AK-47",
-    "name": "AK-47 | Slate (Battle-Scarred)"
+    "name": "AK-47 | Slate (Field-Tested)"
   },
   {
     "weapon": "AK-47",
-    "name": "AK-47 | Nightwish (Battle-Scarred)"
+    "name": "AK-47 | Crossfade (Field-Tested)"
   },
   {
     "weapon": "AK-47",
-    "name": "AK-47 | Wintergreen (Minimal Wear)"
+    "name": "AK-47 | The Outsiders (Field-Tested)"
+  },
+  {
+    "weapon": "AK-47",
+    "name": "AK-47 | Redline (Field-Tested)"
+  },
+  {
+    "weapon": "AK-47",
+    "name": "AK-47 | Inheritance (Field-Tested)"
   },
   {
     "weapon": "AK-47",
@@ -21,11 +29,7 @@
   },
   {
     "weapon": "AK-47",
-    "name": "AK-47 | Uncharted (Minimal Wear)"
-  },
-  {
-    "weapon": "AK-47",
-    "name": "AK-47 | Uncharted (Field-Tested)"
+    "name": "AK-47 | Cartel (Field-Tested)"
   },
   {
     "weapon": "AK-47",
@@ -33,23 +37,47 @@
   },
   {
     "weapon": "AK-47",
-    "name": "AK-47 | Uncharted (Battle-Scarred)"
+    "name": "AK-47 | The Oligarch (Field-Tested)"
   },
   {
-    "weapon": "AK-47",
-    "name": "AK-47 | Slate (Factory New)"
+    "weapon": "AUG",
+    "name": "AUG | Contractor (Field-Tested)"
   },
   {
-    "weapon": "AWP",
-    "name": "AWP | POP AWP (Factory New)"
+    "weapon": "AUG",
+    "name": "AUG | Sweeper (Field-Tested)"
   },
   {
-    "weapon": "AWP",
-    "name": "AWP | POP AWP (Well-Worn)"
+    "weapon": "AUG",
+    "name": "AUG | Colony (Field-Tested)"
   },
   {
-    "weapon": "AWP",
-    "name": "AWP | POP AWP (Minimal Wear)"
+    "weapon": "AUG",
+    "name": "AUG | Storm (Field-Tested)"
+  },
+  {
+    "weapon": "AUG",
+    "name": "AUG | Condemned (Field-Tested)"
+  },
+  {
+    "weapon": "AUG",
+    "name": "AUG | Ricochet (Field-Tested)"
+  },
+  {
+    "weapon": "AUG",
+    "name": "AUG | Aristocrat (Field-Tested)"
+  },
+  {
+    "weapon": "AUG",
+    "name": "AUG | Surveillance (Field-Tested)"
+  },
+  {
+    "weapon": "AUG",
+    "name": "AUG | Triqua (Field-Tested)"
+  },
+  {
+    "weapon": "AUG",
+    "name": "AUG | Torque (Field-Tested)"
   },
   {
     "weapon": "AWP",
@@ -57,47 +85,163 @@
   },
   {
     "weapon": "AWP",
-    "name": "Charm | Pocket AWP"
+    "name": "AWP | Redline (Field-Tested)"
   },
   {
     "weapon": "AWP",
-    "name": "Charm | Titeenium AWP"
+    "name": "AWP | Capillary (Field-Tested)"
   },
   {
     "weapon": "AWP",
-    "name": "Sticker | Awp Country"
+    "name": "AWP | PAW (Field-Tested)"
   },
   {
     "weapon": "AWP",
-    "name": "Sticker | Hello AWP"
+    "name": "AWP | Acheron (Field-Tested)"
   },
   {
     "weapon": "AWP",
-    "name": "Sticker | BukAWP"
+    "name": "AWP | Printstream (Field-Tested)"
   },
   {
     "weapon": "AWP",
-    "name": "AWP | Exoskeleton (Battle-Scarred)"
+    "name": "AWP | Atheris (Field-Tested)"
+  },
+  {
+    "weapon": "AWP",
+    "name": "AWP | Phobos (Field-Tested)"
+  },
+  {
+    "weapon": "AWP",
+    "name": "AWP | Crakow! (Field-Tested)"
+  },
+  {
+    "weapon": "AWP",
+    "name": "AWP | Duality (Field-Tested)"
+  },
+  {
+    "weapon": "Akimbo-Berettas",
+    "name": "Dual Berettas | Hideout (Field-Tested)"
+  },
+  {
+    "weapon": "Akimbo-Berettas",
+    "name": "Dual Berettas | Contractor (Field-Tested)"
+  },
+  {
+    "weapon": "Akimbo-Berettas",
+    "name": "Dual Berettas | Colony (Field-Tested)"
+  },
+  {
+    "weapon": "Akimbo-Berettas",
+    "name": "Dual Berettas | Balance (Field-Tested)"
+  },
+  {
+    "weapon": "Akimbo-Berettas",
+    "name": "Dual Berettas | Ventilators (Field-Tested)"
+  },
+  {
+    "weapon": "Akimbo-Berettas",
+    "name": "Dual Berettas | Pyre (Field-Tested)"
+  },
+  {
+    "weapon": "Akimbo-Berettas",
+    "name": "Dual Berettas | Panther (Field-Tested)"
+  },
+  {
+    "weapon": "Akimbo-Berettas",
+    "name": "Dual Berettas | Stained (Field-Tested)"
+  },
+  {
+    "weapon": "Akimbo-Berettas",
+    "name": "Dual Berettas | Shred (Field-Tested)"
+  },
+  {
+    "weapon": "Akimbo-Berettas",
+    "name": "Dual Berettas | Cartel (Field-Tested)"
+  },
+  {
+    "weapon": "Bowie-Messer",
+    "name": "★ Bowie Knife | Autotronic (Field-Tested)"
+  },
+  {
+    "weapon": "Bowie-Messer",
+    "name": "★ Bowie Knife | Night (Field-Tested)"
+  },
+  {
+    "weapon": "Bowie-Messer",
+    "name": "★ Bowie Knife | Freehand (Field-Tested)"
+  },
+  {
+    "weapon": "Bowie-Messer",
+    "name": "★ Bowie Knife | Ultraviolet (Field-Tested)"
+  },
+  {
+    "weapon": "Bowie-Messer",
+    "name": "★ Bowie Knife | Lore (Field-Tested)"
+  },
+  {
+    "weapon": "Bowie-Messer",
+    "name": "★ Bowie Knife | Scorched (Field-Tested)"
+  },
+  {
+    "weapon": "Bowie-Messer",
+    "name": "★ Bowie Knife | Stained (Field-Tested)"
+  },
+  {
+    "weapon": "Bowie-Messer",
+    "name": "★ Bowie Knife | Slaughter (Field-Tested)"
+  },
+  {
+    "weapon": "Bowie-Messer",
+    "name": "★ Bowie Knife | Black Laminate (Field-Tested)"
+  },
+  {
+    "weapon": "Bowie-Messer",
+    "name": "★ Bowie Knife | Damascus Steel (Field-Tested)"
+  },
+  {
+    "weapon": "CZ75-Auto",
+    "name": "CZ75-Auto | Xiangliu (Field-Tested)"
+  },
+  {
+    "weapon": "CZ75-Auto",
+    "name": "CZ75-Auto | Tacticat (Field-Tested)"
+  },
+  {
+    "weapon": "CZ75-Auto",
+    "name": "CZ75-Auto | Hexane (Field-Tested)"
+  },
+  {
+    "weapon": "CZ75-Auto",
+    "name": "CZ75-Auto | Circaetus (Field-Tested)"
+  },
+  {
+    "weapon": "CZ75-Auto",
+    "name": "CZ75-Auto | Distressed (Field-Tested)"
+  },
+  {
+    "weapon": "CZ75-Auto",
+    "name": "CZ75-Auto | Eco (Field-Tested)"
+  },
+  {
+    "weapon": "CZ75-Auto",
+    "name": "CZ75-Auto | Twist (Field-Tested)"
+  },
+  {
+    "weapon": "CZ75-Auto",
+    "name": "CZ75-Auto | Syndicate (Field-Tested)"
+  },
+  {
+    "weapon": "CZ75-Auto",
+    "name": "CZ75-Auto | Polymer (Field-Tested)"
+  },
+  {
+    "weapon": "CZ75-Auto",
+    "name": "CZ75-Auto | Indigo (Field-Tested)"
   },
   {
     "weapon": "Desert Eagle",
-    "name": "Desert Eagle | Tilted (Well-Worn)"
-  },
-  {
-    "weapon": "Desert Eagle",
-    "name": "Desert Eagle | Mudder (Battle-Scarred)"
-  },
-  {
-    "weapon": "Desert Eagle",
-    "name": "Desert Eagle | Directive (Minimal Wear)"
-  },
-  {
-    "weapon": "Desert Eagle",
-    "name": "Desert Eagle | Meteorite (Minimal Wear)"
-  },
-  {
-    "weapon": "Desert Eagle",
-    "name": "Desert Eagle | Directive (Field-Tested)"
+    "name": "Desert Eagle | The Bronze (Field-Tested)"
   },
   {
     "weapon": "Desert Eagle",
@@ -105,23 +249,47 @@
   },
   {
     "weapon": "Desert Eagle",
-    "name": "Desert Eagle | Calligraffiti (Field-Tested)"
+    "name": "Desert Eagle | Corinthian (Field-Tested)"
   },
   {
     "weapon": "Desert Eagle",
-    "name": "Desert Eagle | Directive (Battle-Scarred)"
+    "name": "Desert Eagle | Printstream (Field-Tested)"
   },
   {
     "weapon": "Desert Eagle",
-    "name": "Desert Eagle | Calligraffiti (Well-Worn)"
+    "name": "Desert Eagle | Mudder (Field-Tested)"
   },
   {
     "weapon": "Desert Eagle",
-    "name": "Desert Eagle | Calligraffiti (Battle-Scarred)"
+    "name": "Desert Eagle | Directive (Field-Tested)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Night (Field-Tested)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Mulberry (Field-Tested)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Naga (Field-Tested)"
+  },
+  {
+    "weapon": "Desert Eagle",
+    "name": "Desert Eagle | Sputnik (Field-Tested)"
   },
   {
     "weapon": "FAMAS",
-    "name": "Sticker | Hello FAMAS"
+    "name": "FAMAS | Crypsis (Field-Tested)"
+  },
+  {
+    "weapon": "FAMAS",
+    "name": "FAMAS | Teardown (Field-Tested)"
+  },
+  {
+    "weapon": "FAMAS",
+    "name": "FAMAS | Macabre (Field-Tested)"
   },
   {
     "weapon": "FAMAS",
@@ -129,43 +297,187 @@
   },
   {
     "weapon": "FAMAS",
+    "name": "FAMAS | Sergeant (Field-Tested)"
+  },
+  {
+    "weapon": "FAMAS",
     "name": "FAMAS | Palm (Field-Tested)"
   },
   {
     "weapon": "FAMAS",
-    "name": "FAMAS | Colony (Battle-Scarred)"
+    "name": "FAMAS | Decommissioned (Field-Tested)"
   },
   {
     "weapon": "FAMAS",
-    "name": "FAMAS | Palm (Minimal Wear)"
+    "name": "FAMAS | Cyanospatter (Field-Tested)"
   },
   {
     "weapon": "FAMAS",
-    "name": "FAMAS | Palm (Battle-Scarred)"
+    "name": "FAMAS | Spitfire (Field-Tested)"
   },
   {
     "weapon": "FAMAS",
-    "name": "FAMAS | Colony (Well-Worn)"
+    "name": "FAMAS | Doomkitty (Field-Tested)"
   },
   {
-    "weapon": "FAMAS",
-    "name": "FAMAS | Valence (Field-Tested)"
+    "weapon": "Falchion-Messer",
+    "name": "★ Falchion Knife | Ultraviolet (Field-Tested)"
   },
   {
-    "weapon": "FAMAS",
-    "name": "FAMAS | Colony (Minimal Wear)"
+    "weapon": "Falchion-Messer",
+    "name": "★ Falchion Knife | Slaughter (Field-Tested)"
   },
   {
-    "weapon": "FAMAS",
-    "name": "FAMAS | Pulse (Factory New)"
+    "weapon": "Falchion-Messer",
+    "name": "★ Falchion Knife | Autotronic (Field-Tested)"
   },
   {
-    "weapon": "Galil AR",
-    "name": "Sticker | Hello Galil AR"
+    "weapon": "Falchion-Messer",
+    "name": "★ Falchion Knife | Freehand (Field-Tested)"
   },
   {
-    "weapon": "Galil AR",
-    "name": "Galil AR | Destroyer (Field-Tested)"
+    "weapon": "Falchion-Messer",
+    "name": "★ Falchion Knife | Lore (Field-Tested)"
+  },
+  {
+    "weapon": "Falchion-Messer",
+    "name": "★ Falchion Knife | Scorched (Field-Tested)"
+  },
+  {
+    "weapon": "Falchion-Messer",
+    "name": "★ Falchion Knife | Night (Field-Tested)"
+  },
+  {
+    "weapon": "Falchion-Messer",
+    "name": "★ Falchion Knife | Stained (Field-Tested)"
+  },
+  {
+    "weapon": "Falchion-Messer",
+    "name": "★ Falchion Knife | Black Laminate (Field-Tested)"
+  },
+  {
+    "weapon": "Falchion-Messer",
+    "name": "★ Falchion Knife | Case Hardened (Field-Tested)"
+  },
+  {
+    "weapon": "Five-SeveN",
+    "name": "Five-SeveN | Coolant (Field-Tested)"
+  },
+  {
+    "weapon": "Five-SeveN",
+    "name": "Five-SeveN | Contractor (Field-Tested)"
+  },
+  {
+    "weapon": "Five-SeveN",
+    "name": "Five-SeveN | Scrawl (Field-Tested)"
+  },
+  {
+    "weapon": "Five-SeveN",
+    "name": "Five-SeveN | Nightshade (Field-Tested)"
+  },
+  {
+    "weapon": "Five-SeveN",
+    "name": "Five-SeveN | Hybrid (Field-Tested)"
+  },
+  {
+    "weapon": "Five-SeveN",
+    "name": "Five-SeveN | Jungle (Field-Tested)"
+  },
+  {
+    "weapon": "Five-SeveN",
+    "name": "Five-SeveN | Scumbria (Field-Tested)"
+  },
+  {
+    "weapon": "Five-SeveN",
+    "name": "Five-SeveN | Buddy (Field-Tested)"
+  },
+  {
+    "weapon": "Five-SeveN",
+    "name": "Five-SeveN | Retrobution (Field-Tested)"
+  },
+  {
+    "weapon": "Five-SeveN",
+    "name": "Five-SeveN | Triumvirate (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "G3SG1 | Stinger (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "G3SG1 | Flux (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "G3SG1 | Scavenger (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "G3SG1 | Ventilator (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "G3SG1 | Demeter (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "G3SG1 | Hunter (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "G3SG1 | The Executioner (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "G3SG1 | Murky (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "G3SG1 | Contractor (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "G3SG1 | Chronos (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "StatTrak™ SG 553 | Cyberforce (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "StatTrak™ SG 553 | Cyrex (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "StatTrak™ SG 553 | Phantom (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "Souvenir SG 553 | Gator Mesh (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "Souvenir SG 553 | Damascus Steel (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "Souvenir SG 553 | Hazard Pay (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "★ Moto Gloves | 3rd Commando Company (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "M4A1-S | Solitude (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "M4A1-S | Nitro (Field-Tested)"
+  },
+  {
+    "weapon": "G3SG1",
+    "name": "M4A1-S | Liquidation (Field-Tested)"
   },
   {
     "weapon": "Galil AR",
@@ -173,15 +485,7 @@
   },
   {
     "weapon": "Galil AR",
-    "name": "Galil AR | Tuxedo (Well-Worn)"
-  },
-  {
-    "weapon": "Galil AR",
-    "name": "Galil AR | Akoben (Factory New)"
-  },
-  {
-    "weapon": "Galil AR",
-    "name": "Galil AR | Connexion (Field-Tested)"
+    "name": "Galil AR | Destroyer (Field-Tested)"
   },
   {
     "weapon": "Galil AR",
@@ -189,23 +493,31 @@
   },
   {
     "weapon": "Galil AR",
-    "name": "Galil AR | Tuxedo (Field-Tested)"
+    "name": "Galil AR | Vandal (Field-Tested)"
   },
   {
     "weapon": "Galil AR",
-    "name": "Galil AR | Signal (Minimal Wear)"
+    "name": "Galil AR | Akoben (Field-Tested)"
   },
   {
     "weapon": "Galil AR",
-    "name": "Galil AR | Firefight (Battle-Scarred)"
+    "name": "Galil AR | Connexion (Field-Tested)"
   },
   {
-    "weapon": "Glock-18",
-    "name": "Glock-18 | Block-18 (Minimal Wear)"
+    "weapon": "Galil AR",
+    "name": "Galil AR | Kami (Field-Tested)"
   },
   {
-    "weapon": "Glock-18",
-    "name": "Glock-18 | Block-18 (Battle-Scarred)"
+    "weapon": "Galil AR",
+    "name": "Galil AR | Firefight (Field-Tested)"
+  },
+  {
+    "weapon": "Galil AR",
+    "name": "Galil AR | Shattered (Field-Tested)"
+  },
+  {
+    "weapon": "Galil AR",
+    "name": "Galil AR | NV (Field-Tested)"
   },
   {
     "weapon": "Glock-18",
@@ -213,11 +525,27 @@
   },
   {
     "weapon": "Glock-18",
-    "name": "Glock-18 | Block-18 (Factory New)"
+    "name": "Glock-18 | Wraiths (Field-Tested)"
   },
   {
     "weapon": "Glock-18",
-    "name": "Glock-18 | Block-18 (Well-Worn)"
+    "name": "Glock-18 | Sacrifice (Field-Tested)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Glockingbird (Field-Tested)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Warhawk (Field-Tested)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Vogue (Field-Tested)"
+  },
+  {
+    "weapon": "Glock-18",
+    "name": "Glock-18 | Moonrise (Field-Tested)"
   },
   {
     "weapon": "Glock-18",
@@ -225,51 +553,215 @@
   },
   {
     "weapon": "Glock-18",
-    "name": "Glock-18 | Moonrise (Battle-Scarred)"
+    "name": "Glock-18 | Shinobu (Field-Tested)"
   },
   {
     "weapon": "Glock-18",
-    "name": "Glock-18 | Ironwork (Field-Tested)"
+    "name": "Glock-18 | Weasel (Field-Tested)"
   },
   {
-    "weapon": "Glock-18",
-    "name": "Glock-18 | Wraiths (Field-Tested)"
+    "weapon": "Karambit",
+    "name": "★ Karambit | Night (Field-Tested)"
   },
   {
-    "weapon": "Glock-18",
-    "name": "Glock-18 | Winterized (Battle-Scarred)"
+    "weapon": "Karambit",
+    "name": "★ Karambit | Ultraviolet (Field-Tested)"
+  },
+  {
+    "weapon": "Karambit",
+    "name": "★ Karambit | Stained (Field-Tested)"
+  },
+  {
+    "weapon": "Karambit",
+    "name": "★ Karambit | Lore (Field-Tested)"
+  },
+  {
+    "weapon": "Karambit",
+    "name": "★ Karambit | Scorched (Field-Tested)"
+  },
+  {
+    "weapon": "Karambit",
+    "name": "★ Karambit | Autotronic (Field-Tested)"
+  },
+  {
+    "weapon": "Karambit",
+    "name": "★ Karambit | Freehand (Field-Tested)"
+  },
+  {
+    "weapon": "Karambit",
+    "name": "★ Karambit | Slaughter (Field-Tested)"
+  },
+  {
+    "weapon": "Karambit",
+    "name": "★ Karambit | Crimson Web (Field-Tested)"
+  },
+  {
+    "weapon": "Karambit",
+    "name": "★ Karambit | Bright Water (Field-Tested)"
+  },
+  {
+    "weapon": "Kukri-Messer",
+    "name": "★ Kukri Knife | Scorched (Field-Tested)"
+  },
+  {
+    "weapon": "Kukri-Messer",
+    "name": "★ Kukri Knife | Stained (Field-Tested)"
+  },
+  {
+    "weapon": "Kukri-Messer",
+    "name": "★ Kukri Knife | Slaughter (Field-Tested)"
+  },
+  {
+    "weapon": "Kukri-Messer",
+    "name": "★ Kukri Knife | Crimson Web (Field-Tested)"
+  },
+  {
+    "weapon": "Kukri-Messer",
+    "name": "★ Kukri Knife | Boreal Forest (Field-Tested)"
+  },
+  {
+    "weapon": "Kukri-Messer",
+    "name": "★ Kukri Knife | Urban Masked (Field-Tested)"
+  },
+  {
+    "weapon": "Kukri-Messer",
+    "name": "★ Kukri Knife | Night Stripe (Field-Tested)"
+  },
+  {
+    "weapon": "Kukri-Messer",
+    "name": "★ Kukri Knife | Forest DDPAT (Field-Tested)"
+  },
+  {
+    "weapon": "Kukri-Messer",
+    "name": "★ Kukri Knife | Case Hardened (Field-Tested)"
+  },
+  {
+    "weapon": "Kukri-Messer",
+    "name": "★ Kukri Knife | Safari Mesh (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M249 | Submerged (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M249 | Spectrogram (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M249 | Downtown (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M249 | Aztec (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M249 | Spectre (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M249 | Jungle (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M249 | Hypnosis (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M249 | Warbird (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M249 | Predator (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M249 | Magma (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M4A1-S | Cyrex (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M4A4 | X-Ray (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M4A4 | Royal Paladin (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M4A4 | Cyber Security (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "★ M9 Bayonet | Urban Masked (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M4A4 | Modern Hunter (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "★ M9 Bayonet | Bright Water (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "Souvenir M4A4 | Hellish (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "M4A1-S | Vaporwave (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "★ M9 Bayonet | Safari Mesh (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "★ StatTrak™ M9 Bayonet | Crimson Web (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "★ StatTrak™ M9 Bayonet | Case Hardened (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "Souvenir M4A1-S | Master Piece (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "★ StatTrak™ M9 Bayonet | Black Laminate (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "★ StatTrak™ M9 Bayonet | Blue Steel (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "Souvenir M4A1-S | Welcome to the Jungle (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "StatTrak™ M4A4 | Royal Paladin (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "★ StatTrak™ M9 Bayonet | Safari Mesh (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "★ StatTrak™ M9 Bayonet | Urban Masked (Field-Tested)"
+  },
+  {
+    "weapon": "M249",
+    "name": "★ StatTrak™ M9 Bayonet | Forest DDPAT (Field-Tested)"
   },
   {
     "weapon": "M4A1-S",
-    "name": "Sticker | Hello M4A1-S"
-  },
-  {
-    "weapon": "M4A1-S",
-    "name": "M4A1-S | Briefing (Minimal Wear)"
-  },
-  {
-    "weapon": "M4A1-S",
-    "name": "M4A1-S | Flashback (Well-Worn)"
-  },
-  {
-    "weapon": "M4A1-S",
-    "name": "M4A1-S | Nitro (Battle-Scarred)"
-  },
-  {
-    "weapon": "M4A1-S",
-    "name": "M4A1-S | Decimator (Field-Tested)"
-  },
-  {
-    "weapon": "M4A1-S",
-    "name": "M4A1-S | Basilisk (Field-Tested)"
-  },
-  {
-    "weapon": "M4A1-S",
-    "name": "M4A1-S | Nitro (Well-Worn)"
-  },
-  {
-    "weapon": "M4A1-S",
-    "name": "M4A1-S | Nightmare (Field-Tested)"
+    "name": "M4A1-S | Emphorosaur-S (Field-Tested)"
   },
   {
     "weapon": "M4A1-S",
@@ -277,23 +769,435 @@
   },
   {
     "weapon": "M4A1-S",
-    "name": "M4A1-S | Flashback (Battle-Scarred)"
+    "name": "M4A1-S | Cyrex (Field-Tested)"
   },
   {
-    "weapon": "MAC-10",
-    "name": "Sticker | Hello MAC-10"
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Nightmare (Field-Tested)"
   },
   {
-    "weapon": "MAC-10",
-    "name": "MAC-10 | Bronzer (Minimal Wear)"
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Basilisk (Field-Tested)"
   },
   {
-    "weapon": "MAC-10",
-    "name": "MAC-10 | Monkeyflage (Field-Tested)"
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Guardian (Field-Tested)"
   },
   {
-    "weapon": "MAC-10",
-    "name": "MAC-10 | Allure (Well-Worn)"
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Solitude (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Flashback (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Decimator (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A1-S | Stratosphere (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A4 | Spider Lily (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A4 | In Living Color (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A4 | Radiation Hazard (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "Souvenir M4A4 | Converter (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A4 | Bullet Rain (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A4 | Jungle Tiger (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A4 | Neo-Noir (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A4 | Buzz Kill (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A4 | X-Ray (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M4A4 | Royal Paladin (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "USP-S | Road Rash (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "USP-S | Neo-Noir (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "USP-S | Target Acquired (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M249 | Gator Mesh (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M249 | Sage Camo (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "Souvenir M249 | Submerged (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M249 | Blizzard Marbleized (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "★ M9 Bayonet | Night (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M249 | Jungle DDPAT (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "M249 | Midnight Palm (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "G3SG1 | Azure Zebra (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "G3SG1 | Dream Glade (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "G3SG1 | Safari Mesh (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "G3SG1 | Arctic Camo (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "G3SG1 | Keeping Tabs (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "G3SG1 | Orange Kimono (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "G3SG1 | Violet Murano (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "StatTrak™ M249 | Nebula Crusader (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "StatTrak™ M249 | System Lock (Field-Tested)"
+  },
+  {
+    "weapon": "M4A1-S",
+    "name": "★ StatTrak™ M9 Bayonet | Stained (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A4 | Mainframe (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A4 | Tornado (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A4 | Magnesium (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A4 | Griffin (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A4 | Converter (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A4 | Turbine (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A4 | Choppa (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A4 | Polysoup (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A4 | The Emperor (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A4 | Asiimov (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A1-S | Leaded Glass (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A1-S | Chantico's Fire (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A1-S | Blood Tiger (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A1-S | Atomic Alloy (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A1-S | Rose Hex (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A1-S | Night Terror (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A1-S | VariCamo (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A1-S | Bright Water (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A1-S | Glitched Paint (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "M4A1-S | Golden Coil (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "StatTrak™ M249 | Nebula Crusader (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "StatTrak™ M249 | Deep Relief (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "StatTrak™ M249 | System Lock (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "★ StatTrak™ M9 Bayonet | Stained (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "★ StatTrak™ M9 Bayonet | Ultraviolet (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "★ StatTrak™ M9 Bayonet | Lore (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "★ StatTrak™ M9 Bayonet | Freehand (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "★ StatTrak™ M9 Bayonet | Night (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "★ StatTrak™ M9 Bayonet | Scorched (Field-Tested)"
+  },
+  {
+    "weapon": "M4A4",
+    "name": "★ StatTrak™ M9 Bayonet | Slaughter (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "★ M9 Bayonet | Night (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "★ M9 Bayonet | Ultraviolet (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "★ M9 Bayonet | Scorched (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "★ M9 Bayonet | Stained (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "★ M9 Bayonet | Lore (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "★ M9 Bayonet | Freehand (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "★ M9 Bayonet | Slaughter (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "★ M9 Bayonet | Autotronic (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "★ M9 Bayonet | Urban Masked (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "★ M9 Bayonet | Safari Mesh (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M249 | Nebula Crusader (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "Souvenir M249 | Humidor (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M249 | System Lock (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M249 | Impact Drill (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A4 | Temukau (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A4 | The Emperor (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M249 | Deep Relief (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A4 | Asiimov (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A4 | The Coalition (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A4 | The Battlestar (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A1-S | Solitude (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A4 | Jungle Tiger (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A1-S | Vaporwave (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A1-S | Liquidation (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A4 | Eye of Horus (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A4 | Cyber Security (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A1-S | Briefing (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A4 | Full Throttle (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "Souvenir M4A4 | Hellish (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A4 | Neo-Noir (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A1-S | Golden Coil (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A1-S | Dark Water (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A1-S | Player Two (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A1-S | Chantico's Fire (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A1-S | Hyper Beast (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "StatTrak™ M4A4 | Asiimov (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "StatTrak™ M4A4 | The Battlestar (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "Souvenir M4A1-S | Nitro (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "Souvenir M4A4 | Eye of Horus (Field-Tested)"
+  },
+  {
+    "weapon": "M9-Bajonett",
+    "name": "M4A1-S | Imminent Danger (Field-Tested)"
   },
   {
     "weapon": "MAC-10",
@@ -301,7 +1205,19 @@
   },
   {
     "weapon": "MAC-10",
-    "name": "MAC-10 | Indigo (Battle-Scarred)"
+    "name": "MAC-10 | Aloha (Field-Tested)"
+  },
+  {
+    "weapon": "MAC-10",
+    "name": "MAC-10 | Rangeen (Field-Tested)"
+  },
+  {
+    "weapon": "MAC-10",
+    "name": "MAC-10 | Pipsqueak (Field-Tested)"
+  },
+  {
+    "weapon": "MAC-10",
+    "name": "MAC-10 | Strats (Field-Tested)"
   },
   {
     "weapon": "MAC-10",
@@ -309,27 +1225,299 @@
   },
   {
     "weapon": "MAC-10",
-    "name": "MAC-10 | Allure (Field-Tested)"
+    "name": "MAC-10 | Monkeyflage (Field-Tested)"
   },
   {
     "weapon": "MAC-10",
-    "name": "MAC-10 | Ensnared (Well-Worn)"
+    "name": "MAC-10 | Indigo (Field-Tested)"
   },
   {
     "weapon": "MAC-10",
-    "name": "MAC-10 | Ensnared (Minimal Wear)"
+    "name": "MAC-10 | Heat (Field-Tested)"
   },
   {
-    "weapon": "MP9",
-    "name": "Sticker | Hello MP9"
+    "weapon": "MAC-10",
+    "name": "MAC-10 | Bronzer (Field-Tested)"
   },
   {
-    "weapon": "MP9",
-    "name": "MP9 | Slide (Battle-Scarred)"
+    "weapon": "MAG-7",
+    "name": "MAG-7 | SWAG-7 (Field-Tested)"
   },
   {
-    "weapon": "MP9",
-    "name": "MP9 | Slide (Minimal Wear)"
+    "weapon": "MAG-7",
+    "name": "MAG-7 | Praetorian (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "MAG-7 | MAGnitude (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "MAG-7 | Wildwood (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "MAG-7 | Insomnia (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "MAG-7 | Foresight (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "MAG-7 | Storm (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "MAG-7 | Resupply (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "MAG-7 | Petroglyph (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "MAG-7 | Seabird (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "Souvenir MP7 | Fade (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "M4A4 | Poly Mag (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "Souvenir MP7 | Tall Grass (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "StatTrak™ MP7 | Cirrus (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "StatTrak™ MP7 | Mischief (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "StatTrak™ MP7 | Powercore (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "StatTrak™ MP7 | Akoben (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "Souvenir MP7 | Orange Peel (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "StatTrak™ MP7 | Bloodsport (Field-Tested)"
+  },
+  {
+    "weapon": "MAG-7",
+    "name": "StatTrak™ MP7 | Nemesis (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP5-SD | Agent (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP5-SD | Liquidation (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP5-SD | Kitbash (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP5-SD | Nitro (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP5-SD | Statics (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP5-SD | Gauss (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP5-SD | Phosphor (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP5-SD | Focus (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP5-SD | Dirt Drop (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP5-SD | Lime Hex (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP9 | Black Sand (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP9 | Starlight Protector (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP9 | Old Roots (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP9 | Latte Rush (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP9 | Music Box (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP7 | Orange Peel (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP9 | Setting Sun (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP7 | Tall Grass (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP9 | Dark Age (Field-Tested)"
+  },
+  {
+    "weapon": "MP5-SD",
+    "name": "MP9 | Dry Season (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MP7 | Nemesis (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MP7 | Powercore (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MP7 | Sunbaked (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MP7 | Mischief (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MP7 | Motherboard (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MP7 | Akoben (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MP7 | Scorched (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MP7 | Fade (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MP7 | Skulls (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MP7 | Groundwater (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MAG-7 | Cobalt Core (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MAG-7 | Copper Coated (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MAG-7 | Irradiated Alert (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MAG-7 | Navy Sheen (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "Souvenir MAG-7 | Bulldozer (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MAG-7 | Counter Terrace (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MAG-7 | Hard Water (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MAG-7 | Prism Terrace (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MP9 | Sand Dashed (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "MP9 | Multi-Terrain (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "StatTrak™ MP9 | Modest Threat (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "StatTrak™ MP5-SD | Phosphor (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "StatTrak™ MP5-SD | Gauss (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "StatTrak™ MP5-SD | Agent (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "Souvenir MP5-SD | Co-Processor (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "StatTrak™ MP5-SD | Kitbash (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "StatTrak™ MP9 | Sand Scale (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "StatTrak™ MP9 | Mount Fuji (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "StatTrak™ MP9 | Food Chain (Field-Tested)"
+  },
+  {
+    "weapon": "MP7",
+    "name": "StatTrak™ MP9 | Black Sand (Field-Tested)"
   },
   {
     "weapon": "MP9",
@@ -341,31 +1529,355 @@
   },
   {
     "weapon": "MP9",
-    "name": "MP9 | Nexus (Battle-Scarred)"
-  },
-  {
-    "weapon": "MP9",
-    "name": "MP9 | Featherweight (Minimal Wear)"
-  },
-  {
-    "weapon": "MP9",
-    "name": "MP9 | Slide (Well-Worn)"
-  },
-  {
-    "weapon": "MP9",
     "name": "MP9 | Featherweight (Field-Tested)"
   },
   {
     "weapon": "MP9",
-    "name": "MP9 | Featherweight (Well-Worn)"
+    "name": "MP9 | Bioleak (Field-Tested)"
   },
   {
-    "weapon": "P250",
-    "name": "P250 | Cassette (Minimal Wear)"
+    "weapon": "MP9",
+    "name": "MP9 | Storm (Field-Tested)"
   },
   {
-    "weapon": "P250",
-    "name": "P250 | Visions (Minimal Wear)"
+    "weapon": "MP9",
+    "name": "MP9 | Shredded (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP9 | Nexus (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP9 | Hydra (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP9 | Airlock (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP9 | Dart (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP7 | Whiteout (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP7 | Bloodsport (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP7 | Mischief (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP7 | Scorched (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP7 | Nemesis (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "Tec-9 | Urban DDPAT (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "Tec-9 | Fuel Injector (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "Tec-9 | Army Mesh (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "Tec-9 | Raw Ceramic (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "Tec-9 | VariCamo (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP5-SD | Neon Squeezer (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP5-SD | Bamboo Garden (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "Souvenir MP7 | Army Recon (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "StatTrak™ MP7 | Mischief (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP5-SD | Gold Leaf (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "StatTrak™ MP7 | Cirrus (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "StatTrak™ MP7 | Akoben (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "MP5-SD | Necro Jr. (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "StatTrak™ MP7 | Powercore (Field-Tested)"
+  },
+  {
+    "weapon": "MP9",
+    "name": "StatTrak™ MP7 | Guerrilla (Field-Tested)"
+  },
+  {
+    "weapon": "Navaja-Messer",
+    "name": "★ Navaja Knife | Scorched (Field-Tested)"
+  },
+  {
+    "weapon": "Navaja-Messer",
+    "name": "★ Navaja Knife | Slaughter (Field-Tested)"
+  },
+  {
+    "weapon": "Navaja-Messer",
+    "name": "★ Navaja Knife | Stained (Field-Tested)"
+  },
+  {
+    "weapon": "Navaja-Messer",
+    "name": "★ Navaja Knife | Ultraviolet (Field-Tested)"
+  },
+  {
+    "weapon": "Navaja-Messer",
+    "name": "★ Navaja Knife | Blue Steel (Field-Tested)"
+  },
+  {
+    "weapon": "Navaja-Messer",
+    "name": "★ Navaja Knife | Night Stripe (Field-Tested)"
+  },
+  {
+    "weapon": "Navaja-Messer",
+    "name": "★ Navaja Knife | Safari Mesh (Field-Tested)"
+  },
+  {
+    "weapon": "Navaja-Messer",
+    "name": "★ Navaja Knife | Boreal Forest (Field-Tested)"
+  },
+  {
+    "weapon": "Navaja-Messer",
+    "name": "★ Navaja Knife | Case Hardened (Field-Tested)"
+  },
+  {
+    "weapon": "Navaja-Messer",
+    "name": "★ Navaja Knife | Urban Masked (Field-Tested)"
+  },
+  {
+    "weapon": "Negev",
+    "name": "Negev | Terrain (Field-Tested)"
+  },
+  {
+    "weapon": "Negev",
+    "name": "Negev | Ultralight (Field-Tested)"
+  },
+  {
+    "weapon": "Negev",
+    "name": "Negev | Bratatat (Field-Tested)"
+  },
+  {
+    "weapon": "Negev",
+    "name": "Negev | Bulkhead (Field-Tested)"
+  },
+  {
+    "weapon": "Negev",
+    "name": "Negev | Prototype (Field-Tested)"
+  },
+  {
+    "weapon": "Negev",
+    "name": "Negev | Lionfish (Field-Tested)"
+  },
+  {
+    "weapon": "Negev",
+    "name": "Negev | Loudmouth (Field-Tested)"
+  },
+  {
+    "weapon": "Negev",
+    "name": "Negev | Palm (Field-Tested)"
+  },
+  {
+    "weapon": "Negev",
+    "name": "Negev | Dazzle (Field-Tested)"
+  },
+  {
+    "weapon": "Negev",
+    "name": "Negev | Infrastructure (Field-Tested)"
+  },
+  {
+    "weapon": "Nova",
+    "name": "Nova | Mandrel (Field-Tested)"
+  },
+  {
+    "weapon": "Nova",
+    "name": "Nova | Exo (Field-Tested)"
+  },
+  {
+    "weapon": "Nova",
+    "name": "Nova | Predator (Field-Tested)"
+  },
+  {
+    "weapon": "Nova",
+    "name": "Nova | Yorkshire (Field-Tested)"
+  },
+  {
+    "weapon": "Nova",
+    "name": "Nova | Windblown (Field-Tested)"
+  },
+  {
+    "weapon": "Nova",
+    "name": "Nova | Ocular (Field-Tested)"
+  },
+  {
+    "weapon": "Nova",
+    "name": "Nova | Walnut (Field-Tested)"
+  },
+  {
+    "weapon": "Nova",
+    "name": "Nova | Tempest (Field-Tested)"
+  },
+  {
+    "weapon": "Nova",
+    "name": "Nova | Gila (Field-Tested)"
+  },
+  {
+    "weapon": "Nova",
+    "name": "Nova | Ranger (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P2000 | Oceanic (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P2000 | Gnarled (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P2000 | Marsh (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P2000 | Pulse (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P2000 | Handgun (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P2000 | Imperial (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P2000 | Turf (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P2000 | Chainmail (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P2000 | Pathfinder (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P2000 | Grassland (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P90 | Sand Spray (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P250 | Facility Draft (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P250 | Boreal Forest (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P250 | Copper Oxide (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P250 | Plum Netting (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P250 | Forest Night (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P250 | Red Tide (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P90 | Wash me (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P90 | Straight Dimes (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "P250 | Crimson Kimono (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "Souvenir P250 | Boreal Forest (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "StatTrak™ P90 | Nostalgia (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "StatTrak™ P250 | Supernova (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "StatTrak™ P250 | Epicenter (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "Souvenir P250 | Digital Architect (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "StatTrak™ P250 | Bullfrog (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "StatTrak™ P250 | Mehndi (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "StatTrak™ P250 | Muertos (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "StatTrak™ P250 | Undertow (Field-Tested)"
+  },
+  {
+    "weapon": "P2000",
+    "name": "Souvenir P250 | Vino Primo (Field-Tested)"
   },
   {
     "weapon": "P250",
@@ -373,31 +1885,643 @@
   },
   {
     "weapon": "P250",
+    "name": "P250 | Cassette (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P250 | Wingshot (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
     "name": "P250 | Valence (Field-Tested)"
   },
   {
     "weapon": "P250",
-    "name": "P250 | Valence (Factory New)"
+    "name": "P250 | Supernova (Field-Tested)"
   },
   {
     "weapon": "P250",
-    "name": "P250 | Wingshot (Minimal Wear)"
+    "name": "P250 | Facets (Field-Tested)"
   },
   {
     "weapon": "P250",
-    "name": "P250 | Ripple (Field-Tested)"
+    "name": "P250 | Verdigris (Field-Tested)"
   },
   {
     "weapon": "P250",
-    "name": "P250 | Cassette (Battle-Scarred)"
+    "name": "P250 | Muertos (Field-Tested)"
   },
   {
     "weapon": "P250",
-    "name": "P250 | Exchanger (Battle-Scarred)"
+    "name": "P250 | Constructivist (Field-Tested)"
   },
   {
     "weapon": "P250",
-    "name": "P250 | Franklin (Factory New)"
+    "name": "P250 | Cartel (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P90 | Virus (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P2000 | Gnarled (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P2000 | Marsh (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P2000 | Imperial (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P2000 | Oceanic (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P90 | Shapewood (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P90 | Storm (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P90 | Module (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P90 | Chopper (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P90 | Neoqueen (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "Souvenir P90 | Glacier Mesh (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "StatTrak™ P90 | Trigon (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "StatTrak™ P90 | Nostalgia (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "Souvenir P2000 | Granite Marbleized (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "P2000 | Red FragCam (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "StatTrak™ P90 | Neoqueen (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "StatTrak™ P90 | Shapewood (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "StatTrak™ P90 | Asiimov (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "Souvenir P90 | Facility Negative (Field-Tested)"
+  },
+  {
+    "weapon": "P250",
+    "name": "Souvenir P90 | Fallout Warning (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P90 | Freight (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P90 | Module (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P90 | Grim (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P90 | Chopper (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P90 | Storm (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P90 | Trigon (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P90 | Neoqueen (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P90 | Nostalgia (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P90 | Traction (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P90 | Leather (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P250 | Supernova (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P2000 | Pathfinder (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P250 | Cartel (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P250 | Franklin (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P2000 | Marsh (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P2000 | Oceanic (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P250 | Visions (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P250 | Splash (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P250 | Verdigris (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P250 | Exchanger (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "StatTrak™ P250 | Inferno (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "StatTrak™ P250 | Visions (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "Souvenir P250 | Facility Draft (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "StatTrak™ P250 | Supernova (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "Souvenir P2000 | Amber Fade (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "Souvenir P250 | Boreal Forest (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "StatTrak™ P250 | Contaminant (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "StatTrak™ P250 | Bullfrog (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "StatTrak™ P250 | Undertow (Field-Tested)"
+  },
+  {
+    "weapon": "P90",
+    "name": "P2000 | Red FragCam (Field-Tested)"
+  },
+  {
+    "weapon": "PP-Bizon",
+    "name": "PP-Bizon | Runic (Field-Tested)"
+  },
+  {
+    "weapon": "PP-Bizon",
+    "name": "PP-Bizon | Antique (Field-Tested)"
+  },
+  {
+    "weapon": "PP-Bizon",
+    "name": "PP-Bizon | Brass (Field-Tested)"
+  },
+  {
+    "weapon": "PP-Bizon",
+    "name": "PP-Bizon | Lumen (Field-Tested)"
+  },
+  {
+    "weapon": "PP-Bizon",
+    "name": "PP-Bizon | Anolis (Field-Tested)"
+  },
+  {
+    "weapon": "PP-Bizon",
+    "name": "PP-Bizon | Osiris (Field-Tested)"
+  },
+  {
+    "weapon": "PP-Bizon",
+    "name": "PP-Bizon | Embargo (Field-Tested)"
+  },
+  {
+    "weapon": "PP-Bizon",
+    "name": "PP-Bizon | Harvester (Field-Tested)"
+  },
+  {
+    "weapon": "PP-Bizon",
+    "name": "PP-Bizon | Seabird (Field-Tested)"
+  },
+  {
+    "weapon": "PP-Bizon",
+    "name": "Souvenir PP-Bizon | Anolis (Field-Tested)"
+  },
+  {
+    "weapon": "R8-Revolver",
+    "name": "R8 Revolver | Crazy 8 (Field-Tested)"
+  },
+  {
+    "weapon": "R8-Revolver",
+    "name": "R8 Revolver | Inlay (Field-Tested)"
+  },
+  {
+    "weapon": "R8-Revolver",
+    "name": "R8 Revolver | Nitro (Field-Tested)"
+  },
+  {
+    "weapon": "R8-Revolver",
+    "name": "R8 Revolver | Survivalist (Field-Tested)"
+  },
+  {
+    "weapon": "R8-Revolver",
+    "name": "R8 Revolver | Grip (Field-Tested)"
+  },
+  {
+    "weapon": "R8-Revolver",
+    "name": "R8 Revolver | Leafhopper (Field-Tested)"
+  },
+  {
+    "weapon": "R8-Revolver",
+    "name": "R8 Revolver | Memento (Field-Tested)"
+  },
+  {
+    "weapon": "R8-Revolver",
+    "name": "R8 Revolver | Tango (Field-Tested)"
+  },
+  {
+    "weapon": "R8-Revolver",
+    "name": "R8 Revolver | Reboot (Field-Tested)"
+  },
+  {
+    "weapon": "R8-Revolver",
+    "name": "R8 Revolver | Night (Field-Tested)"
+  },
+  {
+    "weapon": "SCAR-20",
+    "name": "SCAR-20 | Contractor (Field-Tested)"
+  },
+  {
+    "weapon": "SCAR-20",
+    "name": "SCAR-20 | Fragments (Field-Tested)"
+  },
+  {
+    "weapon": "SCAR-20",
+    "name": "SCAR-20 | Storm (Field-Tested)"
+  },
+  {
+    "weapon": "SCAR-20",
+    "name": "SCAR-20 | Palm (Field-Tested)"
+  },
+  {
+    "weapon": "SCAR-20",
+    "name": "SCAR-20 | Blueprint (Field-Tested)"
+  },
+  {
+    "weapon": "SCAR-20",
+    "name": "SCAR-20 | Poultrygeist (Field-Tested)"
+  },
+  {
+    "weapon": "SCAR-20",
+    "name": "SCAR-20 | Cyrex (Field-Tested)"
+  },
+  {
+    "weapon": "SCAR-20",
+    "name": "SCAR-20 | Outbreak (Field-Tested)"
+  },
+  {
+    "weapon": "SCAR-20",
+    "name": "SCAR-20 | Powercore (Field-Tested)"
+  },
+  {
+    "weapon": "SCAR-20",
+    "name": "SCAR-20 | Assault (Field-Tested)"
+  },
+  {
+    "weapon": "SG 553",
+    "name": "SG 553 | Aerial (Field-Tested)"
+  },
+  {
+    "weapon": "SG 553",
+    "name": "SG 553 | Cyrex (Field-Tested)"
+  },
+  {
+    "weapon": "SG 553",
+    "name": "SG 553 | Pulse (Field-Tested)"
+  },
+  {
+    "weapon": "SG 553",
+    "name": "SG 553 | Cyberforce (Field-Tested)"
+  },
+  {
+    "weapon": "SG 553",
+    "name": "SG 553 | Aloha (Field-Tested)"
+  },
+  {
+    "weapon": "SG 553",
+    "name": "SG 553 | Ultraviolet (Field-Tested)"
+  },
+  {
+    "weapon": "SG 553",
+    "name": "SG 553 | Bulldozer (Field-Tested)"
+  },
+  {
+    "weapon": "SG 553",
+    "name": "SG 553 | Traveler (Field-Tested)"
+  },
+  {
+    "weapon": "SG 553",
+    "name": "SG 553 | Darkwing (Field-Tested)"
+  },
+  {
+    "weapon": "SG 553",
+    "name": "SG 553 | Integrale (Field-Tested)"
+  },
+  {
+    "weapon": "SSG 08",
+    "name": "SSG 08 | Memorial (Field-Tested)"
+  },
+  {
+    "weapon": "SSG 08",
+    "name": "SSG 08 | Parallax (Field-Tested)"
+  },
+  {
+    "weapon": "SSG 08",
+    "name": "SSG 08 | Dezastre (Field-Tested)"
+  },
+  {
+    "weapon": "SSG 08",
+    "name": "SSG 08 | Prey (Field-Tested)"
+  },
+  {
+    "weapon": "SSG 08",
+    "name": "SSG 08 | Abyss (Field-Tested)"
+  },
+  {
+    "weapon": "SSG 08",
+    "name": "SSG 08 | Bloodshot (Field-Tested)"
+  },
+  {
+    "weapon": "SSG 08",
+    "name": "SSG 08 | Slashed (Field-Tested)"
+  },
+  {
+    "weapon": "SSG 08",
+    "name": "SSG 08 | Zeno (Field-Tested)"
+  },
+  {
+    "weapon": "SSG 08",
+    "name": "SSG 08 | Necropos (Field-Tested)"
+  },
+  {
+    "weapon": "SSG 08",
+    "name": "SSG 08 | Detour (Field-Tested)"
+  },
+  {
+    "weapon": "Survival-Messer",
+    "name": "★ Survival Knife | Slaughter (Field-Tested)"
+  },
+  {
+    "weapon": "Survival-Messer",
+    "name": "★ Survival Knife | Stained (Field-Tested)"
+  },
+  {
+    "weapon": "Survival-Messer",
+    "name": "★ Survival Knife | Scorched (Field-Tested)"
+  },
+  {
+    "weapon": "Survival-Messer",
+    "name": "★ Survival Knife | Ultraviolet (Field-Tested)"
+  },
+  {
+    "weapon": "Survival-Messer",
+    "name": "★ Survival Knife | Safari Mesh (Field-Tested)"
+  },
+  {
+    "weapon": "Survival-Messer",
+    "name": "★ Survival Knife | Damascus Steel (Field-Tested)"
+  },
+  {
+    "weapon": "Survival-Messer",
+    "name": "★ Survival Knife | Case Hardened (Field-Tested)"
+  },
+  {
+    "weapon": "Survival-Messer",
+    "name": "★ Survival Knife | Blue Steel (Field-Tested)"
+  },
+  {
+    "weapon": "Survival-Messer",
+    "name": "★ Survival Knife | Urban Masked (Field-Tested)"
+  },
+  {
+    "weapon": "Survival-Messer",
+    "name": "★ Survival Knife | Forest DDPAT (Field-Tested)"
+  },
+  {
+    "weapon": "Talon-Messer",
+    "name": "★ Talon Knife | Ultraviolet (Field-Tested)"
+  },
+  {
+    "weapon": "Talon-Messer",
+    "name": "★ Talon Knife | Scorched (Field-Tested)"
+  },
+  {
+    "weapon": "Talon-Messer",
+    "name": "★ Talon Knife | Stained (Field-Tested)"
+  },
+  {
+    "weapon": "Talon-Messer",
+    "name": "★ Talon Knife | Slaughter (Field-Tested)"
+  },
+  {
+    "weapon": "Talon-Messer",
+    "name": "★ Talon Knife | Boreal Forest (Field-Tested)"
+  },
+  {
+    "weapon": "Talon-Messer",
+    "name": "★ Talon Knife | Case Hardened (Field-Tested)"
+  },
+  {
+    "weapon": "Talon-Messer",
+    "name": "★ Talon Knife | Crimson Web (Field-Tested)"
+  },
+  {
+    "weapon": "Talon-Messer",
+    "name": "★ Talon Knife | Blue Steel (Field-Tested)"
+  },
+  {
+    "weapon": "Talon-Messer",
+    "name": "★ Talon Knife | Damascus Steel (Field-Tested)"
+  },
+  {
+    "weapon": "Talon-Messer",
+    "name": "★ Talon Knife | Safari Mesh (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "Tec-9 | Garter-9 (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "Tec-9 | Snek-9 (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "Tec-9 | Fubar (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "Tec-9 | Sandstorm (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "Tec-9 | Groundwater (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "Tec-9 | Rebel (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "Tec-9 | Avalanche (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "Tec-9 | Isaac (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "Tec-9 | Brother (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "Tec-9 | Hades (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "MP9 | Food Chain (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "MP9 | Broken Record (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "MP9 | Dark Age (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "MP9 | Deadly Poison (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "MP9 | Latte Rush (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "★ M9 Bayonet | Ultraviolet (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "MP9 | Sand Scale (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "MP9 | Setting Sun (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "MP9 | Starlight Protector (Field-Tested)"
+  },
+  {
+    "weapon": "Tec-9",
+    "name": "★ M9 Bayonet | Lore (Field-Tested)"
+  },
+  {
+    "weapon": "UMP-45",
+    "name": "UMP-45 | Labyrinth (Field-Tested)"
+  },
+  {
+    "weapon": "UMP-45",
+    "name": "UMP-45 | Scorched (Field-Tested)"
+  },
+  {
+    "weapon": "UMP-45",
+    "name": "UMP-45 | Indigo (Field-Tested)"
+  },
+  {
+    "weapon": "UMP-45",
+    "name": "UMP-45 | Gunsmoke (Field-Tested)"
+  },
+  {
+    "weapon": "UMP-45",
+    "name": "UMP-45 | Mudder (Field-Tested)"
+  },
+  {
+    "weapon": "UMP-45",
+    "name": "UMP-45 | Oscillator (Field-Tested)"
+  },
+  {
+    "weapon": "UMP-45",
+    "name": "UMP-45 | Motorized (Field-Tested)"
+  },
+  {
+    "weapon": "UMP-45",
+    "name": "UMP-45 | Moonrise (Field-Tested)"
+  },
+  {
+    "weapon": "UMP-45",
+    "name": "UMP-45 | Exposure (Field-Tested)"
+  },
+  {
+    "weapon": "UMP-45",
+    "name": "UMP-45 | Plastique (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "USP-S | Stainless (Field-Tested)"
   },
   {
     "weapon": "USP-S",
@@ -405,19 +2529,15 @@
   },
   {
     "weapon": "USP-S",
-    "name": "USP-S | Cortex (Field-Tested)"
-  },
-  {
-    "weapon": "USP-S",
-    "name": "USP-S | Cortex (Battle-Scarred)"
-  },
-  {
-    "weapon": "USP-S",
-    "name": "USP-S | Cyrex (Field-Tested)"
-  },
-  {
-    "weapon": "USP-S",
     "name": "USP-S | Torque (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "USP-S | Guardian (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "USP-S | Caiman (Field-Tested)"
   },
   {
     "weapon": "USP-S",
@@ -425,18 +2545,174 @@
   },
   {
     "weapon": "USP-S",
-    "name": "USP-S | Flashback (Well-Worn)"
+    "name": "USP-S | Cyrex (Field-Tested)"
   },
   {
     "weapon": "USP-S",
-    "name": "USP-S | Cyrex (Minimal Wear)"
+    "name": "USP-S | The Traitor (Field-Tested)"
   },
   {
     "weapon": "USP-S",
-    "name": "USP-S | Cortex (Well-Worn)"
+    "name": "USP-S | Cortex (Field-Tested)"
   },
   {
     "weapon": "USP-S",
-    "name": "USP-S | Jawbreaker (Well-Worn)"
+    "name": "USP-S | Printstream (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "M4A1-S | Leaded Glass (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "M4A1-S | Blood Tiger (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "M4A1-S | Mecha Industries (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "M4A1-S | Control Panel (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "M4A1-S | Fizzy POP (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "M4A1-S | Chantico's Fire (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "M4A1-S | Player Two (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "M4A1-S | Moss Quartz (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "M4A1-S | Hyper Beast (Field-Tested)"
+  },
+  {
+    "weapon": "USP-S",
+    "name": "M4A1-S | Imminent Danger (Field-Tested)"
+  },
+  {
+    "weapon": "Ursus-Messer",
+    "name": "★ Ursus Knife | Ultraviolet (Field-Tested)"
+  },
+  {
+    "weapon": "Ursus-Messer",
+    "name": "★ Ursus Knife | Scorched (Field-Tested)"
+  },
+  {
+    "weapon": "Ursus-Messer",
+    "name": "★ Ursus Knife | Slaughter (Field-Tested)"
+  },
+  {
+    "weapon": "Ursus-Messer",
+    "name": "★ Ursus Knife | Stained (Field-Tested)"
+  },
+  {
+    "weapon": "Ursus-Messer",
+    "name": "★ Ursus Knife | Damascus Steel (Field-Tested)"
+  },
+  {
+    "weapon": "Ursus-Messer",
+    "name": "★ Ursus Knife | Case Hardened (Field-Tested)"
+  },
+  {
+    "weapon": "Ursus-Messer",
+    "name": "★ Ursus Knife | Urban Masked (Field-Tested)"
+  },
+  {
+    "weapon": "Ursus-Messer",
+    "name": "★ Ursus Knife | Crimson Web (Field-Tested)"
+  },
+  {
+    "weapon": "Ursus-Messer",
+    "name": "★ Ursus Knife | Forest DDPAT (Field-Tested)"
+  },
+  {
+    "weapon": "Ursus-Messer",
+    "name": "★ Ursus Knife | Night Stripe (Field-Tested)"
+  },
+  {
+    "weapon": "XM1014",
+    "name": "XM1014 | Hieroglyph (Field-Tested)"
+  },
+  {
+    "weapon": "XM1014",
+    "name": "XM1014 | Solitude (Field-Tested)"
+  },
+  {
+    "weapon": "XM1014",
+    "name": "XM1014 | Seasons (Field-Tested)"
+  },
+  {
+    "weapon": "XM1014",
+    "name": "XM1014 | Charter (Field-Tested)"
+  },
+  {
+    "weapon": "XM1014",
+    "name": "XM1014 | Copperflage (Field-Tested)"
+  },
+  {
+    "weapon": "XM1014",
+    "name": "XM1014 | Mockingbird (Field-Tested)"
+  },
+  {
+    "weapon": "XM1014",
+    "name": "XM1014 | Irezumi (Field-Tested)"
+  },
+  {
+    "weapon": "XM1014",
+    "name": "XM1014 | Entombed (Field-Tested)"
+  },
+  {
+    "weapon": "XM1014",
+    "name": "XM1014 | Quicksilver (Field-Tested)"
+  },
+  {
+    "weapon": "XM1014",
+    "name": "XM1014 | Watchdog (Field-Tested)"
+  },
+  {
+    "weapon": "Zeus x27",
+    "name": "Zeus x27 | Olympus (Field-Tested)"
+  },
+  {
+    "weapon": "Zeus x27",
+    "name": "Zeus x27 | Tosai (Field-Tested)"
+  },
+  {
+    "weapon": "Zeus x27",
+    "name": "Zeus x27 | Electric Blue (Field-Tested)"
+  },
+  {
+    "weapon": "Zeus x27",
+    "name": "Zeus x27 | Dragon Snore (Field-Tested)"
+  },
+  {
+    "weapon": "Zeus x27",
+    "name": "Zeus x27 | Swamp DDPAT (Field-Tested)"
+  },
+  {
+    "weapon": "Zeus x27",
+    "name": "Zeus x27 | Charged Up (Field-Tested)"
+  },
+  {
+    "weapon": "Zeus x27",
+    "name": "Souvenir Zeus x27 | Charged Up (Field-Tested)"
+  },
+  {
+    "weapon": "Zeus x27",
+    "name": "StatTrak™ Zeus x27 | Olympus (Field-Tested)"
+  },
+  {
+    "weapon": "Zeus x27",
+    "name": "StatTrak™ Zeus x27 | Tosai (Field-Tested)"
   }
 ]

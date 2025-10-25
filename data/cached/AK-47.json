@@ -1,62 +1,452 @@
 [
   {
-    "name": "Sticker | Hello AK-47",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjNikNnSe6Rl0_9Oj1UviQhL4kti4_nsKvvf6avE0JqLDC2HIxLYk5rA5TC3mk01y62WBwt__Jy7CbFUlFNIuEiXV6npc",
-    "price": "$1.20",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjNikNnSe6Rl0_9Oj1UviQhL4kti4_nsKvvf6avE0JqLDC2HIxLYk5rA5TC3mk01y62WBwt__Jy7CbFUlFNIuEiXV6npc"
-  },
-  {
-    "name": "AK-47 | Slate (Battle-Scarred)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSMOKcCGKD0ud5vuBlcCG2lAs-_WvTn4uhdXqQPQcmDMZwFOADskXsk9G0NOy34w3WiolNmST42C1IvS51o7FVnP_ge3U",
-    "price": "$4.09",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSMOKcCGKD0ud5vuBlcCG2lAs-_WvTn4uhdXqQPQcmDMZwFOADskXsk9G0NOy34w3WiolNmST42C1IvS51o7FVnP_ge3U"
-  },
-  {
-    "name": "AK-47 | Nightwish (Battle-Scarred)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSLvmUBnOHyP1-j-lsTj-q20V2sDnTz42ueS6QOFIkCMciQLYMuxi9xNziNO6ztAGN3YgWyHisiC9XrnE8viRxWBc",
-    "price": "$5.17",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSLvmUBnOHyP1-j-lsTj-q20V2sDnTz42ueS6QOFIkCMciQLYMuxi9xNziNO6ztAGN3YgWyHisiC9XrnE8viRxWBc"
-  },
-  {
-    "name": "AK-47 | Wintergreen (Minimal Wear)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wjFU6s2jbbBsLPyaDViX0-tzvt47cCW6khUz_W-Ay96seSrBaQcnDJRyTbMDuxTsw9bmNLy0sQPb34JNyn_-jS9N6n51o7FVK4Nkj6A",
-    "price": "$7.45",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wjFU6s2jbbBsLPyaDViX0-tzvt47cCW6khUz_W-Ay96seSrBaQcnDJRyTbMDuxTsw9bmNLy0sQPb34JNyn_-jS9N6n51o7FVK4Nkj6A"
-  },
-  {
-    "name": "AK-47 | Predator (Field-Tested)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wjFL0OirarZsI_GeMWqVxedjva87HHvhwhxzsGqHmdupIH7EaVAlDsYhRbZZsEbux9G2Mr-2tQCKjN9N02yg2fkoxlwM",
-    "price": "$19.22",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wjFL0OirarZsI_GeMWqVxedjva87HHvhwhxzsGqHmdupIH7EaVAlDsYhRbZZsEbux9G2Mr-2tQCKjN9N02yg2fkoxlwM"
+    "name": "AK-47 | Uncharted (Factory New)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeqHC2SvzOtyufRkAXrlwkwj5m3dyt-scX2SZw8kDJN5EONbsUPtkYfnYbvmtlCMi4MQyiTgznQeFZeHgOE",
+    "price": "$0.53",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Uncharted%20(Field-Tested)",
+    "wear": "Factory New",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Uncharted%20(Factory%20New)"
   },
   {
     "name": "AK-47 | Uncharted (Minimal Wear)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeqHC2SvzedxuPUnFnCwwBl_5D_Syon8dnyUaQUlD5oiQ7ECuxW7l920ZL-w4AfX2IlByTK-0H0PRM7cOA",
-    "price": "$0.81",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeqHC2SvzedxuPUnFnCwwBl_5D_Syon8dnyUaQUlD5oiQ7ECuxW7l920ZL-w4AfX2IlByTK-0H0PRM7cOA"
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeqHC2SvzOtyufRkAXrlwkwj5m3dyt-scX2SZw8kDJN5EONbsUPtkYfnYbvmtlCMi4MQyiTgznQeFZeHgOE",
+    "price": "$0.53",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Uncharted%20(Field-Tested)",
+    "wear": "Minimal Wear",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Uncharted%20(Minimal%20Wear)"
   },
   {
     "name": "AK-47 | Uncharted (Field-Tested)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeqHC2SvzOtyufRkAXrlwkwj5m3dyt-scX2SZw8kDJN5EONbsUPtkYfnYbvmtlCMi4MQyiTgznQeFZeHgOE",
-    "price": "$0.43",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeqHC2SvzOtyufRkAXrlwkwj5m3dyt-scX2SZw8kDJN5EONbsUPtkYfnYbvmtlCMi4MQyiTgznQeFZeHgOE"
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeqHC2SvzOtyufRkAXrlwkwj5m3dyt-scX2SZw8kDJN5EONbsUPtkYfnYbvmtlCMi4MQyiTgznQeFZeHgOE",
+    "price": "$0.53",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Uncharted%20(Field-Tested)",
+    "wear": "Field-Tested",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Uncharted%20(Field-Tested)"
   },
   {
-    "name": "AK-47 | Wintergreen (Field-Tested)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wjFU6s2jbbBsLPyaDViX0-tzvt47cCS2kRQyvnPSydeqcyqVPQUoC8YkRe4PtkK_m4fiY-yw5lCMgt0Xznj_334avHtp_a9cBvXwlabr",
-    "price": "$2.27",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wjFU6s2jbbBsLPyaDViX0-tzvt47cCS2kRQyvnPSydeqcyqVPQUoC8YkRe4PtkK_m4fiY-yw5lCMgt0Xznj_334avHtp_a9cBvXwlabr"
+    "name": "AK-47 | Uncharted (Well-Worn)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeqHC2SvzOtyufRkAXrlwkwj5m3dyt-scX2SZw8kDJN5EONbsUPtkYfnYbvmtlCMi4MQyiTgznQeFZeHgOE",
+    "price": "$0.53",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Uncharted%20(Field-Tested)",
+    "wear": "Well-Worn",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Uncharted%20(Well-Worn)"
   },
   {
     "name": "AK-47 | Uncharted (Battle-Scarred)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeqHC2Svyet3pvgnTXrhxU10t23Vm4utdyqTaAZyX8F5FLYJsEXtw4CxZLzg51bZ3oxDzzK-0H1ZHVWwtA",
-    "price": "$0.46",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeqHC2Svyet3pvgnTXrhxU10t23Vm4utdyqTaAZyX8F5FLYJsEXtw4CxZLzg51bZ3oxDzzK-0H1ZHVWwtA"
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeqHC2SvzOtyufRkAXrlwkwj5m3dyt-scX2SZw8kDJN5EONbsUPtkYfnYbvmtlCMi4MQyiTgznQeFZeHgOE",
+    "price": "$0.53",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Uncharted%20(Field-Tested)",
+    "wear": "Battle-Scarred",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Uncharted%20(Battle-Scarred)"
+  },
+  {
+    "name": "AK-47 | Redline (Factory New)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSI_-RHGavzOtyufRkASq2lkxx4W-HnNyqJC3FZwYoC5p0Q7FfthW6wdWxPu-371Pdit5HnyXgznQeHYY5wyA",
+    "price": "$43.03",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Redline%20(Field-Tested)",
+    "wear": "Factory New",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Redline%20(Factory%20New)"
+  },
+  {
+    "name": "AK-47 | Redline (Minimal Wear)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSI_-RHGavzOtyufRkASq2lkxx4W-HnNyqJC3FZwYoC5p0Q7FfthW6wdWxPu-371Pdit5HnyXgznQeHYY5wyA",
+    "price": "$43.03",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Redline%20(Field-Tested)",
+    "wear": "Minimal Wear",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Redline%20(Minimal%20Wear)"
+  },
+  {
+    "name": "AK-47 | Redline (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSI_-RHGavzOtyufRkASq2lkxx4W-HnNyqJC3FZwYoC5p0Q7FfthW6wdWxPu-371Pdit5HnyXgznQeHYY5wyA",
+    "price": "$43.03",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Redline%20(Field-Tested)",
+    "wear": "Field-Tested",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Redline%20(Field-Tested)"
+  },
+  {
+    "name": "AK-47 | Redline (Well-Worn)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSI_-RHGavzOtyufRkASq2lkxx4W-HnNyqJC3FZwYoC5p0Q7FfthW6wdWxPu-371Pdit5HnyXgznQeHYY5wyA",
+    "price": "$43.03",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Redline%20(Field-Tested)",
+    "wear": "Well-Worn",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Redline%20(Well-Worn)"
+  },
+  {
+    "name": "AK-47 | Redline (Battle-Scarred)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSI_-RHGavzOtyufRkASq2lkxx4W-HnNyqJC3FZwYoC5p0Q7FfthW6wdWxPu-371Pdit5HnyXgznQeHYY5wyA",
+    "price": "$43.03",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Redline%20(Field-Tested)",
+    "wear": "Battle-Scarred",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Redline%20(Battle-Scarred)"
   },
   {
     "name": "AK-47 | Slate (Factory New)",
-    "icon": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSMOKcCGKD0ud5vuBlcCW6khUz_W3Sytb4cCqTOFUpWJtzTOUD5hPsw9a0Yrnrs1SK3ooXzy6shilM5311o7FVYrIufmI",
-    "price": "$25.24",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSMOKcCGKD0ud5vuBlcCW6khUz_W3Sytb4cCqTOFUpWJtzTOUD5hPsw9a0Yrnrs1SK3ooXzy6shilM5311o7FVYrIufmI"
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSMOKcCGKD0ud5vuBlcCS2kRQyvnOGw4r_d3OWZ1MnCpBwR-Rc5hbumtCzP-Kw7wSIiYsRnHr2i35MvS1s_a9cBkIkkRA2",
+    "price": "$5.01",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Slate%20(Field-Tested)",
+    "wear": "Factory New",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Slate%20(Factory%20New)"
+  },
+  {
+    "name": "AK-47 | Slate (Minimal Wear)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSMOKcCGKD0ud5vuBlcCS2kRQyvnOGw4r_d3OWZ1MnCpBwR-Rc5hbumtCzP-Kw7wSIiYsRnHr2i35MvS1s_a9cBkIkkRA2",
+    "price": "$5.01",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Slate%20(Field-Tested)",
+    "wear": "Minimal Wear",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Slate%20(Minimal%20Wear)"
+  },
+  {
+    "name": "AK-47 | Slate (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSMOKcCGKD0ud5vuBlcCS2kRQyvnOGw4r_d3OWZ1MnCpBwR-Rc5hbumtCzP-Kw7wSIiYsRnHr2i35MvS1s_a9cBkIkkRA2",
+    "price": "$5.01",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Slate%20(Field-Tested)",
+    "wear": "Field-Tested",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Slate%20(Field-Tested)"
+  },
+  {
+    "name": "AK-47 | Slate (Well-Worn)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSMOKcCGKD0ud5vuBlcCS2kRQyvnOGw4r_d3OWZ1MnCpBwR-Rc5hbumtCzP-Kw7wSIiYsRnHr2i35MvS1s_a9cBkIkkRA2",
+    "price": "$5.01",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Slate%20(Field-Tested)",
+    "wear": "Well-Worn",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Slate%20(Well-Worn)"
+  },
+  {
+    "name": "AK-47 | Slate (Battle-Scarred)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSMOKcCGKD0ud5vuBlcCS2kRQyvnOGw4r_d3OWZ1MnCpBwR-Rc5hbumtCzP-Kw7wSIiYsRnHr2i35MvS1s_a9cBkIkkRA2",
+    "price": "$5.01",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Slate%20(Field-Tested)",
+    "wear": "Battle-Scarred",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Slate%20(Battle-Scarred)"
+  },
+  {
+    "name": "AK-47 | Cartel (Factory New)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiNK0POlPPNSI_GBGmKc_uNztOh8QmewwEV1t2SDzdyoIn2Xb1cnCZt5RecL5EbulN3mM-vk4gbZjN5HxH-tkGoXuaUxbvmq",
+    "price": "$18.98",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Cartel%20(Field-Tested)",
+    "wear": "Factory New",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Cartel%20(Factory%20New)"
+  },
+  {
+    "name": "AK-47 | Cartel (Minimal Wear)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiNK0POlPPNSI_GBGmKc_uNztOh8QmewwEV1t2SDzdyoIn2Xb1cnCZt5RecL5EbulN3mM-vk4gbZjN5HxH-tkGoXuaUxbvmq",
+    "price": "$18.98",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Cartel%20(Field-Tested)",
+    "wear": "Minimal Wear",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Cartel%20(Minimal%20Wear)"
+  },
+  {
+    "name": "AK-47 | Cartel (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiNK0POlPPNSI_GBGmKc_uNztOh8QmewwEV1t2SDzdyoIn2Xb1cnCZt5RecL5EbulN3mM-vk4gbZjN5HxH-tkGoXuaUxbvmq",
+    "price": "$18.98",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Cartel%20(Field-Tested)",
+    "wear": "Field-Tested",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Cartel%20(Field-Tested)"
+  },
+  {
+    "name": "AK-47 | Cartel (Well-Worn)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiNK0POlPPNSI_GBGmKc_uNztOh8QmewwEV1t2SDzdyoIn2Xb1cnCZt5RecL5EbulN3mM-vk4gbZjN5HxH-tkGoXuaUxbvmq",
+    "price": "$18.98",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Cartel%20(Field-Tested)",
+    "wear": "Well-Worn",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Cartel%20(Well-Worn)"
+  },
+  {
+    "name": "AK-47 | Cartel (Battle-Scarred)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiNK0POlPPNSI_GBGmKc_uNztOh8QmewwEV1t2SDzdyoIn2Xb1cnCZt5RecL5EbulN3mM-vk4gbZjN5HxH-tkGoXuaUxbvmq",
+    "price": "$18.98",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Cartel%20(Field-Tested)",
+    "wear": "Battle-Scarred",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Cartel%20(Battle-Scarred)"
+  },
+  {
+    "name": "AK-47 | Inheritance (Factory New)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiNQ0OKheqdoLPGaAFidxOp_pewnSn6wl0p-4D7Ryo34cSqeOwMlWZt5QbJfuhW9koKyMO3ksgWMiY8TzDK-0H009BnnIw",
+    "price": "$76.45",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Inheritance%20(Field-Tested)",
+    "wear": "Factory New",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Inheritance%20(Factory%20New)"
+  },
+  {
+    "name": "AK-47 | Inheritance (Minimal Wear)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiNQ0OKheqdoLPGaAFidxOp_pewnSn6wl0p-4D7Ryo34cSqeOwMlWZt5QbJfuhW9koKyMO3ksgWMiY8TzDK-0H009BnnIw",
+    "price": "$76.45",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Inheritance%20(Field-Tested)",
+    "wear": "Minimal Wear",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Inheritance%20(Minimal%20Wear)"
+  },
+  {
+    "name": "AK-47 | Inheritance (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiNQ0OKheqdoLPGaAFidxOp_pewnSn6wl0p-4D7Ryo34cSqeOwMlWZt5QbJfuhW9koKyMO3ksgWMiY8TzDK-0H009BnnIw",
+    "price": "$76.45",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Inheritance%20(Field-Tested)",
+    "wear": "Field-Tested",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Inheritance%20(Field-Tested)"
+  },
+  {
+    "name": "AK-47 | Inheritance (Well-Worn)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiNQ0OKheqdoLPGaAFidxOp_pewnSn6wl0p-4D7Ryo34cSqeOwMlWZt5QbJfuhW9koKyMO3ksgWMiY8TzDK-0H009BnnIw",
+    "price": "$76.45",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Inheritance%20(Field-Tested)",
+    "wear": "Well-Worn",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Inheritance%20(Well-Worn)"
+  },
+  {
+    "name": "AK-47 | Inheritance (Battle-Scarred)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiNQ0OKheqdoLPGaAFidxOp_pewnSn6wl0p-4D7Ryo34cSqeOwMlWZt5QbJfuhW9koKyMO3ksgWMiY8TzDK-0H009BnnIw",
+    "price": "$76.45",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Inheritance%20(Field-Tested)",
+    "wear": "Battle-Scarred",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Inheritance%20(Battle-Scarred)"
+  },
+  {
+    "name": "AK-47 | The Empress (Factory New)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSJf2DHGKD0tF7teVgWiT9wR4m52yBm47_d3uQPAVyCpF0QLJYtRSwkYazN-jj4QPbi9oTyH-r2jQJsHgrdiDckw",
+    "price": "$61.27",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Empress%20(Field-Tested)",
+    "wear": "Factory New",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Empress%20(Factory%20New)"
+  },
+  {
+    "name": "AK-47 | The Empress (Minimal Wear)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSJf2DHGKD0tF7teVgWiT9wR4m52yBm47_d3uQPAVyCpF0QLJYtRSwkYazN-jj4QPbi9oTyH-r2jQJsHgrdiDckw",
+    "price": "$61.27",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Empress%20(Field-Tested)",
+    "wear": "Minimal Wear",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Empress%20(Minimal%20Wear)"
+  },
+  {
+    "name": "AK-47 | The Empress (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSJf2DHGKD0tF7teVgWiT9wR4m52yBm47_d3uQPAVyCpF0QLJYtRSwkYazN-jj4QPbi9oTyH-r2jQJsHgrdiDckw",
+    "price": "$61.27",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Empress%20(Field-Tested)",
+    "wear": "Field-Tested",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Empress%20(Field-Tested)"
+  },
+  {
+    "name": "AK-47 | The Empress (Well-Worn)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSJf2DHGKD0tF7teVgWiT9wR4m52yBm47_d3uQPAVyCpF0QLJYtRSwkYazN-jj4QPbi9oTyH-r2jQJsHgrdiDckw",
+    "price": "$61.27",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Empress%20(Field-Tested)",
+    "wear": "Well-Worn",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Empress%20(Well-Worn)"
+  },
+  {
+    "name": "AK-47 | The Empress (Battle-Scarred)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSJf2DHGKD0tF7teVgWiT9wR4m52yBm47_d3uQPAVyCpF0QLJYtRSwkYazN-jj4QPbi9oTyH-r2jQJsHgrdiDckw",
+    "price": "$61.27",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Empress%20(Field-Tested)",
+    "wear": "Battle-Scarred",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Empress%20(Battle-Scarred)"
+  },
+  {
+    "name": "AK-47 | Vulcan (Factory New)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSMuWRDGKC_uNztOh8QmeylBh1426Gz437JyrEOA5zD5N0Q-MOsEG4moe2Yrjr5w2Pid8Rnir3kGoXuUSY1H7U",
+    "price": "$273.78",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Vulcan%20(Field-Tested)",
+    "wear": "Factory New",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Vulcan%20(Factory%20New)"
+  },
+  {
+    "name": "AK-47 | Vulcan (Minimal Wear)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSMuWRDGKC_uNztOh8QmeylBh1426Gz437JyrEOA5zD5N0Q-MOsEG4moe2Yrjr5w2Pid8Rnir3kGoXuUSY1H7U",
+    "price": "$273.78",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Vulcan%20(Field-Tested)",
+    "wear": "Minimal Wear",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Vulcan%20(Minimal%20Wear)"
+  },
+  {
+    "name": "AK-47 | Vulcan (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSMuWRDGKC_uNztOh8QmeylBh1426Gz437JyrEOA5zD5N0Q-MOsEG4moe2Yrjr5w2Pid8Rnir3kGoXuUSY1H7U",
+    "price": "$273.78",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Vulcan%20(Field-Tested)",
+    "wear": "Field-Tested",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Vulcan%20(Field-Tested)"
+  },
+  {
+    "name": "AK-47 | Vulcan (Well-Worn)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSMuWRDGKC_uNztOh8QmeylBh1426Gz437JyrEOA5zD5N0Q-MOsEG4moe2Yrjr5w2Pid8Rnir3kGoXuUSY1H7U",
+    "price": "$273.78",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Vulcan%20(Field-Tested)",
+    "wear": "Well-Worn",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Vulcan%20(Well-Worn)"
+  },
+  {
+    "name": "AK-47 | Vulcan (Battle-Scarred)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSMuWRDGKC_uNztOh8QmeylBh1426Gz437JyrEOA5zD5N0Q-MOsEG4moe2Yrjr5w2Pid8Rnir3kGoXuUSY1H7U",
+    "price": "$273.78",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Vulcan%20(Field-Tested)",
+    "wear": "Battle-Scarred",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Vulcan%20(Battle-Scarred)"
+  },
+  {
+    "name": "AK-47 | Wintergreen (Factory New)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wjFU6s2jbbBsLPyaDViX0-tzvt47cCS2kRQyvnPSydeqcyqVPQUoC8YkRe4PtkK_m4fiY-yw5lCMgt0Xznj_334avHtp_a9cBvXwlabr",
+    "price": "$2.45",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Wintergreen%20(Field-Tested)",
+    "wear": "Factory New",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Wintergreen%20(Factory%20New)"
+  },
+  {
+    "name": "AK-47 | Wintergreen (Minimal Wear)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wjFU6s2jbbBsLPyaDViX0-tzvt47cCS2kRQyvnPSydeqcyqVPQUoC8YkRe4PtkK_m4fiY-yw5lCMgt0Xznj_334avHtp_a9cBvXwlabr",
+    "price": "$2.45",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Wintergreen%20(Field-Tested)",
+    "wear": "Minimal Wear",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Wintergreen%20(Minimal%20Wear)"
+  },
+  {
+    "name": "AK-47 | Wintergreen (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wjFU6s2jbbBsLPyaDViX0-tzvt47cCS2kRQyvnPSydeqcyqVPQUoC8YkRe4PtkK_m4fiY-yw5lCMgt0Xznj_334avHtp_a9cBvXwlabr",
+    "price": "$2.45",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Wintergreen%20(Field-Tested)",
+    "wear": "Field-Tested",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Wintergreen%20(Field-Tested)"
+  },
+  {
+    "name": "AK-47 | Wintergreen (Well-Worn)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wjFU6s2jbbBsLPyaDViX0-tzvt47cCS2kRQyvnPSydeqcyqVPQUoC8YkRe4PtkK_m4fiY-yw5lCMgt0Xznj_334avHtp_a9cBvXwlabr",
+    "price": "$2.45",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Wintergreen%20(Field-Tested)",
+    "wear": "Well-Worn",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Wintergreen%20(Well-Worn)"
+  },
+  {
+    "name": "AK-47 | Wintergreen (Battle-Scarred)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wjFU6s2jbbBsLPyaDViX0-tzvt47cCS2kRQyvnPSydeqcyqVPQUoC8YkRe4PtkK_m4fiY-yw5lCMgt0Xznj_334avHtp_a9cBvXwlabr",
+    "price": "$2.45",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Wintergreen%20(Field-Tested)",
+    "wear": "Battle-Scarred",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Wintergreen%20(Battle-Scarred)"
+  },
+  {
+    "name": "AK-47 | Asiimov (Factory New)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeOaB2qf19F7teVgWiT9x01x623cmd2rcXKQbw4oA8dzReEK5EK6kNO2NOO04FeIjYJCmyr4jzQJsHiu1I77Gg",
+    "price": "$47.96",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Asiimov%20(Field-Tested)",
+    "wear": "Factory New",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Asiimov%20(Factory%20New)"
+  },
+  {
+    "name": "AK-47 | Asiimov (Minimal Wear)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeOaB2qf19F7teVgWiT9x01x623cmd2rcXKQbw4oA8dzReEK5EK6kNO2NOO04FeIjYJCmyr4jzQJsHiu1I77Gg",
+    "price": "$47.96",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Asiimov%20(Field-Tested)",
+    "wear": "Minimal Wear",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Asiimov%20(Minimal%20Wear)"
+  },
+  {
+    "name": "AK-47 | Asiimov (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeOaB2qf19F7teVgWiT9x01x623cmd2rcXKQbw4oA8dzReEK5EK6kNO2NOO04FeIjYJCmyr4jzQJsHiu1I77Gg",
+    "price": "$47.96",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Asiimov%20(Field-Tested)",
+    "wear": "Field-Tested",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Asiimov%20(Field-Tested)"
+  },
+  {
+    "name": "AK-47 | Asiimov (Well-Worn)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeOaB2qf19F7teVgWiT9x01x623cmd2rcXKQbw4oA8dzReEK5EK6kNO2NOO04FeIjYJCmyr4jzQJsHiu1I77Gg",
+    "price": "$47.96",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Asiimov%20(Field-Tested)",
+    "wear": "Well-Worn",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Asiimov%20(Well-Worn)"
+  },
+  {
+    "name": "AK-47 | Asiimov (Battle-Scarred)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSIeOaB2qf19F7teVgWiT9x01x623cmd2rcXKQbw4oA8dzReEK5EK6kNO2NOO04FeIjYJCmyr4jzQJsHiu1I77Gg",
+    "price": "$47.96",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Asiimov%20(Field-Tested)",
+    "wear": "Battle-Scarred",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Asiimov%20(Battle-Scarred)"
+  },
+  {
+    "name": "AK-47 | Jaguar (Factory New)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0OKvZrBlJeKsD2zEltF7teVgWiT9xxx1sT_XzNatdimQblMhCZt5E-9esEK-mtPmMu3jsleP2YhGmH752jQJsHgitZofTA",
+    "price": "$84.07",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Jaguar%20(Field-Tested)",
+    "wear": "Factory New",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Jaguar%20(Factory%20New)"
+  },
+  {
+    "name": "AK-47 | Jaguar (Minimal Wear)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0OKvZrBlJeKsD2zEltF7teVgWiT9xxx1sT_XzNatdimQblMhCZt5E-9esEK-mtPmMu3jsleP2YhGmH752jQJsHgitZofTA",
+    "price": "$84.07",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Jaguar%20(Field-Tested)",
+    "wear": "Minimal Wear",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Jaguar%20(Minimal%20Wear)"
+  },
+  {
+    "name": "AK-47 | Jaguar (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0OKvZrBlJeKsD2zEltF7teVgWiT9xxx1sT_XzNatdimQblMhCZt5E-9esEK-mtPmMu3jsleP2YhGmH752jQJsHgitZofTA",
+    "price": "$84.07",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Jaguar%20(Field-Tested)",
+    "wear": "Field-Tested",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Jaguar%20(Field-Tested)"
+  },
+  {
+    "name": "AK-47 | Jaguar (Well-Worn)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0OKvZrBlJeKsD2zEltF7teVgWiT9xxx1sT_XzNatdimQblMhCZt5E-9esEK-mtPmMu3jsleP2YhGmH752jQJsHgitZofTA",
+    "price": "$84.07",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Jaguar%20(Field-Tested)",
+    "wear": "Well-Worn",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Jaguar%20(Well-Worn)"
+  },
+  {
+    "name": "AK-47 | Jaguar (Battle-Scarred)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0OKvZrBlJeKsD2zEltF7teVgWiT9xxx1sT_XzNatdimQblMhCZt5E-9esEK-mtPmMu3jsleP2YhGmH752jQJsHgitZofTA",
+    "price": "$84.07",
+    "weapon": "AK-47",
+    "url": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Jaguar%20(Field-Tested)",
+    "wear": "Battle-Scarred",
+    "steamUrl": "https://steamcommunity.com/market/listings/730/AK-47%20%7C%20Jaguar%20(Battle-Scarred)"
   }
 ]
