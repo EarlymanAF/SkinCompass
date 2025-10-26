@@ -2,6 +2,8 @@
 import { NextResponse } from "next/server";
 import { WEARS, WEAR_LABEL_DE, type WearEN } from "@/data/wears";
 import { toMarketHashName } from "@/lib/market";
+import fs from "fs";
+import path from "path";
 
 export const runtime = "nodejs";
 
@@ -34,7 +36,8 @@ export async function GET(req: Request) {
     }
 
     // 1) market_hash_name bauen
-    const hash = toMarketHashName(weapon, skin, wear);
+    // Wir kombinieren weapon, skin und wear sauber zu einem Market-Hash wie bei Steam
+    const hash = `${weapon} | ${skin} (${wear})`;
 
     // 2) Steam Vendor (EUR)
     const resSteam = await fetch(

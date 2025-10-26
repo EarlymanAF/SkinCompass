@@ -1,62 +1,72 @@
 [
   {
-    "name": "XM1014 | Irezumi (Field-Tested)",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk9___OPU5H_mBC32FzOdJveRtRjy-20l0sGSBno36J3mTbg4iD5JyRu8PtUS5ktPkZLjmsgHb34hEmCz7jCJXrnE8XxaiWKA",
-    "price": "$0.10",
-    "weapon": "XM1014"
+    "name": "XM1014 | Hieroglyph (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk7OeRcKk8cKHHMXeYwPx3v-lWQiy3nAgq_WvSy934c3jCa1dyXJByQOcNtUW4ldC0P77m5wDb349AziX_iC9N6SZ1o7FVWVgG-s4",
+    "price": "$0.06",
+    "weapon": "XM1014",
+    "url": "https://steamcommunity.com/market/listings/730/XM1014%20%7C%20Hieroglyph%20(Field-Tested)"
+  },
+  {
+    "name": "XM1014 | Solitude (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk_P2tYJtgL-WdGmaZz_1JvOhkRj22kSIzujCApYL8JSLSMxgmC5MkR-JZuhLux92zNrnitlPX34ITxS6q2ntIuHo9t-4HWacgqfeCkUifZolg9UoC",
+    "price": "$1.01",
+    "weapon": "XM1014",
+    "url": "https://steamcommunity.com/market/listings/730/XM1014%20%7C%20Solitude%20(Field-Tested)"
   },
   {
     "name": "XM1014 | Seasons (Field-Tested)",
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk7uORcKlSLPWSCFiWwOpzj-xsSyCmmFNx4z6DyYn7eX7FOwVyX5d0Q7ZYthOwx4K1ZrzqtFTY2t5Nn3r62ClB8G81tP7jdKYx",
-    "price": "$1.96",
-    "weapon": "XM1014"
+    "price": "$2.00",
+    "weapon": "XM1014",
+    "url": "https://steamcommunity.com/market/listings/730/XM1014%20%7C%20Seasons%20(Field-Tested)"
   },
   {
-    "name": "XM1014 | XOXO (Field-Tested)",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk7uORcKk8cKHHMXeFz-VJveRtRjy-2xtxtz-AyYv6dS-WaQMjWcMhROYNs0O7x9LhNLzrtlHWi4oUnCv_iCtXrnE8EiUSubs",
-    "price": "$2.42",
-    "weapon": "XM1014"
-  },
-  {
-    "name": "XM1014 | Ziggy (Field-Tested)",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk7uORcKk8cKHHMX2Zxulvj-BnTjuwnQQYvjiBk5r0b3KeO1clDJJzQuUCukK8x9G0Zunr5geN2oNFzyv5iiJB5nxp6r0EUas7uvqA-jKwuvc",
-    "price": "$0.50",
-    "weapon": "XM1014"
-  },
-  {
-    "name": "XM1014 | Hieroglyph (Field-Tested)",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk7OeRcKk8cKHHMXeYwPx3v-lWQiy3nAgq_WvSy934c3jCa1dyXJByQOcNtUW4ldC0P77m5wDb349AziX_iC9N6SZ1o7FVWVgG-s4",
-    "price": "$0.05",
-    "weapon": "XM1014"
+    "name": "XM1014 | Charter (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk7v-RabF5KP-BB3OJ_uxkv_ZncCS2kRQyvnOAmIyhICrDOAMhCpt1ROFc4UW4kdGxZb7i4Q3Xgt1HyCiqjiMf7i4-_a9cBoqW9bZk",
+    "price": "$0.80",
+    "weapon": "XM1014",
+    "url": "https://steamcommunity.com/market/listings/730/XM1014%20%7C%20Charter%20(Field-Tested)"
   },
   {
     "name": "XM1014 | Copperflage (Field-Tested)",
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk5-aRa6t9MPWBMWKUxutlj-xsSyCmmFNysjvTzoqvJX-TaQcnDZt2QuQOtUO7k4LnPu7nswbaiooQnn72hngY8G81tAGJbI19",
-    "price": "$0.82",
-    "weapon": "XM1014"
-  },
-  {
-    "name": "XM1014 | Slipstream (Field-Tested)",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk5-uRcKk8cKHHMWGCwO1ise1WTSWmkCIqtjmMj4K3I3nFZlQjAsR0Q-cJtUbqldSyZeK3tVTfj4hEzi2t3C9K7Xk9tb5QB71lpPPIYguwJA",
-    "price": "$0.17",
-    "weapon": "XM1014"
-  },
-  {
-    "name": "XM1014 | Jungle (Field-Tested)",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk_P2RYrFjJ_yWMWWCwPh5j-xsSyCmmFN2tjzSztaqJXLFbAJ1Csd1EOENshG-l9SzNLvh7wzagtgQyS_2iXhB8G81tPgkGNO8",
-    "price": "$3.73",
-    "weapon": "XM1014"
+    "price": "$0.48",
+    "weapon": "XM1014",
+    "url": "https://steamcommunity.com/market/listings/730/XM1014%20%7C%20Copperflage%20(Field-Tested)"
   },
   {
     "name": "XM1014 | Mockingbird (Field-Tested)",
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk9___OPU5H_2cDWyZz-l0ufNtcCS2kRQyvnPWyNz6ICiVbAEgApN4QrZY4UK5lYe2PrvrtFOK3oIWyST22CtK6Cls_a9cBpM-Kp2D",
-    "price": "$0.08",
-    "weapon": "XM1014"
+    "price": "$0.17",
+    "weapon": "XM1014",
+    "url": "https://steamcommunity.com/market/listings/730/XM1014%20%7C%20Mockingbird%20(Field-Tested)"
+  },
+  {
+    "name": "XM1014 | Irezumi (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk9___OPU5H_mBC32FzOdJveRtRjy-20l0sGSBno36J3mTbg4iD5JyRu8PtUS5ktPkZLjmsgHb34hEmCz7jCJXrnE8XxaiWKA",
+    "price": "$0.14",
+    "weapon": "XM1014",
+    "url": "https://steamcommunity.com/market/listings/730/XM1014%20%7C%20Irezumi%20(Field-Tested)"
   },
   {
     "name": "XM1014 | Entombed (Field-Tested)",
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk7OeRcKk8cKHHMWad1OJzpN5rQzy2qhAitzSQl8GqeHmUblAgDZFyFLUMtUbtw4HmYrvksQLYg90Xznn2jHtB5yk64LoFT-N7rTNhnfG2",
-    "price": "$3.37",
-    "weapon": "XM1014"
+    "price": "$4.49",
+    "weapon": "XM1014",
+    "url": "https://steamcommunity.com/market/listings/730/XM1014%20%7C%20Entombed%20(Field-Tested)"
+  },
+  {
+    "name": "XM1014 | Quicksilver (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk7uORcKk8cKHHMXSZxuJ3j-xsSyCmmFN25G6Gwo34eXLBOlQjCMEjE-cLsxO4lYLvNe_j4gXeg4JGyC-q3Cwc8G81tN85cVLA",
+    "price": "$0.52",
+    "weapon": "XM1014",
+    "url": "https://steamcommunity.com/market/listings/730/XM1014%20%7C%20Quicksilver%20(Field-Tested)"
+  },
+  {
+    "name": "XM1014 | Watchdog (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLpk8ewrHZk6OGRcKk8cKHHMXCR1e1-tO5ucCS2kRQyvnPVydf7Ii2Wb1ApDptzFOdfu0HpldGxNeqwsQaNjNpMySStj3gb7iw9_a9cBjNMa3xt",
+    "price": "$1.33",
+    "weapon": "XM1014",
+    "url": "https://steamcommunity.com/market/listings/730/XM1014%20%7C%20Watchdog%20(Field-Tested)"
   }
 ]

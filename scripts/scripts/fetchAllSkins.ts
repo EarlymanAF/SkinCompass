@@ -1,70 +1,127 @@
-import fs from "fs";
-import path from "path";
-import { fetchSteamSkins } from "../../lib/steam";
+import { SteamSkin } from "@/lib/types";
 
-async function downloadImage(url: string, filepath: string) {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`Failed to download ${url}`);
-    const buffer = Buffer.from(await res.arrayBuffer());
-    fs.mkdirSync(path.dirname(filepath), { recursive: true });
-    fs.writeFileSync(filepath, buffer);
-  } catch (err) {
-    console.warn(`⚠️ Skipping image ${url}: ${err}`);
-  }
+function buildSteamUrl(weapon: string, skinName: string, wear: string) {
+  const cleanName = skinName.replace(/\(.*?\)/, `(${wear})`);
+  return `https://steamcommunity.com/market/listings/730/${encodeURIComponent(cleanName)}`;
 }
 
-// Helper: Fetch all pages of skins for a weapon
-async function fetchAllPages(weapon: string, maxPages = 20) {
-  let allSkins: any[] = [];
-  let page = 0;
+function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-  while (page < maxPages) {
-    console.log(`  → Fetching page ${page + 1} for ${weapon}...`);
+async function fetchSteamSkins(weapon: string, page: number = 0): Promise<{ skins: SteamSkin[]; hasMore: boolean }> {
+  const perPage = 100;
+  const start = page * perPage;
+  const query = encodeURIComponent(`${weapon}`);
 
-    const result = await fetchSteamSkins(weapon);
-    if (!result || !result.skins?.length) break;
+  const url = `https://steamcommunity.com/market/search/render/?appid=730&norender=1&count=${perPage}&start=${start}&query=${query}`;
+  console.log(`🌐 Fetching ${weapon} (page ${page}) → ${url}`);
 
-    allSkins.push(...result.skins);
+  let waitTime = 10000;
 
-    if (!result.hasMore || result.skins.length < 100) break;
-    page++;
+  while (true) {
+    const res = await fetch(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (compatible; SkinCompassBot/1.0; +https://skincompass.de)"
+      }
+    });
+
+    if (res.status === 429) {
+      console.warn(`⚠️ Rate limit hit for ${weapon} (page ${page}). Waiting ${waitTime / 1000}s...`);
+      await sleep(waitTime);
+      waitTime = Math.min(waitTime * 2, 60000);
+      continue;
+    }
+
+    if (!res.ok) throw new Error(`Steam API request failed for ${weapon} (${res.status})`);
+
+    const data = await res.json();
+    const results = (data?.results || []).map((item: any) => {
+      const skinName = item.hash_name || item.name;
+      return {
+        name: skinName.replace(/\(.*?\)/, "").trim(),
+        image: item.asset_description?.icon_url
+          ? `https://steamcommunity-a.akamaihd.net/economy/image/${item.asset_description.icon_url}`
+          : null,
+        price: item.sell_price_text || null,
+        weapon
+      };
+    });
+
+    const hasMore = data?.total_count > start + results.length;
+    console.log(`📄 Page ${page}: fetched ${results.length} skins for ${weapon}`);
+    return { skins: results, hasMore };
   }
-
-  return allSkins;
 }
 
 async function run() {
-  const weapons = JSON.parse(fs.readFileSync("data/weapons.json", "utf8"));
-  for (const weapon of weapons) {
-    console.log(`🔫 Fetching ${weapon}...`);
+  const fs = await import("fs/promises");
+  const path = await import("path");
 
-    const skins = await fetchAllPages(weapon);
-    console.log(`→ ${skins.length} total skins fetched for ${weapon}`);
+  const weaponsPath = path.resolve("data/weapons.json");
+  const cachedDir = path.resolve("data/cached");
+  const publicSkinsDir = path.resolve("public/skins");
 
-    // Save JSON cache
-    const jsonPath = path.join("data/cached", `${weapon}.json`);
-    fs.mkdirSync(path.dirname(jsonPath), { recursive: true });
-    fs.writeFileSync(jsonPath, JSON.stringify(skins, null, 2));
+  // Load all weapons
+  const weaponsData = await fs.readFile(weaponsPath, "utf-8");
+  const weapons: string[] = JSON.parse(weaponsData);
 
-    // Download all images
-    let counter = 0;
-    for (const skin of skins) {
-      if (skin.image) {
-        const safeName = skin.name.replace(/[^\w\s-]/g, "_");
-        const imgPath = path.join("public/skins", weapon, `${safeName}.jpg`);
-        await downloadImage(skin.image, imgPath);
-        counter++;
-        if (counter % 20 === 0) console.log(`  📸 ${counter} images saved...`);
-      }
-    }
-
-    console.log(`✅ Done ${weapon} (${skins.length} skins, ${counter} images)`);
+  // Ensure cache dir
+  try {
+    await fs.access(cachedDir);
+  } catch {
+    await fs.mkdir(cachedDir, { recursive: true });
+  }
+  // Ensure public/skins dir
+  try {
+    await fs.access(publicSkinsDir);
+  } catch {
+    await fs.mkdir(publicSkinsDir, { recursive: true });
   }
 
-  console.log("🎉 All weapons processed successfully!");
+  for (const weapon of weapons) {
+    console.log(`🛠️ Fetching all Field-Tested skins for: ${weapon}`);
+    let allSkins: SteamSkin[] = [];
+    let page = 0;
+    let hasMore = true;
+
+    while (hasMore && page < 50) {
+      const { skins, hasMore: more } = await fetchSteamSkins(weapon, page);
+      allSkins = allSkins.concat(skins);
+      hasMore = more;
+      page++;
+      await sleep(10000); // 10 sec between pages (verlangsamt wegen Steam-Rate-Limit)
+    }
+
+    // Deduplicate by name
+    const unique = Array.from(new Map(allSkins.map(s => [s.name, s])).values());
+
+    const expanded = unique;
+
+    const filePath = path.join(cachedDir, `${weapon}.json`);
+    await fs.writeFile(filePath, JSON.stringify(expanded, null, 2), "utf-8");
+    console.log(`✅ Saved ${expanded.length} skins for ${weapon} → ${filePath}`);
+    // Copy to public/skins/
+    const publicFilePath = path.join(publicSkinsDir, `${weapon}.json`);
+    await fs.writeFile(publicFilePath, JSON.stringify(expanded, null, 2), "utf-8");
+    console.log(`📁 Copied ${weapon}.json to public/skins/${weapon}.json`);
+    console.log("⏳ Waiting 30s before next weapon...");
+    await sleep(30000); // 30 sec pause between weapons to avoid rate limiting
+  }
+
+  console.log("🏁 All weapons processed successfully!");
+
+  // Build global skins index automatically after crawl
+  try {
+    console.log("🔧 Building global skins index...");
+    const { execSync } = await import("child_process");
+    execSync("npx tsx scripts/scripts/buildSkinsIndex.ts", { stdio: "inherit" });
+    console.log("✅ Global skins index built successfully!");
+  } catch (err) {
+    console.error("⚠️ Failed to build skins index automatically:", err);
+  }
 }
 
-run().catch((err) => {
-  console.error("❌ Error:", err);
+run().catch(err => {
+  console.error("❌ Error in fetchAllSkins:", err);
 });

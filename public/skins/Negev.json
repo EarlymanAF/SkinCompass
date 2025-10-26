@@ -1,62 +1,72 @@
 [
   {
-    "name": "Negev | Dazzle (Field-Tested)",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1T9s2gbaNoNs-XD32KzetJveRtRjy-20p-6zjQzIuoeCiXOAJ2D5ZyFrFe4UO7lIDmY-mw5laMi4pDzH2qjixXrnE8CM0vmiU",
-    "price": "$0.18",
-    "weapon": "Negev"
-  },
-  {
-    "name": "Negev | Loudmouth (Field-Tested)",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1Y-s2gbaNoNs-SAGmZyed6sfVmXRa-kBkupjDLntarJCrCPw8mDpN2Q7QLshG9ldbmYr_r5VOIiYgQzij-hn8f5yxj4vFCD_QZs5eAIA",
-    "price": "$0.93",
-    "weapon": "Negev"
-  },
-  {
-    "name": "Negev | Bulkhead (Field-Tested)",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1T9s2qfad5M8-KC2uczvlJveRtRjy-204ktz7cmY2qd3qfOwN1DJYhQ-cOtRW-x9OyZLnltlDYiIIUyC2t3S9XrnE8gZahRS4",
-    "price": "$0.09",
-    "weapon": "Negev"
+    "name": "Negev | Terrain (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1I_82gbaNoNs-HG3WB_vpzovNoRieMmBgjuiiI1IupIi2UPAAgA5pyF7EPsRi7ldziMrjm4QOLj4NNyCWqhnscvCpu5eYcEf1ysAB5QY8",
+    "price": "$0.61",
+    "weapon": "Negev",
+    "url": "https://steamcommunity.com/market/listings/730/Negev%20%7C%20Terrain%20(Field-Tested)"
   },
   {
     "name": "Negev | Ultralight (Field-Tested)",
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1Y-s2gbaNoNs-GAnOCwOJ_t-l9cCS2kRQyvnOGytaucyiXagEmD8MjQ-FYsRC5koLjNbji5QXej94Wynj9h39O73k4_a9cBvep-YbQ",
-    "price": "$0.07",
-    "weapon": "Negev"
-  },
-  {
-    "name": "Negev | Lionfish (Field-Tested)",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1I_82gbaNoNs-fB2iex-dluN5kSi26gBBpsT7Wn42pI3nCOgF1D5AkF-Zf4UHqldLgN7-3tlaLjI8TnC6o2ysY5zErvbh-_xtYlg",
-    "price": "$0.37",
-    "weapon": "Negev"
-  },
-  {
-    "name": "Negev | Prototype (Field-Tested)",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1Y-s2gbaNoNs-DHGiEzvpvoORWQiy3nAgq_TvdnIysc3rGalJ2CpJ3FOcPsUHpwNa0ZL7n71PZi45NyXj7iCpB6S51o7FVQve-AXY",
-    "price": "$0.20",
-    "weapon": "Negev"
-  },
-  {
-    "name": "Negev | Palm (Field-Tested)",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1I_82-aahgH_KBD3Gf_uNztOh8QmflzU0h5D6Hy9qhdS-ebVNxXsd0QbVZuxawkIfvMe2071bYj98RzSiqkGoXuUREmoZ-",
-    "price": "$4.19",
-    "weapon": "Negev"
+    "price": "$0.16",
+    "weapon": "Negev",
+    "url": "https://steamcommunity.com/market/listings/730/Negev%20%7C%20Ultralight%20(Field-Tested)"
   },
   {
     "name": "Negev | Bratatat (Field-Tested)",
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1Y-s2seqV5IeSSGliexOlzpt5kSi26gBBp42TQzo2seX-XOgcpXJAmF-4K5kWwloCyMuPltVTdiY1Dnin5iS8b5jErvbhCbhRqAg",
-    "price": "$1.79",
-    "weapon": "Negev"
+    "price": "$1.39",
+    "weapon": "Negev",
+    "url": "https://steamcommunity.com/market/listings/730/Negev%20%7C%20Bratatat%20(Field-Tested)"
   },
   {
-    "name": "Negev | Terrain (Field-Tested)",
-    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1I_82gbaNoNs-HG3WB_vpzovNoRieMmBgjuiiI1IupIi2UPAAgA5pyF7EPsRi7ldziMrjm4QOLj4NNyCWqhnscvCpu5eYcEf1ysAB5QY8",
-    "price": "$0.61",
-    "weapon": "Negev"
+    "name": "Negev | Bulkhead (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1T9s2qfad5M8-KC2uczvlJveRtRjy-204ktz7cmY2qd3qfOwN1DJYhQ-cOtRW-x9OyZLnltlDYiIIUyC2t3S9XrnE8gZahRS4",
+    "price": "$0.12",
+    "weapon": "Negev",
+    "url": "https://steamcommunity.com/market/listings/730/Negev%20%7C%20Bulkhead%20(Field-Tested)"
+  },
+  {
+    "name": "Negev | Prototype (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1Y-s2gbaNoNs-DHGiEzvpvoORWQiy3nAgq_TvdnIysc3rGalJ2CpJ3FOcPsUHpwNa0ZL7n71PZi45NyXj7iCpB6S51o7FVQve-AXY",
+    "price": "$0.21",
+    "weapon": "Negev",
+    "url": "https://steamcommunity.com/market/listings/730/Negev%20%7C%20Prototype%20(Field-Tested)"
+  },
+  {
+    "name": "Negev | Lionfish (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1I_82gbaNoNs-fB2iex-dluN5kSi26gBBpsT7Wn42pI3nCOgF1D5AkF-Zf4UHqldLgN7-3tlaLjI8TnC6o2ysY5zErvbh-_xtYlg",
+    "price": "$0.70",
+    "weapon": "Negev",
+    "url": "https://steamcommunity.com/market/listings/730/Negev%20%7C%20Lionfish%20(Field-Tested)"
+  },
+  {
+    "name": "Negev | Loudmouth (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1Y-s2gbaNoNs-SAGmZyed6sfVmXRa-kBkupjDLntarJCrCPw8mDpN2Q7QLshG9ldbmYr_r5VOIiYgQzij-hn8f5yxj4vFCD_QZs5eAIA",
+    "price": "$0.95",
+    "weapon": "Negev",
+    "url": "https://steamcommunity.com/market/listings/730/Negev%20%7C%20Loudmouth%20(Field-Tested)"
+  },
+  {
+    "name": "Negev | Palm (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1I_82-aahgH_KBD3Gf_uNztOh8QmflzU0h5D6Hy9qhdS-ebVNxXsd0QbVZuxawkIfvMe2071bYj98RzSiqkGoXuUREmoZ-",
+    "price": "$3.97",
+    "weapon": "Negev",
+    "url": "https://steamcommunity.com/market/listings/730/Negev%20%7C%20Palm%20(Field-Tested)"
+  },
+  {
+    "name": "Negev | Dazzle (Field-Tested)",
+    "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1T9s2gbaNoNs-XD32KzetJveRtRjy-20p-6zjQzIuoeCiXOAJ2D5ZyFrFe4UO7lIDmY-mw5laMi4pDzH2qjixXrnE8CM0vmiU",
+    "price": "$0.41",
+    "weapon": "Negev",
+    "url": "https://steamcommunity.com/market/listings/730/Negev%20%7C%20Dazzle%20(Field-Tested)"
   },
   {
     "name": "Negev | Infrastructure (Field-Tested)",
     "image": "https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL_m5Hl6x1T9s24bbZ5KfecHXeCwPdJveRtRjy-2x5wtmuAn476dXyRPQ92CccjTOcNt0LtlIDhYbvh5FbciIMUnCn53CtXrnE8PBpgfXY",
-    "price": "$19.18",
-    "weapon": "Negev"
+    "price": "$12.66",
+    "weapon": "Negev",
+    "url": "https://steamcommunity.com/market/listings/730/Negev%20%7C%20Infrastructure%20(Field-Tested)"
   }
 ]

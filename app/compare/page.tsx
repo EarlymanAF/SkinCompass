@@ -4,15 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { WEARS, WEAR_LABEL_DE, type WearEN } from "@/data/wears";
-
-/* --- Waffenliste (statisch für die Auswahl) --- */
-const WEAPONS = [
-  "AK-47", "M4A4", "M4A1-S", "AWP", "Desert Eagle", "Glock-18",
-  "USP-S", "P250", "Five-SeveN", "Tec-9", "MP9", "MP7", "P90",
-  "UMP-45", "MAC-10", "Galil AR", "FAMAS", "SG 553", "AUG",
-  "SCAR-20", "G3SG1", "Nova", "XM1014", "MAG-7", "Sawed-Off",
-  "CZ75-Auto", "R8 Revolver", "SSG 08", "Dual Berettas", "Negev", "M249",
-] as const;
+import weapons from "@/data/weapons.json";
 
 /* --- Datentyp für Preiszeilen --- */
 type PriceRow = {
@@ -26,8 +18,20 @@ type PriceRow = {
 
 /* --- Hilfsfunktion: Market Hash Name für Steam-Icon --- */
 function toMarketHashName(weapon: string, skin: string, wear: WearEN) {
-  // Steam-Standard: "<Weapon> | <Skin> (<WearEN>)"
-  return `${weapon} | ${skin} (${wear})`;
+  // Entferne doppelte Waffenbezeichnungen und vorhandene Wear-Tags
+  const cleanSkin = skin
+    .replace(/\s*\((Factory New|Minimal Wear|Field-Tested|Well-Worn|Battle-Scarred)\)/gi, "")
+    .trim();
+
+  // Wenn Skin bereits Waffenname enthält, lass ihn unverändert
+  const base = cleanSkin.startsWith(`${weapon} |`) ? cleanSkin : `${weapon} | ${cleanSkin}`;
+
+  // Füge Wear nur hinzu, wenn es nicht schon im Namen enthalten ist
+  if (base.toLowerCase().includes(wear.toLowerCase())) {
+    return base;
+  }
+
+  return `${base} (${wear})`;
 }
 
 export default function ComparePage() {
@@ -45,7 +49,7 @@ export default function ComparePage() {
   const [rows, setRows] = useState<PriceRow[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  /* --- Wenn eine Waffe gewählt ist → Skins via API laden --- */
+  /* --- Wenn eine Waffe gewählt ist → Skins aus lokaler JSON-Datei laden --- */
   useEffect(() => {
     setSkin("");
     setWear("");
@@ -60,13 +64,35 @@ export default function ComparePage() {
     (async () => {
       try {
         setLoadingSkins(true);
-        const res = await fetch(
-          `/api/steam/skins?weapon=${encodeURIComponent(weapon)}`,
-          { cache: "no-store" }
-        );
-        const data = (await res.json()) as { skins?: string[] };
-        setSkinOptions(res.ok ? data.skins ?? [] : []);
-      } catch {
+        const localPath = `/skins/${weapon}.json`;
+        const res = await fetch(localPath);
+        if (!res.ok) throw new Error(`Lokale Datei nicht gefunden: ${localPath}`);
+        const data = await res.json();
+
+        if (Array.isArray(data)) {
+          const names = data.map((s: any) => s.name || s);
+          const cleanNames = names.map((name: string) =>
+            name
+              .replace(/^.*\|\s*/g, "") // entfernt „AK-47 | “ oder andere Waffenpräfixe
+              .replace(/\s*\((Factory New|Minimal Wear|Field-Tested|Well-Worn|Battle-Scarred)\)/gi, "") // entfernt Zustände
+              .trim()
+          );
+          setSkinOptions([...new Set(cleanNames as string[])]);
+        } else if (data && Array.isArray(data.skins)) {
+          const names = data.skins.map((s: any) => s.name || s);
+          const cleanNames = names.map((name: string) =>
+            name
+              .replace(/^.*\|\s*/g, "")
+              .replace(/\s*\((Factory New|Minimal Wear|Field-Tested|Well-Worn|Battle-Scarred)\)/gi, "")
+              .trim()
+          );
+          setSkinOptions([...new Set(cleanNames as string[])]);
+        } else {
+          console.error("Invalid skin data:", data);
+          setSkinOptions([]);
+        }
+      } catch (err) {
+        console.error("Fehler beim Laden der Skins:", err);
         setSkinOptions([]);
       } finally {
         setLoadingSkins(false);
@@ -111,13 +137,25 @@ export default function ComparePage() {
       setError(null);
       setRows(null);
 
-      const q = new URLSearchParams({ weapon, skin, wear }).toString();
-      const res = await fetch(`/api/prices?${q}`, { cache: "no-store" });
-      if (!res.ok) throw new Error("Preise konnten nicht geladen werden.");
-      const data = (await res.json()) as { rows: PriceRow[] };
+      // Anfrage an die lokale API, die den Steam-Market abfragt
+      const query = new URLSearchParams({ weapon, skin, wear }).toString();
+      const res = await fetch(`/api/prices?${query}`, { cache: "no-store" });
+
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`Fehler beim Laden der Preise: ${errText}`);
+      }
+
+      const data = await res.json();
+
+      if (!data.rows || data.rows.length === 0) {
+        throw new Error("Keine Preis-Daten gefunden.");
+      }
+
       setRows(data.rows);
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Unerwarteter Fehler.";
+      console.error("Fehler in fetchPrices:", err);
+      const message = err instanceof Error ? err.message : "Unerwarteter Fehler beim Preisabruf.";
       setError(message);
     } finally {
       setLoading(false);
@@ -152,7 +190,7 @@ export default function ComparePage() {
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setWeapon(e.target.value)}
           >
             <option value="">Bitte wählen…</option>
-            {WEAPONS.map((w) => (
+            {weapons.map((w: string) => (
               <option key={w} value={w}>
                 {w}
               </option>
