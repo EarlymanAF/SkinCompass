@@ -27,24 +27,48 @@ export async function GET(req: Request) {
     const skin = searchParams.get("skin")?.trim();
     const wearParam = searchParams.get("wear")?.trim();
     const wear = (wearParam ?? null) as WearEN | null;
+    const currency = (searchParams.get("currency") || "EUR").toUpperCase();
 
     if (!weapon || !skin || !wear || !WEARS.includes(wear)) {
       return NextResponse.json(
-        { error: "Missing or invalid params (weapon/skin/wear)" },
+        {
+          error: "Missing or invalid params (weapon/skin/wear)",
+          required: { weapon: true, skin: true, wear: `one of ${WEARS.join(", ")}` },
+          received: { weapon: weapon ?? null, skin: skin ?? null, wear: wearParam ?? null },
+        },
         { status: 400 }
       );
     }
 
     // 1) market_hash_name bauen
     // Wir kombinieren weapon, skin und wear sauber zu einem Market-Hash wie bei Steam
-    const hash = `${weapon} | ${skin} (${wear})`;
+    const hash = toMarketHashName(weapon, skin, wear);
 
     // 2) Steam Vendor (EUR)
-    const resSteam = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL ?? ""}/api/vendors/steam?q=${encodeURIComponent(hash)}&currency=EUR`,
-      { cache: "no-store" }
-    );
-    const steam = (await resSteam.json()) as VendorSteamResponse;
+    // Upstream call to our vendor adapter with timeout and safe base URL
+    const origin = (() => {
+      try {
+        return new URL(req.url).origin;
+      } catch {
+        return process.env.NEXT_PUBLIC_BASE_URL || "";
+      }
+    })();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 7000);
+    let steam: VendorSteamResponse | null = null;
+    try {
+      const resSteam = await fetch(
+        `${origin}/api/vendors/steam?q=${encodeURIComponent(hash)}&currency=${encodeURIComponent(currency)}`,
+        { cache: "no-store", signal: controller.signal }
+      );
+      if (resSteam.ok) {
+        steam = (await resSteam.json()) as VendorSteamResponse;
+      }
+    } catch (e) {
+      // swallow, we'll fall back to no Steam row
+    } finally {
+      clearTimeout(timeout);
+    }
 
     // 3) Rows zusammensetzen
     const rows = [];
@@ -66,17 +90,26 @@ export async function GET(req: Request) {
 
     if (rows.length === 0) {
       return NextResponse.json(
-        { error: "Keine Preise verfügbar", query: { weapon, skin, wear, hash } },
-        { status: 404 }
+        {
+          error: "Keine Preise verfügbar",
+          query: { weapon, skin, wear, wearLabelDE: WEAR_LABEL_DE[wear], hash, currency },
+          rows: [],
+          source: { steam: steam ?? null },
+          lastUpdated: new Date().toISOString(),
+        },
+        { status: 404, headers: { "Cache-Control": "public, max-age=30" } }
       );
     }
 
-    return NextResponse.json({
-      query: { weapon, skin, wear, wearLabelDE: WEAR_LABEL_DE[wear], hash },
-      rows,
-      source: { steam: steam ?? null },
-      lastUpdated: new Date().toISOString(),
-    });
+    return NextResponse.json(
+      {
+        query: { weapon, skin, wear, wearLabelDE: WEAR_LABEL_DE[wear], hash, currency },
+        rows,
+        source: { steam: steam ?? null },
+        lastUpdated: new Date().toISOString(),
+      },
+      { headers: { "Cache-Control": "public, max-age=60" } }
+    );
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unbekannter Fehler";
     return NextResponse.json({ error: message }, { status: 500 });

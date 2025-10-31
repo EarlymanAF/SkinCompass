@@ -5,6 +5,7 @@ export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const weapon = searchParams.get("weapon");
+    const skinFilter = searchParams.get("skin");
 
     // Load skins.json dynamically from data
     const filePath = path.join(process.cwd(), "data", "skins.json");
@@ -47,7 +48,7 @@ export async function GET(req: Request) {
       });
     }
 
-    // Normalize skins into flat array
+    // Normalize skins into flat array (preserve wears and image when available)
     let skins: any[] = [];
     if (Array.isArray(skinsRaw)) {
       skins = skinsRaw;
@@ -67,6 +68,24 @@ export async function GET(req: Request) {
         headers: {
           "Cache-Control": "public, max-age=86400, immutable",
         },
+      });
+    }
+
+    // Optional: if a specific weapon + skin is requested, return its entry (to expose wears)
+    if (weapon && skinFilter) {
+      const weaponLower = weapon.toLowerCase();
+      const skinLower = skinFilter.toLowerCase();
+      const match = skins.find((s: any) =>
+        (s.weapon?.toString().toLowerCase() === weaponLower) &&
+        (s.name?.toString().toLowerCase().includes(skinLower))
+      );
+      if (match) {
+        return Response.json(match, {
+          headers: { "Cache-Control": "public, max-age=86400, immutable" },
+        });
+      }
+      return Response.json({}, {
+        headers: { "Cache-Control": "public, max-age=300" },
       });
     }
 

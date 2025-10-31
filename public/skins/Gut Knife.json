@@ -1,0 +1,244 @@
+[
+  {
+    "weapon": "Gut Knife",
+    "name": "Doppler",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSJP-DHmuV09FmuOB6SniMmRQguynLmYmpeCjEPwYhDJF4R-AMsEO-l9exPrjm5gzWjowWmSz323lNuCY65_FCD_QON0IPhg"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Fade",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaaVSJvGXC1icyOl-pK88HyjikUR_6z_UmIyudy-WPVByCpRzQ7UDukbtmofmM-3r4gaKjINH02yg2St2xdPu"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Slaughter",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSOvWRHGavzedxuPUnGH7hxk8jtWyByt-peC6RPQAoXJF0FO9Zt0bpw9zuMrjg5QLXjo1BnDK-0H35txVa0w"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Autotronic",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRb7dSJ-WHMWaF1eFiou5nRiqMmRQguynLy46odXPFZw9xD5dyFOUDuhPslNXkNOLj71Db3o4Rn3j7hy8YvCZu4_FCD_SSdjZ6vg"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Freehand",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSLfGBBWKU_vtmj-1gSCGn20tw6jndyNmoIn3FbAQoCMEkTOYJsRTql4fkPriw5gyIjoxAyCj9hy1XrnE8qMFnbCI"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Lore",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRa7FSJ-WHMWuf0-tJvOhuRz39zU5-4mzUyI2ud32RaQ8lXJB2FuUI40S4kofgM-7hslaPgtpBnHj-iDQJsHjij6hzng"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Scorched",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRe7RSJPGDHmuV_uJ_t-l9AX-yl0Uj6jvQnoyrcy-TPQd1ApB2E7UIuxWwkoHkMOzjsgXei4pAyXngznQeOP3RS-8"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Stained",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRabVSJv-BDWKU_uJ_t-l9ASqwzUp152vXnoqrcXmfagYgCJF2Q-MD5hTqlN2zMu7m5VDYgt5Nn3jgznQeBu0Fnbw"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Bright Water",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRYL1SL_OWD2mvyuB_tuRWQyC0nQlp4TiDntmtIiqeblAmDsB2QLMNukSxwNDkZOrg4wbajItNzXn4in9LvDErvbi4dh8COQ"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Gamma Doppler",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSJ_GeA2avxeFmoO1sXRajnRw0tm-6lob-KT-JOwEgDcN2EOEDsBnumtG1N-nr7wHc2ItAySStiC8auC9p5-1XVKUk87qX0V8XtbYmPA"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Ultraviolet",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-AAViA1PxmvORWSSi_lhUuvDO6lob-KT-JOAQiCpJyRu4PsxPsk4fkNerjs1bXjtpCyCqri39BuH094OgKWfUn-LqX0V-hhcTrMg"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Night",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-AAVieyOl-pN5lRi67gVN35jjcmNmqcSrDPAR2ApMhQ7UDsBmwwNfvZL_r5wHcgoNFynj-2y9B8G81tDvvgv8m"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Crimson Web",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Y4OCqV6x0H-eWDHSvzedxuPUnGH_gx0pxtT-Dm9uvdXrGbAFzCsZ5Ee9YtkTpx9LgYuPjtA3djotByDK-0H0Jjl4AqA"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Night Stripe",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q-vm8YZt-MM-dB2CY1f1iouh5Sha_nBovp3OHz9ahIynFPQUoDZZ2TbINtRK8lYXuM-nksQbago1FyS_23CNB5ihu_a9cBvtwqC7R"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Forest DDPAT",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Y4OCqV6x0H_SXHmaE_uJ_t-l9AS3gkB4m5myGyo6sciifPQdzD8RzR-JctBjsl9bvMOzjslPYgopAyi_gznQexg-GN_M"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Tiger Tooth",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-_uibbB5L8-SAFiEyOlzot5mXSi9khgYvzSCkpu3JyjBawQkXsF0EeEO4Ea_m93iNLjk71PfjtlDxSms3S1M7yhj47wLA71lpPOYHm96Lg"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Damascus Steel",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I5PeibbBiLs-SH1iUwON3o-J8XBa_nBovp3PUm9_7JHOWZ1QjAsN0ELUD5EHpwdGxP7nksQTbgoxEyXj833gf7S1j_a9cBoUrfx8l"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Case Hardened",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Well-Worn"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SH1ifyOJztN5lRi67gVN_4W-Byt-hIi2UbVV2W5p2Fu4PuxmxkdO0Zejj7wff3okWzCT3ji4f8G81tJdWCOsa"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Black Laminate",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0PG7V6ZsOf-dC3Ov0vp5vuR-Tjq7qhEutDWR1Nr6IHuXOgMkWcQiQ7YK5hG7wYfgYuOx5gSN2YNCyHn-2Cof5i5isL0cEf1yJefVwLI"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Marble Fade",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SA1idwPx0vORWSSi3kCIrujqNjsGveH2RaVRxX5ohEe4Juhawm4fiM-ji4APf2YMXmSz_hyoduytv4uhWT-N7rfLHGBJ4"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Urban Masked",
+    "wears": [
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c9uK9cZtnIfOYBWmZx-tJo_FWWyijkCIyoT-ElLD1KCzPKhggC5p4EeIPtkTtkdy2Y-7mtAOMg9pEnCr8iyIf6C8-sL5TWfYh_aCGkUifZi7Rx6Sa"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Blue Steel",
+    "wears": [
+      "Minimal Wear",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SH1iSzftztN5lRi67gVNxsT7Tntmpdi-XPQAmWJJ5QuRYsBa7loe2P-7lsVTZjtkUnyz_inhK8G81tNS01icZ"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Safari Mesh",
+    "wears": [
+      "Minimal Wear",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1I-uC4YbJsLM-RAXCZxNFloN5kSjq7qgkmvQKJk4jxNWWfZgMnD5ZyF7ICs0awxoHkZuyw7wHYi9kUn3qvh3hI7no-5elXUKot5OSJ2DhCNq62"
+  },
+  {
+    "weapon": "Gut Knife",
+    "name": "Boreal Forest",
+    "wears": [
+      "Minimal Wear",
+      "Field-Tested"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q-vm8YZtlOc-VAXWV0vpJsu57Sii_qhEutDWR1N2vIH7Dbw8jXMZwTecNsEPsmoKzP-Kx5QHZ2YtAniyoi3kb6yht5-ocEf1yVn7b_ls"
+  }
+]
