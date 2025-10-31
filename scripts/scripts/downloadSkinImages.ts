@@ -40,9 +40,13 @@ function readSkins(): SkinEntry[] {
       return parsed.skins;
     }
     if (parsed.byWeapon && typeof parsed.byWeapon === "object") {
-      return Object.values(parsed.byWeapon).flat();
+      return Object.values(parsed.byWeapon)
+        .filter((v): v is SkinEntry[] => Array.isArray(v))
+        .flat();
     }
-    return Object.values(parsed).filter(Array.isArray).flat();
+    return Object.values(parsed)
+      .filter((v): v is SkinEntry[] => Array.isArray(v))
+      .flat();
   }
 
   return [];
