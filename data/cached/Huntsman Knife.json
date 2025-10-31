@@ -1,0 +1,250 @@
+[
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Doppler",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SA1iUzv5mvOR7cDm7lA4i4AKJk4jxNWWROAEmX5omROIPskTtmobkZrvjtgzajIwRmSn723xK6Shr4LpXV6Yh5OSJ2Po9oSed"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Freehand",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SA1idwPx9teVWWjmMzE0YvzSCkpu3cC-Wald2A5tyFu9esxDpktO2Nrzq4wzaiYlGzXmo3SxIuHw65bsLU71lpPPkJkZySA"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Fade",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SD1iWwOpzj-1gSCGn2x8hsW6DmIqpcXjBZgYkCZt5F7VcthS8ldS2Nr7m5VCMi4gRyyuqjHtXrnE8oar8MtU"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Autotronic",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-UHViY1OBio-xoQRaygAkopy-KlIb6HifOOV5kFMF1QrMNu0Puw4DvYbnk5Qfc2d5Azyv_3C1O7Hlq4ulRAvcn_qKBiFvfcepq3JPpPWw"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Lore",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-QG1iY1OBio-xoQRa_mg8ijDGMnYftb3qfPQZyWJtyFuNe4BG5ktDuY-ritleIid1Hynir3H9KvH055btRV6s7uvqAU_ahZxI"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Stained",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SH1iWzvx1teVWQyC0nQlpsjyHnIyvI3-UbgImApJxTLYJsUa9m4fkY7y25lbe3o8UzCn5j39BuzErvbgKxgW_zw"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Night",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-AAVieyOl-pN5lRi67gVMktj_XzNapIi6QPwYjCcd1FOIJsBPsm9TvM7-ztFfXjIgXnyX7jCxA8G81tHpNPllX"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Slaughter",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SA1iKxOxksd5lRi67gVN_42jTnourc3OSbA4iCJV5F7UCsEXpx93jYrnn7gfago4QyH6ri3tL8G81tAzA6RBm"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Ultraviolet",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-QG1iA1PxmvORWRzy9gQ4qsjO6lob-KT-JbFQlC5YhFrQN4xe4m4ezNL7g4QyLiItFyS772C5I7ilq6rpWUaYh-rqX0V82KISxGQ"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Scorched",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-AHliUwP5mvORWQyC0nQlp5GiDnIqseHPGalMnXJMhQ-cDtkPrm93jZe7l5wbb2YsTyy352CpP7TErvbiCPrzwVA"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Damascus Steel",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Well-Worn"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1O_eG7e5tsMc-XD2qR0u1jo955XSCgmBwYvzSCkpu3IHqeOwImXMFxEbULtUPqx9XmZO_iswTcg41Gzy743CxL7ntusLpTWb1lpPNKGasTBw"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Forest DDPAT",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Well-Worn",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c9uK9cZtnIfOYBWmZx-tJuPhWSy2jlAkYvzSCkpu3eSjBPVcoCZQiEbZYtRawwYXjM7nktgXW3YkXyH-qiiJL7Hpr6-hRAL1lpPMoI6wPcw"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Safari Mesh",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1U-uaqZ6t_H-ODMWqV0uZJpOBncCW6khUz_WzWm9esdXOfbwRyWZR0ROACthDulYeyM-m34AeL3doXxX-s2Hwb7311o7FVDfDKraI"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Black Laminate",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Field-Tested",
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V6d4H_afB3ev0vp5vuR-Tjq7qhEutDWR1NqheHqUOAMlXpR0FOVZ4Ba8wIW2P7u35VPX2Y9Azn6s2ihB7S5v5uccEf1yNTyJJU8"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Night Stripe",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1O_eG7e5t-MM-dB2CY1f1iouh5Sha_nBovp3Pdmd-qJ3rFZwclA5AlEbINsUS9ltbhM-6xtQHfit4UnC__hylB6Xpp_a9cBpOKr6LC"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Urban Masked",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRe7RSNPGDC1iF0-x3vt5lRi67gVN0t2WGz9z8cHufa1IpX5skQbJbuxHtl9KxZu7ntgWM3o8Uziishi5J8G81tIA_RSBn"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Bright Water",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsBn6vzu1zse9WRCe6kxgY6m26lob-KT-JbgckDsR5TeRftkKwxN3mY7nq7wbci4hBzy783X5P7iZp67sEWaV0qbqX0V8sk0fSOA"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Case Hardened",
+    "wears": [
+      "Factory New"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1O_eG7e5tsMc-cB2uVxdF6ueZhW2fmxBx-427Xntr_c3rBaFIkDZAhRLVYtxXql9LjMe_itQKL2d0UzXmskGoXueV9R1qR"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Tiger Tooth",
+    "wears": [
+      "Factory New",
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SAFiEyOlzot5mXSi9khgYvzSCkpu3eC3BbwUmCcMlQbMD4xG_w9zkPu7gsQXe2YJFzHqqjixL5ylr4ukAWb1lpPNV9oeSnQ"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Boreal Forest",
+    "wears": [
+      "Factory New",
+      "Minimal Wear",
+      "Well-Worn"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLzn4_v8ydP0Pq3V6JiMvWAGliSzvxzse1WQyC0nQlp5m2BmdireXiQaAMnW5F1EOBZskO-x9ayZOKx5FeNiYgRyC2tii1LvTErvbgrMI0f4g"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Marble Fade",
+    "wears": [
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1M5vahf6lsK_WBMWad_uN3ouNlSha1lBkijCqMnoDuHifOOV5kFJMlQecC4RW5x4bkMLvgsgGP2IIXzy_-iysaunlo4bwEBfYh_aLS3A7fcepqAVr8ibw"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Gamma Doppler",
+    "wears": [
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V6VgH_eSA2qR_up5oPFlSjuMhRUmoDjRpYPwJiPTcFN2XJshE-ZfuhS-w9PgMuuxtQTZ2YoRzXj_3Ssf6ntp6rxWUass-KDJz1aW7hm8L5o"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Blue Steel",
+    "wears": [
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q-vm8YZtsMc-RAnKVxdF6ueZhW2exzE0h62nVyd6qeXjEbgF0X8EiEbZesRS_wIXkPujq7wPWjNpDyn6vkGoXudm1ivk1"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Crimson Web",
+    "wears": [
+      "Minimal Wear"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsBn6v1ut0o95lRi67gVN04WmDzNz_cX_CalAiW8FxR7MI4xKxmtPlYe7ksgzeiN5BziT83y4f8G81tOxPsLb-"
+  },
+  {
+    "weapon": "Huntsman Knife",
+    "name": "Rust Coat",
+    "wears": [
+      "Battle-Scarred"
+    ],
+    "image": "https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1P7vG6YadsLM-SH1iD1etzvN5iQSC1kCIvtjyTg8H7JXOTPFR0DpMjQLRf50WxktHmMu3rsQPWjN5CnC3-iCwauidotuoBT-N7retrAdbB"
+  }
+]

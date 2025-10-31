@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { WEARS, WEAR_LABEL_DE, type WearEN } from "@/data/wears";
 import weapons from "@/data/weapons.json";
+import { stripWeaponPrefix } from "@/lib/skin-utils";
 
 /* --- Datentyp für Preiszeilen --- */
 type PriceRow = {
@@ -13,7 +14,14 @@ type PriceRow = {
   currency: string;
   finalPrice: number;
   trend7d: string;
+  priceLabel?: string | null;
   url: string;
+};
+
+type ApiSkin = {
+  name?: string;
+  wears?: string[];
+  image?: string | null;
 };
 
 /* --- Hilfsfunktion: Market Hash Name für Steam-Icon --- */
@@ -40,10 +48,11 @@ export default function ComparePage() {
   const [wear, setWear] = useState<WearEN | "">("");
 
   const [skinOptions, setSkinOptions] = useState<string[]>([]);
+  const [skinMeta, setSkinMeta] = useState<Record<string, { wears: WearEN[]; image?: string | null }>>({});
   const [loadingSkins, setLoadingSkins] = useState(false);
 
   const [wearOptions, setWearOptions] = useState<WearEN[]>([]);
-  const [loadingWears, setLoadingWears] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState<PriceRow[] | null>(null);
@@ -58,73 +67,95 @@ export default function ComparePage() {
 
     if (!weapon) {
       setSkinOptions([]);
+      setSkinMeta({});
+      setSelectedImage(null);
       return;
     }
 
     (async () => {
       try {
         setLoadingSkins(true);
-        const localPath = `/skins/${weapon}.json`;
-        const res = await fetch(localPath);
-        if (!res.ok) throw new Error(`Lokale Datei nicht gefunden: ${localPath}`);
+        const params = new URLSearchParams({ weapon });
+        const res = await fetch(`/api/steam/skins?${params.toString()}`, { cache: "no-store" });
+        if (!res.ok) throw new Error(`API error for weapon ${weapon}: ${res.status}`);
         const data = await res.json();
 
-        if (Array.isArray(data)) {
-          const names = data.map((s: any) => s.name || s);
-          const cleanNames = names.map((name: string) =>
-            name
-              .replace(/^.*\|\s*/g, "") // entfernt „AK-47 | “ oder andere Waffenpräfixe
-              .replace(/\s*\((Factory New|Minimal Wear|Field-Tested|Well-Worn|Battle-Scarred)\)/gi, "") // entfernt Zustände
-              .trim()
-          );
-          setSkinOptions([...new Set(cleanNames as string[])]);
-        } else if (data && Array.isArray(data.skins)) {
-          const names = data.skins.map((s: any) => s.name || s);
-          const cleanNames = names.map((name: string) =>
-            name
-              .replace(/^.*\|\s*/g, "")
-              .replace(/\s*\((Factory New|Minimal Wear|Field-Tested|Well-Worn|Battle-Scarred)\)/gi, "")
-              .trim()
-          );
-          setSkinOptions([...new Set(cleanNames as string[])]);
-        } else {
+        if (!Array.isArray(data)) {
           console.error("Invalid skin data:", data);
           setSkinOptions([]);
+          return;
         }
+
+        const nameSet = new Set<string>();
+        const meta: Record<string, { wears: Set<WearEN>; image?: string | null }> = {};
+
+        for (const item of data as (ApiSkin | string)[]) {
+          const entry = typeof item === "object" && item !== null ? (item as ApiSkin) : undefined;
+          const rawName = entry?.name ?? (typeof item === "string" ? item : "");
+          const display = stripWeaponPrefix(rawName, weapon) || rawName;
+          if (!display) continue;
+          nameSet.add(display);
+
+          const current = meta[display] ?? { wears: new Set<WearEN>(), image: null };
+          if (Array.isArray(entry?.wears)) {
+            for (const w of entry.wears) {
+              if ((WEARS as ReadonlyArray<string>).includes(w)) {
+                current.wears.add(w as WearEN);
+              }
+            }
+          }
+
+          if (!current.image && entry?.image) {
+            current.image = entry.image;
+          }
+
+          meta[display] = current;
+        }
+
+        const orderedNames = Array.from(nameSet.values());
+        setSkinOptions(orderedNames);
+
+        const mappedMeta: Record<string, { wears: WearEN[]; image?: string | null }> = {};
+        for (const name of orderedNames) {
+          const entry = meta[name];
+          mappedMeta[name] = {
+            wears: entry ? Array.from(entry.wears.values()) as WearEN[] : [],
+            image: entry?.image ?? null,
+          };
+        }
+        setSkinMeta(mappedMeta);
       } catch (err) {
         console.error("Fehler beim Laden der Skins:", err);
         setSkinOptions([]);
+        setSkinMeta({});
+        setSelectedImage(null);
       } finally {
         setLoadingSkins(false);
       }
     })();
   }, [weapon]);
 
-  /* --- Wenn Skin gewählt wurde → gültige Wears via API prüfen (mit Fallback) --- */
+  /* --- Wenn Skin gewählt wurde → gültige Wears sofort aus Cache ableiten --- */
   useEffect(() => {
     setWear("");
     setRows(null);
     setError(null);
+    setSelectedImage(null);
 
     if (!weapon || !skin) {
       setWearOptions([]);
       return;
     }
 
-    (async () => {
-      try {
-        setLoadingWears(true);
-        const params = new URLSearchParams({ weapon, skin }).toString();
-        const res = await fetch(`/api/steam/wears?${params}`, { cache: "no-store" });
-        const data = (await res.json()) as { wears?: WearEN[] };
-        setWearOptions(data.wears && data.wears.length > 0 ? data.wears : WEARS);
-      } catch {
-        setWearOptions(WEARS);
-      } finally {
-        setLoadingWears(false);
-      }
-    })();
-  }, [weapon, skin]);
+    const meta = skinMeta[skin];
+    if (meta) {
+      setWearOptions(meta.wears && meta.wears.length > 0 ? meta.wears : WEARS);
+      setSelectedImage(meta.image ?? null);
+      return;
+    }
+
+    setWearOptions(WEARS);
+  }, [weapon, skin, skinMeta]);
 
   const wearsForSelection = useMemo(() => (skin ? wearOptions : []), [skin, wearOptions]);
 
@@ -225,10 +256,10 @@ export default function ComparePage() {
             className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 disabled:bg-gray-50 disabled:text-gray-400"
             value={wear}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setWear(e.target.value as WearEN)}
-            disabled={!skin || loadingWears}
+            disabled={!skin}
           >
             <option value="">
-              {!skin ? "Zuerst Skin wählen" : loadingWears ? "Lade Zustände…" : "Bitte wählen…"}
+              {!skin ? "Zuerst Skin wählen" : "Bitte wählen…"}
             </option>
             {wearsForSelection.map((w) => (
               <option key={w} value={w}>
@@ -264,16 +295,22 @@ export default function ComparePage() {
             {/* Vorschau mit Bild */}
             <div className="rounded-2xl border border-gray-200 bg-white p-4 flex items-center gap-4">
               <div className="w-36 h-24 bg-gray-50 rounded-lg overflow-hidden grid place-items-center">
-                <Image
-                  src={`/api/steam/icon?name=${encodeURIComponent(
-                    toMarketHashName(weapon, skin, wear as WearEN)
-                  )}&size=256x256`}
-                  alt={`${weapon} | ${skin} (${wear})`}
-                  width={256}
-                  height={256}
-                  className="object-contain w-full h-full"
-                  unoptimized
-                />
+                {skin && wear && (
+                  <Image
+                    src={
+                      selectedImage
+                        ? selectedImage
+                        : `/api/steam/icon?name=${encodeURIComponent(
+                            toMarketHashName(weapon, skin, wear as WearEN)
+                          )}&size=256x256`
+                    }
+                    alt={`${weapon} | ${skin} (${wear})`}
+                    width={256}
+                    height={256}
+                    className="object-contain w-full h-full"
+                    unoptimized={!selectedImage || !selectedImage.startsWith("/")}
+                  />
+                )}
               </div>
               <div>
                 <div className="font-semibold">{weapon}</div>
@@ -303,7 +340,7 @@ export default function ComparePage() {
                         <td className="px-6 py-3">{r.marketplace}</td>
                         <td className="px-6 py-3">{r.fee}</td>
                         <td className="px-6 py-3 font-medium">
-                          {r.finalPrice.toFixed(2)} {r.currency}
+                          {r.priceLabel ? r.priceLabel : `${r.finalPrice.toFixed(2)} ${r.currency}`}
                         </td>
                         <td className={`px-6 py-3 font-medium ${up ? "text-emerald-600" : "text-rose-600"}`}>
                           {r.trend7d}

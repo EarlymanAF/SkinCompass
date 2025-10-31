@@ -11,7 +11,14 @@ async function main() {
   const outputPath = path.join(process.cwd(), "data", "skins.json");
 
   const allWeapons = fs.readdirSync(cachedDir).filter(f => f.endsWith(".json"));
-  const flatSkins: { weapon: string; name: string }[] = [];
+  const flatSkins: {
+    weapon: string;
+    name: string;
+    wears?: string[];
+    image?: string | null;
+    stattrak?: boolean;
+    souvenir?: boolean;
+  }[] = [];
   const skipped: string[] = [];
 
   for (const weaponFile of allWeapons) {
@@ -24,8 +31,8 @@ async function main() {
 
       const skins = Array.isArray(data)
         ? data // direktes Array
-        : Array.isArray(data.skins)
-        ? data.skins // Objekt mit "skins"
+        : Array.isArray((data as any).skins)
+        ? (data as any).skins // Objekt mit "skins"
         : null;
 
       if (!skins) {
@@ -34,9 +41,16 @@ async function main() {
         continue;
       }
 
-      for (const skin of skins) {
+      for (const skin of skins as any[]) {
         if (skin && skin.name) {
-          flatSkins.push({ weapon: weaponName, name: skin.name });
+          flatSkins.push({
+            weapon: weaponName,
+            name: skin.name,
+            wears: (skin.wears ?? undefined) as string[] | undefined,
+            image: skin.image ?? undefined,
+            stattrak: skin.stattrak ?? undefined,
+            souvenir: skin.souvenir ?? undefined,
+          });
         }
       }
     } catch (err) {
