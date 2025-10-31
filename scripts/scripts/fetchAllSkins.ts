@@ -1,69 +1,130 @@
-import { SteamSkin } from "@/lib/types";
-import { baseSkinNameFromHash } from "@/lib/steam-normalize";
+import { parseHashName } from "@/lib/steam-normalize";
+import { normalizeWeaponToken } from "@/lib/skin-utils";
+import { WEARS, type WearEN } from "@/data/wears";
 
-function buildSteamUrl(weapon: string, skinName: string, wear: string) {
-  const cleanName = skinName.replace(/\(.*?\)/, `(${wear})`);
-  return `https://steamcommunity.com/market/listings/730/${encodeURIComponent(cleanName)}`;
-}
+const WEAR_ORDER = new Map(WEARS.map((w, index) => [w, index]));
+
+type AggregatedSkin = {
+  weapon: string;
+  name: string;
+  wears: Set<WearEN>;
+  image: string | null;
+  stattrak: boolean;
+  souvenir: boolean;
+};
 
 function sleep(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function fetchSteamSkins(weapon: string, wear: string, page: number = 0): Promise<{ skins: SteamSkin[]; hasMore: boolean }> {
+function sanitizeSkinName(hashName: string, parsedSkin?: string | null): string | null {
+  if (parsedSkin && parsedSkin.trim().length > 0) return parsedSkin.trim();
+  const withoutWeapon = hashName.replace(/.*\|\s*/, "");
+  return withoutWeapon.replace(/\(.*?\)$/, "").trim() || null;
+}
+
+async function crawlWeapon(weapon: string): Promise<Map<string, AggregatedSkin>> {
   const perPage = 100;
-  const start = page * perPage;
-  const query = encodeURIComponent(`${weapon} ${wear}`);
-
-  const url = `https://steamcommunity.com/market/search/render/?appid=730&norender=1&count=${perPage}&start=${start}&query=${query}`;
-  console.log(`🌐 Fetching ${weapon} - ${wear} (page ${page}) → ${url}`);
-
-  let waitTime = 3000;
+  let start = 0;
+  let attempt = 0;
+  const aggregated = new Map<string, AggregatedSkin>();
+  const targetToken = normalizeWeaponToken(weapon);
 
   while (true) {
-    const res = await fetch(url, {
-      headers: {
-        "User-Agent": "Mozilla/5.0 (compatible; SkinCompassBot/1.0; +https://skincompass.de)"
+    const url = `https://steamcommunity.com/market/search/render/?appid=730&norender=1&count=${perPage}&start=${start}&query=${encodeURIComponent(weapon)}`;
+    console.log(`🌐 Fetching ${weapon} (page ${start / perPage + 1}) → ${url}`);
+
+    let waitTime = 3000;
+    let response: Response;
+
+    while (true) {
+      response = await fetch(url, {
+        headers: {
+          "User-Agent": "Mozilla/5.0 (compatible; SkinCompassBot/1.0; +https://skincompass.de)",
+        },
+      });
+
+      if (response.status === 429) {
+        console.warn(`⚠️ Rate limit hit for ${weapon} page ${start / perPage + 1}. Waiting ${waitTime / 1000}s...`);
+        await sleep(waitTime);
+        waitTime = Math.min(waitTime * 2, 60000);
+        continue;
       }
-    });
 
-    if (res.status === 429) {
-      console.warn(`⚠️ Rate limit hit for ${weapon} - ${wear} (page ${page}). Waiting ${waitTime / 1000}s...`);
-      await sleep(waitTime);
-      waitTime = Math.min(waitTime * 2, 60000);
-      continue;
+      if (!response.ok) {
+        throw new Error(`Steam API request failed for ${weapon} (${response.status})`);
+      }
+      break;
     }
 
-    if (!res.ok) throw new Error(`Steam API request failed for ${weapon} - ${wear} (${res.status})`);
-
-    const data = await res.json();
-
-    if ((data?.results || []).length === 0) {
-      // No results for this wear, skip
-      return { skins: [], hasMore: false };
+    const data: any = await response.json();
+    const results: any[] = Array.isArray(data?.results) ? data.results : [];
+    if (results.length === 0) {
+      if (attempt === 0) {
+        console.warn(`⚠️ No results received for ${weapon}.`);
+      }
+      break;
     }
 
-    const results = (data?.results || []).map((item: any) => {
-      const hashName = item.hash_name || item.name || "";
-      const parsedBase = baseSkinNameFromHash(hashName) || hashName.replace(/.*\|\s*/, "").replace(/\(.*?\)$/, "").trim();
-      const iconPath = item.asset_description?.icon_url_large || item.asset_description?.icon_url || null;
+    for (const item of results) {
+      const hashName = item?.hash_name || item?.name || "";
+      if (!hashName) continue;
+
+      const parsed = parseHashName(hashName);
+      const detectedWeapon = normalizeWeaponToken(parsed.weapon ?? "");
+      if (detectedWeapon && detectedWeapon !== targetToken) {
+        // Steam Suche liefert häufig andere Waffen – diese überspringen
+        continue;
+      }
+
+      const skinName = sanitizeSkinName(hashName, parsed.skin);
+      if (!skinName) continue;
+
+      const wear = parsed.wear && WEARS.includes(parsed.wear as WearEN) ? (parsed.wear as WearEN) : null;
+      const key = skinName.toLowerCase();
+      const iconPath = item?.asset_description?.icon_url_large || item?.asset_description?.icon_url || null;
       const image = iconPath ? `https://community.cloudflare.steamstatic.com/economy/image/${iconPath}` : null;
-      return {
-        name: parsedBase,
-        image,
-        price: item.sell_price_text || null,
-        weapon,
-        wear,
-        steamUrl: buildSteamUrl(weapon, hashName, wear)
-      } as any;
-    });
 
-    const hasMore = data?.total_count > start + results.length;
-    console.log(`📄 Page ${page}: fetched ${results.length} skins for ${weapon} - ${wear}`);
-    return { skins: results, hasMore };
+      const entry =
+        aggregated.get(key) ??
+        {
+          weapon,
+          name: skinName,
+          wears: new Set<WearEN>(),
+          image: image ?? null,
+          stattrak: false,
+          souvenir: false,
+        };
+
+      if (!entry.image && image) {
+        entry.image = image;
+      }
+      if (wear) {
+        entry.wears.add(wear);
+      }
+      if (parsed.variant === "StatTrak") {
+        entry.stattrak = true;
+      }
+      if (parsed.variant === "Souvenir") {
+        entry.souvenir = true;
+      }
+
+      aggregated.set(key, entry);
+    }
+
+    const totalCount = typeof data?.total_count === "number" ? data.total_count : start + results.length;
+    start += perPage;
+    attempt += 1;
+
+    if (start >= totalCount) {
+      break;
+    }
+
+    await sleep(1000);
   }
-}
 
+  return aggregated;
+}
 
 async function run() {
   const fs = await import("fs/promises");
@@ -92,46 +153,25 @@ async function run() {
     await fs.mkdir(publicSkinsDir, { recursive: true });
   }
 
-  const wears = ["Factory New", "Minimal Wear", "Field-Tested", "Well-Worn", "Battle-Scarred"];
-
   for (const weapon of weapons) {
     console.log(`🛠️ Fetching all skins for: ${weapon}`);
-    // Aggregate by base skin name to collect available wears
-    const bySkin = new Map<string, { weapon: string; name: string; wears: Set<string>; image?: string | null }>();
+    const aggregated = await crawlWeapon(weapon);
 
-    for (const wear of wears) {
-      console.log(`🔍 Fetching wear condition: ${wear}`);
-      let page = 0;
-      let hasMore = true;
-
-      while (hasMore && page < 50) {
-        const { skins, hasMore: more } = await fetchSteamSkins(weapon, wear, page);
-        if (skins.length === 0 && page === 0) {
-          console.log(`⚠️ No skins found for ${weapon} with wear ${wear}, skipping this wear.`);
-          break; // Skip to next wear
-        }
-        for (const s of skins) {
-          const key = s.name;
-          const entry = bySkin.get(key) || { weapon, name: s.name, wears: new Set<string>(), image: s.image ?? null };
-          entry.wears.add(wear);
-          if (!entry.image && s.image) entry.image = s.image;
-          bySkin.set(key, entry);
-        }
-        hasMore = more;
-        page++;
-        if (hasMore) {
-          await sleep(1000); // 1 sec between pages (verlangsamt wegen Steam-Rate-Limit)
-        }
-      }
-    }
-
-    // Expand to output schema with sorted wears array
-    const expanded = Array.from(bySkin.values()).map(v => ({
-      weapon: v.weapon,
-      name: v.name,
-      wears: Array.from(v.wears.values()),
-      image: v.image ?? null
-    }));
+    const expanded = Array.from(aggregated.values()).map((v) => {
+      const wears = Array.from(v.wears.values()).sort((a, b) => {
+        const ai = WEAR_ORDER.get(a) ?? Number.MAX_SAFE_INTEGER;
+        const bi = WEAR_ORDER.get(b) ?? Number.MAX_SAFE_INTEGER;
+        return ai - bi;
+      });
+      return {
+        weapon: v.weapon,
+        name: v.name,
+        wears: wears.length > 0 ? (wears as WearEN[]) : undefined,
+        image: v.image ?? null,
+        stattrak: v.stattrak || undefined,
+        souvenir: v.souvenir || undefined,
+      };
+    });
 
     const filePath = path.join(cachedDir, `${weapon}.json`);
     await fs.writeFile(filePath, JSON.stringify(expanded, null, 2), "utf-8");
