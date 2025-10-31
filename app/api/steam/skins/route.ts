@@ -140,11 +140,11 @@ export async function GET(req: Request) {
     } else if (skinsRaw && typeof skinsRaw === "object") {
       // If skinsRaw has 'byWeapon' or other keys, merge all arrays into one
       if (skinsRaw.byWeapon && typeof skinsRaw.byWeapon === "object") {
-        skins = Object.values(skinsRaw.byWeapon).flat();
+        skins = Object.values(skinsRaw.byWeapon).flat() as SteamSkinEntry[];
       } else {
         // If not structured byWeapon, try to flatten all arrays in object values
         skins = Object.values(skinsRaw)
-          .filter((v) => Array.isArray(v))
+          .filter((v): v is SteamSkinEntry[] => Array.isArray(v))
           .flat();
       }
     } else {

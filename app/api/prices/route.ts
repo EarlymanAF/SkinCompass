@@ -74,20 +74,21 @@ export async function GET(req: Request) {
     const rows = [];
 
     const steamPrice = steam?.lowest_price ?? steam?.median_price ?? null;
+    const steamData = steam ?? null;
 
-    if (steamPrice != null) {
+    if (steamData && steamPrice != null) {
       const priceLabel =
-        steam?.lowest_price != null
-          ? steam.lowest_price_text ?? null
-          : steam?.median_price_text ?? null;
+        steamData.lowest_price != null
+          ? steamData.lowest_price_text ?? null
+          : steamData.median_price_text ?? null;
       rows.push({
         marketplace: "Steam Community Market",
         fee: "≈15%",
-        currency: steam.currency,
+        currency: steamData.currency,
         finalPrice: steamPrice,             // bereits in gewünschter currency
         trend7d: "—",                       // Steam liefert hier nichts; später ersetzen
         priceLabel,
-        url: steam.url,
+        url: steamData.url,
       });
     }
 
