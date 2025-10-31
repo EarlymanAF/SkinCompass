@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 import weapons from "@/data/weapons.json";
 import fs from "fs";
 

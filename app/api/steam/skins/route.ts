@@ -5,6 +5,7 @@ import {
   normalizeWeaponToken,
   extractWeaponFromMarketName,
 } from "@/lib/skin-utils";
+import skinsRaw from "@/data/skins.json";
 
 type SteamSkinEntry = {
   weapon?: string;
@@ -59,8 +60,8 @@ function resolveLocalImage(imageUrl: string | null | undefined): string | null |
   if (imagePathCache.has(key)) return imagePathCache.get(key) ?? null;
 
   for (const ext of LOCAL_IMAGE_EXTENSIONS) {
-    const candidatePath = path.join(LOCAL_IMAGE_DIR, `${key}${ext}`);
-    if (fs.existsSync(candidatePath)) {
+    const absolutePath = path.join(LOCAL_IMAGE_DIR, `${key}${ext}`);
+    if (fs.existsSync(absolutePath)) {
       const publicPath = `/skin-images/${key}${ext}`;
       imagePathCache.set(key, publicPath);
       return publicPath;
@@ -84,6 +85,32 @@ function withLocalImages(entries: SteamSkinEntry[]): SteamSkinEntry[] {
   return entries.map(withLocalImage);
 }
 
+function normalizeSkins(): SteamSkinEntry[] {
+  const dataSource: unknown = skinsRaw;
+
+  if (Array.isArray(dataSource)) {
+    return dataSource as SteamSkinEntry[];
+  }
+
+  if (dataSource && typeof dataSource === "object") {
+    const source = dataSource as Record<string, unknown>;
+    if (source.byWeapon && typeof source.byWeapon === "object") {
+      return Object.values(source.byWeapon as Record<string, SteamSkinEntry[]>)
+        .filter((v): v is SteamSkinEntry[] => Array.isArray(v))
+        .flat();
+    }
+
+    return Object.values(source)
+      .filter((v): v is SteamSkinEntry[] => Array.isArray(v))
+      .flat();
+  }
+
+  console.warn("⚠️ Unexpected format of skins.json, returning empty array");
+  return [];
+}
+
+const ALL_SKINS: SteamSkinEntry[] = normalizeSkins();
+
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
@@ -92,69 +119,7 @@ export async function GET(req: Request) {
 
     imagePathCache.clear();
 
-    // Load skins.json dynamically from data
-    const filePath = path.join(process.cwd(), "data", "skins.json");
-    if (!fs.existsSync(filePath)) {
-      console.warn("⚠️  skins.json not found at:", filePath);
-      // Fallback: try fetching from deployed URL if local file not found
-      const remoteUrl = `${process.env.NEXT_PUBLIC_BASE_URL || "https://www.skincompass.de"}/data/skins.json`;
-      console.log("🌐 Falling back to remote skins.json:", remoteUrl);
-      try {
-        const res = await fetch(remoteUrl);
-        if (!res.ok) throw new Error(`Failed to fetch remote skins.json (${res.status})`);
-        const remoteSkins = await res.json();
-        return Response.json(remoteSkins, {
-          headers: {
-            "Cache-Control": "public, max-age=86400, immutable",
-          },
-        });
-      } catch (e) {
-        console.error("❌ Could not fetch remote skins.json:", e);
-        // Always return valid JSON (empty array fallback)
-        return Response.json([], {
-          headers: {
-            "Cache-Control": "public, max-age=86400, immutable",
-          },
-        });
-      }
-    }
-
-    let skinsRaw;
-    try {
-      const raw = fs.readFileSync(filePath, "utf-8");
-      skinsRaw = JSON.parse(raw);
-    } catch (e) {
-      console.warn("⚠️ Error reading or parsing local skins.json:", e);
-      // Fallback to empty array
-      return Response.json([], {
-        headers: {
-          "Cache-Control": "public, max-age=86400, immutable",
-        },
-      });
-    }
-
-    // Normalize skins into flat array (preserve wears and image when available)
-    let skins: SteamSkinEntry[] = [];
-    if (Array.isArray(skinsRaw)) {
-      skins = skinsRaw;
-    } else if (skinsRaw && typeof skinsRaw === "object") {
-      // If skinsRaw has 'byWeapon' or other keys, merge all arrays into one
-      if (skinsRaw.byWeapon && typeof skinsRaw.byWeapon === "object") {
-        skins = Object.values(skinsRaw.byWeapon).flat() as SteamSkinEntry[];
-      } else {
-        // If not structured byWeapon, try to flatten all arrays in object values
-        skins = Object.values(skinsRaw)
-          .filter((v): v is SteamSkinEntry[] => Array.isArray(v))
-          .flat();
-      }
-    } else {
-      console.warn("⚠️ Unexpected format of skins.json, returning empty array");
-      return Response.json([], {
-        headers: {
-          "Cache-Control": "public, max-age=86400, immutable",
-        },
-      });
-    }
+    const skins = ALL_SKINS;
 
     // Optional: if a specific weapon + skin is requested, return its entry (to expose wears)
     if (weapon && skinFilter) {
