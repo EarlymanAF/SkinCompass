@@ -15,6 +15,8 @@ export type Skin = {
   souvenir?: boolean;
   // Jede Wear-Stufe, die tatsächlich existiert
   wears?: WearEN[];
+  case?: string | null;
+  collection?: string | null;
 };
 
 // Detailliertere Wear-Struktur
@@ -34,4 +36,6 @@ export interface SteamSkin {
   souvenir?: boolean;
   rarity?: string;
   price?: number;
+  case?: string | null;
+  collection?: string | null;
 }

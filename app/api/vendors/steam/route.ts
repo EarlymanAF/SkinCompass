@@ -1,5 +1,6 @@
 // app/api/vendors/steam/route.ts
 import { NextResponse } from "next/server";
+import { fetchWithRetry } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -46,8 +47,28 @@ export async function GET(req: Request) {
 
     const url = `https://steamcommunity.com/market/priceoverview/?appid=730&currency=${currId}&market_hash_name=${encodeURIComponent(hash)}`;
 
-    // Cache 5 Minuten auf dem Server
-    const res = await fetch(url, { next: { revalidate: 300 } });
+    // Timeout-Absicherung (z. B. 7s) und Retry/Throttle via fetchWithRetry
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 7000);
+    let res: Response;
+    try {
+      // 5-Minuten Revalidate auf CDN/Server, aber no-store vermeiden (wir wollen Caching zulassen)
+      res = await fetchWithRetry(
+        url,
+        { next: { revalidate: 300 }, signal: controller.signal },
+        4
+      );
+    } catch (e) {
+      clearTimeout(timeout);
+      if (e instanceof Error && e.name === "AbortError") {
+        return NextResponse.json({ error: "Upstream timeout (Steam)" }, { status: 504 });
+      }
+      const message = e instanceof Error ? e.message : "Upstream error (Steam)";
+      return NextResponse.json({ error: message }, { status: 502 });
+    } finally {
+      clearTimeout(timeout);
+    }
+
     if (!res.ok) {
       return NextResponse.json({ error: `Steam responded ${res.status}` }, { status: 502 });
     }
@@ -60,7 +81,7 @@ export async function GET(req: Request) {
     };
 
     if (!json?.success) {
-      return NextResponse.json({ error: "Steam response not successful", raw: json }, { status: 502 });
+      return NextResponse.json({ error: "Steam response not successful", raw: json ?? null }, { status: 502 });
     }
 
     const lowest = json.lowest_price ? parsePriceString(json.lowest_price) : null;
@@ -77,6 +98,9 @@ export async function GET(req: Request) {
       url: `https://steamcommunity.com/market/listings/730/${encodeURIComponent(hash)}`,
       revalidateSeconds: 300,
       success: true,
+    }, {
+      // clientseitiges Caching unkritisch, Server revalidiert ohnehin
+      headers: { "Cache-Control": "public, max-age=60" }
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unbekannter Fehler";
