@@ -36,6 +36,18 @@ export function extractWeaponFromMarketName(rawName: string | null | undefined):
   return normalizeWeaponToken(name.slice(0, separator));
 }
 
+/** Extracts the weapon display name (with original casing) from a market hash. */
+export function weaponNameFromMarketName(rawName: string | null | undefined): string | null {
+  if (!rawName) return null;
+  let name = rawName.trim();
+  name = name.replace(/^★\s*/, "");
+  name = name.replace(/^StatTrak™\s+/i, "");
+  name = name.replace(/^Souvenir\s+/i, "");
+  const separator = name.indexOf(" | ");
+  if (separator === -1) return null;
+  return name.slice(0, separator).trim() || null;
+}
+
 /** Removes wear suffixes and weapon prefixes (incl. ★ / StatTrak™ / Souvenir) from market names. */
 export function stripWeaponPrefix(rawName: string, weapon: string): string {
   let name = rawName ?? "";

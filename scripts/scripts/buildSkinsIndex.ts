@@ -2,13 +2,43 @@ import fs from "fs";
 import path from "path";
 import type { SteamSkin } from "../../lib/types";
 
+type CaseMappingEntry = {
+  skin: string;
+  case?: string | null;
+  collection?: string | null;
+};
+
 interface CachedWeaponData {
   skins?: SteamSkin[];
+}
+
+function loadCaseMapping(): Map<string, CaseMappingEntry> {
+  const filePath = path.join(process.cwd(), "data", "cases.json");
+
+  if (!fs.existsSync(filePath)) {
+    console.warn("⚠️ cases.json nicht gefunden – Case/Collection bleiben leer.");
+    return new Map();
+  }
+
+  try {
+    const raw = fs.readFileSync(filePath, "utf-8");
+    const parsed = JSON.parse(raw) as CaseMappingEntry[];
+
+    return new Map(
+      parsed
+        .filter(entry => entry?.skin)
+        .map(entry => [entry.skin.toLowerCase(), entry] as const)
+    );
+  } catch (err) {
+    console.warn("⚠️ Konnte cases.json nicht lesen – Case/Collection bleiben leer.", err);
+    return new Map();
+  }
 }
 
 async function main() {
   const cachedDir = path.join(process.cwd(), "data", "cached");
   const outputPath = path.join(process.cwd(), "data", "skins.json");
+  const caseMap = loadCaseMapping();
 
   const allWeapons = fs.readdirSync(cachedDir).filter(f => f.endsWith(".json"));
   const flatSkins: {
@@ -18,6 +48,8 @@ async function main() {
     image?: string | null;
     stattrak?: boolean;
     souvenir?: boolean;
+    case?: string | null;
+    collection?: string | null;
   }[] = [];
   const skipped: string[] = [];
 
@@ -43,6 +75,8 @@ async function main() {
 
       for (const skin of skins as any[]) {
         if (skin && skin.name) {
+          const mapping = caseMap.get(String(skin.name).toLowerCase());
+
           flatSkins.push({
             weapon: weaponName,
             name: skin.name,
@@ -50,6 +84,8 @@ async function main() {
             image: skin.image ?? undefined,
             stattrak: skin.stattrak ?? undefined,
             souvenir: skin.souvenir ?? undefined,
+            case: mapping?.case ?? null,
+            collection: mapping?.collection ?? null,
           });
         }
       }
