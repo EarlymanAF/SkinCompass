@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
-function safeReadJson(filePath: string): any | null {
+function safeReadJson(filePath: string): unknown | null {
   try {
     const raw = fs.readFileSync(filePath, "utf-8");
     return JSON.parse(raw);
@@ -13,13 +13,29 @@ function safeReadJson(filePath: string): any | null {
   }
 }
 
-export async function GET(req: Request) {
+function parseWeaponList(source: unknown): string[] {
+  if (!Array.isArray(source)) return [];
+  return source.filter((entry): entry is string => typeof entry === "string");
+}
+
+function countSkins(payload: unknown): number {
+  if (Array.isArray(payload)) return payload.length;
+
+  if (payload && typeof payload === "object" && "skins" in payload) {
+    const candidate = (payload as { skins?: unknown }).skins;
+    if (Array.isArray(candidate)) return candidate.length;
+  }
+
+  return 0;
+}
+
+export async function GET() {
   try {
     const root = process.cwd();
     const weaponsPath = path.join(root, "data", "weapons.json");
     const cachedDir = path.join(root, "data", "cached");
 
-    const weapons: string[] = Array.isArray(safeReadJson(weaponsPath)) ? safeReadJson(weaponsPath) : [];
+    const weapons = parseWeaponList(safeReadJson(weaponsPath));
     const totalWeapons = weapons.length;
 
     let processedWeapons = 0;
@@ -38,7 +54,7 @@ export async function GET(req: Request) {
         processedWeapons++;
         const stat = fs.statSync(file);
         const data = safeReadJson(file);
-        const skinsCount = Array.isArray(data) ? data.length : Array.isArray(data?.skins) ? data.skins.length : 0;
+        const skinsCount = countSkins(data);
         totalSkins += skinsCount;
         perWeapon.push({
           weapon,

@@ -118,7 +118,6 @@ export async function GET(req: Request) {
     const available: WearEN[] = [];
     for (const w of WEARS) {
       // kleine Pause zwischen den Checks mindert Rate-Limit-Risiko
-      // eslint-disable-next-line no-await-in-loop
       const ok = await existsForWear(weapon, skin, w);
       if (ok) available.push(w);
     }

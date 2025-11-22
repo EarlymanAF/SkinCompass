@@ -10,6 +10,39 @@ export interface SteamSkin {
   image?: string;
 }
 
+type SteamSearchItem = {
+  name?: string;
+  sell_price_text?: string;
+  asset_description?: {
+    icon_url?: string;
+    icon_url_large?: string;
+  };
+};
+
+type SteamSearchResponse = {
+  results?: SteamSearchItem[];
+};
+
+function buildSteamSkin(item: SteamSearchItem): SteamSkin {
+  const iconUrl = item.asset_description?.icon_url ?? "";
+  const largeIconUrl = item.asset_description?.icon_url_large ?? iconUrl;
+
+  return {
+    name: item.name ?? "",
+    icon: `https://steamcommunity-a.akamaihd.net/economy/image/${iconUrl}`,
+    price: item.sell_price_text ?? null,
+    image: `https://steamcommunity-a.akamaihd.net/economy/image/${largeIconUrl}`,
+  };
+}
+
+function readCachedFile(filePath: string): SteamSkin[] | null {
+  if (!fs.existsSync(filePath)) return null;
+  const raw = fs.readFileSync(filePath, "utf-8");
+  const parsed = JSON.parse(raw) as unknown;
+  if (!Array.isArray(parsed)) return null;
+  return parsed.filter((entry): entry is SteamSkin => typeof entry?.name === "string" && typeof entry?.icon === "string");
+}
+
 // Fetch skins for a given weapon directly from the Steam Community Market
 export async function fetchSteamSkins(weapon: string): Promise<{ skins: SteamSkin[]; hasMore: boolean }> {
   console.log(`🔫 Fetching skins for ${weapon}...`);
@@ -17,8 +50,8 @@ export async function fetchSteamSkins(weapon: string): Promise<{ skins: SteamSki
   const skins: SteamSkin[] = [];
 
   // Wenn Cache-Datei existiert, direkt laden
-  if (fs.existsSync(filePath)) {
-    const cached = JSON.parse(fs.readFileSync(filePath, "utf-8")) as SteamSkin[];
+  const cached = readCachedFile(filePath);
+  if (cached) {
     console.log(`💾 Loaded ${cached.length} cached skins for ${weapon}`);
     return { skins: cached, hasMore: false };
   }
@@ -28,7 +61,9 @@ export async function fetchSteamSkins(weapon: string): Promise<{ skins: SteamSki
   let hasMore = true;
 
   while (hasMore) {
-    const url = `https://steamcommunity.com/market/search/render/?appid=730&norender=1&count=${count}&start=${start}&query=${encodeURIComponent(weapon)}`;
+    const url = `https://steamcommunity.com/market/search/render/?appid=730&norender=1&count=${count}&start=${start}&query=${encodeURIComponent(
+      weapon
+    )}`;
 
     console.log(`  → Fetching page ${start / count + 1} for ${weapon}...`);
     const response = await fetch(url);
@@ -38,23 +73,19 @@ export async function fetchSteamSkins(weapon: string): Promise<{ skins: SteamSki
       break;
     }
 
-    const data = await response.json();
-    if (!data?.results?.length) {
+    const data = (await response.json()) as SteamSearchResponse;
+    const results = Array.isArray(data.results) ? data.results : [];
+    if (!results.length) {
       console.warn(`⚠️ No results found on page ${start / count + 1} for ${weapon}`);
       break;
     }
 
-    const pageSkins = data.results.map((item: any) => ({
-      name: item.name,
-      icon: `https://steamcommunity-a.akamaihd.net/economy/image/${item.asset_description?.icon_url || ""}`,
-      price: item.sell_price_text || null,
-      image: `https://steamcommunity-a.akamaihd.net/economy/image/${item.asset_description?.icon_url_large || item.asset_description?.icon_url || ""}`,
-    }));
+    const pageSkins = results.map((item) => buildSteamSkin(item));
 
     skins.push(...pageSkins);
     console.log(`  → Collected ${skins.length} total skins so far...`);
 
-    hasMore = data.results.length === count;
+    hasMore = results.length === count;
     start += count;
 
     // Kurze Pause (500 ms), um Steam nicht zu überlasten

@@ -2,9 +2,6 @@
 import { NextResponse } from "next/server";
 import { WEARS, WEAR_LABEL_DE, type WearEN } from "@/data/wears";
 import { toMarketHashName } from "@/lib/market";
-import fs from "fs";
-import path from "path";
-
 export const runtime = "nodejs";
 
 type VendorSteamResponse = {
@@ -64,7 +61,7 @@ export async function GET(req: Request) {
       if (resSteam.ok) {
         steam = (await resSteam.json()) as VendorSteamResponse;
       }
-    } catch (e) {
+    } catch {
       // swallow, we'll fall back to no Steam row
     } finally {
       clearTimeout(timeout);
