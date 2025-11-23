@@ -4,7 +4,7 @@ import MarketplaceTable from "@/components/MarketplaceTable";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 async function fetchWeapons() {
-  const supabase = getSupabaseServerClient();
+  const supabase = await getSupabaseServerClient();
   const { data, error } = await supabase.from("weapons").select("id, name, category").order("name").limit(10);
   if (error) {
     console.error("Supabase weapons fetch failed:", error);

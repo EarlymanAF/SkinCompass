@@ -1,5 +1,3 @@
-"use server";
-
 type ConfirmEmailParams = {
   confirmUrl: string;
   productName?: string;
