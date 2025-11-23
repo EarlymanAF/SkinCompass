@@ -15,6 +15,7 @@ export async function GET(req: Request) {
   const emailFrom = process.env.EMAIL_FROM;
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const baseUrl = process.env.APP_BASE_URL || "http://localhost:3000";
 
   if (!resendApiKey || !emailFrom || !supabaseUrl || !supabaseServiceKey) {
     return NextResponse.json({ error: "Server ist nicht korrekt konfiguriert." }, { status: 500 });
@@ -73,6 +74,7 @@ export async function GET(req: Request) {
       },
     ],
     productName: "SkinCompass",
+    unsubscribeUrl: `${baseUrl.replace(/\/$/, "")}/api/unsubscribe?token=${token}`,
   });
 
   // Welcome mail ist best effort: Fehler sollen nicht den Erfolg blockieren.

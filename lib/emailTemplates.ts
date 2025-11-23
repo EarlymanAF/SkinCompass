@@ -9,6 +9,7 @@ type WelcomeEmailParams = {
   roadmap: { title: string; eta?: string; description?: string }[];
   ctaUrl?: string;
   productName?: string;
+  unsubscribeUrl?: string;
 };
 
 export function confirmEmailTemplate({ confirmUrl, productName = "SkinCompass" }: ConfirmEmailParams) {
@@ -41,6 +42,7 @@ export function welcomeEmailTemplate({
   roadmap,
   ctaUrl,
   productName = "SkinCompass",
+  unsubscribeUrl,
 }: WelcomeEmailParams) {
   const screenshotsHtml =
     screenshots.length === 0
@@ -87,11 +89,11 @@ export function welcomeEmailTemplate({
       `;
 
   return `
-    <div style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color: #0f172a; background: #0b1224; padding: 32px;">
-      <div style="max-width: 680px; margin: 0 auto; background: linear-gradient(140deg,#0f172a,#111827 55%,#0b1224); border: 1px solid #1e293b; border-radius: 16px; padding: 28px; color: #e2e8f0;">
-        <p style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #7c3aed; margin: 0 0 10px;">Willkommen</p>
+    <div style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color: #0f172a; background: #f8fafc; padding: 32px;">
+      <div style="max-width: 680px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; color: #0f172a;">
+        <p style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #6366f1; margin: 0 0 10px;">Willkommen</p>
         <h1 style="margin: 0 0 12px; font-size: 24px; line-height: 1.3;">Danke für dein Vertrauen in ${productName}</h1>
-        <p style="margin: 0 0 14px; font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+        <p style="margin: 0 0 14px; font-size: 15px; color: #334155; line-height: 1.6;">
           ${vision}
         </p>
         ${screenshotsHtml}
@@ -99,15 +101,19 @@ export function welcomeEmailTemplate({
         ${
           ctaUrl
             ? `<div style="margin-top: 22px;">
-                <a href="${ctaUrl}" style="display: inline-block; background: #22c55e; color: #0b1224; text-decoration: none; padding: 12px 18px; border-radius: 12px; font-weight: 700;">
+                <a href="${ctaUrl}" style="display: inline-block; background: #111827; color: #ffffff; text-decoration: none; padding: 12px 18px; border-radius: 12px; font-weight: 700;">
                   Dashboard öffnen
                 </a>
               </div>`
             : ""
         }
       </div>
-      <p style="text-align: center; margin-top: 16px; font-size: 12px; color: #94a3b8;">
-        Du kannst dich jederzeit abmelden. Wir schicken nur relevante Updates.
+      <p style="text-align: center; margin-top: 16px; font-size: 12px; color: #475569;">
+        ${
+          unsubscribeUrl
+            ? `Du kannst dich jederzeit abmelden: <a href="${unsubscribeUrl}" style="color: #2563eb; text-decoration: none;">Abmelden</a>.`
+            : "Du kannst dich jederzeit abmelden. Wir schicken nur relevante Updates."
+        }
       </p>
     </div>
   `;
