@@ -13,17 +13,17 @@ export async function getSupabaseServerClient() {
   // cookies() muss in Next 15 awaited werden, da es dynamisch ist.
   const cookieStore = await cookies();
 
-  return createServerClient<Database>(supabaseUrl, supabaseAnonKey, {
+  return createServerClient(supabaseUrl!, supabaseAnonKey!, {
     cookies: {
       get(name: string) {
-        return cookieStore.get(name);
+        return cookieStore.get(name)?.value;
       },
-      set(name: string, value: string, options: CookieOptions) {
-        cookieStore.set({ name, value, ...options });
+      set(name: string, value: string, options?: CookieOptions) {
+        cookieStore.set({ name, value, ...(options || {}) });
       },
-      remove(name: string, options: CookieOptions) {
-        cookieStore.set({ name, value: "", ...options, maxAge: 0 });
+      remove(name: string, options?: CookieOptions) {
+        cookieStore.set({ name, value: "", ...(options || {}), maxAge: 0 });
       },
     },
-  });
+  }) as ReturnType<typeof createServerClient<Database>>;
 }
