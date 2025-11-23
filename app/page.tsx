@@ -2,15 +2,24 @@
 import EmailSignup from "@/components/EmailSignup";
 import MarketplaceTable from "@/components/MarketplaceTable";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import type { Database } from "@/lib/database.types";
 
-async function fetchWeapons() {
+type WeaponPreview = Pick<Database["public"]["Tables"]["weapons"]["Row"], "id" | "name" | "category">;
+
+async function fetchWeapons(): Promise<WeaponPreview[]> {
   const supabase = await getSupabaseServerClient();
-  const { data, error } = await supabase.from("weapons").select("id, name, category").order("name").limit(10);
-  if (error) {
+  const { data, error } = await supabase
+    .from("weapons")
+    .select("id, name, category")
+    .order("name")
+    .limit(10);
+
+  if (error || !data) {
     console.error("Supabase weapons fetch failed:", error);
     return [];
   }
-  return data ?? [];
+
+  return data as WeaponPreview[];
 }
 
 export default async function Home() {
