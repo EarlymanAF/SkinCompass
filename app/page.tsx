@@ -1,8 +1,21 @@
 // app/page.tsx
 import EmailSignup from "@/components/EmailSignup";
 import MarketplaceTable from "@/components/MarketplaceTable";
+import { getSupabaseServerClient } from "@/lib/supabase/server";
 
-export default function Home() {
+async function fetchWeapons() {
+  const supabase = getSupabaseServerClient();
+  const { data, error } = await supabase.from("weapons").select("id, name, category").order("name").limit(10);
+  if (error) {
+    console.error("Supabase weapons fetch failed:", error);
+    return [];
+  }
+  return data ?? [];
+}
+
+export default async function Home() {
+  const weapons = await fetchWeapons();
+
   return (
     <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero */}
@@ -138,6 +151,23 @@ export default function Home() {
           </div>
           <p className="mt-4 text-xs text-gray-500">Beispielhafte Werte zur Veranschaulichung des Inventarverlaufs.</p>
         </div>
+      </section>
+
+      {/* Supabase Test Read */}
+      <section className="mt-16 border border-gray-200 rounded-2xl p-6 bg-white">
+        <h2 className="text-xl font-semibold tracking-tight">Test: Weapons aus Supabase</h2>
+        {!weapons.length ? (
+          <p className="text-sm text-gray-600 mt-2">Keine Daten gefunden oder Fehler beim Laden.</p>
+        ) : (
+          <ul className="mt-4 grid sm:grid-cols-2 gap-3 text-sm text-gray-800">
+            {weapons.map((weapon) => (
+              <li key={weapon.id} className="rounded-lg border border-gray-100 px-3 py-2 bg-gray-50">
+                <span className="font-medium">{weapon.name}</span>{" "}
+                <span className="text-gray-500">({weapon.category})</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       {/* Demo-Tabelle */}
