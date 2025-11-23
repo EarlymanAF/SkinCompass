@@ -48,15 +48,29 @@ export async function GET(req: Request) {
 
   const welcomeHtml = welcomeEmailTemplate({
     vision:
-      "Wir bauen SkinCompass wie ein Trading-Depot für CS2-Skins: Live-Inventarwert, Gebühren-bereinigte Preise, Alerts und eine klare Vergleichs-Engine für jeden Marktplatz.",
-    screenshots: [
-      "https://placehold.co/600x320/0b1224/ffffff?text=Portfolio+Demo",
-      "https://placehold.co/600x320/0b1224/ffffff?text=Preisvergleich+Demo",
-    ],
+      "SkinCompass wird zur führenden Plattform für moderne, datenbasierte Skin-Investments. Die Anwendung verbindet präzise Informationen mit einer klaren, reduzierten Nutzererfahrung und macht digitale Gegenstände so übersichtlich wie reale Wertanlagen.",
+    screenshots: [],
     roadmap: [
-      { title: "Live-Preisalarme", eta: "Q2", description: "Alerts, wenn Skins deinen Zielpreis erreichen." },
-      { title: "Inventar-Historie", eta: "Q2", description: "Depot-ähnliche Darstellung mit Performance-Kurven." },
-      { title: "Multi-Marketplace Kauf", eta: "Q3", description: "Ein Checkout, mehrere Anbieter." },
+      {
+        title: "Transparente Übersicht",
+        description: "Alle relevanten Skinpreise und Marktverläufe strukturiert, verständlich und jederzeit abrufbar.",
+      },
+      {
+        title: "Reduziertes, hochwertiges Design",
+        description: "Klare Oberfläche, die Daten in den Mittelpunkt stellt, ohne Ablenkung.",
+      },
+      {
+        title: "Digitales Portfolio",
+        description: "Steam-Inventar wie ein Investment-Portfolio: Wertentwicklung, Rendite seit Kauf, Trends über Zeit.",
+      },
+      {
+        title: "Individuelle Watchlist",
+        description: "Favoriten beobachten, Preisbewegungen verfolgen und Chancen früh erkennen.",
+      },
+      {
+        title: "Entscheidungen auf Basis echter Daten",
+        description: "Strukturierte Informationen, keine Rätselraten – nachvollziehbare Entscheidungen.",
+      },
     ],
     productName: "SkinCompass",
   });
