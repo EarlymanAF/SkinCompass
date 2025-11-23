@@ -93,8 +93,8 @@ let cachedSkins: SteamSkinEntry[] | null = null;
 
 async function loadLocalSkinData(): Promise<unknown> {
   try {
-    const module = await import("@/data/skins.json");
-    return module.default;
+    const dataModule = await import("@/data/skins.json");
+    return dataModule.default;
   } catch (err) {
     console.error("⚠️ Failed to load local skins.json:", err);
     return null;
