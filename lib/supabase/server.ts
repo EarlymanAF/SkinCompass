@@ -5,8 +5,6 @@ import type { Database } from "@/lib/database.types";
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-type TypedDatabase = Database["public"];
-
 if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error("Supabase URL oder Anon Key fehlen (NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY).");
 }
@@ -15,7 +13,7 @@ export async function getSupabaseServerClient() {
   // cookies() muss in Next 15 awaited werden, da es dynamisch ist.
   const cookieStore = await cookies();
 
-  return createServerClient<TypedDatabase>(supabaseUrl, supabaseAnonKey, {
+  return createServerClient<Database>(supabaseUrl, supabaseAnonKey, {
     cookies: {
       get(name: string) {
         return cookieStore.get(name);
