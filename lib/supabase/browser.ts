@@ -8,11 +8,13 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error("Supabase URL oder Anon Key fehlen (NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY).");
 }
 
-let browserClient: ReturnType<typeof createClient<Database>> | null = null;
+type TypedDatabase = Omit<Database, "__InternalSupabase">;
+
+let browserClient: ReturnType<typeof createClient<TypedDatabase>> | null = null;
 
 export function getSupabaseBrowserClient() {
   if (!browserClient) {
-    browserClient = createClient<Database>(supabaseUrl, supabaseAnonKey);
+    browserClient = createClient<TypedDatabase>(supabaseUrl, supabaseAnonKey);
   }
   return browserClient;
 }
