@@ -1,0 +1,22 @@
+{
+  "name": "skinport-sync-worker",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-02-05",
+
+  "triggers": {
+    "crons": ["*/10 * * * *"]
+  },
+
+  "kv_namespaces": [
+    {
+      "binding": "SKINPORT_SYNC_KV",
+      "id": "440c8ceb5e674448a422d9a6afb9a6"
+    }
+  ],
+
+  "vars": {
+    "SUPABASE_FUNCTION_URL": "https://shlopxkcwpkdtegdoebf.functions.supabase.co/sync_skinport",
+    "BATCH_LIMIT": "200",
+    "MAX_BATCHES_PER_RUN": "15"
+  }
+}
