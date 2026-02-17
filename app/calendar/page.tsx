@@ -83,7 +83,7 @@ export default function CalendarPage() {
           Du willst ein Feature priorisieren? Teile uns kurz mit, was dir den höchsten Mehrwert bringt.
         </p>
         <Link
-          href="mailto:investor@skincompass.de?subject=Roadmap%20Feedback%20SkinCompass"
+          href="mailto:info@skincompass.de?subject=Roadmap%20Feedback%20SkinCompass"
           className="mt-4 inline-flex rounded-button bg-foreground px-4 py-2 text-sm font-medium text-white hover:opacity-90"
         >
           Feature-Wunsch senden

@@ -72,7 +72,7 @@ export default function Topbar() {
               >
                 <div className="px-4 py-3 border-b border-border">
                   <p className="text-sm font-semibold text-foreground">Mein Konto</p>
-                  <p className="text-xs text-muted">investor@skincompass</p>
+                  <p className="text-xs text-muted">info@skincompass.de</p>
                 </div>
                 <div className="py-2">
                   <Link

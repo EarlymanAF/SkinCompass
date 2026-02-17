@@ -23,7 +23,7 @@ export default function SettingsPage() {
           <div className="mt-4 space-y-3 text-sm">
             <div className="rounded-2xl border border-gray-100 bg-white/80 p-4">
               <p className="text-muted">E-Mail</p>
-              <p className="font-medium text-foreground">investor@skincompass.de</p>
+              <p className="font-medium text-foreground">newsletter@skincompass.de</p>
             </div>
             <div className="rounded-2xl border border-gray-100 bg-white/80 p-4">
               <p className="text-muted">Plan</p>
