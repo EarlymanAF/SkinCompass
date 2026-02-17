@@ -143,42 +143,6 @@ export default function CalendarPage() {
         </div>
       </section>
 
-      <section className="mt-20 grid gap-6 lg:grid-cols-3">
-        {LANE_ORDER.map((lane) => {
-          const entries = ROADMAP_ITEMS.filter((item) => item.lane === lane);
-          return (
-            <article
-              key={lane}
-              className={`rounded-[24px] border border-border bg-gradient-to-br ${LANE_STYLE[lane].cardGradient} p-5 shadow-card`}
-            >
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-foreground">{ROADMAP_LANE_LABELS[lane]} im Detail</h2>
-                <span className="rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-slate-700">
-                  {entries.length} Punkte
-                </span>
-              </div>
-
-              <div className="mt-4 space-y-4">
-                {entries.map((entry) => (
-                  <div key={entry.id} className="rounded-2xl border border-border bg-surface p-4">
-                    <div className="flex items-start justify-between gap-3">
-                      <h3 className="text-sm font-semibold text-foreground">{entry.title}</h3>
-                      <span
-                        className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-medium ${STATUS_STYLE[entry.status]}`}
-                      >
-                        {ROADMAP_STATUS_LABELS[entry.status]}
-                      </span>
-                    </div>
-                    <p className="mt-2 text-sm text-secondary">{entry.description}</p>
-                    <p className="mt-3 text-xs font-medium text-muted">Nutzen: {entry.userValue}</p>
-                  </div>
-                ))}
-              </div>
-            </article>
-          );
-        })}
-      </section>
-
       <section className="mt-6 rounded-[24px] border border-border bg-surface p-6 shadow-card">
         <h2 className="text-xl font-semibold text-foreground">Feedback</h2>
         <p className="mt-2 text-secondary">
