@@ -149,11 +149,6 @@ export default function Datenschutz() {
         </p>
       </section>
 
-      <hr />
-      <p className="text-sm text-gray-500">
-        Hinweis: Diese Vorlage stellt keine Rechtsberatung dar. Prüfe, ob die Darstellung deiner Dienste
-        (insbesondere zukünftige Marktplatz‑Integrationen, Newsletter‑Versanddienst, etc.) korrekt erfasst ist.
-      </p>
     </main>
   );
 }
