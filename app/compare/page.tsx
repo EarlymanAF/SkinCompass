@@ -163,8 +163,12 @@ export default function ComparePage() {
         throw new Error(`Fehler beim Laden der Preise: ${errText}`);
       }
 
-      const data = await res.json();
-      const receivedRows = Array.isArray(data?.rows) ? (data.rows as PriceRow[]) : [];
+      const data: unknown = await res.json();
+      const rowsRaw =
+        data && typeof data === "object"
+          ? (data as Record<string, unknown>).rows
+          : undefined;
+      const receivedRows = Array.isArray(rowsRaw) ? (rowsRaw as PriceRow[]) : [];
       const sorted = [...receivedRows].sort((a, b) => a.finalPrice - b.finalPrice);
       setRows(sorted);
     } catch (err) {

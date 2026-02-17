@@ -1,13 +1,18 @@
 import weapons from "@/data/weapons.json";
 import fs from "fs";
 
+type SteamSearchResponse = {
+  results?: unknown[];
+};
+
 async function verifyWeapon(weapon: string) {
   const url = `https://steamcommunity.com/market/search/render/?appid=730&norender=1&count=5&query=${encodeURIComponent(weapon)}`;
   try {
     const res = await fetch(url);
-    const data = await res.json();
-    const hasResults = (data?.results?.length || 0) > 0;
-    console.log(`${hasResults ? "✅" : "⚠️"} ${weapon} → ${hasResults ? data.results.length + " results" : "no skins found"}`);
+    const data: SteamSearchResponse = await res.json();
+    const resultCount = Array.isArray(data.results) ? data.results.length : 0;
+    const hasResults = resultCount > 0;
+    console.log(`${hasResults ? "✅" : "⚠️"} ${weapon} → ${hasResults ? resultCount + " results" : "no skins found"}`);
     return { weapon, ok: hasResults };
   } catch (err) {
     console.error(`❌ Error for ${weapon}:`, err);

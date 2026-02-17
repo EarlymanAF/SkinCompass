@@ -37,10 +37,11 @@ export default function SkinSearch({ onSelect }: Props) {
     // Load skins for this weapon via API
     fetch(`/api/steam/skins?weapon=${encodeURIComponent(weapon)}`)
       .then((res) => res.json())
-      .then((data: SkinItem[]) => {
+      .then((data: unknown) => {
+        const items = Array.isArray(data) ? (data as SkinItem[]) : [];
         // Filter out duplicate skin names (ignoring wear) and strip weapon prefix and wear suffix for display
         const unique: { [name: string]: SkinItem } = {};
-        for (const item of data) {
+        for (const item of items) {
           const baseName = stripWeaponPrefix(item.name, weapon);
           if (!(baseName in unique)) {
             unique[baseName] = { ...item, name: baseName };

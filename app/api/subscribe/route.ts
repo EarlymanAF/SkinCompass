@@ -7,8 +7,12 @@ import { confirmEmailTemplate } from "@/lib/emailTemplates";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
-  const body = await req.json().catch(() => null);
-  const email = typeof body?.email === "string" ? body.email.trim().toLowerCase() : "";
+  const body: unknown = await req.json().catch(() => null);
+  const emailRaw =
+    body && typeof body === "object"
+      ? (body as Record<string, unknown>).email
+      : undefined;
+  const email = typeof emailRaw === "string" ? emailRaw.trim().toLowerCase() : "";
 
   if (!EMAIL_RE.test(email)) {
     return NextResponse.json({ error: "Ungültige E-Mail-Adresse." }, { status: 400 });

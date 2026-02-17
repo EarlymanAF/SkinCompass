@@ -6,6 +6,15 @@ const STEAM_LISTING_BASE =
 const ECONOMY_IMAGE_BASE =
   "https://steamcommunity-a.akamaihd.net/economy/image"; // + /<ICON_URL>/<SIZE>
 
+type SteamAsset = {
+  icon_url?: string;
+  icon_url_large?: string;
+};
+
+type SteamRenderResponse = {
+  assets?: Record<string, Record<string, Record<string, SteamAsset>>>;
+};
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const name = searchParams.get("name"); // market_hash_name
@@ -40,7 +49,7 @@ export async function GET(req: Request) {
       );
     }
 
-    const data = await res.json();
+    const data: SteamRenderResponse = await res.json();
 
     // In `assets` steckt ein verschachteltes Objekt: appid -> contextid -> assetId -> { icon_url, ... }
     const assets = data?.assets?.["730"]?.["2"]; // 2 = CS:GO/CS2 Inventar-Kontext
@@ -68,7 +77,7 @@ export async function GET(req: Request) {
     // Variante B: 302 Redirect direkt aufs Bild (praktisch, um <img src="/api/..."> zu nutzen)
     return NextResponse.redirect(finalImage, { status: 302 });
   } catch (err) {
-  const message = err instanceof Error ? err.message : "Unbekannter Fehler";
-  return NextResponse.json({ error: message }, { status: 500 });
-}
+    const message = err instanceof Error ? err.message : "Unbekannter Fehler";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }
