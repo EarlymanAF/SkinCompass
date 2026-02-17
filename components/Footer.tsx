@@ -5,6 +5,9 @@ export default function Footer() {
   return (
     <footer className="mt-10 border-t border-border bg-surface">
       <div className="mx-auto max-w-7xl px-6 md:px-8 py-6 text-sm text-secondary">
+        <p className="mb-3 text-xs font-medium text-amber-700">
+          Hinweis: Diese Website befindet sich im Aufbau (Work in Progress / Beta).
+        </p>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-6">
             <Link href="/impressum" className="hover:text-gray-900">
