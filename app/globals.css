@@ -1,19 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafafa;
+  --surface: #ffffff;
+  --foreground: #020617;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --accent-from: #6366f1;
+  --accent-to: #8b5cf6;
+  --accent-gradient: linear-gradient(to-br, var(--accent-from), var(--accent-to));
+  --sidebar-gradient: linear-gradient(
+    180deg,
+    #f5f7fa 0%,
+    #e8f5e9 25%,
+    #e3f2fd 50%,
+    #fff8e1 75%,
+    #fce4ec 100%
+  );
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-secondary: var(--text-secondary);
+  --color-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-accent-from: var(--accent-from);
+  --color-accent-to: var(--accent-to);
 }
 
 body {
-  background: #ffffff;   /* statt var(--background) */
-  color: #171717;        /* statt var(--foreground) */
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Inter var", system-ui, -apple-system, sans-serif;
+}
+
+.sidebar-gradient {
+  background: var(--sidebar-gradient);
+}
+
+.accent-gradient {
+  background-image: var(--accent-gradient);
 }

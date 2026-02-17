@@ -1,206 +1,230 @@
-// app/page.tsx
-import EmailSignup from "@/components/EmailSignup";
-import MarketplaceTable from "@/components/MarketplaceTable";
-import { getSupabaseServerClient } from "@/lib/supabase/server";
-import type { Database } from "@/lib/database.types";
+"use client";
 
-type WeaponPreview = Pick<Database["public"]["Tables"]["weapons"]["Row"], "id" | "name" | "category">;
+import { useMemo, useState } from "react";
+import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { TrendingDown, TrendingUp } from "lucide-react";
 
-async function fetchWeapons(): Promise<WeaponPreview[]> {
-  const supabase = await getSupabaseServerClient();
-  const { data, error } = await supabase
-    .from("weapons")
-    .select("id, name, category")
-    .order("name")
-    .limit(10);
+type RangeKey = "Tag" | "Woche" | "Monat" | "Jahr";
 
-  if (error || !data) {
-    console.error("Supabase weapons fetch failed:", error);
-    return [];
-  }
+const CHART_DATA: Record<RangeKey, { time: string; value: number }[]> = {
+  Tag: [
+    { time: "00:00", value: 120 },
+    { time: "03:00", value: 128 },
+    { time: "06:00", value: 132 },
+    { time: "09:00", value: 142 },
+    { time: "12:00", value: 156 },
+    { time: "15:00", value: 168 },
+    { time: "18:00", value: 180 },
+    { time: "21:00", value: 192 },
+  ],
+  Woche: [
+    { time: "Mo", value: 148 },
+    { time: "Di", value: 152 },
+    { time: "Mi", value: 160 },
+    { time: "Do", value: 158 },
+    { time: "Fr", value: 168 },
+    { time: "Sa", value: 172 },
+    { time: "So", value: 178 },
+  ],
+  Monat: [
+    { time: "W1", value: 132 },
+    { time: "W2", value: 148 },
+    { time: "W3", value: 160 },
+    { time: "W4", value: 176 },
+  ],
+  Jahr: [
+    { time: "Jan", value: 110 },
+    { time: "Mär", value: 128 },
+    { time: "Mai", value: 145 },
+    { time: "Jul", value: 168 },
+    { time: "Sep", value: 182 },
+    { time: "Nov", value: 198 },
+  ],
+};
 
-  return data as WeaponPreview[];
-}
+const WEAR_BOUNDARIES = [0.07, 0.15, 0.38, 0.45];
 
-export default async function Home() {
-  const weapons = await fetchWeapons();
+const TOP_PERFORMER = [
+  { name: "AK-47 | Fire Serpent", wear: "Fabrikneu", change: "+34%", floatValue: 0.03 },
+  { name: "AWP | Dragon Lore", wear: "Minimale Gebrauchsspuren", change: "+28%", floatValue: 0.11 },
+  { name: "M4A4 | Howl", wear: "Fabrikneu", change: "+21%", floatValue: 0.05 },
+];
+
+const NEEDS_ATTENTION = [
+  { name: "Glock-18 | Fade", wear: "Fabrikneu", change: "-12%", floatValue: 0.06 },
+  { name: "Desert Eagle | Blaze", wear: "Fabrikneu", change: "-8%", floatValue: 0.07 },
+  { name: "AK-47 | Vulcan", wear: "Minimale Gebrauchsspuren", change: "-6%", floatValue: 0.14 },
+];
+
+function WearBar({ value }: { value: number }) {
+  const clamped = Math.min(Math.max(value, 0), 1);
+  const percent = clamped * 100;
 
   return (
-    <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Hero */}
-      <section className="mt-12">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1]">
-          CS2-Skins vergleichen – schnell, transparent & fair
-        </h1>
-
-        <p className="mt-6 text-lg md:text-xl text-gray-700/90 max-w-2xl">
-          Finde den besten Preis für deine Counter-Strike 2 Skins: inklusive
-          Marktplatz-Gebühren, Währungsumrechnungen und einem klaren
-          7-Tage-Preistrend. Vergleiche smarter – kaufe günstiger.
-        </p>
-
-        <div className="mt-8">
-          <EmailSignup />
-          <p className="mt-3 text-sm text-gray-500">
-            Trage dich für Early-Access ein. Kein Spam, nur Updates zum Launch.
-          </p>
-        </div>
-      </section>
-
-      {/* Feature Cards */}
-      <section className="mt-16 grid md:grid-cols-3 gap-6">
-        {[
-          [
-            "Echte Endpreise",
-            "Alle Gebühren & Wechselkurse direkt einberechnet – Schluss mit Überraschungen.",
-          ],
-          [
-            "Live-Vergleich",
-            "Mehrere Marktplätze nebeneinander. Schnell erkennen, wo du am fairsten kaufst.",
-          ],
-          [
-            "Preistrend (7 Tage)",
-            "Kleine Sparkline zeigt dir sofort, ob sich ein Kauf gerade lohnt.",
-          ],
-          [
-            "Alle Anbieter im Blick",
-            "Suche nach jedem Skin und sieh direkt, welcher Händler, Marketplace oder Bot-Broker den besten Deal hat.",
-          ],
-          [
-            "Inventar-Historie",
-            "Wie ein Depot: verfolge Wert, Performance und Umsätze deines Accounts über Zeit.",
-          ],
-          [
-            "Benachrichtigungen",
-            "Alarme für Preisziele oder wenn ein Skin auf einem Marktplatz unter deinen Wunschpreis fällt.",
-          ],
-        ].map(([title, desc]) => (
-          <div
-            key={title}
-            className="border border-gray-200 rounded-2xl p-6 hover:shadow-sm transition-shadow bg-white"
-          >
-            <h3 className="font-semibold text-lg">{title}</h3>
-            <p className="text-sm text-gray-600 mt-2 leading-relaxed">{desc}</p>
-          </div>
+    <div className="mt-2">
+      <div className="relative h-2 w-full overflow-hidden rounded-full bg-gray-100">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(99,102,241,0.15) 0%, rgba(99,102,241,0.35) 45%, rgba(99,102,241,0.75) 100%)",
+          }}
+        />
+        {WEAR_BOUNDARIES.map((boundary) => (
+          <span
+            key={boundary}
+            className="absolute top-0 bottom-0 w-px bg-white/70"
+            style={{ right: `${boundary * 100}%` }}
+          />
         ))}
+        <span
+          className="absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-white bg-gray-900 shadow"
+          style={{ right: `calc(${percent}% - 6px)` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+export default function DashboardPage() {
+  const [range, setRange] = useState<RangeKey>("Tag");
+  const data = useMemo(() => CHART_DATA[range], [range]);
+
+  return (
+    <main className="mx-auto max-w-7xl px-6 md:px-8 py-8 space-y-8">
+      <section>
+        <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+          Willkommen zurück, Investor 👋
+        </h2>
+        <p className="mt-2 text-secondary">Hier ist dein CS2 Inventar Portfolio heute</p>
       </section>
 
-      {/* Provider coverage */}
-      <section className="mt-16 border border-gray-200 rounded-2xl p-6 md:p-8 bg-white">
-        <div className="md:flex md:items-start md:justify-between gap-8">
-          <div className="md:max-w-xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.15em] text-indigo-600">Anbieter-Abdeckung</p>
-            <h2 className="text-2xl font-semibold tracking-tight mt-2">
-              Finde jeden Skin – vergleiche alle relevanten Marktplätze
-            </h2>
-            <p className="text-gray-600 mt-3 leading-relaxed">
-              Wir indexieren offene Listings und Statistiken von Steam Community Market,
-              Buff163, CSFloat, Skinport, Skinbaron, DMarket, ShadowPay und mehr. Für
-              jede Kombination aus Skin, Wear und Pattern erhältst du Endpreise inkl.
-              Gebühren sowie Verfügbarkeiten der beliebtesten Anbieter.
-            </p>
-            <ul className="mt-4 space-y-2 text-sm text-gray-700">
-              <li>• Gebühren- und Währungs-Normalisierung pro Marktplatz</li>
-              <li>• Filtersuche nach Seltenheit, Kollektion, Wear-Range und Stickern</li>
-              <li>• API-First: dieselben Daten für deine Tools oder Bots nutzbar</li>
-            </ul>
+      <section className="rounded-[24px] border border-border bg-surface p-6 md:p-8 shadow-card overflow-hidden">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <div className="flex items-baseline gap-3">
+              <span className="text-3xl md:text-4xl font-semibold">86.000€</span>
+              <span className="text-emerald-600 font-semibold">+34%</span>
+            </div>
+            <p className="mt-2 text-sm font-medium text-secondary">Steam Inventarwert</p>
           </div>
-          <div className="mt-6 md:mt-0 grid grid-cols-2 gap-3 min-w-[240px]">
-            {["Steam", "Buff163", "CSFloat", "Skinport", "Skinbaron", "DMarket"].map((provider) => (
-              <div
-                key={provider}
-                className="rounded-xl border border-gray-200 px-4 py-3 text-center text-sm font-medium text-gray-800 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
-              >
-                {provider}
-              </div>
-            ))}
+
+          <div className="flex items-center gap-2 rounded-[24px] bg-gray-100 p-1">
+            {(["Tag", "Woche", "Monat", "Jahr"] as RangeKey[]).map((key) => {
+              const active = key === range;
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setRange(key)}
+                  className={[
+                    "px-4 py-1.5 text-sm font-medium rounded-[24px] transition",
+                    active ? "bg-white shadow-card text-foreground" : "text-secondary hover:text-foreground",
+                  ].join(" ")}
+                >
+                  {key}
+                </button>
+              );
+            })}
           </div>
+        </div>
+
+        <div className="mt-6 h-64">
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
+              <defs>
+                <linearGradient id="valueGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#6366f1" stopOpacity={0.35} />
+                  <stop offset="100%" stopColor="#6366f1" stopOpacity={0.02} />
+                </linearGradient>
+              </defs>
+              <XAxis dataKey="time" tickLine={false} axisLine={false} tick={{ fill: "#94a3b8", fontSize: 12 }} />
+              <YAxis tickLine={false} axisLine={false} tick={{ fill: "#94a3b8", fontSize: 12 }} />
+              <Tooltip
+                contentStyle={{
+                  background: "#ffffff",
+                  borderRadius: "12px",
+                  border: "1px solid #e5e7eb",
+                  boxShadow: "0 12px 24px rgba(15, 23, 42, 0.08)",
+                }}
+                labelStyle={{ color: "#0f172a", fontWeight: 600 }}
+              />
+              <Area
+                type="monotone"
+                dataKey="value"
+                stroke="#6366f1"
+                strokeWidth={2.5}
+                fill="url(#valueGradient)"
+                dot={false}
+              />
+            </AreaChart>
+          </ResponsiveContainer>
         </div>
       </section>
 
-      {/* Inventory tracking section */}
-      <section className="mt-16 grid md:grid-cols-2 gap-8 items-center">
-        <div className="border border-gray-200 rounded-2xl p-6 bg-gradient-to-br from-white to-gray-50">
-          <p className="text-sm font-semibold uppercase tracking-[0.15em] text-indigo-600">Portfolio</p>
-          <h2 className="text-2xl font-semibold tracking-tight mt-2">Dein Inventar wie ein Trading-Depot</h2>
-          <p className="text-gray-600 mt-3 leading-relaxed">
-            Verbinde dein Steam-Profil oder importiere deine Skins. Wir berechnen
-            historische Werte, realisierte und unrealisierte Gewinne, Fees und den
-            Performance-Verlauf – ähnlich wie bei Trade Republic, nur für virtuelle Items.
-          </p>
-          <ul className="mt-4 space-y-2 text-sm text-gray-700">
-            <li>• Tagesgenaue Zeitreihe deines Inventarwerts</li>
-            <li>• Kauf-/Verkaufs-Historie mit Gebührenaufschlüsselung</li>
-            <li>• Alerts bei starken Preisausschlägen oder Unterbewertung</li>
-          </ul>
-        </div>
-        <div className="border border-gray-200 rounded-2xl p-6 bg-white shadow-sm">
+      <section className="grid gap-6 lg:grid-cols-2">
+        <div className="rounded-[24px] border border-border bg-surface p-6 shadow-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500">Gesamtwert (Demo)</p>
-              <p className="text-3xl font-semibold">€ 4.320,50</p>
+              <h3 className="text-lg font-semibold text-foreground">Top Performer</h3>
+              <p className="text-sm text-secondary">Beste Skins in diesem Zeitraum</p>
             </div>
-            <span className="text-sm font-semibold text-emerald-600">+8,4% vs. letzte 30 Tage</span>
+            <div className="h-10 w-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
+              <TrendingUp size={18} />
+            </div>
           </div>
-          <div className="mt-6 space-y-4 text-sm">
-            {[
-              { name: "AK-47 | Redline (FT)", change: "+3,2%" },
-              { name: "AWP | Asiimov (MW)", change: "+1,8%" },
-              { name: "Karambit | Doppler (FN)", change: "+2,6%" },
-              { name: "M4A1-S | Printstream (FT)", change: "+1,3%" },
-            ].map((item) => (
-              <div
-                key={item.name}
-                className="flex items-center justify-between border-b border-gray-100 pb-3 last:border-0 last:pb-0"
-              >
-                <span className="text-gray-800">{item.name}</span>
-                <span className="font-medium text-emerald-600">{item.change}</span>
+
+          <div className="mt-6 space-y-5">
+            {TOP_PERFORMER.map((item) => (
+              <div key={item.name} className="flex items-center gap-4">
+                <div className="h-10 w-10 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                  <TrendingUp size={16} />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between text-sm font-semibold text-foreground">
+                    <span>{item.name}</span>
+                    <span className="text-emerald-600">{item.change}</span>
+                  </div>
+                  <div className="text-xs text-muted">{item.wear}</div>
+                  <WearBar value={item.floatValue} />
+                  <div className="mt-1 text-xs text-muted">{item.floatValue.toFixed(2)} Float</div>
+                </div>
               </div>
             ))}
           </div>
-          <p className="mt-4 text-xs text-gray-500">Beispielhafte Werte zur Veranschaulichung des Inventarverlaufs.</p>
         </div>
-      </section>
 
-      {/* Supabase Test Read */}
-      <section className="mt-16 border border-gray-200 rounded-2xl p-6 bg-white">
-        <h2 className="text-xl font-semibold tracking-tight">Test: Weapons aus Supabase</h2>
-        {!weapons.length ? (
-          <p className="text-sm text-gray-600 mt-2">Keine Daten gefunden oder Fehler beim Laden.</p>
-        ) : (
-          <ul className="mt-4 grid sm:grid-cols-2 gap-3 text-sm text-gray-800">
-            {weapons.map((weapon) => (
-              <li key={weapon.id} className="rounded-lg border border-gray-100 px-3 py-2 bg-gray-50">
-                <span className="font-medium">{weapon.name}</span>{" "}
-                <span className="text-gray-500">({weapon.category})</span>
-              </li>
+        <div className="rounded-[24px] border border-border bg-surface p-6 shadow-card">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-lg font-semibold text-foreground">Benötigt Aufmerksamkeit</h3>
+              <p className="text-sm text-secondary">Skins mit negativer Performance</p>
+            </div>
+            <div className="h-10 w-10 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center">
+              <TrendingDown size={18} />
+            </div>
+          </div>
+
+          <div className="mt-6 space-y-5">
+            {NEEDS_ATTENTION.map((item) => (
+              <div key={item.name} className="flex items-center gap-4">
+                <div className="h-10 w-10 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center">
+                  <TrendingDown size={16} />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between text-sm font-semibold text-foreground">
+                    <span>{item.name}</span>
+                    <span className="text-rose-600">{item.change}</span>
+                  </div>
+                  <div className="text-xs text-muted">{item.wear}</div>
+                  <WearBar value={item.floatValue} />
+                  <div className="mt-1 text-xs text-muted">{item.floatValue.toFixed(2)} Float</div>
+                </div>
+              </div>
             ))}
-          </ul>
-        )}
-      </section>
-
-      {/* Demo-Tabelle */}
-      <MarketplaceTable />
-
-      {/* Subtle CTA band */}
-      <section className="mt-16 rounded-2xl border border-gray-200 p-6 md:p-8 bg-gradient-to-br from-white to-gray-50">
-        <div className="md:flex md:items-center md:justify-between gap-6">
-          <div className="max-w-2xl">
-            <h2 className="text-xl md:text-2xl font-semibold tracking-tight">
-              Sei von Anfang an dabei
-            </h2>
-            <p className="text-gray-600 mt-2">
-              Wir starten mit CS2-Skins und erweitern schrittweise. Erhalte
-              exklusive Updates zu neuen Marktplätzen, Funktionen &
-              Preisanalysen.
-            </p>
-          </div>
-          <div className="mt-4 md:mt-0">
-            <EmailSignup />
           </div>
         </div>
       </section>
-
     </main>
   );
 }

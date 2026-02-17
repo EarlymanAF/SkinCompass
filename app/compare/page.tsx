@@ -3,11 +3,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import EmailSignup from "@/components/EmailSignup";
+import { BASE_COMPARE_INSIGHTS } from "@/lib/content/compare-insights";
 import { WEARS, WEAR_LABEL_DE, type WearEN } from "@/data/wears";
 import weapons from "@/data/weapons.json";
 import { stripWeaponPrefix } from "@/lib/skin-utils";
 
-/* --- Datentyp für Preiszeilen --- */
 type PriceRow = {
   marketplace: string;
   fee: string;
@@ -24,21 +25,13 @@ type ApiSkin = {
   image?: string | null;
 };
 
-/* --- Hilfsfunktion: Market Hash Name für Steam-Icon --- */
 function toMarketHashName(weapon: string, skin: string, wear: WearEN) {
-  // Entferne doppelte Waffenbezeichnungen und vorhandene Wear-Tags
   const cleanSkin = skin
     .replace(/\s*\((Factory New|Minimal Wear|Field-Tested|Well-Worn|Battle-Scarred)\)/gi, "")
     .trim();
 
-  // Wenn Skin bereits Waffenname enthält, lass ihn unverändert
   const base = cleanSkin.startsWith(`${weapon} |`) ? cleanSkin : `${weapon} | ${cleanSkin}`;
-
-  // Füge Wear nur hinzu, wenn es nicht schon im Namen enthalten ist
-  if (base.toLowerCase().includes(wear.toLowerCase())) {
-    return base;
-  }
-
+  if (base.toLowerCase().includes(wear.toLowerCase())) return base;
   return `${base} (${wear})`;
 }
 
@@ -57,8 +50,8 @@ export default function ComparePage() {
   const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState<PriceRow[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [hasSearched, setHasSearched] = useState(false);
 
-  /* --- Wenn eine Waffe gewählt ist → Skins aus lokaler JSON-Datei laden --- */
   useEffect(() => {
     setSkin("");
     setWear("");
@@ -81,7 +74,6 @@ export default function ComparePage() {
         const data = await res.json();
 
         if (!Array.isArray(data)) {
-          console.error("Invalid skin data:", data);
           setSkinOptions([]);
           return;
         }
@@ -105,10 +97,7 @@ export default function ComparePage() {
             }
           }
 
-          if (!current.image && entry?.image) {
-            current.image = entry.image;
-          }
-
+          if (!current.image && entry?.image) current.image = entry.image;
           meta[display] = current;
         }
 
@@ -119,13 +108,12 @@ export default function ComparePage() {
         for (const name of orderedNames) {
           const entry = meta[name];
           mappedMeta[name] = {
-            wears: entry ? Array.from(entry.wears.values()) as WearEN[] : [],
+            wears: entry ? (Array.from(entry.wears.values()) as WearEN[]) : [],
             image: entry?.image ?? null,
           };
         }
         setSkinMeta(mappedMeta);
-      } catch (err) {
-        console.error("Fehler beim Laden der Skins:", err);
+      } catch {
         setSkinOptions([]);
         setSkinMeta({});
         setSelectedImage(null);
@@ -135,7 +123,6 @@ export default function ComparePage() {
     })();
   }, [weapon]);
 
-  /* --- Wenn Skin gewählt wurde → gültige Wears sofort aus Cache ableiten --- */
   useEffect(() => {
     setWear("");
     setRows(null);
@@ -159,16 +146,15 @@ export default function ComparePage() {
 
   const wearsForSelection = useMemo(() => (skin ? wearOptions : []), [skin, wearOptions]);
 
-  /* --- Preise holen --- */
   async function fetchPrices() {
     if (!weapon || !skin || !wear) return;
 
     try {
+      setHasSearched(true);
       setLoading(true);
       setError(null);
       setRows(null);
 
-      // Anfrage an die lokale API, die den Steam-Market abfragt
       const query = new URLSearchParams({ weapon, skin, wear }).toString();
       const res = await fetch(`/api/prices?${query}`, { cache: "no-store" });
 
@@ -178,14 +164,10 @@ export default function ComparePage() {
       }
 
       const data = await res.json();
-
-      if (!data.rows || data.rows.length === 0) {
-        throw new Error("Keine Preis-Daten gefunden.");
-      }
-
-      setRows(data.rows);
+      const receivedRows = Array.isArray(data?.rows) ? (data.rows as PriceRow[]) : [];
+      const sorted = [...receivedRows].sort((a, b) => a.finalPrice - b.finalPrice);
+      setRows(sorted);
     } catch (err) {
-      console.error("Fehler in fetchPrices:", err);
       const message = err instanceof Error ? err.message : "Unerwarteter Fehler beim Preisabruf.";
       setError(message);
     } finally {
@@ -194,107 +176,134 @@ export default function ComparePage() {
   }
 
   const canSearch = !!weapon && !!skin && !!wear;
+  const bestRow = rows && rows.length > 0 ? rows[0] : null;
+  const secondRow = rows && rows.length > 1 ? rows[1] : null;
+  const spread = bestRow && secondRow ? secondRow.finalPrice - bestRow.finalPrice : null;
+
+  const dynamicInsights = [
+    bestRow
+      ? `Bestes Angebot aktuell: ${bestRow.marketplace} mit ${bestRow.priceLabel ?? `${bestRow.finalPrice.toFixed(2)} ${bestRow.currency}`}.`
+      : "Noch kein Ergebnis vorhanden. Starte eine Suche für konkrete Marktwerte.",
+    spread !== null
+      ? `Preisabstand zwischen Platz 1 und 2: ${spread.toFixed(2)} ${bestRow?.currency ?? "EUR"}.`
+      : "Bei nur einem Angebot fehlt ein direkter Marktvergleich.",
+    rows && rows.length > 0
+      ? "Die Liste ist nach effektivem Endpreis sortiert, inklusive Gebühren und Umrechnung."
+      : "Vergleiche immer Endpreis statt Rohpreis, damit keine versteckten Kosten übersehen werden.",
+  ];
 
   return (
-    <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div className="flex items-center justify-between">
-        <Link href="/" className="text-sm text-gray-600 hover:text-gray-900">
-          ← Zur Startseite
-        </Link>
-      </div>
-
-      <h1 className="mt-6 text-3xl md:text-4xl font-bold tracking-tight">
-        Preisvergleich für CS2-Skins
-      </h1>
-      <p className="mt-2 text-gray-700 max-w-2xl">
-        Wähle <strong>Waffe</strong>, <strong>Skin</strong> und <strong>Zustand</strong>. Wir zeigen Endpreise inkl. Gebühren &amp; Währungsumrechnung.
-      </p>
-
-      {/* Auswahl */}
-      <section className="mt-8 grid gap-4 md:grid-cols-3">
-        {/* Waffe */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Waffe</label>
-          <select
-            className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2"
-            value={weapon}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setWeapon(e.target.value)}
-          >
-            <option value="">Bitte wählen…</option>
-            {weapons.map((w: string) => (
-              <option key={w} value={w}>
-                {w}
-              </option>
-            ))}
-          </select>
+    <main className="mx-auto max-w-7xl space-y-6 px-6 py-8 md:px-8">
+      <section className="rounded-[24px] border border-border bg-surface p-6 shadow-card md:p-8">
+        <div className="flex items-start justify-between gap-6">
+          <div>
+            <h1 className="text-2xl font-semibold text-foreground md:text-3xl">Vergleichsportal</h1>
+            <p className="mt-2 max-w-2xl text-secondary">
+              Vergleiche Skinpreise marktübergreifend auf Basis von Endpreis, Gebühren und 7d-Trend.
+            </p>
+          </div>
+          <Link href="/" className="rounded-button border border-border bg-white px-3 py-2 text-sm text-foreground hover:bg-gray-50">
+            Zur Übersicht
+          </Link>
         </div>
 
-        {/* Skin (von Steam) */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Skin</label>
-          <select
-            className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 disabled:bg-gray-50 disabled:text-gray-400"
-            value={skin}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSkin(e.target.value)}
-            disabled={!weapon || loadingSkins}
-          >
-            <option value="">
-              {!weapon ? "Zuerst Waffe wählen" : loadingSkins ? "Lade Skins…" : "Bitte wählen…"}
-            </option>
-            {skinOptions.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div>
+            <label className="block text-sm font-medium text-foreground">Waffe</label>
+            <select
+              className="mt-1.5 w-full rounded-xl border border-border bg-white px-3 py-2.5 text-sm"
+              value={weapon}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setWeapon(e.target.value)}
+            >
+              <option value="">Bitte wählen...</option>
+              {weapons.map((w: string) => (
+                <option key={w} value={w}>
+                  {w}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-foreground">Skin</label>
+            <select
+              className="mt-1.5 w-full rounded-xl border border-border bg-white px-3 py-2.5 text-sm disabled:bg-gray-50 disabled:text-gray-400"
+              value={skin}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSkin(e.target.value)}
+              disabled={!weapon || loadingSkins}
+            >
+              <option value="">{!weapon ? "Zuerst Waffe wählen" : loadingSkins ? "Lade Skins..." : "Bitte wählen..."}</option>
+              {skinOptions.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-foreground">Wear</label>
+            <select
+              className="mt-1.5 w-full rounded-xl border border-border bg-white px-3 py-2.5 text-sm disabled:bg-gray-50 disabled:text-gray-400"
+              value={wear}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setWear(e.target.value as WearEN)}
+              disabled={!skin}
+            >
+              <option value="">{!skin ? "Zuerst Skin wählen" : "Bitte wählen..."}</option>
+              {wearsForSelection.map((w) => (
+                <option key={w} value={w}>
+                  {WEAR_LABEL_DE[w]}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
-        {/* Zustand (DE-Labels, intern EN) */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Zustand</label>
-          <select
-            className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 disabled:bg-gray-50 disabled:text-gray-400"
-            value={wear}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setWear(e.target.value as WearEN)}
-            disabled={!skin}
-          >
-            <option value="">
-              {!skin ? "Zuerst Skin wählen" : "Bitte wählen…"}
-            </option>
-            {wearsForSelection.map((w) => (
-              <option key={w} value={w}>
-                {WEAR_LABEL_DE[w]}
-              </option>
-            ))}
-          </select>
-        </div>
-      </section>
-
-      {/* Button */}
-      <div className="mt-6">
         <button
           onClick={fetchPrices}
           disabled={!canSearch || loading}
-          className="rounded-lg bg-black text-white px-4 py-2 disabled:opacity-50"
+          className="mt-6 inline-flex rounded-button bg-foreground px-4 py-2.5 text-sm font-medium text-white disabled:opacity-60"
         >
-          {loading ? "Laden…" : "Preise vergleichen"}
+          {loading ? "Preise werden geladen..." : "Preise vergleichen"}
         </button>
-      </div>
+      </section>
 
-      {/* Fehlerhinweis */}
-      {error && (
-        <div className="mt-4 rounded-lg border border-rose-300 bg-rose-50 px-4 py-3 text-rose-800">
-          {error}
+      <section className="rounded-[24px] border border-border bg-surface p-6 shadow-card md:p-8">
+        <div className="flex items-center justify-between gap-4">
+          <h2 className="text-xl font-semibold text-foreground">Ergebnis</h2>
+          {rows && rows.length > 0 && (
+            <span className="rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-700">
+              {rows.length} Marktplätze gefunden
+            </span>
+          )}
         </div>
-      )}
 
-      {/* Ergebnisse */}
-      <section className="mt-8">
-        {rows && rows.length > 0 && (
-          <div className="space-y-6">
-            {/* Vorschau mit Bild */}
-            <div className="rounded-2xl border border-gray-200 bg-white p-4 flex items-center gap-4">
-              <div className="w-36 h-24 bg-gray-50 rounded-lg overflow-hidden grid place-items-center">
+        {!hasSearched && (
+          <p className="mt-4 rounded-[24px] border border-dashed border-border bg-white/60 px-4 py-4 text-sm text-secondary">
+            Wähle eine Kombination aus Waffe, Skin und Wear, um den Vergleich zu starten.
+          </p>
+        )}
+
+        {loading && (
+          <p className="mt-4 rounded-[24px] border border-border bg-white px-4 py-4 text-sm text-secondary">
+            Marktdaten werden geladen und nach Endpreis sortiert...
+          </p>
+        )}
+
+        {error && (
+          <p className="mt-4 rounded-[24px] border border-rose-300 bg-rose-50 px-4 py-4 text-sm text-rose-800">{error}</p>
+        )}
+
+        {!loading && !error && rows && rows.length === 0 && (
+          <p className="mt-4 rounded-[24px] border border-border bg-white px-4 py-4 text-sm text-secondary">
+            Für diese Kombination wurden aktuell keine Preise gefunden.
+          </p>
+        )}
+
+        {!loading && !error && rows && rows.length > 0 && (
+          <div className="mt-5 space-y-4">
+            <div className="flex items-center gap-4 rounded-[24px] border border-border bg-white p-4">
+              <div className="grid h-24 w-40 place-items-center overflow-hidden rounded-[24px] bg-gray-50">
                 {skin && wear && (
                   <Image
                     src={
@@ -307,51 +316,61 @@ export default function ComparePage() {
                     alt={`${weapon} | ${skin} (${wear})`}
                     width={256}
                     height={256}
-                    className="object-contain w-full h-full"
+                    className="h-full w-full object-contain"
                     unoptimized={!selectedImage || !selectedImage.startsWith("/")}
                   />
                 )}
               </div>
               <div>
-                <div className="font-semibold">{weapon}</div>
-                <div className="text-sm text-gray-600">
+                <p className="text-sm text-muted">Auswahl</p>
+                <p className="font-semibold text-foreground">{weapon}</p>
+                <p className="text-sm text-secondary">
                   {skin} • {wear ? WEAR_LABEL_DE[wear as WearEN] : ""}
-                </div>
+                </p>
               </div>
             </div>
 
-            {/* Tabelle */}
-            <div className="overflow-x-auto border border-gray-200 rounded-2xl bg-white">
+            <div className="overflow-x-auto rounded-[24px] border border-border bg-white">
               <table className="min-w-full text-sm">
-                <thead className="bg-gray-50 text-gray-600">
+                <thead className="sticky top-0 z-10 bg-gray-50 text-left text-gray-600">
                   <tr>
-                    <th className="px-6 py-3 text-left">Marktplatz</th>
-                    <th className="px-6 py-3 text-left">Gebühr</th>
-                    <th className="px-6 py-3 text-left">Preis</th>
-                    <th className="px-6 py-3 text-left">Trend (7d)</th>
-                    <th className="px-6 py-3 text-left">Aktion</th>
+                    <th scope="col" className="px-5 py-3 font-medium">Marktplatz</th>
+                    <th scope="col" className="px-5 py-3 font-medium">Gebühr</th>
+                    <th scope="col" className="px-5 py-3 font-medium">Endpreis</th>
+                    <th scope="col" className="px-5 py-3 font-medium">Trend (7d)</th>
+                    <th scope="col" className="px-5 py-3 font-medium">Aktion</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
-                  {rows.map((r) => {
-                    const up = r.trend7d.startsWith("+");
+                  {rows.map((row, index) => {
+                    const up = row.trend7d.startsWith("+");
                     return (
-                      <tr key={r.marketplace} className="hover:bg-gray-50">
-                        <td className="px-6 py-3">{r.marketplace}</td>
-                        <td className="px-6 py-3">{r.fee}</td>
-                        <td className="px-6 py-3 font-medium">
-                          {r.priceLabel ? r.priceLabel : `${r.finalPrice.toFixed(2)} ${r.currency}`}
+                      <tr key={row.marketplace} className="hover:bg-gray-50/80">
+                        <td className="px-5 py-3 text-foreground">
+                          <div className="flex items-center gap-2">
+                            <span>{row.marketplace}</span>
+                            {index === 0 && (
+                              <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-medium text-emerald-700">
+                                Bestpreis
+                              </span>
+                            )}
+                          </div>
                         </td>
-                        <td className={`px-6 py-3 font-medium ${up ? "text-emerald-600" : "text-rose-600"}`}>
-                          {r.trend7d}
+                        <td className="px-5 py-3 text-secondary">{row.fee}</td>
+                        <td className="px-5 py-3 font-semibold text-foreground">
+                          {row.priceLabel ? row.priceLabel : `${row.finalPrice.toFixed(2)} ${row.currency}`}
                         </td>
-                        <td className="px-6 py-3">
+                        <td className={`px-5 py-3 font-medium ${up ? "text-emerald-600" : "text-rose-600"}`}>
+                          {row.trend7d}
+                        </td>
+                        <td className="px-5 py-3">
                           <a
-                            href={r.url}
+                            href={row.url}
                             target="_blank"
-                            className="rounded-md border border-gray-300 px-3 py-1.5 text-gray-700 hover:bg-gray-100"
+                            rel="noreferrer"
+                            className="inline-flex rounded-button border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-gray-50"
                           >
-                            Öffnen
+                            Zum Angebot
                           </a>
                         </td>
                       </tr>
@@ -362,11 +381,34 @@ export default function ComparePage() {
             </div>
           </div>
         )}
+      </section>
 
-        {/* Leerer Zustand nach Suche */}
-        {rows && rows.length === 0 && !error && (
-          <div className="mt-4 text-sm text-gray-600">Keine Ergebnisse gefunden.</div>
-        )}
+      <section className="grid gap-6 lg:grid-cols-2">
+        <article className="rounded-[24px] border border-border bg-surface p-6 shadow-card">
+          <h2 className="text-xl font-semibold text-foreground">Entscheidungs-Insights</h2>
+          <div className="mt-4 space-y-3">
+            {dynamicInsights.map((insight) => (
+              <p key={insight} className="rounded-[24px] border border-border bg-white/80 p-3 text-sm text-secondary">
+                {insight}
+              </p>
+            ))}
+            {BASE_COMPARE_INSIGHTS.map((insight) => (
+              <p key={insight.id} className="rounded-[24px] border border-border bg-white/80 p-3 text-sm text-secondary">
+                <span className="font-medium text-foreground">{insight.title}:</span> {insight.description}
+              </p>
+            ))}
+          </div>
+        </article>
+
+        <article className="rounded-[24px] border border-border bg-surface p-6 shadow-card">
+          <h2 className="text-xl font-semibold text-foreground">Preisalarm vormerken</h2>
+          <p className="mt-2 text-sm text-secondary">
+            Hinterlege deine E-Mail und wir informieren dich fruehzeitig ueber neue Features und Alert-Updates.
+          </p>
+          <div className="mt-4">
+            <EmailSignup />
+          </div>
+        </article>
       </section>
     </main>
   );
