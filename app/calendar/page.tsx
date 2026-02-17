@@ -22,7 +22,7 @@ const LANE_BACKGROUND: Record<RoadmapLane, string> = {
 };
 
 export default function CalendarPage() {
-  const updatedAt = "09.02.2026";
+  const updatedAt = "17.02.2026";
 
   return (
     <main className="mx-auto max-w-7xl px-6 md:px-8 py-8">
@@ -31,6 +31,9 @@ export default function CalendarPage() {
         <p className="mt-2 max-w-3xl text-secondary">
           Transparente Prioritäten für die nächsten Iterationen. Die Reihenfolge zeigt Fokus, keine
           festen Liefertermine.
+        </p>
+        <p className="mt-2 text-sm font-medium text-foreground">
+          Aktueller Fokus: Shop-Anbindungen im Vergleichsportal, Steam-Anmeldung und Investment-Tracking.
         </p>
         <div className="mt-4 flex flex-col gap-2 text-sm text-muted md:flex-row md:items-center md:justify-between">
           <span>Zuletzt aktualisiert: {updatedAt}</span>
