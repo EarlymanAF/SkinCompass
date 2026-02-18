@@ -19,6 +19,20 @@ type SyncResponse = {
   skipped_samples?: Array<{ name: string; version: string | null }>;
 };
 
+type BatchSummary = {
+  started_offset: number;
+  limit: number;
+  maxBatches: number;
+  batches_run: number;
+  total_upserted: number;
+  total_skipped: number;
+  last_next_offset: number | null;
+  total_items: number | null;
+  errors: string[];
+  finished: boolean;
+  final_offset: number;
+};
+
 const KV_OFFSET_KEY = "skinport_sync_offset";
 const KV_LAST_RESULT_KEY = "skinport_sync_last_result";
 
@@ -27,7 +41,19 @@ function toInt(v: string | undefined, fallback: number) {
   return Number.isFinite(n) && n > 0 ? n : fallback;
 }
 
-async function callSupabaseSync(env: Env, limit: number, offset: number) {
+function isObjectRecord(x: unknown): x is Record<string, unknown> {
+  return typeof x === "object" && x !== null;
+}
+
+function asSyncResponse(x: unknown): SyncResponse | null {
+  if (!isObjectRecord(x)) return null;
+  const stage = typeof x.stage === "string" ? x.stage : null;
+  if (!stage) return null;
+  // wir akzeptieren den Rest optional
+  return x as SyncResponse;
+}
+
+async function callSupabaseSync(env: Env, limit: number, offset: number): Promise<SyncResponse> {
   const url = new URL(env.SUPABASE_FUNCTION_URL);
   url.searchParams.set("limit", String(limit));
   url.searchParams.set("offset", String(offset));
@@ -43,31 +69,32 @@ async function callSupabaseSync(env: Env, limit: number, offset: number) {
   });
 
   const text = await res.text();
-  let json: SyncResponse | null = null;
+
+  let parsed: unknown = null;
   try {
-    json = JSON.parse(text);
+    parsed = JSON.parse(text);
   } catch {
-    // ignore
+    parsed = null;
   }
 
   if (!res.ok) {
-    throw new Error(
-      `Supabase sync call failed: status=${res.status} body=${text.slice(0, 800)}`
-    );
+    const body = parsed ?? text.slice(0, 800);
+    throw new Error(`Supabase sync call failed: status=${res.status} body=${JSON.stringify(body)}`);
   }
 
+  const json = asSyncResponse(parsed);
   if (!json) {
-    throw new Error(`Supabase sync returned non-JSON: ${text.slice(0, 800)}`);
+    throw new Error(`Supabase sync returned unexpected JSON: ${text.slice(0, 800)}`);
   }
 
   return json;
 }
 
 async function sleep(ms: number) {
-  await new Promise((r) => setTimeout(r, ms));
+  await new Promise<void>((r) => setTimeout(r, ms));
 }
 
-async function runBatches(env: Env) {
+async function runBatches(env: Env): Promise<BatchSummary> {
   const limit = toInt(env.BATCH_LIMIT, 200);
   const maxBatches = toInt(env.MAX_BATCHES_PER_RUN, 15);
 
@@ -75,7 +102,7 @@ async function runBatches(env: Env) {
   let offset = stored ? Number.parseInt(stored, 10) : 0;
   if (!Number.isFinite(offset) || offset < 0) offset = 0;
 
-  const summary = {
+  const summaryBase = {
     started_offset: offset,
     limit,
     maxBatches,
@@ -92,24 +119,24 @@ async function runBatches(env: Env) {
 
     try {
       data = await callSupabaseSync(env, limit, offset);
-    } catch (e: any) {
-      summary.errors.push(String(e?.message ?? e));
+    } catch (e) {
+      summaryBase.errors.push(e instanceof Error ? e.message : String(e));
       await sleep(800);
       try {
         data = await callSupabaseSync(env, limit, offset);
-      } catch (e2: any) {
-        summary.errors.push(String(e2?.message ?? e2));
-        break;
+      } catch (e2) {
+        summaryBase.errors.push(e2 instanceof Error ? e2.message : String(e2));
+        return { ...summaryBase, finished: false, final_offset: offset };
       }
     }
 
-    summary.batches_run++;
-    summary.total_upserted += data.upserted_rows ?? 0;
-    summary.total_skipped += data.skipped_no_variant ?? 0;
-    summary.total_items = data.total_items ?? summary.total_items;
+    summaryBase.batches_run++;
+    summaryBase.total_upserted += data.upserted_rows ?? 0;
+    summaryBase.total_skipped += data.skipped_no_variant ?? 0;
+    summaryBase.total_items = data.total_items ?? summaryBase.total_items;
 
     const next = data.next_offset ?? null;
-    summary.last_next_offset = next;
+    summaryBase.last_next_offset = next;
 
     await env.SKINPORT_SYNC_KV.put(KV_LAST_RESULT_KEY, JSON.stringify(data), {
       expirationTtl: 60 * 60 * 24 * 7,
@@ -117,19 +144,20 @@ async function runBatches(env: Env) {
 
     if (next === null) {
       await env.SKINPORT_SYNC_KV.put(KV_OFFSET_KEY, "0");
-      return { ...summary, finished: true, final_offset: 0 };
+      return { ...summaryBase, finished: true, final_offset: 0 };
     }
 
     offset = next;
     await env.SKINPORT_SYNC_KV.put(KV_OFFSET_KEY, String(offset));
+
     await sleep(250);
   }
 
-  return { ...summary, finished: false, final_offset: offset };
+  return { ...summaryBase, finished: false, final_offset: offset };
 }
 
-export default {
-  async fetch(req: Request, env: Env): Promise<Response> {
+const worker: ExportedHandler<Env> = {
+  async fetch(req, env) {
     const url = new URL(req.url);
 
     if (url.pathname === "/status") {
@@ -158,7 +186,9 @@ export default {
     return new Response("Not Found", { status: 404 });
   },
 
-  async scheduled(_event: ScheduledEvent, env: Env, ctx: ExecutionContext) {
+  async scheduled(_event, env, ctx) {
     ctx.waitUntil(runBatches(env));
   },
 };
+
+export default worker;
