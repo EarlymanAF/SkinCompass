@@ -3,6 +3,8 @@ import {
   extractWeaponFromMarketName,
   weaponNameFromMarketName,
 } from "@/lib/skin-utils";
+import { WEARS, type WearEN } from "@/data/wears";
+import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 type SteamSkinEntry = {
   weapon?: string;
@@ -89,7 +91,7 @@ function normalizeSkins(dataSource: unknown): SteamSkinEntry[] {
   return [];
 }
 
-let cachedSkins: SteamSkinEntry[] | null = null;
+const skinCache = new Map<string, SteamSkinEntry[]>();
 
 async function loadLocalSkinData(): Promise<unknown> {
   try {
@@ -149,19 +151,65 @@ function sanitizeEntries(entries: SteamSkinEntry[]): SteamSkinEntry[] {
   return Array.from(deduped.values());
 }
 
-async function loadSkins(): Promise<SteamSkinEntry[]> {
-  if (cachedSkins) return cachedSkins;
+async function loadSupabaseSkinData(weapon: string): Promise<SteamSkinEntry[]> {
+  try {
+    const supabase = await getSupabaseServerClient();
+    const { data, error } = await supabase
+      .from("skins")
+      .select(`
+        name,
+        image_url,
+        weapons!inner(name),
+        skin_variants(wear_tier)
+      `)
+      .eq("weapons.name", weapon);
 
-  const localData = await loadLocalSkinData();
-  let normalized = sanitizeEntries(normalizeSkins(localData));
+    if (error || !data || data.length === 0) return [];
 
-  if (normalized.length === 0) {
-    const remoteData = await fetchRemoteSkinData();
-    normalized = sanitizeEntries(normalizeSkins(remoteData));
+    return data.map((row) => {
+      const weaponName = Array.isArray(row.weapons)
+        ? (row.weapons[0] as { name: string } | undefined)?.name
+        : (row.weapons as { name: string } | null)?.name;
+      const wears = (Array.isArray(row.skin_variants) ? row.skin_variants : [])
+        .map((sv: { wear_tier: string }) => sv.wear_tier)
+        .filter((w): w is WearEN => (WEARS as ReadonlyArray<string>).includes(w));
+      return {
+        weapon: weaponName ?? "",
+        name: row.name,
+        wears: wears.length > 0 ? wears : undefined,
+        image: row.image_url ?? null,
+      };
+    });
+  } catch {
+    return [];
+  }
+}
+
+async function loadSkins(weapon: string | null): Promise<SteamSkinEntry[]> {
+  const cacheKey = weapon ?? "__all__";
+  if (skinCache.has(cacheKey)) return skinCache.get(cacheKey)!;
+
+  let entries: SteamSkinEntry[] = [];
+
+  // 1. Supabase (nur wenn eine Waffe angegeben ist)
+  if (weapon) {
+    entries = await loadSupabaseSkinData(weapon);
   }
 
-  cachedSkins = normalized;
-  return cachedSkins;
+  // 2. Fallback: lokale skins.json
+  if (entries.length === 0) {
+    const localData = await loadLocalSkinData();
+    entries = sanitizeEntries(normalizeSkins(localData));
+  }
+
+  // 3. Fallback: Remote skins.json
+  if (entries.length === 0) {
+    const remoteData = await fetchRemoteSkinData();
+    entries = sanitizeEntries(normalizeSkins(remoteData));
+  }
+
+  skinCache.set(cacheKey, entries);
+  return entries;
 }
 
 export async function GET(req: Request) {
@@ -170,7 +218,7 @@ export async function GET(req: Request) {
     const weapon = searchParams.get("weapon");
     const skinFilter = searchParams.get("skin");
 
-    const skins = await loadSkins();
+    const skins = await loadSkins(weapon);
 
     if (weapon && skinFilter) {
       const weaponLower = weapon.toLowerCase();
@@ -198,8 +246,13 @@ export async function GET(req: Request) {
       });
     }
 
+    // Wenn Supabase Ergebnisse lieferte, sind diese bereits nach weapon gefiltert.
+    // Wenn der Fallback (skins.json) verwendet wurde, hier noch filtern.
     const candidates = buildCandidateSet(weapon);
-    const filtered = skins.filter((s) => matchesWeaponEntry(s, candidates, weapon));
+    const allFromSupabase = skins.every((s) => s.weapon === weapon || s.weapon === "");
+    const filtered = allFromSupabase
+      ? skins
+      : skins.filter((s) => matchesWeaponEntry(s, candidates, weapon));
 
     console.log(`✅ Found ${filtered.length} skins matching weapon "${weapon}"`);
 
@@ -209,10 +262,10 @@ export async function GET(req: Request) {
       },
     });
   } catch (err: unknown) {
-    console.error("❌ Error loading skins.json:", err);
+    console.error("❌ Error loading skins:", err);
     const message = err instanceof Error ? err.message : "Unknown error";
     return Response.json(
-      { error: "Failed to load skins.json", details: message },
+      { error: "Failed to load skins", details: message },
       { status: 500 }
     );
   }

@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import { WEARS, WEAR_LABEL_DE, type WearEN } from "@/data/wears";
 import { toMarketHashName } from "@/lib/market";
+import { getSupabaseServerClient } from "@/lib/supabase/server";
 export const runtime = "nodejs";
 
 type VendorSteamResponse = {
@@ -89,9 +90,56 @@ export async function GET(req: Request) {
       });
     }
 
-    // Platzhalter für weitere Märkte:
-    // rows.push({ marketplace: "Buff163", fee: "≈2.5%", currency: "EUR", finalPrice: 0, trend7d: "—", url: "#" });
-    // rows.push({ marketplace: "CSFloat", fee: "≈5%",   currency: "EUR", finalPrice: 0, trend7d: "—", url: "#" });
+    // 4) Skinport-Preis aus Supabase (price_snapshots)
+    try {
+      const supabase = await getSupabaseServerClient();
+      const { data: snap } = await supabase
+        .from("price_snapshots")
+        .select(`
+          price,
+          currency,
+          timestamp,
+          marketplace_items!inner(
+            remote_name,
+            active,
+            marketplaces!inner(
+              name,
+              fees,
+              base_url
+            )
+          )
+        `)
+        .eq("marketplace_items.active", true)
+        .eq("marketplace_items.marketplaces.name", "Skinport")
+        .eq("marketplace_items.remote_name", hash)
+        .order("timestamp", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (snap?.price != null) {
+        const mi = Array.isArray(snap.marketplace_items)
+          ? snap.marketplace_items[0]
+          : snap.marketplace_items;
+        const mp = mi
+          ? Array.isArray((mi as { marketplaces: unknown }).marketplaces)
+            ? ((mi as { marketplaces: unknown[] }).marketplaces[0] as { fees: number | null; base_url: string | null } | null)
+            : ((mi as { marketplaces: unknown }).marketplaces as { fees: number | null; base_url: string | null } | null)
+          : null;
+        const fees = mp?.fees ?? 0.12;
+        const baseUrl = mp?.base_url ?? "https://skinport.com";
+        rows.push({
+          marketplace: "Skinport",
+          fee: `≈${Math.round(fees * 100)}%`,
+          currency: snap.currency,
+          finalPrice: snap.price,
+          trend7d: "—",
+          priceLabel: null,
+          url: `${baseUrl}/market?search=${encodeURIComponent(hash)}`,
+        });
+      }
+    } catch {
+      // swallow – Skinport-Preis ist optional
+    }
 
     if (rows.length === 0) {
       return NextResponse.json(
