@@ -3,7 +3,7 @@ import {
   extractWeaponFromMarketName,
   weaponNameFromMarketName,
 } from "@/lib/skin-utils";
-import { getSupabaseServerClient } from "@/lib/supabase/server";
+import { getSupabaseApiClient } from "@/lib/supabase/api";
 
 type SteamSkinEntry = {
   weapon?: string;
@@ -92,8 +92,7 @@ function normalizeSkins(dataSource: unknown): SteamSkinEntry[] {
 
 async function loadSkinsFromSupabase(weapon: string): Promise<SteamSkinEntry[]> {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = (await getSupabaseServerClient()) as any;
+    const supabase = getSupabaseApiClient();
 
     const weaponRes = await supabase.from("weapons").select("id").eq("name", weapon).maybeSingle();
     const weaponRow = weaponRes.data as { id: number } | null;
