@@ -65,7 +65,7 @@ async function fetchSupabasePrices(
     .from("skin_variants")
     .select("id")
     .eq("skin_id", skinRow.id)
-    .eq("wear_tier", wear)
+    .eq("wear_name", wear)
     .maybeSingle();
   const variantRow = variantRes.data as DbVariant | null;
   if (!variantRow) return [];
@@ -97,11 +97,8 @@ async function fetchSupabasePrices(
     const fees = mp?.fees != null ? `≈${mp.fees}%` : "—";
     const priceCurrency = snap.currency || mp?.currency || currency;
 
-    // URL: base_url + remote_item_id (falls vorhanden)
-    let url = mp?.base_url ?? "#";
-    if (mp?.base_url && item.remote_item_id) {
-      url = `${mp.base_url.replace(/\/$/, "")}/${item.remote_item_id}`;
-    }
+    // remote_item_id ist bereits die volle URL zum Angebot
+    const url = item.remote_item_id ?? mp?.base_url ?? "#";
 
     rows.push({
       marketplace: mp?.name ?? "Marktplatz",

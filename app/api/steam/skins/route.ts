@@ -100,14 +100,14 @@ async function loadSkinsFromSupabase(weapon: string): Promise<SteamSkinEntry[]> 
 
     const skinsRes = await supabase
       .from("skins")
-      .select("id, name, image_url, skin_variants(wear_tier)")
+      .select("id, name, image_url, skin_variants(wear_name)")
       .eq("weapon_id", weaponRow.id)
       .order("name");
     const skins = (skinsRes.data ?? []) as {
       id: number;
       name: string;
       image_url: string | null;
-      skin_variants: { wear_tier: string }[];
+      skin_variants: { wear_name: string }[];
     }[];
 
     if (skins.length === 0) return [];
@@ -117,7 +117,7 @@ async function loadSkinsFromSupabase(weapon: string): Promise<SteamSkinEntry[]> 
       weapon,
       name: s.name,
       image: s.image_url ?? null,
-      wears: s.skin_variants?.map((v) => v.wear_tier) ?? [],
+      wears: s.skin_variants?.map((v) => v.wear_name) ?? [],
     }));
   } catch {
     return [];
