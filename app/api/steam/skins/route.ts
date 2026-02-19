@@ -3,6 +3,7 @@ import {
   extractWeaponFromMarketName,
   weaponNameFromMarketName,
 } from "@/lib/skin-utils";
+import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 type SteamSkinEntry = {
   weapon?: string;
@@ -89,6 +90,38 @@ function normalizeSkins(dataSource: unknown): SteamSkinEntry[] {
   return [];
 }
 
+async function loadSkinsFromSupabase(weapon: string): Promise<SteamSkinEntry[]> {
+  try {
+    const supabase = await getSupabaseServerClient();
+
+    const { data: weaponRow } = await supabase
+      .from("weapons")
+      .select("id")
+      .eq("name", weapon)
+      .maybeSingle();
+    if (!weaponRow) return [];
+
+    const { data: skins } = await supabase
+      .from("skins")
+      .select("id, name, image_url, skin_variants(wear_tier)")
+      .eq("weapon_id", weaponRow.id)
+      .order("name");
+
+    if (!skins || skins.length === 0) return [];
+
+    return skins.map((s) => ({
+      weapon,
+      name: `${weapon} | ${s.name}`,
+      image: (s.image_url as string | null) ?? null,
+      wears: Array.isArray(s.skin_variants)
+        ? (s.skin_variants as { wear_tier: string }[]).map((v) => v.wear_tier)
+        : [],
+    }));
+  } catch {
+    return [];
+  }
+}
+
 let cachedSkins: SteamSkinEntry[] | null = null;
 
 async function loadLocalSkinData(): Promise<unknown> {
@@ -169,6 +202,16 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const weapon = searchParams.get("weapon");
     const skinFilter = searchParams.get("skin");
+
+    // Supabase als primäre Datenquelle für waffenspezifische Skin-Listen
+    if (weapon && !skinFilter) {
+      const supabaseSkins = await loadSkinsFromSupabase(weapon);
+      if (supabaseSkins.length > 0) {
+        return Response.json(supabaseSkins, {
+          headers: { "Cache-Control": "public, max-age=300" },
+        });
+      }
+    }
 
     const skins = await loadSkins();
 
