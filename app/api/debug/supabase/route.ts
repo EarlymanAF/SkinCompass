@@ -7,29 +7,18 @@ export async function GET() {
   try {
     const supabase = getSupabaseApiClient();
 
-    // Alle Tabellen im public Schema finden
-    const tables = await supabase
-      .from("information_schema.tables")
-      .select("table_name")
-      .eq("table_schema", "public")
-      .order("table_name");
+    // latest_prices Schema + Beispieldaten
+    const lp = await supabase.from("latest_prices").select("*").limit(3);
 
-    // skin_variants mit korrektem Spaltennamen
-    const sv = await supabase.from("skin_variants").select("*").limit(2);
-
-    // marketplaces Tabelle
-    const mp = await supabase.from("marketplaces").select("*").limit(5);
-
-    // Preis-Tabellen versuchen
-    const lp = await supabase.from("latest_prices").select("*").limit(2);
-    const prices = await supabase.from("prices").select("*").limit(2);
+    // marketplace_items mit latest_prices Join testen
+    const mi = await supabase
+      .from("marketplace_items")
+      .select("id, skin_variant_id, remote_item_id, latest_prices(*)")
+      .limit(2);
 
     return NextResponse.json({
-      all_tables: { data: tables.data, error: tables.error?.message },
-      skin_variants_sample: { data: sv.data, error: sv.error?.message },
-      marketplaces: { data: mp.data, error: mp.error?.message },
       latest_prices: { data: lp.data, error: lp.error?.message },
-      prices: { data: prices.data, error: prices.error?.message },
+      marketplace_items_with_prices: { data: mi.data, error: mi.error?.message },
     });
   } catch (err) {
     return NextResponse.json({ thrown: err instanceof Error ? err.message : String(err) });
