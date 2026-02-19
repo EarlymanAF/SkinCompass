@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { WEARS, WEAR_LABEL_DE, type WearEN } from "@/data/wears";
 import { stripWeaponPrefix } from "@/lib/skin-utils";
+import staticWeapons from "@/data/weapons.json";
 
 type PriceRow = {
   marketplace: string;
@@ -39,6 +40,7 @@ function withSteamSize(url: string) {
 
 export default function ComparePage() {
   const [weapons, setWeapons] = useState<string[]>([]);
+  const [loadingWeapons, setLoadingWeapons] = useState(true);
   const [weapon, setWeapon] = useState<string>("");
   const [skin, setSkin] = useState<string>("");
   const [wear, setWear] = useState<WearEN | "">("");
@@ -55,14 +57,18 @@ export default function ComparePage() {
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
 
-  // Waffen aus Supabase laden
+  // Waffen aus Supabase laden, Fallback auf lokales JSON
   useEffect(() => {
     fetch("/api/supabase/weapons", { cache: "no-store" })
       .then((r) => r.json())
-      .then((data) => {
-        if (Array.isArray(data)) setWeapons(data as string[]);
+      .then((data: unknown) => {
+        const list = Array.isArray(data) && (data as string[]).length > 0
+          ? (data as string[])
+          : (staticWeapons as string[]);
+        setWeapons(list);
       })
-      .catch(() => {});
+      .catch(() => setWeapons(staticWeapons as string[]))
+      .finally(() => setLoadingWeapons(false));
   }, []);
 
   // Skins laden wenn Waffe gewählt
@@ -201,7 +207,7 @@ export default function ComparePage() {
             value={weapon}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setWeapon(e.target.value)}
           >
-            <option value="">{weapons.length === 0 ? "Lade Waffen…" : "Waffe wählen…"}</option>
+            <option value="">{loadingWeapons ? "Lade Waffen…" : "Waffe wählen…"}</option>
             {weapons.map((w) => (
               <option key={w} value={w}>
                 {w}
