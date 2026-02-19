@@ -93,49 +93,44 @@ export async function GET(req: Request) {
     // 4) Skinport-Preis aus Supabase (price_snapshots)
     try {
       const supabase = await getSupabaseServerClient();
-      const { data: snap } = await supabase
-        .from("price_snapshots")
-        .select(`
-          price,
-          currency,
-          timestamp,
-          marketplace_items!inner(
-            remote_name,
-            active,
-            marketplaces!inner(
-              name,
-              fees,
-              base_url
-            )
-          )
-        `)
-        .eq("marketplace_items.active", true)
-        .eq("marketplace_items.marketplaces.name", "Skinport")
-        .eq("marketplace_items.remote_name", hash)
-        .order("timestamp", { ascending: false })
+
+      // Schritt 1: marketplace_item + Marktplatz-Metadaten für diesen Hash finden
+      const { data: item } = await supabase
+        .from("marketplace_items")
+        .select("id, marketplaces(name, fees, base_url)")
+        .eq("remote_name", hash)
+        .eq("active", true)
+        .eq("marketplaces.name", "Skinport")
         .limit(1)
         .maybeSingle();
 
-      if (snap?.price != null) {
-        const mi = Array.isArray(snap.marketplace_items)
-          ? snap.marketplace_items[0]
-          : snap.marketplace_items;
-        const mp = mi
-          ? Array.isArray((mi as { marketplaces: unknown }).marketplaces)
-            ? ((mi as { marketplaces: unknown[] }).marketplaces[0] as { fees: number | null; base_url: string | null } | null)
-            : ((mi as { marketplaces: unknown }).marketplaces as { fees: number | null; base_url: string | null } | null)
-          : null;
-        const fees = mp?.fees ?? 0.12;
-        const baseUrl = mp?.base_url ?? "https://skinport.com";
-        rows.push({
-          marketplace: "Skinport",
-          fee: `≈${Math.round(fees * 100)}%`,
-          currency: snap.currency,
-          finalPrice: snap.price,
-          trend7d: "—",
-          priceLabel: null,
-          url: `${baseUrl}/market?search=${encodeURIComponent(hash)}`,
-        });
+      if (item?.id != null) {
+        const mp = Array.isArray(item.marketplaces)
+          ? item.marketplaces[0]
+          : item.marketplaces;
+
+        // Schritt 2: neuesten Snapshot für dieses Item holen
+        const { data: snap } = await supabase
+          .from("price_snapshots")
+          .select("price, currency")
+          .eq("marketplace_item_id", item.id)
+          .order("timestamp", { ascending: false })
+          .limit(1)
+          .maybeSingle();
+
+        if (snap?.price != null) {
+          const fees = mp?.fees ?? 0.12;
+          const baseUrl = mp?.base_url ?? "https://skinport.com";
+          rows.push({
+            marketplace: "Skinport",
+            fee: `≈${Math.round(fees * 100)}%`,
+            currency: snap.currency,
+            finalPrice: snap.price,
+            trend7d: "—",
+            priceLabel: null,
+            url: `${baseUrl}/market?search=${encodeURIComponent(hash)}`,
+          });
+        }
       }
     } catch {
       // swallow – Skinport-Preis ist optional
