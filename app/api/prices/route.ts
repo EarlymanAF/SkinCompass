@@ -50,11 +50,11 @@ async function fetchSupabasePrices(
   const weaponRow = weaponRes.data as DbWeapon | null;
   if (!weaponRow) return [];
 
-  // 2. Skin
+  // 2. Skin – DB speichert vollen Marketnamen (z.B. "AK-47 | Asiimov")
   const skinRes = await supabase
     .from("skins")
     .select("id")
-    .eq("name", skin)
+    .eq("name", `${weapon} | ${skin}`)
     .eq("weapon_id", weaponRow.id)
     .maybeSingle();
   const skinRow = skinRes.data as DbSkin | null;

@@ -112,9 +112,10 @@ async function loadSkinsFromSupabase(weapon: string): Promise<SteamSkinEntry[]> 
 
     if (skins.length === 0) return [];
 
+    // s.name enthält bereits den vollen Marketnamen (z.B. "AK-47 | Uncharted")
     return skins.map((s) => ({
       weapon,
-      name: `${weapon} | ${s.name}`,
+      name: s.name,
       image: s.image_url ?? null,
       wears: s.skin_variants?.map((v) => v.wear_tier) ?? [],
     }));
