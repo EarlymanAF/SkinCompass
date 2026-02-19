@@ -13,24 +13,25 @@ export type PriceRow = {
   url: string;
 };
 
-type DbWeapon = { id: number };
-type DbSkin = { id: number };
-type DbVariant = { id: number };
+type DbWeapon = { id: string };
+type DbSkin = { id: string };
+type DbVariant = { id: string };
 type DbMarketplace = {
   name: string;
   fees: number | null;
   currency: string | null;
   base_url: string | null;
 };
-type DbMarketplaceItem = {
-  id: number;
-  remote_item_id: string | null;
-  marketplaces: DbMarketplace | null;
-};
-type DbPriceSnapshot = {
+type DbLatestPrice = {
   price: number;
   currency: string;
   listings_count: number | null;
+};
+type DbMarketplaceItem = {
+  id: string;
+  remote_item_id: string | null;
+  marketplaces: DbMarketplace | null;
+  latest_prices: DbLatestPrice[];
 };
 
 async function fetchSupabasePrices(
@@ -50,7 +51,7 @@ async function fetchSupabasePrices(
   const weaponRow = weaponRes.data as DbWeapon | null;
   if (!weaponRow) return [];
 
-  // 2. Skin – DB speichert vollen Marketnamen (z.B. "AK-47 | Asiimov")
+  // 2. Skin (DB speichert vollen Marketnamen z.B. "AK-47 | Asiimov")
   const skinRes = await supabase
     .from("skins")
     .select("id")
@@ -70,33 +71,23 @@ async function fetchSupabasePrices(
   const variantRow = variantRes.data as DbVariant | null;
   if (!variantRow) return [];
 
-  // 4. Marktplatz-Einträge
+  // 4. Marktplatz-Einträge + aktuelle Preise in einem Query
   const itemsRes = await supabase
     .from("marketplace_items")
-    .select("id, remote_item_id, marketplaces(name, fees, currency, base_url)")
+    .select("id, remote_item_id, marketplaces(name, fees, currency, base_url), latest_prices(price, currency, listings_count)")
     .eq("skin_variant_id", variantRow.id)
     .eq("active", true);
   const items = (itemsRes.data ?? []) as DbMarketplaceItem[];
-  if (items.length === 0) return [];
 
   const rows: PriceRow[] = [];
 
   for (const item of items) {
-    // Neuester Preis-Snapshot
-    const snapRes = await supabase
-      .from("price_snapshots")
-      .select("price, currency, listings_count")
-      .eq("marketplace_item_id", item.id)
-      .order("timestamp", { ascending: false })
-      .limit(1)
-      .maybeSingle();
-    const snap = snapRes.data as DbPriceSnapshot | null;
+    const snap = item.latest_prices?.[0];
     if (!snap) continue;
 
     const mp = item.marketplaces;
     const fees = mp?.fees != null ? `≈${mp.fees}%` : "—";
     const priceCurrency = snap.currency || mp?.currency || currency;
-
     // remote_item_id ist bereits die volle URL zum Angebot
     const url = item.remote_item_id ?? mp?.base_url ?? "#";
 
