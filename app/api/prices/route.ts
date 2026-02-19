@@ -61,12 +61,14 @@ async function fetchSupabasePrices(
   const skinRow = skinRes.data as DbSkin | null;
   if (!skinRow) return [];
 
-  // 3. Variante (Wear)
+  // 3. Variante (Wear) – StatTrak-Varianten (ID endet auf _st) ausschließen
   const variantRes = await supabase
     .from("skin_variants")
     .select("id")
     .eq("skin_id", skinRow.id)
     .eq("wear_name", wear)
+    .not("id", "like", "%_st")
+    .limit(1)
     .maybeSingle();
   const variantRow = variantRes.data as DbVariant | null;
   if (!variantRow) return [];
