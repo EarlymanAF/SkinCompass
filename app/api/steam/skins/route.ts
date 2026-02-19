@@ -3,6 +3,7 @@ import {
   extractWeaponFromMarketName,
   weaponNameFromMarketName,
 } from "@/lib/skin-utils";
+import { getSupabaseApiClient } from "@/lib/supabase/api";
 
 type SteamSkinEntry = {
   weapon?: string;
@@ -89,6 +90,40 @@ function normalizeSkins(dataSource: unknown): SteamSkinEntry[] {
   return [];
 }
 
+async function loadSkinsFromSupabase(weapon: string): Promise<SteamSkinEntry[]> {
+  try {
+    const supabase = getSupabaseApiClient();
+
+    const weaponRes = await supabase.from("weapons").select("id").eq("name", weapon).maybeSingle();
+    const weaponRow = weaponRes.data as { id: number } | null;
+    if (!weaponRow) return [];
+
+    const skinsRes = await supabase
+      .from("skins")
+      .select("id, name, image_url, skin_variants(wear_name)")
+      .eq("weapon_id", weaponRow.id)
+      .order("name");
+    const skins = (skinsRes.data ?? []) as {
+      id: number;
+      name: string;
+      image_url: string | null;
+      skin_variants: { wear_name: string }[];
+    }[];
+
+    if (skins.length === 0) return [];
+
+    // s.name enthält bereits den vollen Marketnamen (z.B. "AK-47 | Uncharted")
+    return skins.map((s) => ({
+      weapon,
+      name: s.name,
+      image: s.image_url ?? null,
+      wears: s.skin_variants?.map((v) => v.wear_name) ?? [],
+    }));
+  } catch {
+    return [];
+  }
+}
+
 let cachedSkins: SteamSkinEntry[] | null = null;
 
 async function loadLocalSkinData(): Promise<unknown> {
@@ -169,6 +204,16 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const weapon = searchParams.get("weapon");
     const skinFilter = searchParams.get("skin");
+
+    // Supabase als primäre Datenquelle für waffenspezifische Skin-Listen
+    if (weapon && !skinFilter) {
+      const supabaseSkins = await loadSkinsFromSupabase(weapon);
+      if (supabaseSkins.length > 0) {
+        return Response.json(supabaseSkins, {
+          headers: { "Cache-Control": "public, max-age=300" },
+        });
+      }
+    }
 
     const skins = await loadSkins();
 

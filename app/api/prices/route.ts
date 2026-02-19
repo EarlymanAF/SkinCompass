@@ -1,21 +1,110 @@
-// app/api/prices/route.ts
 import { NextResponse } from "next/server";
 import { WEARS, WEAR_LABEL_DE, type WearEN } from "@/data/wears";
-import { toMarketHashName } from "@/lib/market";
+import { getSupabaseApiClient } from "@/lib/supabase/api";
+
 export const runtime = "nodejs";
 
-type VendorSteamResponse = {
-  success?: boolean;
-  market: string;
+export type PriceRow = {
+  marketplace: string;
+  fee: string;
   currency: string;
-  lowest_price_text: string | null;
-  median_price_text: string | null;
-  volume: string | null;
-  lowest_price: number | null;
-  median_price: number | null;
+  finalPrice: number;
+  listingsCount: number | null;
   url: string;
-  revalidateSeconds: number;
 };
+
+type DbWeapon = { id: string };
+type DbSkin = { id: string };
+type DbVariant = { id: string };
+type DbMarketplace = {
+  name: string;
+  fees: number | null;
+  currency: string | null;
+  base_url: string | null;
+};
+type DbLatestPrice = {
+  price: number;
+  currency: string;
+  listings_count: number | null;
+};
+type DbMarketplaceItem = {
+  id: string;
+  remote_item_id: string | null;
+  marketplaces: DbMarketplace | null;
+  latest_prices: DbLatestPrice[];
+};
+
+async function fetchSupabasePrices(
+  weapon: string,
+  skin: string,
+  wear: string,
+  currency: string
+): Promise<PriceRow[]> {
+  const supabase = getSupabaseApiClient();
+
+  // 1. Waffe
+  const weaponRes = await supabase
+    .from("weapons")
+    .select("id")
+    .eq("name", weapon)
+    .maybeSingle();
+  const weaponRow = weaponRes.data as DbWeapon | null;
+  if (!weaponRow) return [];
+
+  // 2. Skin (DB speichert vollen Marketnamen z.B. "AK-47 | Asiimov")
+  const skinRes = await supabase
+    .from("skins")
+    .select("id")
+    .eq("name", `${weapon} | ${skin}`)
+    .eq("weapon_id", weaponRow.id)
+    .maybeSingle();
+  const skinRow = skinRes.data as DbSkin | null;
+  if (!skinRow) return [];
+
+  // 3. Variante (Wear) – StatTrak-Varianten (ID endet auf _st) ausschließen
+  const variantRes = await supabase
+    .from("skin_variants")
+    .select("id")
+    .eq("skin_id", skinRow.id)
+    .eq("wear_name", wear)
+    .not("id", "like", "%_st")
+    .limit(1)
+    .maybeSingle();
+  const variantRow = variantRes.data as DbVariant | null;
+  if (!variantRow) return [];
+
+  // 4. Marktplatz-Einträge + aktuelle Preise in einem Query
+  const itemsRes = await supabase
+    .from("marketplace_items")
+    .select("id, remote_item_id, marketplaces(name, fees, currency, base_url), latest_prices(price, currency, listings_count)")
+    .eq("skin_variant_id", variantRow.id)
+    .eq("active", true);
+  const items = (itemsRes.data ?? []) as DbMarketplaceItem[];
+
+  const rows: PriceRow[] = [];
+
+  for (const item of items) {
+    const snap = item.latest_prices?.[0];
+    if (!snap) continue;
+
+    const mp = item.marketplaces;
+    const fees = mp?.fees != null ? `≈${mp.fees}%` : "—";
+    const priceCurrency = snap.currency || mp?.currency || currency;
+    // remote_item_id ist bereits die volle URL zum Angebot
+    const url = item.remote_item_id ?? mp?.base_url ?? "#";
+
+    rows.push({
+      marketplace: mp?.name ?? "Marktplatz",
+      fee: fees,
+      currency: priceCurrency,
+      finalPrice: snap.price,
+      listingsCount: snap.listings_count ?? null,
+      url,
+    });
+  }
+
+  return rows;
+}
 
 export async function GET(req: Request) {
   try {
@@ -29,78 +118,23 @@ export async function GET(req: Request) {
     if (!weapon || !skin || !wear || !WEARS.includes(wear)) {
       return NextResponse.json(
         {
-          error: "Missing or invalid params (weapon/skin/wear)",
-          required: { weapon: true, skin: true, wear: `one of ${WEARS.join(", ")}` },
+          error: "Fehlende oder ungültige Parameter (weapon/skin/wear)",
+          required: { weapon: true, skin: true, wear: `eines von: ${WEARS.join(", ")}` },
           received: { weapon: weapon ?? null, skin: skin ?? null, wear: wearParam ?? null },
         },
         { status: 400 }
       );
     }
 
-    // 1) market_hash_name bauen
-    // Wir kombinieren weapon, skin und wear sauber zu einem Market-Hash wie bei Steam
-    const hash = toMarketHashName(weapon, skin, wear);
+    const rows = await fetchSupabasePrices(weapon, skin, wear, currency);
+    const sorted = [...rows].sort((a, b) => a.finalPrice - b.finalPrice);
 
-    // 2) Steam Vendor (EUR)
-    // Upstream call to our vendor adapter with timeout and safe base URL
-    const origin = (() => {
-      try {
-        return new URL(req.url).origin;
-      } catch {
-        return process.env.NEXT_PUBLIC_BASE_URL || "";
-      }
-    })();
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 7000);
-    let steam: VendorSteamResponse | null = null;
-    try {
-      const resSteam = await fetch(
-        `${origin}/api/vendors/steam?q=${encodeURIComponent(hash)}&currency=${encodeURIComponent(currency)}`,
-        { cache: "no-store", signal: controller.signal }
-      );
-      if (resSteam.ok) {
-        steam = (await resSteam.json()) as VendorSteamResponse;
-      }
-    } catch {
-      // swallow, we'll fall back to no Steam row
-    } finally {
-      clearTimeout(timeout);
-    }
-
-    // 3) Rows zusammensetzen
-    const rows = [];
-
-    const steamPrice = steam?.lowest_price ?? steam?.median_price ?? null;
-    const steamData = steam ?? null;
-
-    if (steamData && steamPrice != null) {
-      const priceLabel =
-        steamData.lowest_price != null
-          ? steamData.lowest_price_text ?? null
-          : steamData.median_price_text ?? null;
-      rows.push({
-        marketplace: "Steam Community Market",
-        fee: "≈15%",
-        currency: steamData.currency,
-        finalPrice: steamPrice,             // bereits in gewünschter currency
-        trend7d: "—",                       // Steam liefert hier nichts; später ersetzen
-        priceLabel,
-        url: steamData.url,
-      });
-    }
-
-    // Platzhalter für weitere Märkte:
-    // rows.push({ marketplace: "Buff163", fee: "≈2.5%", currency: "EUR", finalPrice: 0, trend7d: "—", url: "#" });
-    // rows.push({ marketplace: "CSFloat", fee: "≈5%",   currency: "EUR", finalPrice: 0, trend7d: "—", url: "#" });
-
-    if (rows.length === 0) {
+    if (sorted.length === 0) {
       return NextResponse.json(
         {
           error: "Keine Preise verfügbar",
-          query: { weapon, skin, wear, wearLabelDE: WEAR_LABEL_DE[wear], hash, currency },
+          query: { weapon, skin, wear, wearLabelDE: WEAR_LABEL_DE[wear], currency },
           rows: [],
-          source: { steam: steam ?? null },
-          lastUpdated: new Date().toISOString(),
         },
         { status: 404, headers: { "Cache-Control": "public, max-age=30" } }
       );
@@ -108,9 +142,8 @@ export async function GET(req: Request) {
 
     return NextResponse.json(
       {
-        query: { weapon, skin, wear, wearLabelDE: WEAR_LABEL_DE[wear], hash, currency },
-        rows,
-        source: { steam: steam ?? null },
+        query: { weapon, skin, wear, wearLabelDE: WEAR_LABEL_DE[wear], currency },
+        rows: sorted,
         lastUpdated: new Date().toISOString(),
       },
       { headers: { "Cache-Control": "public, max-age=60" } }

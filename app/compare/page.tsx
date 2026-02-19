@@ -2,16 +2,15 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import { WEARS, WEAR_LABEL_DE, type WearEN } from "@/data/wears";
-import weapons from "@/data/weapons.json";
 import { stripWeaponPrefix } from "@/lib/skin-utils";
+import staticWeapons from "@/data/weapons.json";
 
 type PriceRow = {
   marketplace: string;
   fee: string;
   currency: string;
   finalPrice: number;
-  trend7d: string;
-  priceLabel?: string | null;
+  listingsCount: number | null;
   url: string;
 };
 
@@ -40,6 +39,8 @@ function withSteamSize(url: string) {
 }
 
 export default function ComparePage() {
+  const [weapons, setWeapons] = useState<string[]>([]);
+  const [loadingWeapons, setLoadingWeapons] = useState(true);
   const [weapon, setWeapon] = useState<string>("");
   const [skin, setSkin] = useState<string>("");
   const [wear, setWear] = useState<WearEN | "">("");
@@ -56,6 +57,21 @@ export default function ComparePage() {
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
 
+  // Waffen aus Supabase laden, Fallback auf lokales JSON
+  useEffect(() => {
+    fetch("/api/supabase/weapons", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data: unknown) => {
+        const list = Array.isArray(data) && (data as string[]).length > 0
+          ? (data as string[])
+          : (staticWeapons as string[]);
+        setWeapons(list);
+      })
+      .catch(() => setWeapons(staticWeapons as string[]))
+      .finally(() => setLoadingWeapons(false));
+  }, []);
+
+  // Skins laden wenn Waffe gewählt
   useEffect(() => {
     setSkin("");
     setWear("");
@@ -74,7 +90,7 @@ export default function ComparePage() {
         setLoadingSkins(true);
         const params = new URLSearchParams({ weapon });
         const res = await fetch(`/api/steam/skins?${params.toString()}`, { cache: "no-store" });
-        if (!res.ok) throw new Error(`API error for weapon ${weapon}: ${res.status}`);
+        if (!res.ok) throw new Error(`API error: ${res.status}`);
         const data = await res.json();
         if (!Array.isArray(data)) {
           setSkinOptions([]);
@@ -125,6 +141,7 @@ export default function ComparePage() {
     })();
   }, [weapon]);
 
+  // Wear-Optionen aktualisieren wenn Skin gewählt
   useEffect(() => {
     setWear("");
     setRows(null);
@@ -157,16 +174,19 @@ export default function ComparePage() {
 
       const query = new URLSearchParams({ weapon, skin, wear }).toString();
       const res = await fetch(`/api/prices?${query}`, { cache: "no-store" });
-      if (!res.ok) {
-        const errText = await res.text();
-        throw new Error(`Fehler beim Laden der Preise: ${errText}`);
-      }
 
       const data: unknown = await res.json();
+      if (!res.ok) {
+        const errMsg =
+          data && typeof data === "object"
+            ? ((data as Record<string, unknown>).error as string) ?? "Fehler beim Laden"
+            : "Fehler beim Laden der Preise";
+        throw new Error(errMsg);
+      }
+
       const rowsRaw = data && typeof data === "object" ? (data as Record<string, unknown>).rows : undefined;
       const receivedRows = Array.isArray(rowsRaw) ? (rowsRaw as PriceRow[]) : [];
-      const sorted = [...receivedRows].sort((a, b) => a.finalPrice - b.finalPrice);
-      setRows(sorted);
+      setRows(receivedRows);
     } catch (err) {
       const message = err instanceof Error ? err.message : "Unerwarteter Fehler beim Preisabruf.";
       setError(message);
@@ -187,10 +207,10 @@ export default function ComparePage() {
             value={weapon}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setWeapon(e.target.value)}
           >
-            <option value="">Waffe wählen…</option>
-            {weapons.map((weaponName: string) => (
-              <option key={weaponName} value={weaponName}>
-                {weaponName}
+            <option value="">{loadingWeapons ? "Lade Waffen…" : "Waffe wählen…"}</option>
+            {weapons.map((w) => (
+              <option key={w} value={w}>
+                {w}
               </option>
             ))}
           </select>
@@ -201,7 +221,9 @@ export default function ComparePage() {
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSkin(e.target.value)}
             disabled={!weapon || loadingSkins}
           >
-            <option value="">{!weapon ? "Zuerst Waffe wählen" : loadingSkins ? "Lade Skins…" : "Skin wählen…"}</option>
+            <option value="">
+              {!weapon ? "Zuerst Waffe wählen" : loadingSkins ? "Lade Skins…" : "Skin wählen…"}
+            </option>
             {skinOptions.map((skinName) => (
               <option key={skinName} value={skinName}>
                 {skinName}
@@ -228,7 +250,7 @@ export default function ComparePage() {
             disabled={!canSearch || loading}
             className="rounded-button bg-foreground px-4 py-2.5 text-sm font-medium text-white transition hover:opacity-90 disabled:opacity-60"
           >
-            {loading ? "Lädt…" : "Suchen"}
+            {loading ? "Lädt…" : "Vergleichen"}
           </button>
         </div>
       </section>
@@ -242,7 +264,9 @@ export default function ComparePage() {
           )}
 
           {error && (
-            <p className="rounded-2xl border border-rose-300 bg-rose-50 px-4 py-4 text-sm text-rose-800">{error}</p>
+            <p className="rounded-2xl border border-rose-300 bg-rose-50 px-4 py-4 text-sm text-rose-800">
+              {error}
+            </p>
           )}
 
           {!loading && !error && rows && rows.length === 0 && (
@@ -276,10 +300,10 @@ export default function ComparePage() {
                         Gebühr
                       </th>
                       <th scope="col" className="px-5 py-3 font-medium">
-                        Endpreis
+                        Preis
                       </th>
                       <th scope="col" className="px-5 py-3 font-medium">
-                        Trend (7d)
+                        Angebote
                       </th>
                       <th scope="col" className="px-5 py-3 font-medium">
                         Aktion
@@ -301,9 +325,11 @@ export default function ComparePage() {
                         </td>
                         <td className="px-5 py-3 text-secondary">{row.fee}</td>
                         <td className="px-5 py-3 font-semibold text-foreground">
-                          {row.priceLabel ? row.priceLabel : formatPrice(row.finalPrice, row.currency)}
+                          {formatPrice(row.finalPrice, row.currency)}
                         </td>
-                        <td className="px-5 py-3 font-medium text-secondary">{row.trend7d}</td>
+                        <td className="px-5 py-3 text-secondary">
+                          {row.listingsCount != null ? row.listingsCount.toLocaleString("de-DE") : "—"}
+                        </td>
                         <td className="px-5 py-3">
                           <a
                             href={row.url}
