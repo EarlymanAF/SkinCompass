@@ -92,30 +92,32 @@ function normalizeSkins(dataSource: unknown): SteamSkinEntry[] {
 
 async function loadSkinsFromSupabase(weapon: string): Promise<SteamSkinEntry[]> {
   try {
-    const supabase = await getSupabaseServerClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const supabase = (await getSupabaseServerClient()) as any;
 
-    const { data: weaponRow } = await supabase
-      .from("weapons")
-      .select("id")
-      .eq("name", weapon)
-      .maybeSingle();
+    const weaponRes = await supabase.from("weapons").select("id").eq("name", weapon).maybeSingle();
+    const weaponRow = weaponRes.data as { id: number } | null;
     if (!weaponRow) return [];
 
-    const { data: skins } = await supabase
+    const skinsRes = await supabase
       .from("skins")
       .select("id, name, image_url, skin_variants(wear_tier)")
       .eq("weapon_id", weaponRow.id)
       .order("name");
+    const skins = (skinsRes.data ?? []) as {
+      id: number;
+      name: string;
+      image_url: string | null;
+      skin_variants: { wear_tier: string }[];
+    }[];
 
-    if (!skins || skins.length === 0) return [];
+    if (skins.length === 0) return [];
 
     return skins.map((s) => ({
       weapon,
       name: `${weapon} | ${s.name}`,
-      image: (s.image_url as string | null) ?? null,
-      wears: Array.isArray(s.skin_variants)
-        ? (s.skin_variants as { wear_tier: string }[]).map((v) => v.wear_tier)
-        : [],
+      image: s.image_url ?? null,
+      wears: s.skin_variants?.map((v) => v.wear_tier) ?? [],
     }));
   } catch {
     return [];

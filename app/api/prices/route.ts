@@ -49,6 +49,16 @@ async function fetchSteamPrice(
   }
 }
 
+// Lokale Typen für Supabase-Ergebnisse (verhindert `never`-Inferenz bei
+// fehlerhafter database.types.ts-Kodierung)
+type DbWeapon = { id: number };
+type DbSkin = { id: number };
+type DbVariant = { id: number };
+type DbMarketplace = { name: string; fees: number | null; currency: string | null; base_url: string | null };
+type DbMarketplaceItem = { id: number; marketplaces: DbMarketplace | null };
+type DbPriceSnapshot = { price: number; currency: string; timestamp: string };
+type DbPriceSnapshotPrice = { price: number };
+
 async function fetchSupabasePrices(
   weapon: string,
   skin: string,
@@ -56,41 +66,42 @@ async function fetchSupabasePrices(
   currency: string
 ): Promise<PriceRow[]> {
   try {
-    const supabase = await getSupabaseServerClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const supabase = (await getSupabaseServerClient()) as any;
 
     // 1. Waffe suchen
-    const { data: weaponRow } = await supabase
-      .from("weapons")
-      .select("id")
-      .eq("name", weapon)
-      .maybeSingle();
+    const weaponRes = await supabase.from("weapons").select("id").eq("name", weapon).maybeSingle();
+    const weaponRow = weaponRes.data as DbWeapon | null;
     if (!weaponRow) return [];
 
     // 2. Skin suchen
-    const { data: skinRow } = await supabase
+    const skinRes = await supabase
       .from("skins")
       .select("id")
       .eq("name", skin)
       .eq("weapon_id", weaponRow.id)
       .maybeSingle();
+    const skinRow = skinRes.data as DbSkin | null;
     if (!skinRow) return [];
 
     // 3. Skin-Variante (Wear) suchen
-    const { data: variantRow } = await supabase
+    const variantRes = await supabase
       .from("skin_variants")
       .select("id")
       .eq("skin_id", skinRow.id)
       .eq("wear_tier", wear)
       .maybeSingle();
+    const variantRow = variantRes.data as DbVariant | null;
     if (!variantRow) return [];
 
     // 4. Aktive Marktplatz-Einträge mit Marktplatz-Details
-    const { data: items } = await supabase
+    const itemsRes = await supabase
       .from("marketplace_items")
       .select("id, marketplaces(name, fees, currency, base_url)")
       .eq("skin_variant_id", variantRow.id)
       .eq("active", true);
-    if (!items || items.length === 0) return [];
+    const items = (itemsRes.data ?? []) as DbMarketplaceItem[];
+    if (items.length === 0) return [];
 
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
@@ -99,17 +110,18 @@ async function fetchSupabasePrices(
 
     for (const item of items) {
       // Aktuellster Preissnapshot
-      const { data: latest } = await supabase
+      const latestRes = await supabase
         .from("price_snapshots")
         .select("price, currency, timestamp")
         .eq("marketplace_item_id", item.id)
         .order("timestamp", { ascending: false })
         .limit(1)
         .maybeSingle();
+      const latest = latestRes.data as DbPriceSnapshot | null;
       if (!latest) continue;
 
       // Preis vor 7 Tagen für Trend-Berechnung
-      const { data: weekOld } = await supabase
+      const weekOldRes = await supabase
         .from("price_snapshots")
         .select("price")
         .eq("marketplace_item_id", item.id)
@@ -117,14 +129,9 @@ async function fetchSupabasePrices(
         .order("timestamp", { ascending: false })
         .limit(1)
         .maybeSingle();
+      const weekOld = weekOldRes.data as DbPriceSnapshotPrice | null;
 
-      const mp = item.marketplaces as {
-        name: string;
-        fees: number | null;
-        currency: string | null;
-        base_url: string | null;
-      } | null;
-
+      const mp = item.marketplaces;
       const fees = mp?.fees != null ? `≈${mp.fees}%` : "—";
       const priceCurrency = latest.currency || mp?.currency || currency;
 
