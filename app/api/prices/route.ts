@@ -17,7 +17,8 @@ export type PriceRow = {
 type DbWeapon = { id: string };
 type DbSkin = { id: string };
 type DbVariant = { id: string };
-type DbMarketplace = {
+type DbAllMarketplace = {
+  id: string;
   name: string;
   fees: number | null;
   currency: string | null;
@@ -31,8 +32,8 @@ type DbLatestPrice = {
 };
 type DbMarketplaceItem = {
   id: string;
+  marketplace_id: string;
   remote_item_id: string | null;
-  marketplaces: DbMarketplace | null;
   latest_prices: DbLatestPrice[];
 };
 
@@ -75,27 +76,37 @@ async function fetchSupabasePrices(
   const variantRow = variantRes.data as DbVariant | null;
   if (!variantRow) return [];
 
-  // 4. Marktplatz-Einträge + aktuelle Preise in einem Query
-  const itemsRes = await supabase
-    .from("marketplace_items")
-    .select("id, remote_item_id, marketplaces(name, fees, currency, base_url), latest_prices(price, currency, listings_count, timestamp)")
-    .eq("skin_variant_id", variantRow.id);
+  // 4. Alle Marktplätze + Marktplatz-Einträge für diesen Skin parallel laden
+  const [allMpsRes, itemsRes] = await Promise.all([
+    supabase.from("marketplaces").select("id, name, fees, currency, base_url"),
+    supabase
+      .from("marketplace_items")
+      .select("id, marketplace_id, remote_item_id, latest_prices(price, currency, listings_count, timestamp)")
+      .eq("skin_variant_id", variantRow.id),
+  ]);
+
+  const allMarketplaces = (allMpsRes.data ?? []) as DbAllMarketplace[];
   const items = (itemsRes.data ?? []) as DbMarketplaceItem[];
+
+  // Lookup: marketplace_id → marketplace_item
+  const itemByMpId = new Map<string, DbMarketplaceItem>();
+  for (const item of items) {
+    itemByMpId.set(item.marketplace_id, item);
+  }
 
   const rows: PriceRow[] = [];
 
-  for (const item of items) {
-    const snap = item.latest_prices?.[0];
-    const mp = item.marketplaces;
-    const fees = mp?.fees != null ? `≈${mp.fees}%` : "—";
-    // remote_item_id ist bereits die volle URL zum Angebot
-    const url = item.remote_item_id ?? mp?.base_url ?? "#";
+  for (const mp of allMarketplaces) {
+    const item = itemByMpId.get(mp.id);
+    const fees = mp.fees != null ? `≈${mp.fees}%` : "—";
+    const url = item?.remote_item_id ?? mp.base_url ?? "#";
+    const snap = item?.latest_prices?.[0];
 
     if (!snap) {
       rows.push({
-        marketplace: mp?.name ?? "Marktplatz",
+        marketplace: mp.name,
         fee: fees,
-        currency: currency,
+        currency,
         finalPrice: null,
         listingsCount: null,
         url,
@@ -104,9 +115,9 @@ async function fetchSupabasePrices(
       continue;
     }
 
-    const priceCurrency = snap.currency || mp?.currency || currency;
+    const priceCurrency = snap.currency || mp.currency || currency;
     rows.push({
-      marketplace: mp?.name ?? "Marktplatz",
+      marketplace: mp.name,
       fee: fees,
       currency: priceCurrency,
       finalPrice: snap.price,
