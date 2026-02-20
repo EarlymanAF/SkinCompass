@@ -77,8 +77,7 @@ async function fetchSupabasePrices(
   const itemsRes = await supabase
     .from("marketplace_items")
     .select("id, remote_item_id, marketplaces(name, fees, currency, base_url), latest_prices(price, currency, listings_count)")
-    .eq("skin_variant_id", variantRow.id)
-    .eq("active", true);
+    .eq("skin_variant_id", variantRow.id);
   const items = (itemsRes.data ?? []) as DbMarketplaceItem[];
 
   const rows: PriceRow[] = [];
