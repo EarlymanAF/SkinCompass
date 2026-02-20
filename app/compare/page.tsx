@@ -345,7 +345,7 @@ export default function ComparePage() {
                           </td>
                           <td className="px-5 py-3 text-secondary">{row.fee}</td>
                           {noOffers ? (
-                            <td colSpan={4} className="px-5 py-3 text-sm text-secondary italic">
+                            <td colSpan={4} className="px-5 py-3 text-sm text-secondary italic text-center">
                               Keine Angebote verfügbar
                             </td>
                           ) : (
