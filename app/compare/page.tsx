@@ -9,7 +9,7 @@ type PriceRow = {
   marketplace: string;
   fee: string;
   currency: string;
-  finalPrice: number;
+  finalPrice: number | null;
   listingsCount: number | null;
   url: string;
   lastUpdated: string | null;
@@ -328,40 +328,51 @@ export default function ComparePage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
-                    {rows.map((row, index) => (
-                      <tr key={`${row.marketplace}-${index}`} className="hover:bg-gray-50/70">
-                        <td className="px-5 py-3 text-foreground">
-                          <div className="flex items-center gap-2">
-                            <span>{row.marketplace}</span>
-                            {index === 0 && (
-                              <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-medium text-emerald-700">
-                                Bestpreis
-                              </span>
-                            )}
-                          </div>
-                        </td>
-                        <td className="px-5 py-3 text-secondary">{row.fee}</td>
-                        <td className="px-5 py-3 font-semibold text-foreground">
-                          {formatPrice(row.finalPrice, row.currency)}
-                        </td>
-                        <td className="px-5 py-3 text-secondary">
-                          {row.listingsCount != null ? row.listingsCount.toLocaleString("de-DE") : "—"}
-                        </td>
-                        <td className="px-5 py-3">
-                          <a
-                            href={row.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex rounded-button border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-gray-50"
-                          >
-                            Zum Angebot
-                          </a>
-                        </td>
-                        <td className="px-5 py-3 text-secondary text-sm">
-                          {formatRelativeTime(row.lastUpdated)}
-                        </td>
-                      </tr>
-                    ))}
+                    {rows.map((row, index) => {
+                      const isBestprice = index === 0 && row.finalPrice !== null;
+                      return (
+                        <tr key={`${row.marketplace}-${index}`} className="hover:bg-gray-50/70">
+                          <td className="px-5 py-3 text-foreground">
+                            <div className="flex items-center gap-2">
+                              <span>{row.marketplace}</span>
+                              {isBestprice && (
+                                <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-medium text-emerald-700">
+                                  Bestpreis
+                                </span>
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-5 py-3 text-secondary">{row.fee}</td>
+                          {row.finalPrice === null ? (
+                            <td colSpan={4} className="px-5 py-3 text-sm text-secondary italic">
+                              Keine Angebote verfügbar
+                            </td>
+                          ) : (
+                            <>
+                              <td className="px-5 py-3 font-semibold text-foreground">
+                                {formatPrice(row.finalPrice, row.currency)}
+                              </td>
+                              <td className="px-5 py-3 text-secondary">
+                                {row.listingsCount != null ? row.listingsCount.toLocaleString("de-DE") : "—"}
+                              </td>
+                              <td className="px-5 py-3">
+                                <a
+                                  href={row.url}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="inline-flex rounded-button border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-gray-50"
+                                >
+                                  Zum Angebot
+                                </a>
+                              </td>
+                              <td className="px-5 py-3 text-secondary text-sm">
+                                {formatRelativeTime(row.lastUpdated)}
+                              </td>
+                            </>
+                          )}
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

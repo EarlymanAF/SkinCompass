@@ -8,7 +8,7 @@ export type PriceRow = {
   marketplace: string;
   fee: string;
   currency: string;
-  finalPrice: number;
+  finalPrice: number | null;
   listingsCount: number | null;
   url: string;
   lastUpdated: string | null;
@@ -86,14 +86,25 @@ async function fetchSupabasePrices(
 
   for (const item of items) {
     const snap = item.latest_prices?.[0];
-    if (!snap) continue;
-
     const mp = item.marketplaces;
     const fees = mp?.fees != null ? `≈${mp.fees}%` : "—";
-    const priceCurrency = snap.currency || mp?.currency || currency;
     // remote_item_id ist bereits die volle URL zum Angebot
     const url = item.remote_item_id ?? mp?.base_url ?? "#";
 
+    if (!snap) {
+      rows.push({
+        marketplace: mp?.name ?? "Marktplatz",
+        fee: fees,
+        currency: currency,
+        finalPrice: null,
+        listingsCount: null,
+        url,
+        lastUpdated: null,
+      });
+      continue;
+    }
+
+    const priceCurrency = snap.currency || mp?.currency || currency;
     rows.push({
       marketplace: mp?.name ?? "Marktplatz",
       fee: fees,
@@ -129,7 +140,12 @@ export async function GET(req: Request) {
     }
 
     const rows = await fetchSupabasePrices(weapon, skin, wear, currency);
-    const sorted = [...rows].sort((a, b) => a.finalPrice - b.finalPrice);
+    const sorted = [...rows].sort((a, b) => {
+      if (a.finalPrice === null && b.finalPrice === null) return 0;
+      if (a.finalPrice === null) return 1;
+      if (b.finalPrice === null) return -1;
+      return a.finalPrice - b.finalPrice;
+    });
 
     if (sorted.length === 0) {
       return NextResponse.json(
