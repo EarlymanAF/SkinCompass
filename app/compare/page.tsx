@@ -351,7 +351,7 @@ export default function ComparePage() {
                           ) : (
                             <>
                               <td className="px-5 py-3 font-semibold text-foreground">
-                                {formatPrice(row.finalPrice, row.currency)}
+                                {formatPrice(row.finalPrice!, row.currency)}
                               </td>
                               <td className="px-5 py-3 text-secondary">
                                 {row.listingsCount != null ? row.listingsCount.toLocaleString("de-DE") : "—"}
