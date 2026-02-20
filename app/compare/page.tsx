@@ -12,6 +12,7 @@ type PriceRow = {
   finalPrice: number;
   listingsCount: number | null;
   url: string;
+  lastUpdated: string | null;
 };
 
 type ApiSkin = {
@@ -30,6 +31,19 @@ function formatPrice(value: number, currency: string) {
   } catch {
     return `${value.toFixed(2)} ${currency}`;
   }
+}
+
+function formatRelativeTime(timestamp: string | null): string {
+  if (!timestamp) return "—";
+  const diffMs = Date.now() - new Date(timestamp).getTime();
+  const diffSeconds = Math.floor(diffMs / 1000);
+  if (diffSeconds < 60) return "gerade eben";
+  const diffMinutes = Math.floor(diffSeconds / 60);
+  if (diffMinutes < 60) return `vor ${diffMinutes} Minute${diffMinutes === 1 ? "" : "n"}`;
+  const diffHours = Math.floor(diffMinutes / 60);
+  if (diffHours < 24) return `vor ${diffHours} Stunde${diffHours === 1 ? "" : "n"}`;
+  const diffDays = Math.floor(diffHours / 24);
+  return `vor ${diffDays} Tag${diffDays === 1 ? "" : "en"}`;
 }
 
 function withSteamSize(url: string) {
@@ -308,6 +322,9 @@ export default function ComparePage() {
                       <th scope="col" className="px-5 py-3 font-medium">
                         Aktion
                       </th>
+                      <th scope="col" className="px-5 py-3 font-medium">
+                        Zuletzt aktualisiert
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
@@ -339,6 +356,9 @@ export default function ComparePage() {
                           >
                             Zum Angebot
                           </a>
+                        </td>
+                        <td className="px-5 py-3 text-secondary text-sm">
+                          {formatRelativeTime(row.lastUpdated)}
                         </td>
                       </tr>
                     ))}

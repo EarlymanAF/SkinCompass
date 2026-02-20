@@ -11,6 +11,7 @@ export type PriceRow = {
   finalPrice: number;
   listingsCount: number | null;
   url: string;
+  lastUpdated: string | null;
 };
 
 type DbWeapon = { id: string };
@@ -26,6 +27,7 @@ type DbLatestPrice = {
   price: number;
   currency: string;
   listings_count: number | null;
+  timestamp: string | null;
 };
 type DbMarketplaceItem = {
   id: string;
@@ -76,7 +78,7 @@ async function fetchSupabasePrices(
   // 4. Marktplatz-Einträge + aktuelle Preise in einem Query
   const itemsRes = await supabase
     .from("marketplace_items")
-    .select("id, remote_item_id, marketplaces(name, fees, currency, base_url), latest_prices(price, currency, listings_count)")
+    .select("id, remote_item_id, marketplaces(name, fees, currency, base_url), latest_prices(price, currency, listings_count, timestamp)")
     .eq("skin_variant_id", variantRow.id);
   const items = (itemsRes.data ?? []) as DbMarketplaceItem[];
 
@@ -99,6 +101,7 @@ async function fetchSupabasePrices(
       finalPrice: snap.price,
       listingsCount: snap.listings_count ?? null,
       url,
+      lastUpdated: snap.timestamp ?? null,
     });
   }
 
