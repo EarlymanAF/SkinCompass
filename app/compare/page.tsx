@@ -329,7 +329,8 @@ export default function ComparePage() {
                   </thead>
                   <tbody className="divide-y divide-gray-100">
                     {rows.map((row, index) => {
-                      const isBestprice = index === 0 && row.finalPrice !== null;
+                      const noOffers = row.finalPrice === null || row.listingsCount === 0;
+                      const isBestprice = index === 0 && !noOffers;
                       return (
                         <tr key={`${row.marketplace}-${index}`} className="hover:bg-gray-50/70">
                           <td className="px-5 py-3 text-foreground">
@@ -343,7 +344,7 @@ export default function ComparePage() {
                             </div>
                           </td>
                           <td className="px-5 py-3 text-secondary">{row.fee}</td>
-                          {row.finalPrice === null ? (
+                          {noOffers ? (
                             <td colSpan={4} className="px-5 py-3 text-sm text-secondary italic">
                               Keine Angebote verfügbar
                             </td>

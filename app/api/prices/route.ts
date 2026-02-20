@@ -140,11 +140,14 @@ export async function GET(req: Request) {
     }
 
     const rows = await fetchSupabasePrices(weapon, skin, wear, currency);
+    const hasOffers = (r: PriceRow) => r.finalPrice !== null && r.listingsCount !== 0;
     const sorted = [...rows].sort((a, b) => {
-      if (a.finalPrice === null && b.finalPrice === null) return 0;
-      if (a.finalPrice === null) return 1;
-      if (b.finalPrice === null) return -1;
-      return a.finalPrice - b.finalPrice;
+      const aHas = hasOffers(a);
+      const bHas = hasOffers(b);
+      if (!aHas && !bHas) return 0;
+      if (!aHas) return 1;
+      if (!bHas) return -1;
+      return a.finalPrice! - b.finalPrice!;
     });
 
     if (sorted.length === 0) {
