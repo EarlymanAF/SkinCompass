@@ -1,19 +1,53 @@
-// middleware.ts
-import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+import { auth } from "@/auth";
 
-// Simple pass-through middleware with optional IP extraction for future use
-export function middleware(req: NextRequest) {
-  // Example: extract client IP if needed later
-  const forwarded = req.headers.get('x-forwarded-for');
-  const ip = (forwarded?.split(',')[0] || req.headers.get('x-real-ip') || '').trim();
-  // You can attach data to request via headers if desired
-  const res = NextResponse.next();
-  if (ip) res.headers.set('x-client-ip', ip);
-  return res;
+const PROTECTED_PREFIXES = ["/list", "/messages", "/settings"] as const;
+
+function normalizePathname(pathname: string) {
+  if (pathname !== "/" && pathname.endsWith("/")) {
+    return pathname.slice(0, -1);
+  }
+  return pathname;
 }
 
-// Limit to app paths where you might need it (adjust as needed)
+function isProtectedPath(pathname: string) {
+  if (pathname === "/") {
+    return true;
+  }
+
+  return PROTECTED_PREFIXES.some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
+  );
+}
+
+function getSafeNextPath(value: string | null) {
+  if (!value || !value.startsWith("/") || value.startsWith("//")) {
+    return "/";
+  }
+  if (value === "/login" || value.startsWith("/api/auth")) {
+    return "/";
+  }
+  return value;
+}
+
+export default auth((req) => {
+  const pathname = normalizePathname(req.nextUrl.pathname);
+  const isAuthenticated = Boolean(req.auth);
+
+  if (isProtectedPath(pathname) && !isAuthenticated) {
+    const loginUrl = new URL("/login", req.nextUrl);
+    loginUrl.searchParams.set("next", `${pathname}${req.nextUrl.search}`);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  if (pathname === "/login" && isAuthenticated) {
+    const nextPath = getSafeNextPath(req.nextUrl.searchParams.get("next"));
+    return NextResponse.redirect(new URL(nextPath, req.nextUrl));
+  }
+
+  return NextResponse.next();
+});
+
 export const config = {
-  matcher: ['/api/:path*', '/compare', '/'],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)"],
 };

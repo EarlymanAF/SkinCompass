@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { UserCircle } from "lucide-react";
+import { LogIn, LogOut, UserCircle } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { NAV_ITEMS } from "@/lib/navigation";
 
 const PAGE_TITLES: Record<string, string> = {
@@ -14,13 +15,22 @@ const PAGE_TITLES: Record<string, string> = {
   "/list": "Inventar",
   "/settings": "Einstellungen",
   "/landing": "Landing",
+  "/login": "Anmeldung",
 };
 
 export default function Topbar() {
   const pathname = usePathname();
   const title = PAGE_TITLES[pathname] ?? "Dashboard";
+  const { data: session, status } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const isAuthenticated = status === "authenticated" && Boolean(session?.user?.steamId);
+  const isAuthLoading = status === "loading";
+  const userName = session?.user?.name ?? "Steam Nutzer";
+  const userAvatar = session?.user?.image;
+  const steamHandle = session?.user?.steamId
+    ? `Steam #${session.user.steamId.slice(-6)}`
+    : "Nicht angemeldet";
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -44,6 +54,19 @@ export default function Topbar() {
     };
   }, []);
 
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  async function handleLogin() {
+    await signIn("steam", { callbackUrl: "/" });
+  }
+
+  async function handleLogout() {
+    setMenuOpen(false);
+    await signOut({ callbackUrl: "/login" });
+  }
+
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-surface backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-8">
@@ -54,39 +77,65 @@ export default function Topbar() {
           <h1 className="text-lg font-semibold text-foreground">{title}</h1>
         </div>
         <div className="flex items-center gap-3">
-          <div className="relative" ref={menuRef}>
+          {!isAuthenticated ? (
             <button
               type="button"
-              onClick={() => setMenuOpen((prev) => !prev)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-gray-500 shadow-card hover:text-gray-900 transition"
-              aria-haspopup="menu"
-              aria-expanded={menuOpen}
-              aria-label="Profilmenü öffnen"
+              onClick={handleLogin}
+              disabled={isAuthLoading}
+              className="inline-flex items-center gap-2 rounded-button bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-500"
             >
-              <UserCircle size={22} />
+              <LogIn size={16} />
+              {isAuthLoading ? "Lädt..." : "Anmelden"}
             </button>
-            {menuOpen && (
-              <div
-                role="menu"
-                className="absolute right-0 mt-3 w-44 rounded-card border border-border bg-surface shadow-lg"
+          ) : (
+            <div className="relative" ref={menuRef}>
+              <button
+                type="button"
+                onClick={() => setMenuOpen((prev) => !prev)}
+                className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-border bg-white text-gray-500 shadow-card transition hover:text-gray-900"
+                aria-haspopup="menu"
+                aria-expanded={menuOpen}
+                aria-label="Profilmenü öffnen"
               >
-                <div className="px-4 py-3 border-b border-border">
-                  <p className="text-sm font-semibold text-foreground">Mein Konto</p>
-                  <p className="text-xs text-muted">info@skincompass.de</p>
+                {userAvatar ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={userAvatar} alt={userName} className="h-full w-full object-cover" />
+                ) : (
+                  <UserCircle size={22} />
+                )}
+              </button>
+              {menuOpen && (
+                <div
+                  role="menu"
+                  className="absolute right-0 mt-3 w-52 rounded-card border border-border bg-surface shadow-lg"
+                >
+                  <div className="border-b border-border px-4 py-3">
+                    <p className="text-sm font-semibold text-foreground">{userName}</p>
+                    <p className="text-xs text-muted">{steamHandle}</p>
+                  </div>
+                  <div className="py-2">
+                    <Link
+                      href="/settings"
+                      role="menuitem"
+                      className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Einstellungen
+                    </Link>
+                    <button
+                      type="button"
+                      role="menuitem"
+                      onClick={handleLogout}
+                      className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-foreground hover:bg-gray-50"
+                    >
+                      <LogOut size={14} />
+                      Abmelden
+                    </button>
+                  </div>
                 </div>
-                <div className="py-2">
-                  <Link
-                    href="/settings"
-                    role="menuitem"
-                    className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Einstellungen
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
