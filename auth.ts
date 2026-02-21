@@ -2,12 +2,34 @@ import NextAuth from "next-auth";
 
 const STEAM_OPENID_URL = "https://steamcommunity.com/openid/login";
 
-function getRequiredEnv(name: "NEXTAUTH_URL" | "STEAM_API_KEY") {
+function getRequiredEnv(name: "STEAM_API_KEY") {
   const value = process.env[name];
   if (!value) {
     throw new Error(`${name} fehlt.`);
   }
   return value;
+}
+
+function getAuthBaseUrl() {
+  const normalize = (value: string) => value.replace(/\/$/, "");
+  const vercelUrl = process.env.VERCEL_URL;
+
+  // In Vercel Preview deployments we always use the current deployment URL.
+  // This avoids stale NEXTAUTH_URL values from older preview domains.
+  if (process.env.VERCEL_ENV === "preview" && vercelUrl) {
+    return normalize(`https://${vercelUrl}`);
+  }
+
+  const configuredUrl = process.env.NEXTAUTH_URL ?? process.env.AUTH_URL;
+  if (configuredUrl) {
+    return normalize(configuredUrl);
+  }
+
+  if (vercelUrl) {
+    return normalize(`https://${vercelUrl}`);
+  }
+
+  throw new Error("NEXTAUTH_URL fehlt.");
 }
 
 function getSupabaseServiceConfig() {
@@ -95,7 +117,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     () => {
       const steamApiKey = getRequiredEnv("STEAM_API_KEY");
-      const nextAuthUrl = getRequiredEnv("NEXTAUTH_URL").replace(/\/$/, "");
+      const nextAuthUrl = getAuthBaseUrl();
 
       return {
         id: "steam",
