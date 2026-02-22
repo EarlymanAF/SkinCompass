@@ -13,16 +13,19 @@ export async function GET(req: Request) {
 
   const resendApiKey = process.env.RESEND_API_KEY;
   const emailFrom = process.env.EMAIL_FROM;
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  const baseUrl = process.env.APP_BASE_URL || "http://localhost:3000";
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseWriteKey =
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_SECRET_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const baseUrl = process.env.APP_BASE_URL || url.origin;
+  const shouldSendWelcomeEmail = Boolean(resendApiKey && emailFrom);
 
-  if (!resendApiKey || !emailFrom || !supabaseUrl || !supabaseServiceKey) {
+  if (!supabaseUrl || !supabaseWriteKey) {
     return NextResponse.json({ error: "Server ist nicht korrekt konfiguriert." }, { status: 500 });
   }
 
-  const supabase = createClient(supabaseUrl, supabaseServiceKey);
-  const resend = new Resend(resendApiKey);
+  const supabase = createClient(supabaseUrl, supabaseWriteKey);
 
   const { data: signup, error: fetchError } = await supabase
     .from("email_signups")
@@ -47,43 +50,46 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Konnte Bestätigung nicht speichern." }, { status: 500 });
   }
 
-  const welcomeHtml = welcomeEmailTemplate({
-    vision:
-      "SkinCompass wird zur führenden Plattform für moderne, datenbasierte Skin-Investments. Die Anwendung verbindet präzise Informationen mit einer klaren, reduzierten Nutzererfahrung und macht digitale Gegenstände so übersichtlich wie reale Wertanlagen.",
-    screenshots: [],
-    roadmap: [
-      {
-        title: "Transparente Übersicht",
-        description: "Alle relevanten Skinpreise und Marktverläufe strukturiert, verständlich und jederzeit abrufbar.",
-      },
-      {
-        title: "Reduziertes, hochwertiges Design",
-        description: "Klare Oberfläche, die Daten in den Mittelpunkt stellt, ohne Ablenkung.",
-      },
-      {
-        title: "Digitales Portfolio",
-        description: "Steam-Inventar wie ein Investment-Portfolio: Wertentwicklung, Rendite seit Kauf, Trends über Zeit.",
-      },
-      {
-        title: "Individuelle Watchlist",
-        description: "Favoriten beobachten, Preisbewegungen verfolgen und Chancen früh erkennen.",
-      },
-      {
-        title: "Entscheidungen auf Basis echter Daten",
-        description: "Strukturierte Informationen, keine Rätselraten – nachvollziehbare Entscheidungen.",
-      },
-    ],
-    productName: "SkinCompass",
-    unsubscribeUrl: `${baseUrl.replace(/\/$/, "")}/api/unsubscribe?token=${token}`,
-  });
+  if (shouldSendWelcomeEmail) {
+    const resend = new Resend(resendApiKey);
+    const welcomeHtml = welcomeEmailTemplate({
+      vision:
+        "SkinCompass wird zur führenden Plattform für moderne, datenbasierte Skin-Investments. Die Anwendung verbindet präzise Informationen mit einer klaren, reduzierten Nutzererfahrung und macht digitale Gegenstände so übersichtlich wie reale Wertanlagen.",
+      screenshots: [],
+      roadmap: [
+        {
+          title: "Transparente Übersicht",
+          description: "Alle relevanten Skinpreise und Marktverläufe strukturiert, verständlich und jederzeit abrufbar.",
+        },
+        {
+          title: "Reduziertes, hochwertiges Design",
+          description: "Klare Oberfläche, die Daten in den Mittelpunkt stellt, ohne Ablenkung.",
+        },
+        {
+          title: "Digitales Portfolio",
+          description: "Steam-Inventar wie ein Investment-Portfolio: Wertentwicklung, Rendite seit Kauf, Trends über Zeit.",
+        },
+        {
+          title: "Individuelle Watchlist",
+          description: "Favoriten beobachten, Preisbewegungen verfolgen und Chancen früh erkennen.",
+        },
+        {
+          title: "Entscheidungen auf Basis echter Daten",
+          description: "Strukturierte Informationen, keine Rätselraten – nachvollziehbare Entscheidungen.",
+        },
+      ],
+      productName: "SkinCompass",
+      unsubscribeUrl: `${baseUrl.replace(/\/$/, "")}/api/unsubscribe?token=${token}`,
+    });
 
-  // Welcome mail ist best effort: Fehler sollen nicht den Erfolg blockieren.
-  await resend.emails.send({
-    from: emailFrom,
-    to: [signup.email],
-    subject: "Willkommen bei SkinCompass 🚀",
-    html: welcomeHtml,
-  });
+    // Welcome mail ist best effort: Fehler sollen nicht den Erfolg blockieren.
+    await resend.emails.send({
+      from: emailFrom!,
+      to: [signup.email],
+      subject: "Willkommen bei SkinCompass 🚀",
+      html: welcomeHtml,
+    });
+  }
 
   return htmlResponse("Danke, deine E-Mail ist bestätigt. Wir halten dich auf dem Laufenden!");
 }

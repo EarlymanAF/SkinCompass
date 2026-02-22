@@ -7,6 +7,7 @@ import { confirmEmailTemplate } from "@/lib/emailTemplates";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
+  const requestUrl = new URL(req.url);
   const body: unknown = await req.json().catch(() => null);
   const emailRaw =
     body && typeof body === "object"
@@ -18,7 +19,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Ungültige E-Mail-Adresse." }, { status: 400 });
   }
 
-  const baseUrl = process.env.APP_BASE_URL || "http://localhost:3000";
+  const baseUrl = process.env.APP_BASE_URL || requestUrl.origin;
   const resendApiKey = process.env.RESEND_API_KEY;
   const emailFrom = process.env.EMAIL_FROM;
   const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;

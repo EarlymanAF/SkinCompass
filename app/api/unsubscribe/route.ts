@@ -10,14 +10,17 @@ export async function GET(req: Request) {
     return htmlResponse("Kein Token übermittelt.", 400);
   }
 
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseWriteKey =
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_SECRET_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  if (!supabaseUrl || !supabaseServiceKey) {
+  if (!supabaseUrl || !supabaseWriteKey) {
     return htmlResponse("Server ist nicht korrekt konfiguriert. Env Vars fehlen.", 500);
   }
 
-  const supabase = createClient(supabaseUrl, supabaseServiceKey);
+  const supabase = createClient(supabaseUrl, supabaseWriteKey);
 
   const { data: signup, error: fetchError } = await supabase
     .from("email_signups")
