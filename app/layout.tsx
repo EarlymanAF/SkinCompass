@@ -4,14 +4,14 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
 import Topbar from "@/components/Topbar";
+import { OG_DESCRIPTION, SEO_DESCRIPTION, SEO_TITLE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: {
-    default: "SkinCompass - CS2 Skins Preisvergleich & Portfolio-Tracking",
+    default: SEO_TITLE,
     template: "%s | SkinCompass",
   },
-  description:
-    "SkinCompass ist deine Plattform für CS2 Skins Preisvergleich, CS2 Inventar Wert und Portfolio-Tracking über digitale Märkte hinweg.",
+  description: SEO_DESCRIPTION,
   keywords: [
     "cs2 skins",
     "cs2 skins preisvergleich",
@@ -28,9 +28,8 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://skincompass.de",
     siteName: "SkinCompass",
-    title: "SkinCompass - CS2 Skins Preisvergleich & Portfolio-Tracking",
-    description:
-      "Preisvergleich, Portfolio-Tracking und Transparenz für CS2 Skin Preise, Gebühren, Trends und digitale Märkte.",
+    title: SEO_TITLE,
+    description: OG_DESCRIPTION,
     images: [{ url: "/icon.png", width: 512, height: 512, alt: "SkinCompass Logo" }],
   },
   metadataBase: new URL("https://skincompass.de"),
