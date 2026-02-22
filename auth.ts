@@ -10,8 +10,32 @@ function normalizeUrl(value: string) {
   return value.replace(/\/$/, "");
 }
 
-function isVercelDeploymentHost(host: string) {
-  return /^[a-z0-9][a-z0-9-]*-[a-z0-9]{9,}-[a-z0-9-]+\.vercel\.app$/i.test(host);
+function parseVercelDeploymentHost(host: string) {
+  const match = host.match(/^(.*)-([a-z0-9]{9,})-([a-z0-9-]+\.vercel\.app)$/i);
+  if (!match) {
+    return null;
+  }
+
+  return {
+    prefix: match[1],
+    deploymentId: match[2],
+    suffix: match[3],
+  };
+}
+
+function isStalePreviewDeploymentUrl(configuredHost: string, vercelUrl: string) {
+  const configured = parseVercelDeploymentHost(configuredHost);
+  const current = parseVercelDeploymentHost(vercelUrl);
+
+  if (!configured || !current) {
+    return false;
+  }
+
+  return (
+    configured.prefix === current.prefix &&
+    configured.suffix === current.suffix &&
+    configured.deploymentId !== current.deploymentId
+  );
 }
 
 function getAuthSecret() {
@@ -41,7 +65,7 @@ function getAuthBaseUrl() {
     if (process.env.VERCEL_ENV === "preview" && vercelUrl) {
       try {
         const configuredHost = new URL(normalized).host;
-        if (isVercelDeploymentHost(configuredHost) && configuredHost !== vercelUrl) {
+        if (isStalePreviewDeploymentUrl(configuredHost, vercelUrl)) {
           console.warn(
             "NEXTAUTH_URL zeigt auf ein anderes Preview-Deployment; verwende aktuelle VERCEL_URL.",
           );
