@@ -4,6 +4,8 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
 import Topbar from "@/components/Topbar";
+import AnalyticsConsentBanner from "@/components/AnalyticsConsentBanner";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { OG_DESCRIPTION, SEO_DESCRIPTION, SEO_TITLE } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -45,6 +47,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        <AnalyticsConsentBanner />
+        <GoogleAnalytics />
       </body>
     </html>
   );

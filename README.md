@@ -29,6 +29,22 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Google Analytics 4 (GA4)
+
+1. Create a GA4 Web Data Stream in Google Analytics and copy your Measurement ID (`G-XXXXXXXXXX`).
+2. Add the ID to your local environment:
+
+```bash
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+3. Restart the dev server (`npm run dev`).
+4. Verify events in Google Analytics under **Reports -> Realtime**.
+
+Tracking is loaded globally in `app/layout.tsx` via `components/GoogleAnalytics.tsx`, and page views are sent on route changes.
+
+This project includes a consent banner (`components/AnalyticsConsentBanner.tsx`). GA4 is only loaded after explicit acceptance.
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
