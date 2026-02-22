@@ -1,19 +1,30 @@
 // middleware.ts
-import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
-// Simple pass-through middleware with optional IP extraction for future use
+const PUBLIC_ROUTES = new Set(["/", "/impressum", "/datenschutz"]);
+const LANDING_ONLY_MODE = process.env.LANDING_ONLY_MODE !== "false";
+
 export function middleware(req: NextRequest) {
-  // Example: extract client IP if needed later
-  const forwarded = req.headers.get('x-forwarded-for');
-  const ip = (forwarded?.split(',')[0] || req.headers.get('x-real-ip') || '').trim();
-  // You can attach data to request via headers if desired
-  const res = NextResponse.next();
-  if (ip) res.headers.set('x-client-ip', ip);
-  return res;
+  if (!LANDING_ONLY_MODE) {
+    return NextResponse.next();
+  }
+
+  // Never intercept internal Next.js routes like /_error, /_not-found, /_next, etc.
+  if (req.nextUrl.pathname.startsWith("/_")) {
+    return NextResponse.next();
+  }
+
+  if (PUBLIC_ROUTES.has(req.nextUrl.pathname)) {
+    return NextResponse.next();
+  }
+
+  const url = req.nextUrl.clone();
+  url.pathname = "/";
+  url.search = "";
+  return NextResponse.redirect(url);
 }
 
-// Limit to app paths where you might need it (adjust as needed)
 export const config = {
-  matcher: ['/api/:path*', '/compare', '/'],
+  matcher: ["/((?!api|_next|favicon.ico|robots.txt|sitemap.xml|icon.png|.*\\..*).*)"],
 };

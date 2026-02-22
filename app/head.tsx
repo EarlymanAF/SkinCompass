@@ -1,19 +1,19 @@
 export default function Head() {
   return (
     <>
-      <title>SkinCompass – CS2-Skins fair vergleichen</title>
+      <title>SkinCompass – Coming Soon</title>
       <meta
         name="description"
-        content="Echte Endpreise für CS2-Skins – inkl. Gebühren & Währungsumrechnung. Live-Vergleich von Marktplätzen & 7-Tage-Preistrend."
+        content="SkinCompass baut Portfolio-Tracking und Preisvergleich für CS-Skins und weitere digitale Märkte."
       />
       <meta name="robots" content="index, follow" />
 
       {/* Open Graph */}
       <meta property="og:type" content="website" />
-      <meta property="og:title" content="SkinCompass – CS2-Skins fair vergleichen" />
+      <meta property="og:title" content="SkinCompass – Coming Soon" />
       <meta
         property="og:description"
-        content="Vergleiche CS2-Skins in Sekunden – Endpreise, Gebührenübersicht & Preistrends."
+        content="Portfolio-Tracking und Preisvergleich für CS-Skins und weitere digitale Märkte."
       />
       <meta property="og:url" content="https://skincompass.de/" />
       <meta property="og:site_name" content="SkinCompass" />
@@ -23,10 +23,10 @@ export default function Head() {
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="SkinCompass – CS2-Skins fair vergleichen" />
+      <meta name="twitter:title" content="SkinCompass – Coming Soon" />
       <meta
         name="twitter:description"
-        content="Alle CS2-Skinpreise auf einen Blick – fair, transparent & mit Preistrend."
+        content="Portfolio-Tracking und Preisvergleich für CS-Skins und weitere digitale Märkte."
       />
       <meta name="twitter:image" content="https://skincompass.de/og-image.png" />
 

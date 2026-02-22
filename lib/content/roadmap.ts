@@ -79,4 +79,14 @@ export const ROADMAP_ITEMS: RoadmapItem[] = [
     lane: "later",
     status: "planned",
   },
+  {
+    id: "multi-market-expansion",
+    title: "Anbindung weiterer digitaler Märkte",
+    description:
+      "Nach dem CS2-Start erweitern wir die Infrastruktur auf weitere digitale Asset-Märkte mit einheitlicher Datenbasis.",
+    userValue:
+      "Du kannst mehrere digitale Märkte zentral vergleichen und in einem gemeinsamen Portfolio verfolgen.",
+    lane: "later",
+    status: "planned",
+  },
 ];

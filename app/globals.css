@@ -44,3 +44,51 @@ body {
 .accent-gradient {
   background-image: var(--accent-gradient);
 }
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@layer utilities {
+  .rounded-card {
+    border-radius: 12px;
+  }
+
+  .rounded-button {
+    border-radius: 12px;
+  }
+
+  .shadow-card {
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+  }
+
+  .shadow-active {
+    box-shadow: 0 12px 24px rgba(20, 184, 166, 0.25);
+  }
+
+  .animate-gradient-shift {
+    animation: gradientShift 25s ease infinite;
+  }
+
+  .animate-float {
+    animation: float 20s ease-in-out infinite;
+  }
+}

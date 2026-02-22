@@ -22,8 +22,27 @@ export default function Sidebar() {
 
         <nav className="flex flex-col items-center gap-4">
           {NAV_ITEMS.map((item) => {
+            const isEnabled = item.enabled !== false;
             const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             const Icon = item.icon;
+
+            if (!isEnabled) {
+              return (
+                <div
+                  key={item.href}
+                  title={`${item.label} (in Arbeit)`}
+                  aria-label={`${item.label} (in Arbeit)`}
+                  aria-disabled="true"
+                  className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200/70 bg-white/60 text-slate-400 opacity-60"
+                >
+                  <Icon size={20} />
+                  <span className="absolute -right-1 -top-1 rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700">
+                    Bald
+                  </span>
+                </div>
+              );
+            }
+
             return (
               <Link
                 key={item.href}

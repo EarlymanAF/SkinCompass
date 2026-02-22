@@ -7,19 +7,19 @@ import Topbar from "@/components/Topbar";
 
 export const metadata: Metadata = {
   title: {
-    default: "SkinCompass – CS2-Skins fair vergleichen",
+    default: "SkinCompass – Coming Soon",
     template: "%s | SkinCompass",
   },
   description:
-    "Vergleiche CS2-Skinpreise in Sekunden: Endpreise inkl. Gebühren & Währung, Live-Vergleich und 7-Tage-Preistrend.",
+    "SkinCompass baut Portfolio-Tracking und Preisvergleich für CS-Skins und weitere digitale Märkte.",
   alternates: { canonical: "https://skincompass.de" },
   icons: { icon: "/icon.png", shortcut: "/icon.png", apple: "/icon.png" },
   openGraph: {
     type: "website",
     url: "https://skincompass.de",
     siteName: "SkinCompass",
-    title: "SkinCompass – CS2-Skins fair vergleichen",
-    description: "Echte Endpreise (inkl. Gebühren/FX), Live-Vergleich & 7-Tage-Trend.",
+    title: "SkinCompass – Coming Soon",
+    description: "Portfolio-Tracking und Preisvergleich für CS-Skins und weitere digitale Märkte.",
     images: [{ url: "/icon.png", width: 512, height: 512, alt: "SkinCompass Logo" }],
   },
   metadataBase: new URL("https://skincompass.de"),

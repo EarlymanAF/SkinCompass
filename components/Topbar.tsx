@@ -2,47 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { UserCircle } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 import { NAV_ITEMS } from "@/lib/navigation";
 
 const PAGE_TITLES: Record<string, string> = {
-  "/": "Übersicht",
-  "/compare": "Vergleichsportal",
-  "/calendar": "Roadmap",
-  "/messages": "Nachrichten",
-  "/list": "Inventar",
-  "/settings": "Einstellungen",
-  "/landing": "Landing",
+  "/": "Vision",
+  "/impressum": "Impressum",
+  "/datenschutz": "Datenschutz",
 };
 
 export default function Topbar() {
   const pathname = usePathname();
-  const title = PAGE_TITLES[pathname] ?? "Dashboard";
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (!menuRef.current) return;
-      if (!menuRef.current.contains(event.target as Node)) {
-        setMenuOpen(false);
-      }
-    }
-
-    function handleEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setMenuOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleEscape);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, []);
+  const title = PAGE_TITLES[pathname] ?? "SkinCompass";
 
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-surface backdrop-blur">
@@ -53,54 +23,38 @@ export default function Topbar() {
           </p>
           <h1 className="text-lg font-semibold text-foreground">{title}</h1>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="relative" ref={menuRef}>
-            <button
-              type="button"
-              onClick={() => setMenuOpen((prev) => !prev)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-gray-500 shadow-card hover:text-gray-900 transition"
-              aria-haspopup="menu"
-              aria-expanded={menuOpen}
-              aria-label="Profilmenü öffnen"
-            >
-              <UserCircle size={22} />
-            </button>
-            {menuOpen && (
-              <div
-                role="menu"
-                className="absolute right-0 mt-3 w-44 rounded-card border border-border bg-surface shadow-lg"
-              >
-                <div className="px-4 py-3 border-b border-border">
-                  <p className="text-sm font-semibold text-foreground">Mein Konto</p>
-                  <p className="text-xs text-muted">info@skincompass.de</p>
-                </div>
-                <div className="py-2">
-                  <Link
-                    href="/settings"
-                    role="menuitem"
-                    className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Einstellungen
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
+        <div className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.1em] text-emerald-700">
+          Early Access
         </div>
       </div>
 
       <div className="border-t border-amber-200 bg-amber-50/90">
         <p className="mx-auto max-w-7xl px-6 py-2 text-xs font-semibold tracking-[0.08em] text-amber-900 md:px-8">
-          WORK IN PROGRESS: SkinCompass ist aktuell eine Beta. Funktionen, Design und Inhalte werden laufend erweitert.
+          WORK IN PROGRESS: Start mit CS-Skins, danach Erweiterung auf weitere digitale Märkte.
         </p>
       </div>
 
       <div className="md:hidden border-t border-border bg-surface">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
+        <nav className="mx-auto flex max-w-7xl items-center justify-center px-4 py-2">
           {NAV_ITEMS.map((item) => {
+            const isEnabled = item.enabled !== false;
             const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             const Icon = item.icon;
+
+            if (!isEnabled) {
+              return (
+                <div
+                  key={item.href}
+                  title={`${item.label} (in Arbeit)`}
+                  aria-label={`${item.label} (in Arbeit)`}
+                  aria-disabled="true"
+                  className="mx-1 flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200/70 bg-white/60 text-slate-400 opacity-60"
+                >
+                  <Icon size={18} />
+                </div>
+              );
+            }
+
             return (
               <Link
                 key={item.href}
