@@ -4,28 +4,44 @@ const STEAM_OPENID_URL = "https://steamcommunity.com/openid/login";
 const STEAM_ID_PATTERN = /^https?:\/\/steamcommunity\.com\/openid\/id\/(\d+)$/;
 const CODE_MAX_AGE_MS = 10 * 60 * 1000;
 
-function getAuthBaseUrl() {
-  const normalize = (value: string) => value.replace(/\/$/, "");
+function normalizeUrl(value: string) {
+  return value.replace(/\/$/, "");
+}
+
+function getAuthBaseUrl(req?: NextRequest) {
   const vercelUrl = process.env.VERCEL_URL;
 
   // Keep callback/bridge host consistent with NextAuth config on preview deployments.
   if (process.env.VERCEL_ENV === "preview" && vercelUrl) {
-    return normalize(`https://${vercelUrl}`);
+    return normalizeUrl(`https://${vercelUrl}`);
   }
 
   const configuredUrl = process.env.NEXTAUTH_URL ?? process.env.AUTH_URL;
   if (configuredUrl) {
-    return normalize(configuredUrl);
+    return normalizeUrl(configuredUrl);
+  }
+
+  const host = req?.headers.get("x-forwarded-host") ?? req?.headers.get("host");
+  if (host) {
+    const proto =
+      req?.headers.get("x-forwarded-proto") ??
+      (host.includes("localhost") || host.startsWith("127.0.0.1") ? "http" : "https");
+    return normalizeUrl(`${proto}://${host}`);
+  }
+
+  if (req?.nextUrl?.origin) {
+    return normalizeUrl(req.nextUrl.origin);
   }
 
   if (vercelUrl) {
-    return normalize(`https://${vercelUrl}`);
+    return normalizeUrl(`https://${vercelUrl}`);
   }
 
-  throw new Error("NEXTAUTH_URL fehlt.");
+  console.warn("NEXTAUTH_URL fehlt; fallback auf http://localhost:3000.");
+  return "http://localhost:3000";
 }
 
-function getAuthSecret() {
+function getAuthSecret(baseUrl: string) {
   const configured = process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET;
   if (configured) {
     return configured;
@@ -36,7 +52,8 @@ function getAuthSecret() {
     return `preview:${process.env.VERCEL_URL}:auth-secret`;
   }
 
-  throw new Error("NEXTAUTH_SECRET fehlt.");
+  console.warn("NEXTAUTH_SECRET fehlt; fallback secret aus Base-URL wird verwendet.");
+  return `fallback:${baseUrl}:auth-secret`;
 }
 
 function normalizeReturnTo(value: string) {
@@ -118,15 +135,15 @@ async function verifySteamAssertion(params: URLSearchParams, expectedReturnTo: s
   return claimedMatch[1];
 }
 
-async function createSignedCode(steamId: string) {
+async function createSignedCode(steamId: string, baseUrl: string) {
   const timestamp = Date.now().toString();
   const payload = `${steamId}.${timestamp}`;
-  const secret = getAuthSecret();
+  const secret = getAuthSecret(baseUrl);
   const signature = await hmacSha256(secret, payload);
   return `v1.${steamId}.${timestamp}.${signature}`;
 }
 
-async function parseAndVerifyCode(code: string) {
+async function parseAndVerifyCode(code: string, baseUrl: string) {
   const parts = code.split(".");
   if (parts.length !== 4 || parts[0] !== "v1") {
     return null;
@@ -147,7 +164,7 @@ async function parseAndVerifyCode(code: string) {
     return null;
   }
 
-  const secret = getAuthSecret();
+  const secret = getAuthSecret(baseUrl);
   const expected = await hmacSha256(secret, `${steamId}.${timestampRaw}`);
   if (expected !== signature) {
     return null;
@@ -165,7 +182,7 @@ export async function GET(
     return NextResponse.json({ error: "Unsupported provider" }, { status: 404 });
   }
 
-  const baseUrl = getAuthBaseUrl();
+  const baseUrl = getAuthBaseUrl(req);
   const expectedReturnTo = `${baseUrl}/api/auth/steam-bridge/steam`;
 
   const steamId = await verifySteamAssertion(req.nextUrl.searchParams, expectedReturnTo);
@@ -173,7 +190,7 @@ export async function GET(
     return NextResponse.redirect(`${baseUrl}/api/auth/error?error=AccessDenied`);
   }
 
-  const code = await createSignedCode(steamId);
+  const code = await createSignedCode(steamId, baseUrl);
   return NextResponse.redirect(`${baseUrl}/api/auth/callback/steam?code=${encodeURIComponent(code)}`);
 }
 
@@ -181,8 +198,9 @@ export async function POST(req: NextRequest) {
   const form = await req.formData();
   const codeRaw = form.get("code");
   const code = typeof codeRaw === "string" ? codeRaw : "";
+  const baseUrl = getAuthBaseUrl(req);
 
-  const steamId = await parseAndVerifyCode(code);
+  const steamId = await parseAndVerifyCode(code, baseUrl);
   if (!steamId) {
     return NextResponse.json({ error: "invalid_grant" }, { status: 400 });
   }
