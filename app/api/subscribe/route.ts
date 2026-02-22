@@ -21,18 +21,18 @@ export async function POST(req: Request) {
   const baseUrl = process.env.APP_BASE_URL || "http://localhost:3000";
   const resendApiKey = process.env.RESEND_API_KEY;
   const emailFrom = process.env.EMAIL_FROM;
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY;
 
-  if (!resendApiKey || !emailFrom || !supabaseUrl || !supabaseServiceKey) {
+  if (!supabaseUrl || !supabaseServiceKey) {
     return NextResponse.json(
-      { error: "Server ist nicht korrekt konfiguriert. Env Vars fehlen." },
+      { error: "Server ist nicht korrekt konfiguriert. Datenbank-Env-Vars fehlen." },
       { status: 500 },
     );
   }
 
+  const shouldSendConfirmation = Boolean(resendApiKey && emailFrom);
   const supabase = createClient(supabaseUrl, supabaseServiceKey);
-  const resend = new Resend(resendApiKey);
 
   const token = crypto.randomUUID().replace(/-/g, "");
 
@@ -50,14 +50,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Bereits bestätigt. Danke!" });
   }
 
+  const nextStatus = shouldSendConfirmation ? "pending" : "confirmed";
+  const confirmedAt = shouldSendConfirmation ? null : new Date().toISOString();
+
   const { error: upsertError } = await supabase
     .from("email_signups")
     .upsert(
       {
         email,
-        status: "pending",
+        status: nextStatus,
         token,
-        confirmed_at: null,
+        confirmed_at: confirmedAt,
       },
       { onConflict: "email" },
     );
@@ -66,19 +69,24 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Konnte Anmeldung nicht speichern." }, { status: 500 });
   }
 
-  const confirmUrl = `${baseUrl.replace(/\/$/, "")}/api/confirm?token=${token}`;
-  const html = confirmEmailTemplate({ confirmUrl, productName: "SkinCompass" });
+  if (shouldSendConfirmation) {
+    const resend = new Resend(resendApiKey);
+    const confirmUrl = `${baseUrl.replace(/\/$/, "")}/api/confirm?token=${token}`;
+    const html = confirmEmailTemplate({ confirmUrl, productName: "SkinCompass" });
 
-  const { error: mailError } = await resend.emails.send({
-    from: emailFrom,
-    to: [email],
-    subject: "Bitte bestätige deine Early-Access-Anmeldung",
-    html,
-  });
+    const { error: mailError } = await resend.emails.send({
+      from: emailFrom!,
+      to: [email],
+      subject: "Bitte bestätige deine Early-Access-Anmeldung",
+      html,
+    });
 
-  if (mailError) {
-    return NextResponse.json({ error: "E-Mail-Versand fehlgeschlagen." }, { status: 500 });
+    if (mailError) {
+      return NextResponse.json({ error: "E-Mail-Versand fehlgeschlagen." }, { status: 500 });
+    }
+
+    return NextResponse.json({ message: "Check dein Postfach und bestätige die Anmeldung." });
   }
 
-  return NextResponse.json({ message: "Check dein Postfach und bestätige die Anmeldung." });
+  return NextResponse.json({ message: "Danke! Deine Anmeldung wurde gespeichert." });
 }

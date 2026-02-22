@@ -37,14 +37,14 @@ export default function EmailSignup() {
         signal: ctrl.signal,
       });
 
-      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      const data = (await res.json().catch(() => ({}))) as { error?: string; message?: string };
 
       if (!res.ok) {
         throw new Error(data?.error ?? "Anmeldung fehlgeschlagen.");
       }
 
       setStatus("ok");
-      setMessage("Danke! Wir melden uns zum Launch. Bitte prüfe dein Postfach.");
+      setMessage(data.message ?? "Danke! Wir melden uns zum Launch.");
       setEmail("");
     } catch (err: unknown) {
       // Abbruch durch erneuten Klick?
