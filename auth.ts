@@ -6,6 +6,21 @@ function getSteamApiKey() {
   return process.env.STEAM_API_KEY ?? null;
 }
 
+function getAuthSecret() {
+  const configured = process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET;
+  if (configured) {
+    return configured;
+  }
+
+  // Preview safety net: keep auth functional even if env secret is missing.
+  if (process.env.VERCEL_ENV === "preview" && process.env.VERCEL_URL) {
+    console.warn("NEXTAUTH_SECRET fehlt in Preview; fallback secret aus VERCEL_URL wird verwendet.");
+    return `preview:${process.env.VERCEL_URL}:auth-secret`;
+  }
+
+  throw new Error("NEXTAUTH_SECRET fehlt.");
+}
+
 function getAuthBaseUrl() {
   const normalize = (value: string) => value.replace(/\/$/, "");
   const vercelUrl = process.env.VERCEL_URL;
@@ -106,7 +121,7 @@ function normalizeSteamId(value: unknown) {
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   trustHost: true,
-  secret: process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET,
+  secret: getAuthSecret(),
   session: {
     strategy: "jwt",
   },

@@ -26,11 +26,17 @@ function getAuthBaseUrl() {
 }
 
 function getAuthSecret() {
-  const secret = process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET;
-  if (!secret) {
-    throw new Error("NEXTAUTH_SECRET fehlt.");
+  const configured = process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET;
+  if (configured) {
+    return configured;
   }
-  return secret;
+
+  if (process.env.VERCEL_ENV === "preview" && process.env.VERCEL_URL) {
+    console.warn("NEXTAUTH_SECRET fehlt in Preview; fallback secret aus VERCEL_URL wird verwendet.");
+    return `preview:${process.env.VERCEL_URL}:auth-secret`;
+  }
+
+  throw new Error("NEXTAUTH_SECRET fehlt.");
 }
 
 function normalizeReturnTo(value: string) {
