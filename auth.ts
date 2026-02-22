@@ -2,12 +2,8 @@ import NextAuth from "next-auth";
 
 const STEAM_OPENID_URL = "https://steamcommunity.com/openid/login";
 
-function getRequiredEnv(name: "STEAM_API_KEY") {
-  const value = process.env[name];
-  if (!value) {
-    throw new Error(`${name} fehlt.`);
-  }
-  return value;
+function getSteamApiKey() {
+  return process.env.STEAM_API_KEY ?? null;
 }
 
 function getAuthBaseUrl() {
@@ -116,15 +112,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   providers: [
     () => {
-      const steamApiKey = getRequiredEnv("STEAM_API_KEY");
+      const steamApiKey = getSteamApiKey();
       const nextAuthUrl = getAuthBaseUrl();
+
+      if (!steamApiKey) {
+        console.warn("STEAM_API_KEY fehlt; Steam userinfo fallback wird verwendet.");
+      }
 
       return {
         id: "steam",
         name: "Steam",
         type: "oauth",
         clientId: "steam",
-        clientSecret: steamApiKey,
+        // Steam OpenID itself does not require a client secret, but Auth.js expects one.
+        clientSecret: steamApiKey ?? "steam-openid",
         checks: ["none"],
         style: {
           logo: "https://raw.githubusercontent.com/Nekonyx/next-auth-steam/bc574bb62be70993c29f6f54c350bdf64205962a/logo/steam-icon-light.svg",
@@ -152,6 +153,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
             if (!steamId) {
               throw new Error("Steam-ID fehlt im Token-Response.");
+            }
+
+            if (!steamApiKey) {
+              return {
+                steamid: steamId,
+                personaname: `Steam #${steamId.slice(-6)}`,
+                avatarfull: null,
+              };
             }
 
             const url = new URL("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/");
