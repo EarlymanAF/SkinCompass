@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 type Status = "idle" | "loading" | "ok" | "error";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -28,6 +29,11 @@ export default function EmailSignup() {
 
     setStatus("loading");
     setMessage("");
+    trackEvent("cta_click", {
+      cta_id: "newsletter_submit",
+      cta_label: "Early-Access sichern",
+      cta_location: "home_newsletter",
+    });
 
     try {
       const res = await fetch("/api/subscribe", {
@@ -46,6 +52,11 @@ export default function EmailSignup() {
       setStatus("ok");
       setMessage(data.message ?? "Danke! Wir melden uns zum Launch.");
       setEmail("");
+      trackEvent("signup", {
+        signup_type: "newsletter",
+        signup_location: "home_newsletter",
+        method: "email",
+      });
     } catch (err: unknown) {
       // Abbruch durch erneuten Klick?
       if (
@@ -62,6 +73,10 @@ export default function EmailSignup() {
           : "Unerwarteter Fehler. Bitte später erneut versuchen.";
       setStatus("error");
       setMessage(msg);
+      trackEvent("signup_error", {
+        signup_type: "newsletter",
+        signup_location: "home_newsletter",
+      });
     } finally {
       abortRef.current = null;
     }

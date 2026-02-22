@@ -45,6 +45,12 @@ Tracking is loaded globally in `app/layout.tsx` via `components/GoogleAnalytics.
 
 This project includes a consent banner (`components/AnalyticsConsentBanner.tsx`). GA4 is only loaded after explicit acceptance.
 
+Custom events currently tracked:
+
+- `cta_click` (newsletter submit click + key mailto CTAs)
+- `signup` (successful newsletter signup)
+- `signup_error` (failed newsletter signup)
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.

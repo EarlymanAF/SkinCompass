@@ -1,4 +1,5 @@
 import EmailSignup from "@/components/EmailSignup";
+import TrackedCtaLink from "@/components/TrackedCtaLink";
 import {
   ROADMAP_ITEMS,
   ROADMAP_LANE_LABELS,
@@ -74,12 +75,15 @@ export default function LandingPage() {
                 <li>• Performance-Tracking (realisiert / unrealisiert) über Zeit</li>
                 <li>• Idealerweise Erfahrung im frühen Startup oder mit Gründung</li>
               </ul>
-              <a
+              <TrackedCtaLink
                 href={`mailto:${CONTACT_EMAIL}?subject=Bewerbung%20Founding%20Product%20Engineer`}
+                ctaId="founding_engineer_apply"
+                ctaLabel="Für diese Rolle bewerben"
+                ctaLocation="home_founding_team"
                 className="mt-4 inline-block text-sm font-semibold text-indigo-700 underline decoration-indigo-300 underline-offset-4"
               >
                 Für diese Rolle bewerben
-              </a>
+              </TrackedCtaLink>
             </article>
 
             <article className="rounded-2xl border border-border bg-white p-5">
@@ -95,12 +99,15 @@ export default function LandingPage() {
                 <li>• Partnerships, Community und Multiplikatoren im digitalen Asset-Umfeld</li>
                 <li>• Klare KPI-Steuerung entlang des gesamten Funnels</li>
               </ul>
-              <a
+              <TrackedCtaLink
                 href={`mailto:${CONTACT_EMAIL}?subject=Bewerbung%20Founding%20Growth%20Lead`}
+                ctaId="growth_lead_apply"
+                ctaLabel="Für diese Rolle bewerben"
+                ctaLocation="home_founding_team"
                 className="mt-4 inline-block text-sm font-semibold text-indigo-700 underline decoration-indigo-300 underline-offset-4"
               >
                 Für diese Rolle bewerben
-              </a>
+              </TrackedCtaLink>
             </article>
           </div>
         </section>
@@ -110,12 +117,15 @@ export default function LandingPage() {
           <p className="mt-2 text-sm text-secondary">
             Für Feature-Ideen, Integrationen, Partnerschaften oder Bewerbungen erreichst du uns direkt per E-Mail:
           </p>
-          <a
+          <TrackedCtaLink
             href={`mailto:${CONTACT_EMAIL}`}
+            ctaId="contact_email_click"
+            ctaLabel={CONTACT_EMAIL}
+            ctaLocation="home_contact_section"
             className="mt-4 inline-block text-lg font-semibold text-indigo-700 underline decoration-indigo-300 underline-offset-4"
           >
             {CONTACT_EMAIL}
-          </a>
+          </TrackedCtaLink>
         </section>
 
         <section className="rounded-[24px] border border-border bg-surface p-6 shadow-card md:p-8">
