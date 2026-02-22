@@ -4,12 +4,45 @@ const STEAM_OPENID_URL = "https://steamcommunity.com/openid/login";
 const STEAM_ID_PATTERN = /^https?:\/\/steamcommunity\.com\/openid\/id\/(\d+)$/;
 const CODE_MAX_AGE_MS = 10 * 60 * 1000;
 
-function getRequiredEnv(name: "NEXTAUTH_URL" | "NEXTAUTH_SECRET") {
-  const value = process.env[name];
-  if (!value) {
-    throw new Error(`${name} fehlt.`);
+function getAuthBaseUrl() {
+  const normalize = (value: string) => value.replace(/\/$/, "");
+  const vercelUrl = process.env.VERCEL_URL;
+
+  // Keep callback/bridge host consistent with NextAuth config on preview deployments.
+  if (process.env.VERCEL_ENV === "preview" && vercelUrl) {
+    return normalize(`https://${vercelUrl}`);
   }
-  return value;
+
+  const configuredUrl = process.env.NEXTAUTH_URL ?? process.env.AUTH_URL;
+  if (configuredUrl) {
+    return normalize(configuredUrl);
+  }
+
+  if (vercelUrl) {
+    return normalize(`https://${vercelUrl}`);
+  }
+
+  throw new Error("NEXTAUTH_URL fehlt.");
+}
+
+function getAuthSecret() {
+  const secret = process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET;
+  if (!secret) {
+    throw new Error("NEXTAUTH_SECRET fehlt.");
+  }
+  return secret;
+}
+
+function normalizeReturnTo(value: string) {
+  try {
+    const url = new URL(value);
+    if (url.pathname !== "/" && url.pathname.endsWith("/")) {
+      url.pathname = url.pathname.slice(0, -1);
+    }
+    return url.toString();
+  } catch {
+    return value;
+  }
 }
 
 function toBase64Url(bytes: Uint8Array) {
@@ -44,15 +77,13 @@ async function verifySteamAssertion(params: URLSearchParams, expectedReturnTo: s
     return null;
   }
 
-  if (returnTo !== expectedReturnTo) {
+  if (!returnTo || normalizeReturnTo(returnTo) !== normalizeReturnTo(expectedReturnTo)) {
     return null;
   }
 
-  if (!claimedId.startsWith("https://steamcommunity.com/openid/id/")) {
-    return null;
-  }
-
-  if (!identity.startsWith("https://steamcommunity.com/openid/id/")) {
+  const claimedMatch = claimedId.match(STEAM_ID_PATTERN);
+  const identityMatch = identity.match(STEAM_ID_PATTERN);
+  if (!claimedMatch?.[1] || !identityMatch?.[1] || claimedMatch[1] !== identityMatch[1]) {
     return null;
   }
 
@@ -78,18 +109,13 @@ async function verifySteamAssertion(params: URLSearchParams, expectedReturnTo: s
     return null;
   }
 
-  const match = claimedId.match(STEAM_ID_PATTERN);
-  if (!match?.[1]) {
-    return null;
-  }
-
-  return match[1];
+  return claimedMatch[1];
 }
 
 async function createSignedCode(steamId: string) {
   const timestamp = Date.now().toString();
   const payload = `${steamId}.${timestamp}`;
-  const secret = getRequiredEnv("NEXTAUTH_SECRET");
+  const secret = getAuthSecret();
   const signature = await hmacSha256(secret, payload);
   return `v1.${steamId}.${timestamp}.${signature}`;
 }
@@ -115,7 +141,7 @@ async function parseAndVerifyCode(code: string) {
     return null;
   }
 
-  const secret = getRequiredEnv("NEXTAUTH_SECRET");
+  const secret = getAuthSecret();
   const expected = await hmacSha256(secret, `${steamId}.${timestampRaw}`);
   if (expected !== signature) {
     return null;
@@ -133,7 +159,7 @@ export async function GET(
     return NextResponse.json({ error: "Unsupported provider" }, { status: 404 });
   }
 
-  const baseUrl = getRequiredEnv("NEXTAUTH_URL").replace(/\/$/, "");
+  const baseUrl = getAuthBaseUrl();
   const expectedReturnTo = `${baseUrl}/api/auth/steam-bridge/steam`;
 
   const steamId = await verifySteamAssertion(req.nextUrl.searchParams, expectedReturnTo);
