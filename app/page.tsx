@@ -9,20 +9,6 @@ import {
 
 const CONTACT_EMAIL = "info@skincompass.de";
 const LANE_ORDER: RoadmapLane[] = ["now", "next", "later"];
-const SEO_SECTIONS = [
-  {
-    title: "Der ultimative CS2 Marktplatz für clevere Investoren",
-    body: "Die Welt der CS2 Skins ist komplex und fragmentiert. SkinCompass bündelt Daten und Werkzeuge, damit du fundiert entscheiden kannst, ob du CS2 Skins kaufen oder CS2 Skins verkaufen willst.",
-  },
-  {
-    title: "Exakter CS2 Skins Preisvergleich in Echtzeit",
-    body: "Unser marktübergreifender CS2 Skins Preisvergleich zeigt dir fortlaufend Angebote, Gebühren und Endpreise. So erkennst du günstige CS2 Skins schneller und findest den besten Zeitpunkt für Transaktionen.",
-  },
-  {
-    title: "Optimieren Sie Ihr CS2 Inventar mit präzisen Daten",
-    body: "Mit SkinCompass ermittelst du deinen CS2 Inventar Wert transparent und nachvollziehbar. Für strategisches CS2 Skin Trading liefern wir strukturierte Kennzahlen für Performance, Liquidität und Markttrends.",
-  },
-];
 const STATUS_STYLE: Record<RoadmapStatus, string> = {
   in_progress: "border-indigo-200 bg-indigo-50 text-indigo-700",
   planned: "border-slate-300 bg-slate-100 text-slate-700",
@@ -52,62 +38,103 @@ export default function LandingPage() {
   return (
     <>
       <main className="mx-auto max-w-7xl px-6 md:px-8 py-8 space-y-8">
-        <section>
-          <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-            SkinCompass: Ihr Navigator für CS2 Skins, Preise und Portfolio-Tracking
-          </h2>
-          <p className="mt-2 text-secondary">
-            SkinCompass ist Ihre zentrale Plattform für datenbasierte Entscheidungen im Handel mit Counter-Strike 2
-            Skins. Wir vereinen Portfolio-Tracking und ein marktübergreifendes Vergleichsportal, um volle Transparenz
-            über Preise, Trends und den Wert Ihres Inventars zu schaffen.
-          </p>
+        <section className="rounded-[24px] border border-border bg-surface p-6 shadow-card md:p-8">
+          <div className="space-y-5">
+            <h1 className="text-2xl font-semibold text-foreground md:text-3xl">
+              <span>SkinCompass: Ihr Navigator für </span>
+              <span className="text-indigo-700">CS2 Skins</span>
+              <span>, Preise und Portfolio-Tracking</span>
+            </h1>
+            <p className="text-secondary">
+              <span>SkinCompass ist Ihre zentrale Plattform für datenbasierte Entscheidungen im Handel mit </span>
+              <strong>Counter-Strike 2 Skins</strong>
+              <span>
+                . Wir vereinen ein leistungsstarkes Portfolio-Tracking mit einem marktübergreifenden Vergleichsportal,
+                um Ihnen volle Transparenz über Preise, Trends und den Wert Ihres Inventars zu bieten. Unser Ziel ist
+                es, den Handel und das Management von digitalen Assets zu revolutionieren.
+              </span>
+            </p>
+
+            <h2 className="text-xl font-semibold text-foreground md:text-2xl">
+              <span>Der ultimative </span>
+              <span className="text-indigo-700">CS2 Marktplatz</span>
+              <span> für clevere Investoren</span>
+            </h2>
+            <p className="text-secondary">
+              <span>Die Welt der </span>
+              <strong>cs2 skins</strong>
+              <span>
+                {" "}
+                ist komplex und fragmentiert. Um erfolgreich zu sein, benötigen Sie präzise Daten und die richtigen
+                Werkzeuge. SkinCompass bietet Ihnen eine umfassende Übersicht, die Ihnen hilft, fundierte
+                Entscheidungen zu treffen, egal ob Sie{" "}
+              </span>
+              <strong>cs2 skins kaufen</strong>
+              <span> oder </span>
+              <strong>cs2 skins verkaufen</strong>
+              <span> möchten. Verlassen Sie sich auf unsere Analysen, um den Markt zu verstehen und Ihre Strategie zu optimieren.</span>
+            </p>
+
+            <h3 className="text-lg font-semibold text-foreground md:text-xl">
+              <span>Exakter </span>
+              <span className="text-indigo-700">CS2 Skins</span>
+              <span> Preisvergleich in Echtzeit</span>
+            </h3>
+            <p className="text-secondary">
+              <span>Finden Sie stets die besten Angebote. Unsere Plattform analysiert kontinuierlich verschiedene Handelsplätze, um Ihnen einen transparenten </span>
+              <strong>cs2 skins preisvergleich</strong>
+              <span> zu liefern. So stellen Sie sicher, dass Sie nie zu viel bezahlen und immer den optimalen Zeitpunkt für Transaktionen finden. Wir helfen Ihnen, </span>
+              <strong>günstige cs2 skins</strong>
+              <span> zu identifizieren und Ihre Rendite zu maximieren.</span>
+            </p>
+
+            <h2 className="text-xl font-semibold text-foreground md:text-2xl">
+              <span>Optimieren Sie Ihr CS2 Inventar mit präzisen Daten</span>
+            </h2>
+            <p className="text-secondary">
+              <span>Ein klares Verständnis des eigenen Portfolios ist der Schlüssel zum Erfolg. Mit unserem Tool zur Ermittlung des </span>
+              <strong>cs2 inventar wert</strong>
+              <span> behalten Sie stets den Überblick über Ihre gesamten Bestände. Verfolgen Sie die Wertentwicklung Ihrer Kollektion und erkennen Sie Potenziale für gewinnbringendes </span>
+              <strong>cs2 skin trading</strong>
+              <span>. Unsere Plattform liefert Ihnen die notwendigen Kennzahlen, um strategisch zu handeln.</span>
+            </p>
+
+            <ul className="list-disc space-y-2 pl-5 text-secondary">
+              <li>
+                <strong className="text-foreground">Portfolio-Tracking:</strong>
+                <span> Überwachen Sie den Wert Ihrer CS-Skins und anderer digitaler Assets in einem einheitlichen Dashboard.</span>
+              </li>
+              <li>
+                <strong className="text-foreground">Marktübergreifender Vergleich:</strong>
+                <span> Finden Sie jederzeit den besten Preis, indem Sie Angebote über verschiedene Plattformen hinweg vergleichen.</span>
+              </li>
+              <li>
+                <strong className="text-foreground">Datenbasierte Kennzahlen:</strong>
+                <span> Nutzen Sie standardisierte Daten für </span>
+                <strong className="text-foreground">cs2 skin preise</strong>
+                <span>, Gebühren und Trends, um schnellere und bessere Entscheidungen zu treffen.</span>
+              </li>
+            </ul>
+
+            <h2 className="text-xl font-semibold text-foreground md:text-2xl">
+              <span>Unsere Vision: Transparenz für digitale Märkte</span>
+            </h2>
+            <p className="text-secondary">
+              <span>SkinCompass hat es sich zur Aufgabe gemacht, fragmentierte digitale Märkte zu verbinden und Nutzern eine Plattform für fundierte Entscheidungen zu bieten. Wir beginnen mit dem Markt für </span>
+              <strong>Counter-Strike 2 Skins</strong>
+              <span> und erweitern unser Angebot schrittweise, um Ihnen eine umfassende Lösung für alle Ihre digitalen Assets zu bieten. Seien Sie Teil unserer Reise und erleben Sie die Zukunft des digitalen Handels.</span>
+            </p>
+          </div>
         </section>
 
         <section className="rounded-[24px] border border-border bg-surface p-6 md:p-8 shadow-card">
-          <h3 className="text-xl font-semibold text-foreground">Unsere Vision: Transparenz für digitale Märkte</h3>
+          <h3 className="text-xl font-semibold text-foreground">Newsletter / Early Access</h3>
           <p className="mt-2 text-sm text-secondary">
-            Wir starten mit dem Markt für CS2 Skins und erweitern schrittweise auf weitere digitale Märkte. Unser Ziel
-            ist eine einheitliche Plattform für fundierte Entscheidungen über alle digitalen Assets hinweg.
+            Trag dich ein und begleite den Aufbau von Anfang an. Kein Spam, nur relevante Produkt- und Markt-Updates.
           </p>
-          <ul className="mt-4 space-y-2 text-sm text-foreground">
-            <li>• Portfolio-Tracking: Überwache den Wert deiner CS-Skins und anderer digitaler Assets in einem Dashboard.</li>
-            <li>• Marktübergreifender Vergleich: Finde jederzeit den besten Preis über verschiedene Plattformen.</li>
-            <li>• Datenbasierte Kennzahlen: Nutze standardisierte Daten für CS2 Skin Preise, Gebühren und Trends.</li>
-          </ul>
-        </section>
-
-        <section className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-[24px] border border-border bg-surface p-6 md:p-8 shadow-card">
-            <h3 className="text-xl font-semibold text-foreground">Newsletter / Early Access</h3>
-            <p className="mt-2 text-sm text-secondary">
-              Trag dich ein und begleite den Aufbau von Anfang an. Kein Spam, nur relevante Produkt- und
-              Markt-Updates.
-            </p>
-            <div className="mt-5">
-              <EmailSignup />
-            </div>
+          <div className="mt-5 max-w-xl">
+            <EmailSignup />
           </div>
-
-          <div className="rounded-[24px] border border-border bg-surface p-6 md:p-8 shadow-card">
-            <h3 className="text-xl font-semibold text-foreground">Der Aufbau von SkinCompass</h3>
-            <p className="mt-2 text-sm text-secondary">
-              Unser Ziel ist es, den Handel und das Management digitaler Assets zu vereinfachen. Dafür verbinden wir
-              Preisvergleich, Portfolio-Daten und klare Marktkennzahlen in einer Plattform.
-            </p>
-            <p className="mt-3 text-sm text-secondary">
-              Von CS2 Skins aus bauen wir die Infrastruktur so, dass später weitere digitale Märkte mit denselben
-              Qualitätsstandards angebunden werden.
-            </p>
-          </div>
-        </section>
-
-        <section className="grid gap-4 lg:grid-cols-3">
-          {SEO_SECTIONS.map((section) => (
-            <article key={section.title} className="rounded-2xl border border-border bg-surface p-5 shadow-card">
-              <h3 className="text-lg font-semibold text-foreground">{section.title}</h3>
-              <p className="mt-2 text-sm text-secondary">{section.body}</p>
-            </article>
-          ))}
         </section>
 
         <section className="rounded-[24px] border border-border bg-surface p-6 shadow-card md:p-8">
