@@ -22,17 +22,20 @@ export async function POST(req: Request) {
   const resendApiKey = process.env.RESEND_API_KEY;
   const emailFrom = process.env.EMAIL_FROM;
   const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY;
+  const supabaseWriteKey =
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_SECRET_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  if (!supabaseUrl || !supabaseServiceKey) {
+  if (!supabaseUrl || !supabaseWriteKey) {
     return NextResponse.json(
-      { error: "Server ist nicht korrekt konfiguriert. Datenbank-Env-Vars fehlen." },
+      { error: "Server ist nicht korrekt konfiguriert. Datenbank-Zugang fehlt." },
       { status: 500 },
     );
   }
 
   const shouldSendConfirmation = Boolean(resendApiKey && emailFrom);
-  const supabase = createClient(supabaseUrl, supabaseServiceKey);
+  const supabase = createClient(supabaseUrl, supabaseWriteKey);
 
   const token = crypto.randomUUID().replace(/-/g, "");
 
