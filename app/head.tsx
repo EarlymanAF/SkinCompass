@@ -1,19 +1,23 @@
 export default function Head() {
   return (
     <>
-      <title>SkinCompass – Coming Soon</title>
+      <title>SkinCompass - CS2 Skins Preisvergleich & Portfolio-Tracking</title>
       <meta
         name="description"
-        content="SkinCompass baut Portfolio-Tracking und Preisvergleich für CS-Skins und weitere digitale Märkte."
+        content="SkinCompass ist deine Plattform für CS2 Skins Preisvergleich, CS2 Inventar Wert und Portfolio-Tracking über digitale Märkte hinweg."
+      />
+      <meta
+        name="keywords"
+        content="cs2 skins, cs2 skins preisvergleich, cs2 inventar wert, cs2 skin trading, cs2 skins kaufen, cs2 skins verkaufen, cs2 skin preise, digitale assets"
       />
       <meta name="robots" content="index, follow" />
 
       {/* Open Graph */}
       <meta property="og:type" content="website" />
-      <meta property="og:title" content="SkinCompass – Coming Soon" />
+      <meta property="og:title" content="SkinCompass - CS2 Skins Preisvergleich & Portfolio-Tracking" />
       <meta
         property="og:description"
-        content="Portfolio-Tracking und Preisvergleich für CS-Skins und weitere digitale Märkte."
+        content="Preisvergleich, Portfolio-Tracking und Transparenz für CS2 Skin Preise, Gebühren, Trends und digitale Märkte."
       />
       <meta property="og:url" content="https://skincompass.de/" />
       <meta property="og:site_name" content="SkinCompass" />
@@ -23,10 +27,10 @@ export default function Head() {
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="SkinCompass – Coming Soon" />
+      <meta name="twitter:title" content="SkinCompass - CS2 Skins Preisvergleich & Portfolio-Tracking" />
       <meta
         name="twitter:description"
-        content="Portfolio-Tracking und Preisvergleich für CS-Skins und weitere digitale Märkte."
+        content="Preisvergleich, Portfolio-Tracking und Transparenz für CS2 Skin Preise, Gebühren, Trends und digitale Märkte."
       />
       <meta name="twitter:image" content="https://skincompass.de/og-image.png" />
 

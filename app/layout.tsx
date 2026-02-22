@@ -7,19 +7,30 @@ import Topbar from "@/components/Topbar";
 
 export const metadata: Metadata = {
   title: {
-    default: "SkinCompass – Coming Soon",
+    default: "SkinCompass - CS2 Skins Preisvergleich & Portfolio-Tracking",
     template: "%s | SkinCompass",
   },
   description:
-    "SkinCompass baut Portfolio-Tracking und Preisvergleich für CS-Skins und weitere digitale Märkte.",
+    "SkinCompass ist deine Plattform für CS2 Skins Preisvergleich, CS2 Inventar Wert und Portfolio-Tracking über digitale Märkte hinweg.",
+  keywords: [
+    "cs2 skins",
+    "cs2 skins preisvergleich",
+    "cs2 inventar wert",
+    "cs2 skin trading",
+    "cs2 skins kaufen",
+    "cs2 skins verkaufen",
+    "cs2 skin preise",
+    "digitale assets",
+  ],
   alternates: { canonical: "https://skincompass.de" },
   icons: { icon: "/icon.png", shortcut: "/icon.png", apple: "/icon.png" },
   openGraph: {
     type: "website",
     url: "https://skincompass.de",
     siteName: "SkinCompass",
-    title: "SkinCompass – Coming Soon",
-    description: "Portfolio-Tracking und Preisvergleich für CS-Skins und weitere digitale Märkte.",
+    title: "SkinCompass - CS2 Skins Preisvergleich & Portfolio-Tracking",
+    description:
+      "Preisvergleich, Portfolio-Tracking und Transparenz für CS2 Skin Preise, Gebühren, Trends und digitale Märkte.",
     images: [{ url: "/icon.png", width: 512, height: 512, alt: "SkinCompass Logo" }],
   },
   metadataBase: new URL("https://skincompass.de"),
