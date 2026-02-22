@@ -8,25 +8,40 @@ function normalizeUrl(value: string) {
   return value.replace(/\/$/, "");
 }
 
+function isVercelDeploymentHost(host: string) {
+  return /^[a-z0-9][a-z0-9-]*-[a-z0-9]{9,}-[a-z0-9-]+\.vercel\.app$/i.test(host);
+}
+
 function getAuthBaseUrl(req?: NextRequest) {
   const vercelUrl = process.env.VERCEL_URL;
-
-  // Keep callback/bridge host consistent with NextAuth config on preview deployments.
-  if (process.env.VERCEL_ENV === "preview" && vercelUrl) {
-    return normalizeUrl(`https://${vercelUrl}`);
-  }
-
   const configuredUrl = process.env.NEXTAUTH_URL ?? process.env.AUTH_URL;
-  if (configuredUrl) {
-    return normalizeUrl(configuredUrl);
-  }
 
   const host = req?.headers.get("x-forwarded-host") ?? req?.headers.get("host");
-  if (host) {
-    const proto =
-      req?.headers.get("x-forwarded-proto") ??
-      (host.includes("localhost") || host.startsWith("127.0.0.1") ? "http" : "https");
-    return normalizeUrl(`${proto}://${host}`);
+  const proto =
+    req?.headers.get("x-forwarded-proto") ??
+    (host?.includes("localhost") || host?.startsWith("127.0.0.1") ? "http" : "https");
+  const requestUrl = host ? normalizeUrl(`${proto}://${host}`) : null;
+
+  if (configuredUrl) {
+    const normalized = normalizeUrl(configuredUrl);
+
+    // Keep stable preview aliases, but avoid stale one-off deployment URLs.
+    if (process.env.VERCEL_ENV === "preview" && vercelUrl) {
+      try {
+        const configuredHost = new URL(normalized).host;
+        if (isVercelDeploymentHost(configuredHost) && configuredHost !== vercelUrl) {
+          return requestUrl ?? normalizeUrl(`https://${vercelUrl}`);
+        }
+      } catch {
+        return requestUrl ?? normalizeUrl(`https://${vercelUrl}`);
+      }
+    }
+
+    return normalized;
+  }
+
+  if (requestUrl) {
+    return requestUrl;
   }
 
   if (req?.nextUrl?.origin) {

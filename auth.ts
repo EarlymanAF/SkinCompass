@@ -10,6 +10,10 @@ function normalizeUrl(value: string) {
   return value.replace(/\/$/, "");
 }
 
+function isVercelDeploymentHost(host: string) {
+  return /^[a-z0-9][a-z0-9-]*-[a-z0-9]{9,}-[a-z0-9-]+\.vercel\.app$/i.test(host);
+}
+
 function getAuthSecret() {
   const configured = process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET;
   if (configured) {
@@ -28,16 +32,28 @@ function getAuthSecret() {
 
 function getAuthBaseUrl() {
   const vercelUrl = process.env.VERCEL_URL;
-
-  // In Vercel Preview deployments we always use the current deployment URL.
-  // This avoids stale NEXTAUTH_URL values from older preview domains.
-  if (process.env.VERCEL_ENV === "preview" && vercelUrl) {
-    return normalizeUrl(`https://${vercelUrl}`);
-  }
-
   const configuredUrl = process.env.NEXTAUTH_URL ?? process.env.AUTH_URL;
+
   if (configuredUrl) {
-    return normalizeUrl(configuredUrl);
+    const normalized = normalizeUrl(configuredUrl);
+
+    // Keep stable preview aliases (e.g. git-dev), but ignore stale per-deploy URLs.
+    if (process.env.VERCEL_ENV === "preview" && vercelUrl) {
+      try {
+        const configuredHost = new URL(normalized).host;
+        if (isVercelDeploymentHost(configuredHost) && configuredHost !== vercelUrl) {
+          console.warn(
+            "NEXTAUTH_URL zeigt auf ein anderes Preview-Deployment; verwende aktuelle VERCEL_URL.",
+          );
+          return normalizeUrl(`https://${vercelUrl}`);
+        }
+      } catch {
+        console.warn("NEXTAUTH_URL ist ungueltig; fallback auf aktuelle VERCEL_URL.");
+        return normalizeUrl(`https://${vercelUrl}`);
+      }
+    }
+
+    return normalized;
   }
 
   if (vercelUrl) {
