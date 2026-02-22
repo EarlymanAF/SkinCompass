@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import type { NextRequest } from "next/server";
 
 const STEAM_OPENID_URL = "https://steamcommunity.com/openid/login";
 
@@ -11,24 +10,7 @@ function normalizeUrl(value: string) {
   return value.replace(/\/$/, "");
 }
 
-function getBaseUrlFromRequest(request: NextRequest | undefined) {
-  if (!request) {
-    return null;
-  }
-
-  const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
-  if (!host) {
-    return null;
-  }
-
-  const proto =
-    request.headers.get("x-forwarded-proto") ??
-    (host.includes("localhost") || host.startsWith("127.0.0.1") ? "http" : "https");
-
-  return normalizeUrl(`${proto}://${host}`);
-}
-
-function getAuthSecret(baseUrl: string) {
+function getAuthSecret() {
   const configured = process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET;
   if (configured) {
     return configured;
@@ -40,12 +22,11 @@ function getAuthSecret(baseUrl: string) {
     return `preview:${process.env.VERCEL_URL}:auth-secret`;
   }
 
-  // Last resort fallback to avoid hard auth outage from missing env config.
-  console.warn("NEXTAUTH_SECRET fehlt; fallback secret aus Base-URL wird verwendet.");
-  return `fallback:${baseUrl}:auth-secret`;
+  console.warn("NEXTAUTH_SECRET fehlt; globaler fallback secret wird verwendet.");
+  return "fallback:global:auth-secret";
 }
 
-function getAuthBaseUrl(request: NextRequest | undefined) {
+function getAuthBaseUrl() {
   const vercelUrl = process.env.VERCEL_URL;
 
   // In Vercel Preview deployments we always use the current deployment URL.
@@ -57,11 +38,6 @@ function getAuthBaseUrl(request: NextRequest | undefined) {
   const configuredUrl = process.env.NEXTAUTH_URL ?? process.env.AUTH_URL;
   if (configuredUrl) {
     return normalizeUrl(configuredUrl);
-  }
-
-  const fromRequest = getBaseUrlFromRequest(request);
-  if (fromRequest) {
-    return fromRequest;
   }
 
   if (vercelUrl) {
@@ -149,22 +125,22 @@ function normalizeSteamId(value: unknown) {
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth(
-  async (request) => {
-    const steamApiKey = getSteamApiKey();
-    const nextAuthUrl = getAuthBaseUrl(request);
+  {
+    trustHost: true,
+    secret: getAuthSecret(),
+    session: {
+      strategy: "jwt",
+    },
+    providers: [
+      () => {
+        const steamApiKey = getSteamApiKey();
+        const nextAuthUrl = getAuthBaseUrl();
 
-    if (!steamApiKey) {
-      console.warn("STEAM_API_KEY fehlt; Steam userinfo fallback wird verwendet.");
-    }
+        if (!steamApiKey) {
+          console.warn("STEAM_API_KEY fehlt; Steam userinfo fallback wird verwendet.");
+        }
 
-    return {
-      trustHost: true,
-      secret: getAuthSecret(nextAuthUrl),
-      session: {
-        strategy: "jwt",
-      },
-      providers: [
-        {
+        return {
           id: "steam",
           name: "Steam",
           type: "oauth",
@@ -245,63 +221,63 @@ export const { handlers, auth, signIn, signOut } = NextAuth(
               name: profile.personaname,
             };
           },
-        },
-      ],
-      callbacks: {
-        async signIn({ user, account, profile }) {
-          if (account?.provider !== "steam") {
-            return false;
-          }
+        };
+      },
+    ],
+    callbacks: {
+      async signIn({ user, account, profile }) {
+        if (account?.provider !== "steam") {
+          return false;
+        }
 
-          const steamId =
-            normalizeSteamId(user.id) ??
-            normalizeSteamId(account.providerAccountId) ??
-            normalizeSteamId((profile as { steamid?: unknown } | undefined)?.steamid);
+        const steamId =
+          normalizeSteamId(user.id) ??
+          normalizeSteamId(account.providerAccountId) ??
+          normalizeSteamId((profile as { steamid?: unknown } | undefined)?.steamid);
 
-          if (!steamId) {
-            console.warn("Steam signIn wurde abgelehnt: keine gueltige steamId im Callback.");
-            return false;
-          }
+        if (!steamId) {
+          console.warn("Steam signIn wurde abgelehnt: keine gueltige steamId im Callback.");
+          return false;
+        }
 
+        user.id = steamId;
+        return true;
+      },
+      async jwt({ token, user, account }) {
+        const steamId =
+          normalizeSteamId(user?.id) ?? normalizeSteamId(account?.providerAccountId);
+
+        if (steamId) {
+          token.steamId = steamId;
+        }
+
+        return token;
+      },
+      async session({ session, token }) {
+        if (session.user && typeof token.steamId === "string") {
+          session.user.steamId = token.steamId;
+        }
+
+        return session;
+      },
+    },
+    events: {
+      async signIn({ user, account, profile }) {
+        if (account?.provider !== "steam") {
+          return;
+        }
+
+        const steamId =
+          normalizeSteamId(user.id) ??
+          normalizeSteamId(account.providerAccountId) ??
+          normalizeSteamId((profile as { steamid?: unknown } | undefined)?.steamid);
+
+        if (steamId) {
           user.id = steamId;
-          return true;
-        },
-        async jwt({ token, user, account }) {
-          const steamId =
-            normalizeSteamId(user?.id) ?? normalizeSteamId(account?.providerAccountId);
+        }
 
-          if (steamId) {
-            token.steamId = steamId;
-          }
-
-          return token;
-        },
-        async session({ session, token }) {
-          if (session.user && typeof token.steamId === "string") {
-            session.user.steamId = token.steamId;
-          }
-
-          return session;
-        },
+        await upsertUserProfile(user);
       },
-      events: {
-        async signIn({ user, account, profile }) {
-          if (account?.provider !== "steam") {
-            return;
-          }
-
-          const steamId =
-            normalizeSteamId(user.id) ??
-            normalizeSteamId(account.providerAccountId) ??
-            normalizeSteamId((profile as { steamid?: unknown } | undefined)?.steamid);
-
-          if (steamId) {
-            user.id = steamId;
-          }
-
-          await upsertUserProfile(user);
-        },
-      },
-    };
+    },
   },
 );

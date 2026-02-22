@@ -41,7 +41,7 @@ function getAuthBaseUrl(req?: NextRequest) {
   return "http://localhost:3000";
 }
 
-function getAuthSecret(baseUrl: string) {
+function getAuthSecret() {
   const configured = process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET;
   if (configured) {
     return configured;
@@ -52,8 +52,8 @@ function getAuthSecret(baseUrl: string) {
     return `preview:${process.env.VERCEL_URL}:auth-secret`;
   }
 
-  console.warn("NEXTAUTH_SECRET fehlt; fallback secret aus Base-URL wird verwendet.");
-  return `fallback:${baseUrl}:auth-secret`;
+  console.warn("NEXTAUTH_SECRET fehlt; globaler fallback secret wird verwendet.");
+  return "fallback:global:auth-secret";
 }
 
 function normalizeReturnTo(value: string) {
@@ -135,15 +135,15 @@ async function verifySteamAssertion(params: URLSearchParams, expectedReturnTo: s
   return claimedMatch[1];
 }
 
-async function createSignedCode(steamId: string, baseUrl: string) {
+async function createSignedCode(steamId: string) {
   const timestamp = Date.now().toString();
   const payload = `${steamId}.${timestamp}`;
-  const secret = getAuthSecret(baseUrl);
+  const secret = getAuthSecret();
   const signature = await hmacSha256(secret, payload);
   return `v1.${steamId}.${timestamp}.${signature}`;
 }
 
-async function parseAndVerifyCode(code: string, baseUrl: string) {
+async function parseAndVerifyCode(code: string) {
   const parts = code.split(".");
   if (parts.length !== 4 || parts[0] !== "v1") {
     return null;
@@ -164,7 +164,7 @@ async function parseAndVerifyCode(code: string, baseUrl: string) {
     return null;
   }
 
-  const secret = getAuthSecret(baseUrl);
+  const secret = getAuthSecret();
   const expected = await hmacSha256(secret, `${steamId}.${timestampRaw}`);
   if (expected !== signature) {
     return null;
@@ -190,7 +190,7 @@ export async function GET(
     return NextResponse.redirect(`${baseUrl}/api/auth/error?error=AccessDenied`);
   }
 
-  const code = await createSignedCode(steamId, baseUrl);
+  const code = await createSignedCode(steamId);
   return NextResponse.redirect(`${baseUrl}/api/auth/callback/steam?code=${encodeURIComponent(code)}`);
 }
 
@@ -198,9 +198,7 @@ export async function POST(req: NextRequest) {
   const form = await req.formData();
   const codeRaw = form.get("code");
   const code = typeof codeRaw === "string" ? codeRaw : "";
-  const baseUrl = getAuthBaseUrl(req);
-
-  const steamId = await parseAndVerifyCode(code, baseUrl);
+  const steamId = await parseAndVerifyCode(code);
   if (!steamId) {
     return NextResponse.json({ error: "invalid_grant" }, { status: 400 });
   }
