@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import {
   ANALYTICS_CONSENT_EVENT,
@@ -20,8 +20,6 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export default function GoogleAnalytics() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const search = searchParams.toString();
   const [isConsentGranted, setIsConsentGranted] = useState(false);
   const isFirstPageView = useRef(true);
 
@@ -56,14 +54,15 @@ export default function GoogleAnalytics() {
       return;
     }
 
-    const pagePath = search ? `${pathname}?${search}` : pathname;
+    const search = window.location.search;
+    const pagePath = `${pathname}${search}`;
 
     window.gtag("event", "page_view", {
       page_title: document.title,
       page_location: window.location.href,
       page_path: pagePath,
     });
-  }, [isConsentGranted, pathname, search]);
+  }, [isConsentGranted, pathname]);
 
   if (!GA_MEASUREMENT_ID || !isConsentGranted) {
     return null;
