@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import {
+  createSignedSteamBridgeCode,
+  parseAndVerifySteamBridgeCode,
+} from "@/lib/steam-bridge-code";
 
 const STEAM_OPENID_URL = "https://steamcommunity.com/openid/login";
 const STEAM_ID_PATTERN = /^https?:\/\/steamcommunity\.com\/openid\/id\/(\d+)$/;
-const CODE_MAX_AGE_MS = 10 * 60 * 1000;
 
 function normalizeUrl(value: string) {
   return value.replace(/\/$/, "");
@@ -43,21 +46,6 @@ function getAuthBaseUrl(req?: NextRequest) {
   return "http://localhost:3000";
 }
 
-function getAuthSecret() {
-  const configured = process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET;
-  if (configured) {
-    return configured;
-  }
-
-  if (process.env.VERCEL_ENV === "preview" && process.env.VERCEL_URL) {
-    console.warn("NEXTAUTH_SECRET fehlt in Preview; fallback secret aus VERCEL_URL wird verwendet.");
-    return `preview:${process.env.VERCEL_URL}:auth-secret`;
-  }
-
-  console.warn("NEXTAUTH_SECRET fehlt; globaler fallback secret wird verwendet.");
-  return "fallback:global:auth-secret";
-}
-
 function normalizeReturnTo(value: string) {
   try {
     const url = new URL(value);
@@ -68,27 +56,6 @@ function normalizeReturnTo(value: string) {
   } catch {
     return value;
   }
-}
-
-function toBase64Url(bytes: Uint8Array) {
-  let binary = "";
-  for (const byte of bytes) {
-    binary += String.fromCharCode(byte);
-  }
-  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
-}
-
-async function hmacSha256(secret: string, data: string) {
-  const key = await crypto.subtle.importKey(
-    "raw",
-    new TextEncoder().encode(secret),
-    { name: "HMAC", hash: "SHA-256" },
-    false,
-    ["sign"],
-  );
-
-  const signature = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(data));
-  return toBase64Url(new Uint8Array(signature));
 }
 
 async function verifySteamAssertion(params: URLSearchParams, expectedReturnTo: string) {
@@ -137,44 +104,6 @@ async function verifySteamAssertion(params: URLSearchParams, expectedReturnTo: s
   return claimedMatch[1];
 }
 
-async function createSignedCode(steamId: string) {
-  const timestamp = Date.now().toString();
-  const payload = `${steamId}.${timestamp}`;
-  const secret = getAuthSecret();
-  const signature = await hmacSha256(secret, payload);
-  return `v1.${steamId}.${timestamp}.${signature}`;
-}
-
-async function parseAndVerifyCode(code: string) {
-  const parts = code.split(".");
-  if (parts.length !== 4 || parts[0] !== "v1") {
-    return null;
-  }
-
-  const [, steamId, timestampRaw, signature] = parts;
-
-  if (!/^\d{17}$/.test(steamId)) {
-    return null;
-  }
-
-  const timestamp = Number(timestampRaw);
-  if (!Number.isFinite(timestamp)) {
-    return null;
-  }
-
-  if (Math.abs(Date.now() - timestamp) > CODE_MAX_AGE_MS) {
-    return null;
-  }
-
-  const secret = getAuthSecret();
-  const expected = await hmacSha256(secret, `${steamId}.${timestampRaw}`);
-  if (expected !== signature) {
-    return null;
-  }
-
-  return steamId;
-}
-
 export async function GET(
   req: NextRequest,
   context: { params: Promise<{ provider: string }> },
@@ -192,7 +121,7 @@ export async function GET(
     return NextResponse.redirect(`${baseUrl}/api/auth/error?error=AccessDenied`);
   }
 
-  const code = await createSignedCode(steamId);
+  const code = await createSignedSteamBridgeCode(steamId);
   return NextResponse.redirect(`${baseUrl}/api/auth/callback/steam?code=${encodeURIComponent(code)}`);
 }
 
@@ -200,7 +129,7 @@ export async function POST(req: NextRequest) {
   const form = await req.formData();
   const codeRaw = form.get("code");
   const code = typeof codeRaw === "string" ? codeRaw : "";
-  const steamId = await parseAndVerifyCode(code);
+  const steamId = await parseAndVerifySteamBridgeCode(code);
   if (!steamId) {
     return NextResponse.json({ error: "invalid_grant" }, { status: 400 });
   }

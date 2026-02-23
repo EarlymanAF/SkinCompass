@@ -1,4 +1,5 @@
-import NextAuth from "next-auth";
+import NextAuth, { customFetch } from "next-auth";
+import { getAuthSecret, parseAndVerifySteamBridgeCode } from "@/lib/steam-bridge-code";
 
 const STEAM_OPENID_URL = "https://steamcommunity.com/openid/login";
 
@@ -8,22 +9,6 @@ function getSteamApiKey() {
 
 function normalizeUrl(value: string) {
   return value.replace(/\/$/, "");
-}
-
-function getAuthSecret() {
-  const configured = process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET;
-  if (configured) {
-    return configured;
-  }
-
-  // Preview safety net: keep auth functional even if env secret is missing.
-  if (process.env.VERCEL_ENV === "preview" && process.env.VERCEL_URL) {
-    console.warn("NEXTAUTH_SECRET fehlt in Preview; fallback secret aus VERCEL_URL wird verwendet.");
-    return `preview:${process.env.VERCEL_URL}:auth-secret`;
-  }
-
-  console.warn("NEXTAUTH_SECRET fehlt; globaler fallback secret wird verwendet.");
-  return "fallback:global:auth-secret";
 }
 
 function getAuthBaseUrl() {
@@ -53,6 +38,72 @@ function buildFallbackSteamProfile(steamId: string) {
     steamid: steamId,
     personaname: `Steam #${steamId.slice(-6)}`,
     avatarfull: null,
+  };
+}
+
+function extractCodeFromBody(body: RequestInit["body"] | null | undefined) {
+  if (!body) return "";
+
+  if (body instanceof URLSearchParams) {
+    return body.get("code") ?? "";
+  }
+
+  if (body instanceof FormData) {
+    const value = body.get("code");
+    return typeof value === "string" ? value : "";
+  }
+
+  if (typeof body === "string") {
+    return new URLSearchParams(body).get("code") ?? "";
+  }
+
+  if (body instanceof Uint8Array) {
+    return new URLSearchParams(new TextDecoder().decode(body)).get("code") ?? "";
+  }
+
+  return "";
+}
+
+function normalizeComparableUrl(value: string) {
+  const url = new URL(value);
+  url.search = "";
+  url.hash = "";
+  if (url.pathname !== "/" && url.pathname.endsWith("/")) {
+    url.pathname = url.pathname.slice(0, -1);
+  }
+  return url.toString();
+}
+
+function getFetchUrl(input: RequestInfo | URL) {
+  if (typeof input === "string") return input;
+  if (input instanceof URL) return input.toString();
+  return input.url;
+}
+
+function createSteamBridgeTokenFetch(tokenEndpoint: string): typeof fetch {
+  const normalizedTokenEndpoint = normalizeComparableUrl(tokenEndpoint);
+
+  return async (input, init) => {
+    const requestedUrl = normalizeComparableUrl(getFetchUrl(input));
+    const method = (init?.method ?? "GET").toUpperCase();
+
+    if (requestedUrl === normalizedTokenEndpoint && method === "POST") {
+      const code = extractCodeFromBody(init?.body);
+      const steamId = await parseAndVerifySteamBridgeCode(code);
+      if (!steamId) {
+        return Response.json({ error: "invalid_grant" }, { status: 400 });
+      }
+
+      const nonce = crypto.randomUUID().replace(/-/g, "");
+      return Response.json({
+        access_token: `steam:${steamId}:${nonce}`,
+        token_type: "Bearer",
+        expires_in: 3600,
+        steamId,
+      });
+    }
+
+    return fetch(input, init);
   };
 }
 
@@ -231,6 +282,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth(
               name: profile.personaname ?? (steamId ? `Steam #${steamId.slice(-6)}` : "Steam User"),
             };
           },
+          [customFetch]: createSteamBridgeTokenFetch(`${nextAuthUrl}/api/auth/steam-bridge/steam`),
         };
       },
     ],
