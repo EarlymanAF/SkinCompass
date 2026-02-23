@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { WEARS, WEAR_LABEL_DE, type WearEN } from "@/data/wears";
 import { stripWeaponPrefix } from "@/lib/skin-utils";
 import staticWeapons from "@/data/weapons.json";
+import type { ProductEventName, ProductEventProps } from "@/lib/types";
 
 type PriceRow = {
   marketplace: string;
@@ -20,6 +21,15 @@ type ApiSkin = {
   wears?: string[];
   image?: string | null;
 };
+
+type PricesApiResponse = {
+  rows?: PriceRow[];
+  resultCount?: number;
+  freshnessSeconds?: number | null;
+  error?: string;
+};
+
+const SESSION_ID_STORAGE_KEY = "skincompass_compare_session_id";
 
 function formatPrice(value: number, currency: string) {
   try {
@@ -52,6 +62,24 @@ function withSteamSize(url: string) {
   return `${url}/512x512`;
 }
 
+function formatFreshness(seconds: number | null): string {
+  if (seconds == null) return "unbekannt";
+  if (seconds < 60) return "gerade eben";
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `vor ${minutes} Minute${minutes === 1 ? "" : "n"}`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `vor ${hours} Stunde${hours === 1 ? "" : "n"}`;
+  const days = Math.floor(hours / 24);
+  return `vor ${days} Tag${days === 1 ? "" : "en"}`;
+}
+
+function createClientSessionId() {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
 export default function ComparePage() {
   const [weapons, setWeapons] = useState<string[]>([]);
   const [loadingWeapons, setLoadingWeapons] = useState(true);
@@ -68,8 +96,48 @@ export default function ComparePage() {
 
   const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState<PriceRow[] | null>(null);
+  const [resultCount, setResultCount] = useState<number | null>(null);
+  const [freshnessSeconds, setFreshnessSeconds] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
+  const sessionIdRef = useRef<string | null>(null);
+
+  function getSessionId() {
+    if (sessionIdRef.current) return sessionIdRef.current;
+    if (typeof window === "undefined") return null;
+
+    const existing = window.localStorage.getItem(SESSION_ID_STORAGE_KEY);
+    if (existing) {
+      sessionIdRef.current = existing;
+      return existing;
+    }
+
+    const created = createClientSessionId();
+    window.localStorage.setItem(SESSION_ID_STORAGE_KEY, created);
+    sessionIdRef.current = created;
+    return created;
+  }
+
+  function trackCompareEvent(eventName: ProductEventName, props: ProductEventProps = {}) {
+    const sessionId = getSessionId();
+    const payload = {
+      eventName,
+      sessionId,
+      page: "/compare",
+      props,
+    };
+
+    void fetch("/api/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true,
+    }).catch(() => null);
+  }
+
+  useEffect(() => {
+    trackCompareEvent("compare_opened");
+  }, []);
 
   // Waffen aus Supabase laden, Fallback auf lokales JSON
   useEffect(() => {
@@ -90,6 +158,8 @@ export default function ComparePage() {
     setSkin("");
     setWear("");
     setRows(null);
+    setResultCount(null);
+    setFreshnessSeconds(null);
     setError(null);
 
     if (!weapon) {
@@ -159,6 +229,8 @@ export default function ComparePage() {
   useEffect(() => {
     setWear("");
     setRows(null);
+    setResultCount(null);
+    setFreshnessSeconds(null);
     setError(null);
     setSelectedImage(null);
 
@@ -180,27 +252,75 @@ export default function ComparePage() {
 
   async function fetchPrices() {
     if (!weapon || !skin || !wear) return;
+    const startedAt = performance.now();
+
     try {
       setHasSearched(true);
       setLoading(true);
       setError(null);
       setRows(null);
+      setResultCount(null);
+      setFreshnessSeconds(null);
+
+      trackCompareEvent("compare_search_submitted", {
+        weapon,
+        skin,
+        wear,
+      });
 
       const query = new URLSearchParams({ weapon, skin, wear }).toString();
       const res = await fetch(`/api/prices?${query}`, { cache: "no-store" });
 
-      const data: unknown = await res.json();
+      const data = (await res.json()) as PricesApiResponse;
       if (!res.ok) {
-        const errMsg =
-          data && typeof data === "object"
-            ? ((data as Record<string, unknown>).error as string) ?? "Fehler beim Laden"
-            : "Fehler beim Laden der Preise";
+        if (res.status === 404) {
+          setRows([]);
+          setResultCount(0);
+          setFreshnessSeconds(null);
+          trackCompareEvent("compare_no_results", {
+            weapon,
+            skin,
+            wear,
+            reason: "not_found",
+            durationMs: Math.round(performance.now() - startedAt),
+          });
+          return;
+        }
+
+        const errMsg = data?.error ?? "Fehler beim Laden der Preise";
         throw new Error(errMsg);
       }
 
-      const rowsRaw = data && typeof data === "object" ? (data as Record<string, unknown>).rows : undefined;
-      const receivedRows = Array.isArray(rowsRaw) ? (rowsRaw as PriceRow[]) : [];
+      const receivedRows = Array.isArray(data?.rows) ? data.rows : [];
+      const calculatedResultCount =
+        typeof data?.resultCount === "number"
+          ? data.resultCount
+          : receivedRows.filter((row) => row.finalPrice !== null && row.listingsCount !== 0).length;
+      const receivedFreshness = typeof data?.freshnessSeconds === "number" ? data.freshnessSeconds : null;
+
       setRows(receivedRows);
+      setResultCount(calculatedResultCount);
+      setFreshnessSeconds(receivedFreshness);
+
+      const durationMs = Math.round(performance.now() - startedAt);
+      if (calculatedResultCount > 0) {
+        trackCompareEvent("compare_results_shown", {
+          weapon,
+          skin,
+          wear,
+          resultCount: calculatedResultCount,
+          freshnessSeconds: receivedFreshness,
+          durationMs,
+        });
+      } else {
+        trackCompareEvent("compare_no_results", {
+          weapon,
+          skin,
+          wear,
+          reason: "no_offers",
+          durationMs,
+        });
+      }
     } catch (err) {
       const message = err instanceof Error ? err.message : "Unerwarteter Fehler beim Preisabruf.";
       setError(message);
@@ -219,7 +339,13 @@ export default function ComparePage() {
           <select
             className="w-full rounded-xl border border-border bg-white px-3 py-2.5 text-sm outline-none transition focus:border-indigo-300 focus:ring-2 focus:ring-indigo-200/60"
             value={weapon}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setWeapon(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+              const nextWeapon = e.target.value;
+              setWeapon(nextWeapon);
+              if (nextWeapon) {
+                trackCompareEvent("compare_weapon_selected", { weapon: nextWeapon });
+              }
+            }}
           >
             <option value="">{loadingWeapons ? "Lade Waffen…" : "Waffe wählen…"}</option>
             {weapons.map((w) => (
@@ -232,7 +358,16 @@ export default function ComparePage() {
           <select
             className="w-full rounded-xl border border-border bg-white px-3 py-2.5 text-sm outline-none transition disabled:bg-gray-50 disabled:text-gray-400 focus:border-indigo-300 focus:ring-2 focus:ring-indigo-200/60"
             value={skin}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSkin(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+              const nextSkin = e.target.value;
+              setSkin(nextSkin);
+              if (nextSkin) {
+                trackCompareEvent("compare_skin_selected", {
+                  weapon,
+                  skin: nextSkin,
+                });
+              }
+            }}
             disabled={!weapon || loadingSkins}
           >
             <option value="">
@@ -248,7 +383,17 @@ export default function ComparePage() {
           <select
             className="w-full rounded-xl border border-border bg-white px-3 py-2.5 text-sm outline-none transition disabled:bg-gray-50 disabled:text-gray-400 focus:border-indigo-300 focus:ring-2 focus:ring-indigo-200/60"
             value={wear}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setWear(e.target.value as WearEN)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+              const nextWear = e.target.value as WearEN;
+              setWear(nextWear);
+              if (nextWear) {
+                trackCompareEvent("compare_wear_selected", {
+                  weapon,
+                  skin,
+                  wear: nextWear,
+                });
+              }
+            }}
             disabled={!skin}
           >
             <option value="">{!skin ? "Zuerst Skin wählen" : "Wear wählen…"}</option>
@@ -284,13 +429,45 @@ export default function ComparePage() {
           )}
 
           {!loading && !error && rows && rows.length === 0 && (
-            <p className="rounded-2xl border border-border bg-white px-4 py-4 text-sm text-secondary">
-              Für diese Kombination wurden aktuell keine Preise gefunden.
-            </p>
+            <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-4 text-sm text-amber-900">
+              Für diese Kombination wurden aktuell keine Preise gefunden. Probiere eine andere Wear-Stufe oder einen
+              ähnlichen Skin.
+              <div className="mt-3 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => setWear("")}
+                  className="rounded-button border border-amber-300 bg-white px-3 py-1.5 text-xs font-medium text-amber-900"
+                >
+                  Andere Wear wählen
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSkin("")}
+                  className="rounded-button border border-amber-300 bg-white px-3 py-1.5 text-xs font-medium text-amber-900"
+                >
+                  Anderen Skin wählen
+                </button>
+              </div>
+            </div>
           )}
 
           {!loading && !error && rows && rows.length > 0 && (
             <div className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2 text-xs">
+                <span className="rounded-full bg-indigo-100 px-2.5 py-1 font-medium text-indigo-700">
+                  {resultCount ?? 0} aktive Angebote
+                </span>
+                <span className="rounded-full bg-slate-100 px-2.5 py-1 font-medium text-slate-700">
+                  Datenstand: {formatFreshness(freshnessSeconds)}
+                </span>
+              </div>
+
+              {resultCount === 0 && (
+                <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+                  Aktuell hat keiner der gelisteten Marktplätze ein aktives Angebot für diese Kombination.
+                </div>
+              )}
+
               {previewImageSrc && (
                 <div className="flex h-44 items-center justify-center overflow-hidden rounded-2xl border border-border bg-gray-50 p-3">
                   <img

@@ -14,6 +14,26 @@ export type PriceRow = {
   lastUpdated: string | null;
 };
 
+function computeFreshnessSeconds(rows: PriceRow[]): number | null {
+  const now = Date.now();
+  let newestTimestamp: number | null = null;
+
+  for (const row of rows) {
+    if (!row.lastUpdated) continue;
+    if (row.finalPrice === null || row.listingsCount === 0) continue;
+
+    const timestamp = new Date(row.lastUpdated).getTime();
+    if (Number.isNaN(timestamp)) continue;
+
+    if (newestTimestamp === null || timestamp > newestTimestamp) {
+      newestTimestamp = timestamp;
+    }
+  }
+
+  if (newestTimestamp === null) return null;
+  return Math.max(0, Math.floor((now - newestTimestamp) / 1000));
+}
+
 type DbWeapon = { id: string };
 type DbSkin = { id: string };
 type DbVariant = { id: string };
@@ -161,12 +181,17 @@ export async function GET(req: Request) {
       return a.finalPrice! - b.finalPrice!;
     });
 
+    const resultCount = sorted.filter(hasOffers).length;
+    const freshnessSeconds = computeFreshnessSeconds(sorted);
+
     if (sorted.length === 0) {
       return NextResponse.json(
         {
           error: "Keine Preise verfügbar",
           query: { weapon, skin, wear, wearLabelDE: WEAR_LABEL_DE[wear], currency },
           rows: [],
+          resultCount: 0,
+          freshnessSeconds: null,
         },
         { status: 404, headers: { "Cache-Control": "public, max-age=30" } }
       );
@@ -176,6 +201,8 @@ export async function GET(req: Request) {
       {
         query: { weapon, skin, wear, wearLabelDE: WEAR_LABEL_DE[wear], currency },
         rows: sorted,
+        resultCount,
+        freshnessSeconds,
         lastUpdated: new Date().toISOString(),
       },
       { headers: { "Cache-Control": "public, max-age=60" } }

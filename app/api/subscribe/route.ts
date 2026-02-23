@@ -3,6 +3,7 @@ import { Resend } from "resend";
 import { createClient } from "@supabase/supabase-js";
 import crypto from "crypto";
 import { confirmEmailTemplate } from "@/lib/emailTemplates";
+import { insertProductEventSafe } from "@/lib/product-events";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -17,6 +18,9 @@ export async function POST(req: Request) {
   if (!EMAIL_RE.test(email)) {
     return NextResponse.json({ error: "Ungültige E-Mail-Adresse." }, { status: 400 });
   }
+
+  const emailHash = crypto.createHash("sha256").update(email).digest("hex").slice(0, 24);
+  const trackedUserId = `email:${emailHash}`;
 
   const baseUrl = process.env.APP_BASE_URL || "http://localhost:3000";
   const resendApiKey = process.env.RESEND_API_KEY;
@@ -47,6 +51,12 @@ export async function POST(req: Request) {
   }
 
   if (existing?.status === "confirmed") {
+    await insertProductEventSafe({
+      eventName: "signup_submitted",
+      userId: trackedUserId,
+      page: "/api/subscribe",
+      props: { status: "already_confirmed" },
+    });
     return NextResponse.json({ message: "Bereits bestätigt. Danke!" });
   }
 
@@ -65,6 +75,13 @@ export async function POST(req: Request) {
   if (upsertError) {
     return NextResponse.json({ error: "Konnte Anmeldung nicht speichern." }, { status: 500 });
   }
+
+  await insertProductEventSafe({
+    eventName: "signup_submitted",
+    userId: trackedUserId,
+    page: "/api/subscribe",
+    props: { status: "pending_confirmation" },
+  });
 
   const confirmUrl = `${baseUrl.replace(/\/$/, "")}/api/confirm?token=${token}`;
   const html = confirmEmailTemplate({ confirmUrl, productName: "SkinCompass" });
