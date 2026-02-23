@@ -8,34 +8,6 @@ function normalizeUrl(value: string) {
   return value.replace(/\/$/, "");
 }
 
-function parseVercelDeploymentHost(host: string) {
-  const match = host.match(/^(.*)-([a-z0-9]{9,})-([a-z0-9-]+\.vercel\.app)$/i);
-  if (!match) {
-    return null;
-  }
-
-  return {
-    prefix: match[1],
-    deploymentId: match[2],
-    suffix: match[3],
-  };
-}
-
-function isStalePreviewDeploymentUrl(configuredHost: string, vercelUrl: string) {
-  const configured = parseVercelDeploymentHost(configuredHost);
-  const current = parseVercelDeploymentHost(vercelUrl);
-
-  if (!configured || !current) {
-    return false;
-  }
-
-  return (
-    configured.prefix === current.prefix &&
-    configured.suffix === current.suffix &&
-    configured.deploymentId !== current.deploymentId
-  );
-}
-
 function getAuthBaseUrl(req?: NextRequest) {
   const vercelUrl = process.env.VERCEL_URL;
   const configuredUrl = process.env.NEXTAUTH_URL ?? process.env.AUTH_URL;
@@ -46,22 +18,13 @@ function getAuthBaseUrl(req?: NextRequest) {
     (host?.includes("localhost") || host?.startsWith("127.0.0.1") ? "http" : "https");
   const requestUrl = host ? normalizeUrl(`${proto}://${host}`) : null;
 
+  // Keep preview auth flows on the current deployment host.
+  if (process.env.VERCEL_ENV === "preview" && vercelUrl) {
+    return normalizeUrl(`https://${vercelUrl}`);
+  }
+
   if (configuredUrl) {
-    const normalized = normalizeUrl(configuredUrl);
-
-    // Keep stable preview aliases, but avoid stale one-off deployment URLs.
-    if (process.env.VERCEL_ENV === "preview" && vercelUrl) {
-      try {
-        const configuredHost = new URL(normalized).host;
-        if (isStalePreviewDeploymentUrl(configuredHost, vercelUrl)) {
-          return requestUrl ?? normalizeUrl(`https://${vercelUrl}`);
-        }
-      } catch {
-        return requestUrl ?? normalizeUrl(`https://${vercelUrl}`);
-      }
-    }
-
-    return normalized;
+    return normalizeUrl(configuredUrl);
   }
 
   if (requestUrl) {

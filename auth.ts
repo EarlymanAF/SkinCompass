@@ -10,34 +10,6 @@ function normalizeUrl(value: string) {
   return value.replace(/\/$/, "");
 }
 
-function parseVercelDeploymentHost(host: string) {
-  const match = host.match(/^(.*)-([a-z0-9]{9,})-([a-z0-9-]+\.vercel\.app)$/i);
-  if (!match) {
-    return null;
-  }
-
-  return {
-    prefix: match[1],
-    deploymentId: match[2],
-    suffix: match[3],
-  };
-}
-
-function isStalePreviewDeploymentUrl(configuredHost: string, vercelUrl: string) {
-  const configured = parseVercelDeploymentHost(configuredHost);
-  const current = parseVercelDeploymentHost(vercelUrl);
-
-  if (!configured || !current) {
-    return false;
-  }
-
-  return (
-    configured.prefix === current.prefix &&
-    configured.suffix === current.suffix &&
-    configured.deploymentId !== current.deploymentId
-  );
-}
-
 function getAuthSecret() {
   const configured = process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET;
   if (configured) {
@@ -58,26 +30,14 @@ function getAuthBaseUrl() {
   const vercelUrl = process.env.VERCEL_URL;
   const configuredUrl = process.env.NEXTAUTH_URL ?? process.env.AUTH_URL;
 
+  // In preview we intentionally pin to the current deployment host to keep
+  // Steam `return_to` and the bridge token/userinfo calls on the same instance.
+  if (process.env.VERCEL_ENV === "preview" && vercelUrl) {
+    return normalizeUrl(`https://${vercelUrl}`);
+  }
+
   if (configuredUrl) {
-    const normalized = normalizeUrl(configuredUrl);
-
-    // Keep stable preview aliases (e.g. git-dev), but ignore stale per-deploy URLs.
-    if (process.env.VERCEL_ENV === "preview" && vercelUrl) {
-      try {
-        const configuredHost = new URL(normalized).host;
-        if (isStalePreviewDeploymentUrl(configuredHost, vercelUrl)) {
-          console.warn(
-            "NEXTAUTH_URL zeigt auf ein anderes Preview-Deployment; verwende aktuelle VERCEL_URL.",
-          );
-          return normalizeUrl(`https://${vercelUrl}`);
-        }
-      } catch {
-        console.warn("NEXTAUTH_URL ist ungueltig; fallback auf aktuelle VERCEL_URL.");
-        return normalizeUrl(`https://${vercelUrl}`);
-      }
-    }
-
-    return normalized;
+    return normalizeUrl(configuredUrl);
   }
 
   if (vercelUrl) {
@@ -86,6 +46,14 @@ function getAuthBaseUrl() {
 
   console.warn("NEXTAUTH_URL fehlt; fallback auf http://localhost:3000.");
   return "http://localhost:3000";
+}
+
+function buildFallbackSteamProfile(steamId: string) {
+  return {
+    steamid: steamId,
+    personaname: `Steam #${steamId.slice(-6)}`,
+    avatarfull: null,
+  };
 }
 
 function getSupabaseServiceConfig() {
@@ -217,36 +185,37 @@ export const { handlers, auth, signIn, signOut } = NextAuth(
               }
 
               if (!steamApiKey) {
-                return {
-                  steamid: steamId,
-                  personaname: `Steam #${steamId.slice(-6)}`,
-                  avatarfull: null,
-                };
+                return buildFallbackSteamProfile(steamId);
               }
 
-              const url = new URL(
-                "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/",
-              );
-              url.searchParams.set("key", steamApiKey);
-              url.searchParams.set("steamids", steamId);
+              try {
+                const url = new URL(
+                  "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/",
+                );
+                url.searchParams.set("key", steamApiKey);
+                url.searchParams.set("steamids", steamId);
 
-              const response = await fetch(url.toString());
-              if (!response.ok) {
-                throw new Error(`Steam API error: ${response.status} ${response.statusText}`);
+                const response = await fetch(url.toString());
+                if (!response.ok) {
+                  throw new Error(`Steam API error: ${response.status} ${response.statusText}`);
+                }
+
+                const data: unknown = await response.json();
+                const players =
+                  data &&
+                  typeof data === "object" &&
+                  "response" in data &&
+                  (data as { response?: { players?: unknown[] } }).response?.players;
+
+                if (players && Array.isArray(players) && players[0]) {
+                  return players[0] as Record<string, unknown>;
+                }
+              } catch (error) {
+                const message = error instanceof Error ? error.message : "unknown";
+                console.warn("Steam userinfo fallback aktiv:", message);
               }
 
-              const data: unknown = await response.json();
-              const players =
-                data &&
-                typeof data === "object" &&
-                "response" in data &&
-                (data as { response?: { players?: unknown[] } }).response?.players;
-
-              if (!players || !Array.isArray(players) || !players[0]) {
-                throw new Error("Steam profile not found");
-              }
-
-              return players[0] as Record<string, unknown>;
+              return buildFallbackSteamProfile(steamId);
             },
           },
           profile(profile: {
@@ -254,11 +223,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth(
             avatarfull?: string;
             personaname?: string;
           }) {
+            const steamId = profile.steamid ?? "";
             return {
-              id: profile.steamid,
-              image: profile.avatarfull,
-              email: `${profile.steamid}@steamcommunity.com`,
-              name: profile.personaname,
+              id: steamId,
+              image: profile.avatarfull ?? null,
+              email: `${steamId}@steamcommunity.com`,
+              name: profile.personaname ?? (steamId ? `Steam #${steamId.slice(-6)}` : "Steam User"),
             };
           },
         };
