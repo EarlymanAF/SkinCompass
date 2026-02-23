@@ -27,6 +27,7 @@ export default function Head() {
       <meta name="twitter:description" content={OG_DESCRIPTION} />
       <meta name="twitter:image" content="https://skincompass.de/og-image.png" />
 
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
       <link rel="icon" href="/favicon-48x48.png" sizes="48x48" type="image/png" />
       <link rel="icon" href="/favicon-96x96.png" sizes="96x96" type="image/png" />
     </>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="SkinCompass">
+  <circle cx="24" cy="24" r="20.5" fill="none" stroke="#1f2937" stroke-width="3.5" />
+  <path d="M24 24L35 11.5L29.2 29.2Z" fill="#ef4444" />
+  <path d="M24 24L13 36.5L18.8 18.8Z" fill="#111827" />
+  <circle cx="24" cy="24" r="1.7" fill="#1f2937" />
+</svg>
