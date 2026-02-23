@@ -46,7 +46,7 @@ export default function AnalyticsConsentBanner() {
   }
 
   return (
-    <div className="fixed inset-x-4 bottom-4 z-50 rounded-lg border border-border bg-card p-4 shadow-lg md:left-auto md:right-6 md:max-w-lg">
+    <div className="fixed inset-x-4 bottom-4 z-50 rounded-lg border border-border bg-surface p-4 shadow-lg md:left-auto md:right-6 md:max-w-lg">
       <p className="text-sm text-foreground">
         Wir verwenden Google Analytics, um die Nutzung der Website zu messen. Aktivierung nur nach deiner
         Einwilligung.
