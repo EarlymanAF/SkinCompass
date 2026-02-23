@@ -17,7 +17,7 @@ export default function Sidebar() {
           className="group flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-card"
           aria-label="SkinCompass Startseite"
         >
-          <CompassLogo size={30} />
+          <CompassLogo size={34} />
         </Link>
 
         <nav className="flex flex-col items-center gap-4">

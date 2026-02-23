@@ -33,10 +33,10 @@ function formatPrice(value: number, currency: string) {
   }
 }
 
-function withSteamSize(url: string) {
+function withSteamSize(url: string, size = 512) {
   if (!url.includes("/economy/image/")) return url;
-  if (/\/\d+x\d+$/i.test(url)) return url;
-  return `${url}/512x512`;
+  const baseUrl = url.replace(/\/\d+x\d+$/i, "");
+  return `${baseUrl}/${size}x${size}`;
 }
 
 export default function ComparePage() {
@@ -176,7 +176,10 @@ export default function ComparePage() {
   }
 
   const canSearch = Boolean(weapon && skin && wear);
-  const previewImageSrc = selectedImage ? withSteamSize(selectedImage) : null;
+  const previewImageSrc = selectedImage ? withSteamSize(selectedImage, 1024) : null;
+  const previewImageSrcSet = selectedImage
+    ? `${withSteamSize(selectedImage, 512)} 1x, ${withSteamSize(selectedImage, 1024)} 2x`
+    : undefined;
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-8 md:px-8">
@@ -257,6 +260,7 @@ export default function ComparePage() {
                 <div className="flex h-44 items-center justify-center overflow-hidden rounded-2xl border border-border bg-gray-50 p-3">
                   <img
                     src={previewImageSrc}
+                    srcSet={previewImageSrcSet}
                     alt={`${weapon} | ${skin} (${wear})`}
                     className="max-h-full max-w-full object-contain object-center"
                     loading="eager"
