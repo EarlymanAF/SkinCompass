@@ -11,14 +11,76 @@ function normalizeUrl(value: string) {
   return value.replace(/\/$/, "");
 }
 
+function parseVercelDeploymentHost(host: string) {
+  const match = host.match(/^(.*)-([a-z0-9]{9,})-([a-z0-9-]+\.vercel\.app)$/i);
+  if (!match) {
+    return null;
+  }
+
+  return {
+    prefix: match[1],
+    deploymentId: match[2],
+    suffix: match[3],
+  };
+}
+
+function isStalePreviewDeploymentUrl(configuredHost: string, vercelUrl: string) {
+  const configured = parseVercelDeploymentHost(configuredHost);
+  const current = parseVercelDeploymentHost(vercelUrl);
+
+  if (!configured || !current) {
+    return false;
+  }
+
+  return (
+    configured.prefix === current.prefix &&
+    configured.suffix === current.suffix &&
+    configured.deploymentId !== current.deploymentId
+  );
+}
+
+function getPreviewBranchBaseUrl() {
+  const branchUrl = process.env.VERCEL_BRANCH_URL;
+  if (!branchUrl) return null;
+  const normalized = branchUrl.startsWith("http://") || branchUrl.startsWith("https://")
+    ? branchUrl
+    : `https://${branchUrl}`;
+  return normalizeUrl(normalized);
+}
+
 function getAuthBaseUrl() {
   const vercelUrl = process.env.VERCEL_URL;
   const configuredUrl = process.env.NEXTAUTH_URL ?? process.env.AUTH_URL;
 
-  // In preview we intentionally pin to the current deployment host to keep
-  // Steam `return_to` and the bridge token/userinfo calls on the same instance.
-  if (process.env.VERCEL_ENV === "preview" && vercelUrl) {
-    return normalizeUrl(`https://${vercelUrl}`);
+  if (process.env.VERCEL_ENV === "preview") {
+    const branchBaseUrl = getPreviewBranchBaseUrl();
+    if (branchBaseUrl) {
+      return branchBaseUrl;
+    }
+
+    if (configuredUrl) {
+      const normalized = normalizeUrl(configuredUrl);
+      if (vercelUrl) {
+        try {
+          const configuredHost = new URL(normalized).host;
+          if (isStalePreviewDeploymentUrl(configuredHost, vercelUrl)) {
+            console.warn(
+              "NEXTAUTH_URL zeigt auf ein anderes Preview-Deployment; verwende aktuelle VERCEL_URL.",
+            );
+            return normalizeUrl(`https://${vercelUrl}`);
+          }
+        } catch {
+          console.warn("NEXTAUTH_URL ist ungueltig; fallback auf aktuelle VERCEL_URL.");
+          return normalizeUrl(`https://${vercelUrl}`);
+        }
+      }
+
+      return normalized;
+    }
+
+    if (vercelUrl) {
+      return normalizeUrl(`https://${vercelUrl}`);
+    }
   }
 
   if (configuredUrl) {
