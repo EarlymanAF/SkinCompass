@@ -14,7 +14,14 @@ export const metadata: Metadata = {
   description:
     "Vergleiche CS2-Skinpreise in Sekunden: Endpreise inkl. Gebühren & Währung, Live-Vergleich und 7-Tage-Preistrend.",
   alternates: { canonical: "https://skincompass.de" },
-  icons: { icon: "/icon.png", shortcut: "/icon.png", apple: "/icon.png" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/icon.png",
+  },
   openGraph: {
     type: "website",
     url: "https://skincompass.de",

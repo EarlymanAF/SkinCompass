@@ -29,8 +29,6 @@ export default function Head() {
         content="Alle CS2-Skinpreise auf einen Blick – fair, transparent & mit Preistrend."
       />
       <meta name="twitter:image" content="https://skincompass.de/og-image.png" />
-
-      <link rel="icon" href="/favicon.ico" />
     </>
   );
 }

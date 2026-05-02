@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { WEARS, WEAR_LABEL_DE, type WearEN } from "@/data/wears";
 import { stripWeaponPrefix } from "@/lib/skin-utils";
 import staticWeapons from "@/data/weapons.json";
@@ -102,7 +102,7 @@ export default function ComparePage() {
   const [hasSearched, setHasSearched] = useState(false);
   const sessionIdRef = useRef<string | null>(null);
 
-  function getSessionId() {
+  const getSessionId = useCallback(() => {
     if (sessionIdRef.current) return sessionIdRef.current;
     if (typeof window === "undefined") return null;
 
@@ -116,9 +116,9 @@ export default function ComparePage() {
     window.localStorage.setItem(SESSION_ID_STORAGE_KEY, created);
     sessionIdRef.current = created;
     return created;
-  }
+  }, []);
 
-  function trackCompareEvent(eventName: ProductEventName, props: ProductEventProps = {}) {
+  const trackCompareEvent = useCallback((eventName: ProductEventName, props: ProductEventProps = {}) => {
     const sessionId = getSessionId();
     const payload = {
       eventName,
@@ -133,11 +133,11 @@ export default function ComparePage() {
       body: JSON.stringify(payload),
       keepalive: true,
     }).catch(() => null);
-  }
+  }, [getSessionId]);
 
   useEffect(() => {
     trackCompareEvent("compare_opened");
-  }, []);
+  }, [trackCompareEvent]);
 
   // Waffen aus Supabase laden, Fallback auf lokales JSON
   useEffect(() => {

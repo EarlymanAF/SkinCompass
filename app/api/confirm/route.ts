@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { createClient } from "@supabase/supabase-js";
+import crypto from "crypto";
 import { welcomeEmailTemplate } from "@/lib/emailTemplates";
+import { insertProductEventSafe } from "@/lib/product-events";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -46,6 +48,14 @@ export async function GET(req: Request) {
   if (updateError) {
     return NextResponse.json({ error: "Konnte Bestätigung nicht speichern." }, { status: 500 });
   }
+
+  const emailHash = crypto.createHash("sha256").update(signup.email).digest("hex").slice(0, 24);
+  await insertProductEventSafe({
+    eventName: "signup_confirmed",
+    userId: `email:${emailHash}`,
+    page: "/api/confirm",
+    props: { status: "confirmed" },
+  });
 
   const welcomeHtml = welcomeEmailTemplate({
     vision:
