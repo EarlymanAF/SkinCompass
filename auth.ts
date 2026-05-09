@@ -1,4 +1,5 @@
 import NextAuth, { customFetch } from "next-auth";
+import Credentials from "next-auth/providers/credentials";
 import { getAuthSecret, parseAndVerifySteamBridgeCode } from "@/lib/steam-bridge-code";
 
 const STEAM_OPENID_URL = "https://steamcommunity.com/openid/login";
@@ -253,6 +254,26 @@ export const { handlers, auth, signIn, signOut } = NextAuth(
       strategy: "jwt",
     },
     providers: [
+      // ─── Dev-only credentials login (never active in production) ──────────
+      ...(process.env.NODE_ENV === "development"
+        ? [
+            Credentials({
+              id: "dev-steam",
+              name: "Dev Steam Login",
+              credentials: { steamId: { label: "Steam ID", type: "text" } },
+              async authorize(credentials) {
+                console.log("[dev-steam] authorize called, credentials:", JSON.stringify(credentials));
+                const id = credentials?.steamId;
+                if (typeof id !== "string" || !/^\d{17}$/.test(id)) {
+                  console.log("[dev-steam] rejected id:", id);
+                  return null;
+                }
+                console.log("[dev-steam] authorized:", id);
+                return { id, name: `Dev#${id.slice(-4)}`, email: null };
+              },
+            }),
+          ]
+        : []),
       () => {
         const steamApiKey = getSteamApiKey();
         const nextAuthUrl = getAuthBaseUrl();
@@ -350,6 +371,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth(
     ],
     callbacks: {
       async signIn({ user, account, profile }) {
+        // Dev-only credentials provider bypasses Steam validation
+        if (account?.provider === "dev-steam") {
+          return process.env.NODE_ENV === "development";
+        }
+
         if (account?.provider !== "steam") {
           return false;
         }

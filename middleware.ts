@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 
-const PROTECTED_PREFIXES = ["/list", "/messages", "/settings"] as const;
+const PROTECTED_PREFIXES = ["/list", "/inventory", "/messages", "/settings"] as const;
 
 function normalizePathname(pathname: string) {
   if (pathname !== "/" && pathname.endsWith("/")) {

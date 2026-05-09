@@ -12,5 +12,5 @@ export const NAV_ITEMS: NavItem[] = [
   { href: "/compare", label: "Vergleichsportal", icon: Monitor },
   { href: "/calendar", label: "Roadmap", icon: Calendar },
   { href: "/messages", label: "Nachrichten", icon: Mail },
-  { href: "/list", label: "Inventar", icon: List },
+  { href: "/inventory", label: "Inventar", icon: List },
 ];
